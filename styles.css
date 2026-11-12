@@ -8,18 +8,69 @@
   --rule: #d8d0c4;
 }
 * { box-sizing: border-box; }
-html { font-size: 18px; -webkit-text-size-adjust: 100%; }
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
   line-height: 1.65;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.wrap, main {
+  max-width: 38rem;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: clip;
 }
 .wrap {
-  max-width: 38rem;
-  margin: 0 auto;
   padding: 2.5rem 1.25rem 4rem;
+}
+article,
+article p,
+article a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+article img,
+article video,
+article iframe,
+article pre,
+article code,
+article blockquote,
+.tweet-embed,
+.tweet-embed iframe,
+blockquote.twitter-tweet {
+  max-width: 100%;
+}
+article img,
+article video,
+article iframe {
+  height: auto;
+}
+article pre,
+article code {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.tweet-embed {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto;
+  width: 100%;
+  overflow-x: auto;
+}
+.tweet-embed blockquote.twitter-tweet,
+.tweet-embed iframe.twitter-tweet-rendered {
+  margin-left: auto;
+  margin-right: auto;
 }
 header.site {
   margin-bottom: 2.25rem;
