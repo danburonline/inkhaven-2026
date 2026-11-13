@@ -9,6 +9,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel.
 ## Published posts
 
 - [0/30 Meditations on Synthetic Consciousness: The Start](https://danbur-inkhaven.vercel.app/0-the-start/) · [X](https://x.com/danburonline/status/2120735544422629421)
+- [1/30 Meditations on Synthetic Consciousness: Causa Finalis](https://danbur-inkhaven.vercel.app/1-causa-finalis/) · [X](https://x.com/danburonline/status/2121143118062031238)
 
 ## Adding a post
 
