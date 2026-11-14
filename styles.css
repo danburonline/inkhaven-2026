@@ -616,6 +616,7 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
   line-height: 1.6;
   color: var(--muted);
 }
+.topics a { white-space: nowrap; }
 .glossary .intro { margin-bottom: 2rem; }
 .glossary .term { margin: 0 0 2rem; scroll-margin-top: 1.5rem; }
 .glossary .term h2 {
