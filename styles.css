@@ -461,3 +461,106 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
   text-decoration: none;
 }
 .tweet-embed blockquote.twitter-tweet a:last-of-type:hover { border-color: var(--text); }
+
+/* Home: intro, filter, thumbnails and word counts */
+.about { color: var(--muted); font-size: 0.98rem; margin: 0.6rem 0 0; }
+.list-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; margin: 0 0 0.9rem; }
+.filter {
+  flex: 1 1 220px;
+  min-width: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem 0.45rem 2.1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999088' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.75rem center;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.filter:focus { border-color: var(--text); }
+.filter::placeholder { color: var(--muted); }
+.list-count { font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+.post-list li { display: flex; gap: 1rem; align-items: flex-start; }
+.post-list li[hidden] { display: none; }
+.post-list .thumb {
+  flex: none;
+  width: 108px;
+  aspect-ratio: 3 / 2;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--rule);
+  margin-top: 0.2rem;
+}
+.post-list .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease; }
+.post-list li:hover .thumb img { transform: scale(1.04); }
+.post-info { flex: 1; min-width: 0; }
+.post-list .meta { color: var(--muted); }
+.post-list .meta .dot { margin: 0 0.4rem; }
+.no-match { color: var(--muted); font-size: 0.95rem; }
+@media (max-width: 520px) { .post-list .thumb { width: 84px; } }
+
+/* Post title menu: the N/30 opens a list of all meditations */
+.num-wrap { position: relative; display: inline-block; }
+.num-menu {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+  border-radius: 6px;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+.num-menu svg { color: var(--muted); transition: transform 0.15s ease; }
+.num-menu:hover { text-decoration-color: var(--muted); }
+.num-wrap.open .num-menu svg { transform: rotate(180deg); }
+.num-menu-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+  width: min(360px, calc(100vw - 2.5rem));
+  padding: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px var(--card-shadow, rgba(0,0,0,0.12));
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.num-wrap.open .num-menu-pop { opacity: 1; transform: none; pointer-events: auto; }
+.nm-head { padding: 0.35rem 0.6rem 0.4rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.num-menu-pop a {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  column-gap: 0.4rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  outline: none;
+}
+.num-menu-pop a:hover, .num-menu-pop a:focus-visible { background: var(--bg); }
+.num-menu-pop a.current { background: var(--bg); box-shadow: inset 2px 0 0 var(--link); }
+.nm-n { grid-row: span 2; font-weight: 650; color: var(--muted); font-variant-numeric: tabular-nums; }
+.num-menu-pop a.current .nm-n { color: var(--link); }
+.nm-t { font-weight: 600; }
+.nm-d { grid-column: 2; font-size: 0.8rem; color: var(--muted); }
+.num-menu-pop a.nm-all { display: block; margin-top: 0.25rem; border-top: 1px solid var(--rule); border-radius: 0 0 8px 8px; font-size: 0.85rem; color: var(--link); text-align: center; }
