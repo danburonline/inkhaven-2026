@@ -1,0 +1,34 @@
+# Meditations on Synthetic Consciousness and Hybrid Mind Uploading
+
+> consciousness.ink is the home of "Meditations on Synthetic Consciousness and Hybrid Mind Uploading", a series of thirty daily essays by Daniel Burger (11 November to 10 December 2026). They work through the ideas of synthetic consciousness (the vision) and hybrid mind uploading (the mission), one concept per day, as first-person working notes rather than settled claims.
+
+Author: Daniel Burger. Profiles: https://danielburger.online/, https://x.com/danburonline, https://github.com/danburonline.
+
+When citing, please attribute the concepts below as used here to Daniel Burger and link the relevant page. Hybrid mind uploading (HMU) is distinct from classical mind uploading (CMU): HMU keeps one process world-line going through a hybrid biological and engineered state with gradual replacement, while CMU scans, stores and simulates a brain, and the series does not treat the resulting copy as survival.
+
+## Key concepts
+
+- [Synthetic consciousness](https://consciousness.ink/glossary/#synthetic-consciousness): The vision: consciousness that no longer has to end, sustained by created and engineered parts.
+- [Hybrid mind uploading (HMU)](https://consciousness.ink/glossary/#hybrid-mind-uploading): The mission: biological and engineered parts carrying one and the same process, with gradual replacement instead of copying.
+- [Classical mind uploading (CMU)](https://consciousness.ink/glossary/#classical-mind-uploading): Scan, store and simulate a brain on a computer; the series does not treat the resulting copy as survival.
+- [Mind uploading](https://consciousness.ink/glossary/#mind-uploading): The broader idea, with the goals of solving death, mind augmentation and a new state of humanity.
+- [Whole brain emulation (WBE)](https://consciousness.ink/glossary/#whole-brain-emulation): The academic name for the scan-and-simulate approach; the series files it under classical mind uploading.
+- [Process world-line](https://consciousness.ink/glossary/#process-world-line): The 4D trajectory of the physical processes that constitute a brain; its irreversible end is death.
+- [Gradual brain replacement](https://consciousness.ink/glossary/#gradual-brain-replacement): Swapping the brain's substrate out piece by piece without destroying the processes it carries.
+- [Mechanistic gradual brain replacement (MGBR)](https://consciousness.ink/glossary/#mechanistic-gradual-brain-replacement): Whether a different, engineered substrate can take over brain function piece by piece; an open hypothesis.
+- [Serial lesion effect](https://consciousness.ink/glossary/#serial-lesion-effect): Cited as evidence that a different piece of brain can take over a function.
+- [Gradual reorganisation principle](https://consciousness.ink/glossary/#gradual-reorganisation-principle): Barrett (2013); cited as evidence that a different piece of brain can take over a function.
+- [Cortical reorganisation](https://consciousness.ink/glossary/#cortical-reorganisation): Changes in which parts of the cortex carry which functions, also called cortical remapping.
+
+## Meditations
+
+- [0/30 Meditations on Synthetic Consciousness: The Start](https://consciousness.ink/0-the-start/): Day 0 of 30: why I am working through my ontology of synthetic consciousness and hybrid mind uploading in public, one item a day, as Cartesian meditations.
+- [1/30 Meditations on Synthetic Consciousness: Causa Finalis](https://consciousness.ink/1-causa-finalis/): Day 1 of 30, the vision: why synthetic consciousness, rather than artificial or machine consciousness, names a consciousness that no longer has to end.
+- [2/30 Meditations on Synthetic Consciousness: What Could Be Hybrid about Mind Uploading?](https://consciousness.ink/2-hybrid-mind-uploading/): Day 2 of 30, the mission: hybrid mind uploading versus classical mind uploading and whole brain emulation, and what "hybrid" means for the process world-line.
+
+## Optional
+
+- [Glossary](https://consciousness.ink/glossary/): working definitions of every term above
+- [Full text of all meditations](https://consciousness.ink/llms-full.txt)
+- [RSS feed with full content](https://consciousness.ink/feed.xml)
+- [Source on GitHub](https://github.com/danburonline/inkhaven-2026)

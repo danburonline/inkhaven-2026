@@ -181,6 +181,107 @@ def rfc822(iso):
 def ld(obj):
     return '  <script type="application/ld+json">%s</script>' % json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
 
+# ---------------------------------------------------------------------------
+# Identity, topics and discoverability
+# ---------------------------------------------------------------------------
+import hashlib, subprocess, sys
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from glossary import TERMS, MENTIONS
+
+PERSON_ID = SITE_URL + '/#daniel-burger'
+WEBSITE_ID = SITE_URL + '/#website'
+BLOG_ID = SITE_URL + '/#blog'
+GLOSSARY_URL = SITE_URL + '/glossary/'
+TERMSET_ID = GLOSSARY_URL + '#terms'
+# Verified profile URLs only (see README "Identity links"). No bio facts.
+SAME_AS = [
+    'https://danielburger.online/',
+    'https://x.com/danburonline',
+    'https://github.com/danburonline',
+]
+PERSON = {
+    '@type': 'Person',
+    '@id': PERSON_ID,
+    'name': AUTHOR,
+    'url': 'https://danielburger.online/',
+    'sameAs': SAME_AS,
+    'knowsAbout': [{'@id': GLOSSARY_URL + '#' + t['slug']} for t in TERMS],
+}
+REL_ME = '\n'.join('  <link rel="me" href="%s">' % u for u in SAME_AS)
+ICONS = '''  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)">'''
+SERIES_KEYWORDS = ['synthetic consciousness', 'hybrid mind uploading', 'mind uploading',
+                   'gradual brain replacement', 'Daniel Burger']
+HOME_TITLE = SITE_TITLE
+HOME_DESC = ('Daniel Burger\'s 30 meditations on synthetic consciousness and hybrid mind uploading, '
+             'from gradual brain replacement to the process world-line.')
+TOPICS_RE = re.compile(r'\n?\s*<!-- topics:start -->.*?<!-- topics:end -->', re.S)
+META = json.load(open(os.path.join(ROOT, 'tools', 'meta.json'), encoding='utf-8'))
+MOD_PATH = os.path.join(ROOT, 'tools', 'modified.json')
+MODIFIED = json.load(open(MOD_PATH, encoding='utf-8')) if os.path.exists(MOD_PATH) else {}
+TODAY = datetime.now(PT).strftime('%Y-%m-%d')
+
+def term_ref(t, full=False):
+    node = {'@type': 'DefinedTerm', '@id': GLOSSARY_URL + '#' + t['slug'], 'name': t['name'],
+            'url': GLOSSARY_URL + '#' + t['slug'], 'inDefinedTermSet': {'@id': TERMSET_ID}}
+    if t.get('also'):
+        node['alternateName'] = t['also']
+    if t.get('sameAs'):
+        node['sameAs'] = t['sameAs']
+    if full:
+        node['description'] = t['text']
+        node['termCode'] = t['slug']
+    return node
+
+def plain_name(t):
+    return re.sub(r'\s*\([A-Z]+\)$', '', t['name'])
+
+def body_text(art):
+    body = BeautifulSoup(str(art), 'html.parser').find('article')
+    for sel in ['h1', 'time', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+        for el in body.select(sel):
+            el.decompose()
+    return re.sub(r'\s+', ' ', body.get_text(' ')).strip()
+
+def article_hash(text):
+    return hashlib.sha1(text.encode('utf-8')).hexdigest()
+
+def ensure_extras(path, topics):
+    """Glossary link in the footer and the Topics line after the article."""
+    s = open(path, encoding='utf-8').read()
+    s = TOPICS_RE.sub('', s)
+    if topics:
+        links = ', '.join('<a href="/glossary/#%s">%s</a>' % (t['slug'], html.escape(plain_name(t).lower()))
+                          for t in topics)
+        block = ('\n    <!-- topics:start -->\n    <p class="topics">Topics: %s</p>\n    <!-- topics:end -->' % links)
+        s = s.replace('</article>', '</article>' + block, 1)
+    if 'href="/glossary/"' not in s:
+        s = re.sub(r'(<footer class="site">\s*<a href="/">[^<]*</a>)', r'\1<a href="/glossary/">Glossary</a>', s, count=1)
+    open(path, 'w', encoding='utf-8').write(s)
+
+def common_head(title, desc, canonical):
+    return [
+        '  <meta charset="utf-8">',
+        '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+        '  <title>%s</title>' % html.escape(title),
+        '  <meta name="description" content="%s">' % html.escape(desc),
+        '  <meta name="author" content="%s">' % AUTHOR,
+        '  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">',
+        '  <link rel="canonical" href="%s">' % canonical,
+        FEED_LINK,
+        '  <link rel="alternate" type="text/plain" title="llms.txt" href="%s/llms.txt">' % SITE_URL,
+        REL_ME,
+        ICONS,
+    ]
+
+def absolutize(fragment):
+    fragment = re.sub(r'(src|href|poster)="/(?!/)', r'\1="%s/' % SITE_URL, fragment)
+    return fragment
+
+# ---------------------------------------------------------------------------
 posts = []
 for d in sorted(os.listdir(ROOT)):
     m = re.match(r'^(\d+)-', d)
@@ -196,7 +297,10 @@ for d in sorted(os.listdir(ROOT)):
     num = int(m.group(1))
     short = title.split(':', 1)[1].strip() if ':' in title else title
     page_title = '%s/30 %s · Meditations on Synthetic Consciousness' % (num, short)
-    desc = excerpt(first_para(art))
+    if len(page_title) > 66:
+        page_title = '%s/30 %s · %s' % (num, short, SITE)
+    meta = META.get(d, {})
+    desc = meta.get('description') or excerpt(first_para(art))
     img_el = art.find('img')
     video = art.find('video')
     if img_el and img_el.get('src'):
@@ -220,56 +324,91 @@ for d in sorted(os.listdir(ROOT)):
         os.path.join(ROOT, 'thumbs', d + '.jpg'), quality=82, optimize=True)
     og_file = os.path.join(ROOT, d, 'og.jpg')
     cover_og(src_path, og_file)
-    body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
-        for el in body.select(sel):
-            el.decompose()
-    words = len(re.findall(r"[\w'’-]+", body.get_text(' ')))
+    text = body_text(art)
+    words = len(re.findall(r"[\w'’-]+", text))
+    # dateModified: the day the article text last changed (tracked in tools/modified.json)
+    h = article_hash(text)
+    rec = MODIFIED.get(d)
+    if not rec or rec.get('hash') != h:
+        rec = {'hash': h, 'date': max(TODAY, t['datetime']) if rec else t['datetime']}
+        MODIFIED[d] = rec
+    modified = max(rec['date'], t['datetime'])
+    topics = [x for x in TERMS if re.search(x['pattern'], text, re.I)]
+    mentions = [x for x in MENTIONS if re.search(x['pattern'], text, re.I)]
+    xc = art.find('a', class_='x-callout')
     url = '%s/%s/' % (SITE_URL, d)
     og_url = '%s/%s/og.jpg' % (SITE_URL, d)
     video_src = None
     if video and video.get('src'):
         video_src = SITE_URL + video['src']
-        vw = video.get('width') or '1280'
-        vh = video.get('height') or '720'
+    # full article HTML for the feed and plain text for llms-full.txt
+    clean = BeautifulSoup(str(art), 'html.parser').find('article')
+    for sel in ['h1', 'time', '.x-callout', 'script', '.num-menu-pop']:
+        for el in clean.select(sel):
+            el.decompose()
     posts.append(dict(
         n=num, slug=d, title=title, short=short, page_title=page_title,
-        date=t.get_text(strip=True), iso=t['datetime'], words=words,
+        date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,
         thumb='/thumbs/%s.jpg' % d, desc=desc, alt=alt, url=url, og=og_url,
         video=video_src, vw=video.get('width') if video else None,
-        vh=video.get('height') if video else None,
-        path=p))
+        vh=video.get('height') if video else None, topics=topics, mentions=mentions,
+        x=xc['href'] if xc else None, html=absolutize(clean.decode_contents().strip()),
+        text=text, path=p))
 
 posts.sort(key=lambda x: -x['n'])
+json.dump(MODIFIED, open(MOD_PATH, 'w', encoding='utf-8'), indent=1, sort_keys=True)
+last_mod = max(q['modified'] for q in posts)
 
 for q in posts:
-    graph = {
-        '@context': 'https://schema.org',
+    kw = [plain_name(x).lower() for x in q['topics']] + [k for k in SERIES_KEYWORDS
+                                                         if k.lower() not in [plain_name(x).lower() for x in q['topics']]]
+    q['keywords'] = kw
+    posting = {
         '@type': 'BlogPosting',
-        'headline': q['page_title'],
+        '@id': q['url'] + '#post',
+        'headline': q['title'][:110],
         'name': q['title'],
         'description': q['desc'],
-        'datePublished': q['iso'],
-        'author': {'@type': 'Person', 'name': AUTHOR, 'url': AUTHOR_X},
-        'image': {'@type': 'ImageObject', 'url': q['og'], 'width': OG_W, 'height': OG_H},
         'url': q['url'],
-        'mainEntityOfPage': {'@type': 'WebPage', '@id': q['url']},
-        'isPartOf': {'@type': 'Blog', 'name': SITE_TITLE, 'url': SITE_URL + '/'},
-        'publisher': {'@type': 'Person', 'name': AUTHOR, 'url': AUTHOR_X},
+        'datePublished': q['iso'],
+        'dateModified': q['modified'],
+        'wordCount': q['words'],
+        'inLanguage': 'en',
+        'author': {'@id': PERSON_ID},
+        'publisher': {'@id': PERSON_ID},
+        'image': {'@type': 'ImageObject', 'url': q['og'], 'width': OG_W, 'height': OG_H},
+        'mainEntityOfPage': {'@id': q['url']},
+        'isPartOf': {'@id': BLOG_ID},
+        'position': q['n'],
+        'keywords': ', '.join(kw),
+        'about': [{'@id': GLOSSARY_URL + '#' + x['slug']} for x in q['topics']],
     }
-    lines = [
-        '  <meta charset="utf-8">',
-        '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-        '  <title>%s</title>' % html.escape(q['page_title']),
-        '  <meta name="description" content="%s">' % html.escape(q['desc']),
-        '  <meta name="author" content="%s">' % AUTHOR,
-        '  <link rel="canonical" href="%s">' % q['url'],
-        FEED_LINK,
+    if q['mentions']:
+        posting['mentions'] = [{'@type': 'Thing', 'name': x['name'], 'sameAs': x['sameAs']} for x in q['mentions']]
+    if q['x']:
+        posting['discussionUrl'] = q['x']
+    if q['video']:
+        posting['video'] = {'@type': 'VideoObject', 'name': q['title'], 'contentUrl': q['video'],
+                            'thumbnailUrl': q['og'], 'uploadDate': q['iso'], 'description': q['desc']}
+    graph = {'@context': 'https://schema.org', '@graph': [
+        posting,
+        {'@type': 'WebPage', '@id': q['url'], 'url': q['url'], 'name': q['page_title'],
+         'isPartOf': {'@id': WEBSITE_ID}, 'inLanguage': 'en',
+         'primaryImageOfPage': {'@type': 'ImageObject', 'url': q['og']},
+         'breadcrumb': {'@type': 'BreadcrumbList', 'itemListElement': [
+             {'@type': 'ListItem', 'position': 1, 'name': SITE, 'item': SITE_URL + '/'},
+             {'@type': 'ListItem', 'position': 2, 'name': q['title'], 'item': q['url']}]}},
+        {'@type': 'Blog', '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/'},
+        PERSON,
+    ] + [term_ref(x) for x in q['topics']]}
+    lines = common_head(q['page_title'], q['desc'], q['url']) + [
+        '  <meta name="keywords" content="%s">' % html.escape(', '.join(kw)),
         '  <meta property="og:type" content="article">',
         '  <meta property="og:title" content="%s">' % html.escape(q['page_title']),
         '  <meta property="og:description" content="%s">' % html.escape(q['desc']),
         '  <meta property="og:url" content="%s">' % q['url'],
         '  <meta property="og:site_name" content="%s">' % SITE,
+        '  <meta property="og:locale" content="en_GB">',
         '  <meta property="og:image" content="%s">' % q['og'],
         '  <meta property="og:image:width" content="%s">' % OG_W,
         '  <meta property="og:image:height" content="%s">' % OG_H,
@@ -284,17 +423,25 @@ for q in posts:
         ]
     lines += [
         '  <meta property="article:published_time" content="%s">' % q['iso'],
-        '  <meta property="article:author" content="%s">' % AUTHOR,
+        '  <meta property="article:modified_time" content="%s">' % q['modified'],
+        '  <meta property="article:author" content="%s">' % 'https://danielburger.online/',
+        '  <meta property="article:section" content="%s">' % html.escape(SITE_TITLE),
+    ] + ['  <meta property="article:tag" content="%s">' % html.escape(k) for k in kw] + [
         '  <meta name="twitter:card" content="summary_large_image">',
+        '  <meta name="twitter:site" content="@danburonline">',
         '  <meta name="twitter:creator" content="@danburonline">',
         '  <meta name="twitter:title" content="%s">' % html.escape(q['page_title']),
         '  <meta name="twitter:description" content="%s">' % html.escape(q['desc']),
         '  <meta name="twitter:image" content="%s">' % q['og'],
+        '  <meta name="twitter:image:alt" content="%s">' % html.escape(q['alt']),
         ld(graph),
         THEME_HEAD,
     ]
     set_head(q['path'], lines)
+    ensure_extras(q['path'], q['topics'])
 
+# ---------------------------------------------------------------------------
+# Home
 items = []
 for q in posts:
     items.append(f'''        <li data-n="{q['n']}" data-words="{q['words']}" data-search="{html.escape((q['title'] + ' ' + q['date']).lower())}">
@@ -313,57 +460,57 @@ block = ('<!-- posts:start -->\n'
 ip = os.path.join(ROOT, 'index.html')
 s = open(ip, encoding='utf-8').read()
 s = re.sub(r'<!-- posts:start -->.*?<!-- posts:end -->', lambda _: block, s, flags=re.S)
+if 'href="/glossary/"' not in s:
+    s = s.replace('<a href="https://github.com/danburonline/inkhaven-2026">GitHub</a>',
+                  '<a href="https://github.com/danburonline/inkhaven-2026">GitHub</a><a href="/glossary/">Glossary</a>', 1)
 open(ip, 'w', encoding='utf-8').write(s)
 
-soup = BeautifulSoup(open(ip, encoding='utf-8').read(), 'html.parser')
-about = soup.select_one('.about')
-intro = soup.select_one('.intro')
-home_src = ' '.join(t.get_text(' ', strip=True) for t in [about, intro] if t)
-home_desc = excerpt(home_src, 155)
+home_desc = HOME_DESC
 home_og = os.path.join(ROOT, 'og.jpg')
 make_home_og(home_og)
 home_og_url = SITE_URL + '/og.jpg'
+about_terms = [{'@id': GLOSSARY_URL + '#' + x['slug']} for x in TERMS]
 home_ld = {
     '@context': 'https://schema.org',
     '@graph': [
         {
-            '@type': 'WebSite',
-            'name': SITE,
-            'url': SITE_URL + '/',
-            'description': home_desc,
-            'inLanguage': 'en',
-            'publisher': {'@type': 'Person', 'name': AUTHOR, 'url': AUTHOR_X},
+            '@type': 'WebSite', '@id': WEBSITE_ID, 'name': SITE, 'alternateName': SITE_TITLE,
+            'url': SITE_URL + '/', 'description': home_desc, 'inLanguage': 'en',
+            'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
         },
         {
-            '@type': 'Blog',
-            'name': SITE_TITLE,
-            'url': SITE_URL + '/',
-            'description': home_desc,
-            'author': {'@type': 'Person', 'name': AUTHOR, 'url': AUTHOR_X},
+            '@type': 'Blog', '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/',
+            'description': home_desc, 'inLanguage': 'en', 'isPartOf': {'@id': WEBSITE_ID},
+            'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
+            'image': home_og_url, 'dateModified': last_mod,
+            'keywords': ', '.join(plain_name(x).lower() for x in TERMS),
+            'about': about_terms,
+            'blogPost': [{'@type': 'BlogPosting', '@id': q['url'] + '#post', 'headline': q['title'][:110],
+                          'url': q['url'], 'datePublished': q['iso'], 'author': {'@id': PERSON_ID}}
+                         for q in posts],
         },
-    ],
+        {'@type': 'WebPage', '@id': SITE_URL + '/', 'url': SITE_URL + '/', 'name': HOME_TITLE,
+         'isPartOf': {'@id': WEBSITE_ID}, 'about': {'@id': BLOG_ID}, 'inLanguage': 'en'},
+        PERSON,
+        {'@type': 'DefinedTermSet', '@id': TERMSET_ID, 'name': 'Glossary', 'url': GLOSSARY_URL},
+    ] + [term_ref(x) for x in TERMS],
 }
-home_title = SITE_TITLE + ' · ' + AUTHOR
-set_head(ip, [
-    '  <meta charset="utf-8">',
-    '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-    '  <title>%s</title>' % html.escape(home_title),
-    '  <meta name="description" content="%s">' % html.escape(home_desc),
-    '  <meta name="author" content="%s">' % AUTHOR,
-    '  <link rel="canonical" href="%s/">' % SITE_URL,
-    FEED_LINK,
+set_head(ip, common_head(HOME_TITLE, home_desc, SITE_URL + '/') + [
+    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS) + ', Daniel Burger'),
     '  <meta property="og:type" content="website">',
-    '  <meta property="og:title" content="%s">' % html.escape(home_title),
+    '  <meta property="og:title" content="%s">' % html.escape(HOME_TITLE),
     '  <meta property="og:description" content="%s">' % html.escape(home_desc),
     '  <meta property="og:url" content="%s/">' % SITE_URL,
     '  <meta property="og:site_name" content="%s">' % SITE,
+    '  <meta property="og:locale" content="en_GB">',
     '  <meta property="og:image" content="%s">' % home_og_url,
     '  <meta property="og:image:width" content="%s">' % OG_W,
     '  <meta property="og:image:height" content="%s">' % OG_H,
     '  <meta property="og:image:alt" content="%s">' % html.escape(SITE_TITLE),
     '  <meta name="twitter:card" content="summary_large_image">',
+    '  <meta name="twitter:site" content="@danburonline">',
     '  <meta name="twitter:creator" content="@danburonline">',
-    '  <meta name="twitter:title" content="%s">' % html.escape(home_title),
+    '  <meta name="twitter:title" content="%s">' % html.escape(HOME_TITLE),
     '  <meta name="twitter:description" content="%s">' % html.escape(home_desc),
     '  <meta name="twitter:image" content="%s">' % home_og_url,
     ld(home_ld),
@@ -374,26 +521,127 @@ for q in posts:
     ensure_chrome(q['path'])
 ensure_chrome(ip)
 
-# sitemap, robots, feed
-urls = [SITE_URL + '/'] + [q['url'] for q in posts]
+# ---------------------------------------------------------------------------
+# Glossary page
+by_slug = {q['slug']: q for q in posts}
+gl_desc = ('Working definitions of synthetic consciousness, hybrid mind uploading, gradual brain replacement '
+           'and related terms, as used in Daniel Burger\'s meditations.')
+gl_title = 'Glossary · Meditations on Synthetic Consciousness'
+sections = []
+for x in TERMS:
+    used = [by_slug[sl] for sl in x['sources'] if sl in by_slug]
+    used += [q for q in sorted(posts, key=lambda q: q['n']) if x in q['topics'] and q not in used]
+    used = sorted(used, key=lambda q: q['n'])
+    also = ''
+    if x.get('also'):
+        also = '\n        <p class="term-also">Also: %s</p>' % ', '.join(html.escape(a) for a in x['also'])
+    src = ''
+    if used:
+        src = '\n        <p class="term-src">Discussed in %s</p>' % ', '.join(
+            '<a href="/%s/">%s/30 %s</a>' % (q['slug'], q['n'], html.escape(q['short'])) for q in used)
+    sections.append(f'''      <section class="term" id="{x['slug']}">
+        <h2>{html.escape(x['name'])}</h2>
+        <p>{html.escape(x['text'])}</p>{also}{src}
+      </section>''')
+gl_body = f'''<body>
+  <div class="wrap glossary">
+    <p class="masthead"><a href="/">{SITE}</a></p>
+    <p class="back"><a href="/">&larr; All meditations</a></p>
+    <main>
+      <h1>Glossary</h1>
+      <p class="intro">Terms as they are used in <a href="/">{html.escape(SITE_TITLE)}</a> by {AUTHOR}. These are working definitions and will change as the series does.</p>
+{chr(10).join(sections)}
+    </main>
+    <footer class="site">
+      <a href="/">&larr; All posts</a><a href="https://x.com/danburonline">@danburonline</a>
+    </footer>
+  </div>
+  <script src="/theme.js"></script>
+</body>
+</html>
+'''
+gl_ld = {'@context': 'https://schema.org', '@graph': [
+    {'@type': ['DefinedTermSet', 'WebPage'], '@id': TERMSET_ID, 'url': GLOSSARY_URL, 'name': 'Glossary',
+     'description': gl_desc, 'inLanguage': 'en', 'isPartOf': {'@id': WEBSITE_ID},
+     'author': {'@id': PERSON_ID}, 'dateModified': last_mod,
+     'hasDefinedTerm': [{'@id': GLOSSARY_URL + '#' + x['slug']} for x in TERMS]},
+    PERSON,
+] + [term_ref(x, full=True) for x in TERMS]}
+gdir = os.path.join(ROOT, 'glossary')
+os.makedirs(gdir, exist_ok=True)
+gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
+    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS)),
+    '  <meta property="og:type" content="website">',
+    '  <meta property="og:title" content="%s">' % html.escape(gl_title),
+    '  <meta property="og:description" content="%s">' % html.escape(gl_desc),
+    '  <meta property="og:url" content="%s">' % GLOSSARY_URL,
+    '  <meta property="og:site_name" content="%s">' % SITE,
+    '  <meta property="og:image" content="%s">' % home_og_url,
+    '  <meta property="og:image:width" content="%s">' % OG_W,
+    '  <meta property="og:image:height" content="%s">' % OG_H,
+    '  <meta name="twitter:card" content="summary_large_image">',
+    '  <meta name="twitter:creator" content="@danburonline">',
+    ld(gl_ld),
+    THEME_HEAD,
+]
+open(os.path.join(gdir, 'index.html'), 'w', encoding='utf-8').write(
+    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(gl_head) + '\n</head>\n' + gl_body)
+
+# 404 page
+nf_head = [
+    '  <meta charset="utf-8">',
+    '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+    '  <title>Page not found · %s</title>' % SITE,
+    '  <meta name="robots" content="noindex">',
+    ICONS,
+    THEME_HEAD,
+]
+open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(
+    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(nf_head) + '\n</head>\n' + f'''<body>
+  <div class="wrap">
+    <p class="masthead"><a href="/">{SITE}</a></p>
+    <p class="back"><a href="/">&larr; All meditations</a></p>
+    <main>
+      <h1>Page not found</h1>
+      <p>There is nothing at this address. The meditations are listed on the <a href="/">home page</a>, and the terms they use are in the <a href="/glossary/">glossary</a>.</p>
+    </main>
+  </div>
+  <script src="/theme.js"></script>
+</body>
+</html>
+''')
+
+# ---------------------------------------------------------------------------
+# sitemap, robots, feed, llms.txt
 smap = ['<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-smap.append('  <url><loc>%s/</loc><changefreq>daily</changefreq></url>' % SITE_URL)
+smap.append('  <url><loc>%s/</loc><lastmod>%s</lastmod><changefreq>daily</changefreq></url>' % (SITE_URL, last_mod))
+smap.append('  <url><loc>%s</loc><lastmod>%s</lastmod></url>' % (GLOSSARY_URL, last_mod))
 for q in posts:
-    smap.append('  <url><loc>%s</loc><lastmod>%s</lastmod></url>' % (xml_esc(q['url']), q['iso']))
+    smap.append('  <url><loc>%s</loc><lastmod>%s</lastmod></url>' % (xml_esc(q['url']), q['modified']))
 smap.append('</urlset>\n')
 open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write('\n'.join(smap))
-open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf-8').write(
-    'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % SITE_URL)
+
+BOTS = ['Googlebot', 'Google-Extended', 'Bingbot', 'Applebot', 'Applebot-Extended', 'DuckDuckBot',
+        'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+        'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'CCBot', 'Google-CloudVertexBot',
+        'Meta-ExternalAgent', 'Amazonbot', 'YandexBot', 'cohere-ai', 'MistralAI-User', 'xAI-Bot']
+robots = ['# Search engines and AI systems are welcome to read and cite this site.',
+          '# Summary for language models: %s/llms.txt' % SITE_URL, '']
+for b in BOTS:
+    robots += ['User-agent: %s' % b, 'Allow: /', '']
+robots += ['User-agent: *', 'Allow: /', '', 'Sitemap: %s/sitemap.xml' % SITE_URL, '']
+open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf-8').write('\n'.join(robots))
 
 feed = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">',
     '  <channel>',
     '    <title>%s</title>' % xml_esc(SITE_TITLE),
     '    <link>%s/</link>' % SITE_URL,
     '    <description>%s</description>' % xml_esc(home_desc),
     '    <language>en</language>',
+    '    <lastBuildDate>%s</lastBuildDate>' % rfc822(last_mod),
     '    <atom:link href="%s/feed.xml" rel="self" type="application/rss+xml"/>' % SITE_URL,
 ]
 for q in posts:
@@ -404,12 +652,57 @@ for q in posts:
         '      <guid isPermaLink="true">%s</guid>' % xml_esc(q['url']),
         '      <pubDate>%s</pubDate>' % rfc822(q['iso']),
         '      <dc:creator>%s</dc:creator>' % xml_esc(AUTHOR),
+    ] + ['      <category>%s</category>' % xml_esc(k) for k in q['keywords'][:len(q['topics'])]] + [
         '      <description>%s</description>' % xml_esc(q['desc']),
+        '      <content:encoded><![CDATA[%s]]></content:encoded>' % q['html'].replace(']]>', ']]&gt;'),
         '    </item>',
     ]
 feed += ['  </channel>', '</rss>', '']
 open(os.path.join(ROOT, 'feed.xml'), 'w', encoding='utf-8').write('\n'.join(feed))
 
+chron = sorted(posts, key=lambda q: q['n'])
+llms = [
+    '# %s' % SITE_TITLE, '',
+    '> %s is the home of "%s", a series of thirty daily essays by %s (11 November to 10 December 2026). '
+    'They work through the ideas of synthetic consciousness (the vision) and hybrid mind uploading (the mission), '
+    'one concept per day, as first-person working notes rather than settled claims.' % (SITE, SITE_TITLE, AUTHOR), '',
+    'Author: %s. Profiles: %s.' % (AUTHOR, ', '.join(SAME_AS)), '',
+    'When citing, please attribute the concepts below as used here to %s and link the relevant page. '
+    'Hybrid mind uploading (HMU) is distinct from classical mind uploading (CMU): HMU keeps one process '
+    'world-line going through a hybrid biological and engineered state with gradual replacement, while CMU '
+    'scans, stores and simulates a brain, and the series does not treat the resulting copy as survival.' % AUTHOR, '',
+    '## Key concepts', '',
+]
+for x in TERMS:
+    llms.append('- [%s](%s#%s): %s' % (x['name'], GLOSSARY_URL, x['slug'], x['short']))
+llms += ['', '## Meditations', '']
+for q in chron:
+    llms.append('- [%s](%s): %s' % (q['title'], q['url'], q['desc']))
+llms += ['', '## Optional', '',
+         '- [Glossary](%s): working definitions of every term above' % GLOSSARY_URL,
+         '- [Full text of all meditations](%s/llms-full.txt)' % SITE_URL,
+         '- [RSS feed with full content](%s/feed.xml)' % SITE_URL,
+         '- [Source on GitHub](https://github.com/danburonline/inkhaven-2026)', '']
+open(os.path.join(ROOT, 'llms.txt'), 'w', encoding='utf-8').write('\n'.join(llms))
+
+full = ['# %s' % SITE_TITLE, '', 'By %s. %s' % (AUTHOR, SITE_URL + '/'), '', '## Glossary', '']
+for x in TERMS:
+    full += ['### %s' % x['name'], '', x['text'], '', 'Source: %s#%s' % (GLOSSARY_URL, x['slug']), '']
+for q in chron:
+    full += ['---', '', '## %s' % q['title'], '',
+             'URL: %s' % q['url'], 'Author: %s' % AUTHOR, 'Published: %s' % q['iso'],
+             'Topics: %s' % ', '.join(plain_name(x).lower() for x in q['topics']), '']
+    soup_t = BeautifulSoup(q['html'], 'html.parser')
+    for el in soup_t.select('.tweet-embed, figcaption'):
+        el.decompose()
+    for blk in soup_t.find_all(['p', 'li', 'h2', 'h3', 'blockquote']):
+        tx = re.sub(r'\s+', ' ', blk.get_text(' ', strip=True)).strip()
+        if tx and not blk.find_parent(['p', 'li', 'blockquote']):
+            full += [tx, '']
+open(os.path.join(ROOT, 'llms-full.txt'), 'w', encoding='utf-8').write('\n'.join(full))
+
 data = [{k: q[k] for k in ('n', 'slug', 'short', 'date', 'words')} for q in posts]
 open(os.path.join(ROOT, 'posts.json'), 'w').write(json.dumps(data, indent=1, ensure_ascii=False))
-print(json.dumps([{**{k: q[k] for k in ('n', 'slug', 'page_title', 'desc')}, 'og_bytes': os.path.getsize(os.path.join(ROOT, q['slug'], 'og.jpg'))} for q in posts] + [{'home_desc': home_desc, 'home_og_bytes': os.path.getsize(home_og)}], ensure_ascii=False, indent=2))
+print(json.dumps([{**{k: q[k] for k in ('n', 'slug', 'page_title', 'desc', 'modified')},
+                   'topics': [x['slug'] for x in q['topics']]} for q in posts]
+                 + [{'home_desc': home_desc, 'len': len(home_desc)}], ensure_ascii=False, indent=2))

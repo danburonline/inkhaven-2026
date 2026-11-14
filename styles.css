@@ -608,3 +608,26 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 }
 .sort:focus { border-color: var(--text); }
 .list-count { flex-basis: 100%; }
+
+/* Topics line under a post, and the glossary page. Plain text, no boxes. */
+.topics {
+  margin: 2.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.glossary .intro { margin-bottom: 2rem; }
+.glossary .term { margin: 0 0 2rem; scroll-margin-top: 1.5rem; }
+.glossary .term h2 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+  font-weight: 650;
+  margin: 0 0 0.4rem;
+}
+.glossary .term p { margin: 0 0 0.4rem; }
+.glossary .term-also,
+.glossary .term-src {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.glossary .term:target h2 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
