@@ -3,7 +3,11 @@
   var links = document.querySelectorAll('a.ref');
   if (!links.length) return;
   var data = null, card = null, cur = null, hideT = null, showT = null;
-  var touch = window.matchMedia('(hover: none)').matches;
+  var touch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  var lastTouch = 0;
+  document.addEventListener('touchstart', function () { lastTouch = Date.now(); touch = true; }, { passive: true, capture: true });
+  document.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch' || e.pointerType === 'pen') { lastTouch = Date.now(); touch = true; } }, true);
+  function isTouch() { return touch || Date.now() - lastTouch < 1000; }
   fetch('/previews.json').then(function (r) { return r.json(); }).then(function (j) { data = j; });
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
@@ -23,7 +27,7 @@
     }
     h += '<div class="pv-text">' + esc(e.text).replace(/\n+/g, '<br>') + '</div>';
     if (e.quote) h += '<div class="pv-quote"><strong>' + esc(e.quote.author) + '</strong> ' + esc(e.quote.text) + '</div>';
-    if (touch) h += '<a class="pv-open" href="' + a.href + '" target="_blank" rel="noopener">Open ' + (e.type === 'x' ? 'post on X' : esc(e.site)) + ' ↗</a>';
+    if (isTouch()) h += '<a class="pv-open" href="' + a.href + '" target="_blank" rel="noopener">Open ' + (e.type === 'x' ? 'post on X' : esc(e.site)) + ' ↗</a>';
     h += '</div>';
     return h;
   }
@@ -41,10 +45,16 @@
     clearTimeout(hideT);
     if (!card) {
       card = document.createElement('div'); card.className = 'pv-card'; document.body.appendChild(card);
-      card.addEventListener('mouseenter', function () { clearTimeout(hideT); });
-      card.addEventListener('mouseleave', hide);
+      card.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') clearTimeout(hideT); });
+      card.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(); });
+      card.addEventListener('click', function (e) {
+        if (!isTouch() || !cur) return;
+        if (e.target.closest('a')) return;
+        window.open(cur.href, '_blank', 'noopener');
+      });
     }
-    if (cur !== a) {
+    if (cur !== a || card._touch !== isTouch()) {
+      card._touch = isTouch();
       card.innerHTML = build(a, data[a.getAttribute('href')]);
       var img = card.querySelector('img'); if (img) img.onload = function () { if (cur === a) place(a); };
     }
@@ -54,20 +64,24 @@
   function hide() { hideT = setTimeout(function () { if (card) card.classList.remove('on'); cur = null; }, 150); }
 
   links.forEach(function (a) {
-    if (touch) {
-      a.addEventListener('click', function (ev) {
-        if (cur === a) return; /* second tap follows the link */
-        if (show(a)) ev.preventDefault();
-      });
-    } else {
-      a.addEventListener('mouseenter', function () { clearTimeout(showT); showT = setTimeout(function () { show(a); }, 250); });
-      a.addEventListener('mouseleave', function () { clearTimeout(showT); hide(); });
-      a.addEventListener('focus', function () { show(a); });
-      a.addEventListener('blur', hide);
-    }
+    a.addEventListener('click', function (ev) {
+      if (!isTouch()) return;
+      if (cur === a && card && card.classList.contains('on')) return; /* second tap follows the link */
+      if (show(a)) ev.preventDefault();
+    });
+    a.addEventListener('pointerenter', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(showT); showT = setTimeout(function () { show(a); }, 250);
+    });
+    a.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(showT); hide();
+    });
+    a.addEventListener('focus', function () { if (!isTouch()) show(a); });
+    a.addEventListener('blur', function () { if (!isTouch()) hide(); });
   });
   document.addEventListener('click', function (ev) {
     if (card && cur && !card.contains(ev.target) && ev.target !== cur) { card.classList.remove('on'); cur = null; }
   });
-  window.addEventListener('scroll', function () { if (cur && !touch) { card.classList.remove('on'); cur = null; } }, { passive: true });
+  window.addEventListener('scroll', function () { if (cur && !isTouch()) { card.classList.remove('on'); cur = null; } }, { passive: true });
 })();
