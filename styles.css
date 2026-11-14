@@ -120,7 +120,13 @@ header.site {
   margin: 0 0 0.2rem;
 }
 .site-title { margin-bottom: 0.8rem; }
-.site-subtitle { color: var(--muted); }
+.site-subtitle {
+  text-decoration: underline;
+  text-decoration-color: var(--muted);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: auto;
+}
 .site-title a { color: inherit; text-decoration: none; }
 .site-title a:hover { text-decoration: underline; }
 .intro, .muted, time, .meta {
