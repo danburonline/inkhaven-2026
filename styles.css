@@ -6,6 +6,43 @@
   --link: #1a4d73;
   --link-hover: #0e2f47;
   --rule: #d8d0c4;
+  --surface: #fffdf8;
+  --solid-bg: #000;
+  --solid-fg: #fff;
+  --shadow: rgba(0, 0, 0, 0.06);
+  --card-shadow: rgba(0, 0, 0, 0.14);
+  color-scheme: light;
+}
+/* Dark mode: follows the system unless the toggle forces a theme */
+:root[data-theme="dark"] {
+  --bg: #15130f;
+  --text: #e8e1d5;
+  --muted: #a69d90;
+  --link: #8dbbe2;
+  --link-hover: #bcd8f0;
+  --rule: #3a342c;
+  --surface: #1f1b16;
+  --solid-bg: #e8e1d5;
+  --solid-fg: #15130f;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15130f;
+    --text: #e8e1d5;
+    --muted: #a69d90;
+    --link: #8dbbe2;
+    --link-hover: #bcd8f0;
+    --rule: #3a342c;
+    --surface: #1f1b16;
+    --solid-bg: #e8e1d5;
+    --solid-fg: #15130f;
+    --shadow: rgba(0, 0, 0, 0.35);
+    --card-shadow: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
 }
 * { box-sizing: border-box; }
 html {
@@ -114,13 +151,13 @@ article p:last-child { margin-bottom: 0; }
   padding: 0.5rem 0.6rem 0.5rem 0.75rem;
   border: 1px solid var(--rule);
   border-radius: 10px;
-  background: #fffdf8;
+  background: var(--surface);
   color: var(--text);
   text-decoration: none;
   line-height: 1.4;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-.x-callout:hover { border-color: var(--text); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); color: var(--text); }
+.x-callout:hover { border-color: var(--text); box-shadow: 0 2px 10px var(--shadow); color: var(--text); }
 .x-callout-icon {
   flex: none;
   display: flex;
@@ -129,8 +166,8 @@ article p:last-child { margin-bottom: 0; }
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #000;
-  color: #fff;
+  background: var(--solid-bg);
+  color: var(--solid-fg);
 }
 .x-callout-icon svg { display: block; }
 .x-callout-text { flex: 1; min-width: 0; font-size: 0.85rem; color: var(--muted); }
@@ -139,8 +176,8 @@ article p:last-child { margin-bottom: 0; }
   flex: none;
   padding: 0.32rem 0.75rem;
   border-radius: 999px;
-  background: #000;
-  color: #fff;
+  background: var(--solid-bg);
+  color: var(--solid-fg);
   font-size: 0.85rem;
   font-weight: 600;
   white-space: nowrap;
@@ -197,11 +234,11 @@ a.ref:hover {
 .pv-card {
   position: absolute;
   z-index: 50;
-  background: #fffdf8;
+  background: var(--surface);
   color: var(--text);
   border: 1px solid var(--rule);
   border-radius: 10px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 8px 28px var(--card-shadow);
   overflow: hidden;
   font-size: 0.82rem;
   line-height: 1.45;
@@ -285,14 +322,15 @@ img.zoomable:focus-visible { outline: 2px solid var(--muted); outline-offset: 4p
 /* Pill navigation, matching the X callout */
 .back a,
 .site-links a,
-footer.site a {
+footer.site a,
+.theme-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   padding: 0.32rem 0.85rem;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  background: #fffdf8;
+  background: var(--surface);
   color: var(--text);
   font-size: 0.85rem;
   line-height: 1.4;
@@ -301,9 +339,10 @@ footer.site a {
 }
 .back a:hover,
 .site-links a:hover,
-footer.site a:hover {
+footer.site a:hover,
+.theme-toggle:hover {
   border-color: var(--text);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 10px var(--shadow);
   color: var(--text);
 }
 .site-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -314,3 +353,16 @@ footer.site {
   gap: 0.5rem;
   padding-top: 1.5rem;
 }
+
+/* Theme toggle (Auto / Light / Dark) */
+.back { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.theme-toggle {
+  margin-left: auto;
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle svg { display: block; flex: none; }
+.theme-toggle:focus { outline: none; }
+.theme-toggle:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+body { transition: background-color 0.2s ease, color 0.2s ease; }

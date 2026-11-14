@@ -12,8 +12,8 @@
     wrap.style.height = Math.ceil(el.offsetHeight * k) + 'px';
   }
   function watch(wrap) {
-    if (wrap._fit) return; wrap._fit = true;
     var el = wrap.querySelector('.twitter-tweet-rendered');
+    if (wrap._fit === el) { fit(wrap); return; } wrap._fit = el;
     if (window.ResizeObserver) {
       var ro = new ResizeObserver(function () { fit(wrap); });
       ro.observe(wrap); if (el) ro.observe(el);
