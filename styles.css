@@ -162,3 +162,31 @@ a.ref {
 a.ref:hover {
   text-decoration: underline;
 }
+
+/* Link preview cards */
+.pv-card {
+  position: absolute;
+  z-index: 50;
+  background: #fffdf8;
+  color: var(--text);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+  overflow: hidden;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+}
+.pv-card.on { opacity: 1; visibility: visible; transform: none; }
+.pv-img { display: block; width: 100%; max-height: 180px; object-fit: cover; margin: 0; }
+.pv-body { padding: 0.7rem 0.85rem 0.8rem; }
+.pv-meta { color: var(--muted); margin-bottom: 0.3rem; }
+.pv-meta strong { color: var(--text); }
+.pv-title { font-weight: 600; margin-bottom: 0.3rem; }
+.pv-text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+.pv-quote { margin-top: 0.5rem; padding: 0.45rem 0.6rem; border: 1px solid var(--rule); border-radius: 8px; color: var(--muted); }
+.pv-open { display: inline-block; margin-top: 0.55rem; font-weight: 600; }
