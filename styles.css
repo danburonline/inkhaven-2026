@@ -190,3 +190,50 @@ a.ref:hover {
 .pv-text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
 .pv-quote { margin-top: 0.5rem; padding: 0.45rem 0.6rem; border: 1px solid var(--rule); border-radius: 8px; color: var(--muted); }
 .pv-open { display: inline-block; margin-top: 0.55rem; font-weight: 600; }
+
+/* Full-screen image viewer */
+img.zoomable { cursor: zoom-in; }
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  background: rgba(20, 17, 14, 0.96);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s;
+  overscroll-behavior: contain;
+  touch-action: none;
+  cursor: zoom-out;
+}
+.lb.on { opacity: 1; visibility: visible; }
+.lb-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+  cursor: default;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+.lb-close {
+  position: absolute;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 30px;
+  line-height: 44px;
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+}
+.lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
