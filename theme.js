@@ -17,14 +17,43 @@
   var embeds = [];
   document.querySelectorAll('.tweet-embed').forEach(function (wrap) {
     var bq = wrap.querySelector('blockquote.twitter-tweet');
-    if (bq) embeds.push({ wrap: wrap, html: bq.outerHTML });
+    if (bq) { embeds.push({ wrap: wrap, html: bq.outerHTML }); reserve(wrap); wrap.classList.add('loading'); }
   });
+  // Reserve roughly the final embed height so the page doesn't jump.
+  // data-h="w1:h1,w2:h2,..." are measured card heights at given widths.
+  function estimate(wrap) {
+    var pts = (wrap.getAttribute('data-h') || '').split(',').map(function (x) { return x.split(':').map(Number); })
+      .filter(function (x) { return x[0] && x[1]; }).sort(function (a, b) { return a[0] - b[0]; });
+    if (!pts.length) return 0;
+    var w = wrap.clientWidth, base = pts[pts.length - 1];
+    if (w >= base[0]) return base[1] * (w > 550 ? w / 550 : 1) + 20;
+    for (var i = pts.length - 1; i > 0; i--) {
+      var a = pts[i - 1], b = pts[i];
+      if (w >= a[0]) return a[1] + (b[1] - a[1]) * (w - a[0]) / (b[0] - a[0]) + 20;
+    }
+    return pts[0][1] + 20;
+  }
+  function reserve(wrap) { var h = estimate(wrap); if (h) wrap.style.minHeight = Math.round(h) + 'px'; }
+  function settle() {
+    embeds.forEach(function (e) {
+      if (e.wrap.querySelector('.twitter-tweet-rendered iframe')) {
+        e.wrap.classList.remove('loading');
+        // let the iframe size itself before dropping the reservation
+        setTimeout(function () { if (!e.wrap.classList.contains('loading')) e.wrap.style.minHeight = ''; }, 600);
+      }
+    });
+  }
+  var bindTries = 0;
+  (function bind() {
+    if (window.twttr && twttr.events && twttr.events.bind) { twttr.events.bind('rendered', settle); return; }
+    if (++bindTries < 80) setTimeout(bind, 250);
+  })();
   var embedTheme = null;
   function themeEmbeds(t) {
     if (t === embedTheme) return;
     var first = embedTheme === null; embedTheme = t;
     embeds.forEach(function (e) {
-      if (!first) { e.wrap.innerHTML = e.html; e.wrap.classList.remove('fit'); e.wrap.style.height = ''; }
+      if (!first) { e.wrap.innerHTML = e.html; e.wrap.classList.remove('fit'); e.wrap.style.height = ''; e.wrap.classList.add('loading'); reserve(e.wrap); }
       var bq = e.wrap.querySelector('blockquote.twitter-tweet');
       if (bq) bq.setAttribute('data-theme', t);
       if (!first && window.twttr && twttr.widgets) twttr.widgets.load(e.wrap);
@@ -69,12 +98,17 @@
     var s = document.createElement('script');
     s.async = true; s.charset = 'utf-8';
     s.src = 'https://platform.twitter.com/widgets.js' + (scriptTries ? '?r=' + scriptTries : '');
-    s.onerror = function () { s.remove(); if (++scriptTries < 4) setTimeout(loadScript, 1500 * scriptTries); };
+    s.onerror = function () {
+      s.remove();
+      if (++scriptTries < 4) setTimeout(loadScript, 1500 * scriptTries);
+      else embeds.forEach(function (e) { e.wrap.classList.remove('loading'); e.wrap.classList.add('failed'); e.wrap.style.minHeight = ''; });
+    };
     document.body.appendChild(s);
   }
   function check() {
     var p = pending();
-    if (!p.length || renderTries >= 4) return;
+    if (!p.length) return;
+    if (renderTries >= 4) { p.forEach(function (e) { e.wrap.classList.remove('loading'); e.wrap.classList.add('failed'); e.wrap.style.minHeight = ''; }); return; }
     if (window.twttr && twttr.widgets) {
       renderTries++;
       p.forEach(function (e) {
