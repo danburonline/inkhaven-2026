@@ -17,9 +17,19 @@ PT = timezone(timedelta(hours=-8))
 OG_W, OG_H = 1200, 630
 OG_SITE = '  <meta property="og:site_name" content="%s">\n' % SITE
 MASTHEAD = '    <p class="masthead"><a href="/">%s</a></p>\n' % SITE
+def min_css(css):
+    """Small, safe minifier: comments and whitespace only (selectors are left alone)."""
+    css = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
+    css = re.sub(r'\s+', ' ', css)
+    css = re.sub(r'\s*([{};])\s*', r'\1', css)
+    return css.replace(';}', '}').strip()
+
+# styles.css is the source; it is inlined into every page so the first paint
+# does not wait for a second request. Re-run the build after editing it.
+CSS_INLINE = min_css(open(os.path.join(ROOT, 'styles.css'), encoding='utf-8').read())
 THEME_HEAD = '''  <meta name="color-scheme" content="light dark">
   <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
-  <link rel="stylesheet" href="/styles.css">'''
+  <style>%s</style>''' % CSS_INLINE
 FEED_LINK = '  <link rel="alternate" type="application/rss+xml" title="%s" href="%s/feed.xml">' % (
     html.escape(SITE_TITLE), SITE_URL)
 SERIF = '/usr/share/fonts/truetype/sand-box/custom/Source Serif Pro/SourceSerifPro-Regular.ttf'
@@ -211,6 +221,7 @@ REL_ME = '\n'.join('  <link rel="me" href="%s">' % u for u in SAME_AS)
 ICONS = '''  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)">'''
 SERIES_KEYWORDS = ['synthetic consciousness', 'hybrid mind uploading', 'mind uploading',
@@ -258,6 +269,10 @@ def ensure_extras(path, topics):
                           for t in topics)
         block = ('\n    <!-- topics:start -->\n    <p class="topics">Topics: %s</p>\n    <!-- topics:end -->' % links)
         s = s.replace('</article>', '</article>' + block, 1)
+    if '<main>' not in s:
+        s = s.replace('<article>', '<main>\n    <article>', 1)
+        end = '<!-- topics:end -->' if topics else '</article>'
+        s = s.replace(end, end + '\n    </main>', 1)
     if 'href="/glossary/"' not in s:
         s = re.sub(r'(<footer class="site">\s*<a href="/">[^<]*</a>)', r'\1<a href="/glossary/">Glossary</a>', s, count=1)
     open(path, 'w', encoding='utf-8').write(s)
@@ -282,12 +297,100 @@ def absolutize(fragment):
     return fragment
 
 # ---------------------------------------------------------------------------
+# Responsive images: every local article image gets AVIF and WebP variants at
+# several widths in <post>/img/ (file names carry a content hash, so they can be
+# cached forever). The first image above the text is the LCP candidate: it is
+# loaded eagerly with fetchpriority=high and preloaded from <head>.
+IMG_WIDTHS = [480, 720, 960, 1280, 1920]
+IMG_SIZES = '(min-width: 760px) 640px, calc(100vw - 40px)'
+PIC_RE = re.compile(r'<picture data-r>(?:\s*<source[^>]*>)*\s*(<img[^>]*>)\s*</picture>', re.S)
+GEN_ATTRS = ('srcset', 'sizes', 'loading', 'decoding', 'fetchpriority', 'data-full')
+
+def strip_attrs(tag, names):
+    for n in names:
+        tag = re.sub(r'\s%s="[^"]*"' % re.escape(n), '', tag)
+    return tag
+
+def add_attrs(tag, attrs):
+    extra = ''.join(' %s="%s"' % (k, v) for k, v in attrs)
+    return re.sub(r'\s*/?>$', extra + '>', tag)
+
+def responsive_images(path, slug):
+    s = open(path, encoding='utf-8').read()
+    s = PIC_RE.sub(r'\1', s)
+    a0, a1 = s.find('<article'), s.find('</article>')
+    if a0 < 0 or a1 < 0:
+        return None
+    art = s[a0:a1]
+    outdir = os.path.join(ROOT, slug, 'img')
+    keep, state = set(), {'preload': None, 'first': True}
+
+    def one(m):
+        tag = m.group(0)
+        sm = re.search(r'\ssrc="([^"]+)"', tag)
+        if not sm:
+            return tag
+        src = sm.group(1)
+        if (not src.startswith('/%s/' % slug) or '/img/' in src
+                or not src.lower().endswith(('.jpg', '.jpeg', '.png'))):
+            return tag
+        fpath = os.path.join(ROOT, src.lstrip('/'))
+        raw = open(fpath, 'rb').read()
+        hh = hashlib.sha1(raw + repr(IMG_WIDTHS).encode()).hexdigest()[:8]
+        im = Image.open(fpath)
+        im = im.convert('RGBA' if im.mode in ('RGBA', 'LA', 'P') else 'RGB')
+        stem = os.path.splitext(os.path.basename(src))[0]
+        widths = sorted({w for w in IMG_WIDTHS if w < im.width} | {min(im.width, IMG_WIDTHS[-1])})
+        os.makedirs(outdir, exist_ok=True)
+        sets = {'avif': [], 'webp': []}
+        for w in widths:
+            resized = None
+            for fmt in ('avif', 'webp'):
+                name = '%s-%s-%d.%s' % (stem, hh, w, fmt)
+                keep.add(name)
+                out = os.path.join(outdir, name)
+                if not os.path.exists(out):
+                    if resized is None:
+                        resized = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+                    if fmt == 'avif':
+                        resized.save(out, 'AVIF', quality=60)
+                    else:
+                        resized.save(out, 'WEBP', quality=82, method=6)
+                sets[fmt].append('/%s/img/%s %dw' % (slug, name, w))
+        before = re.sub(r'<p>\s*$', '', art[:m.start()])
+        hero = state['first'] and '<p>' not in before
+        state['first'] = False
+        img = strip_attrs(tag, GEN_ATTRS)
+        if not re.search(r'\swidth="', img):
+            img = add_attrs(img, [('width', im.width), ('height', im.height)])
+        attrs = [('data-full', sets['webp'][-1].rsplit(' ', 1)[0])]
+        attrs += [('fetchpriority', 'high')] if hero else [('loading', 'lazy'), ('decoding', 'async')]
+        img = add_attrs(img, attrs)
+        if hero:
+            state['preload'] = ('  <link rel="preload" as="image" type="image/avif" imagesrcset="%s" imagesizes="%s" fetchpriority="high">'
+                                % (', '.join(sets['avif']), IMG_SIZES))
+        return ('<picture data-r><source type="image/avif" srcset="%s" sizes="%s">'
+                '<source type="image/webp" srcset="%s" sizes="%s">%s</picture>'
+                % (', '.join(sets['avif']), IMG_SIZES, ', '.join(sets['webp']), IMG_SIZES, img))
+
+    art = re.sub(r'<img\b[^>]*>', one, art)
+    s = s[:a0] + art + s[a1:]
+    open(path, 'w', encoding='utf-8').write(s)
+    if os.path.isdir(outdir):
+        for f in os.listdir(outdir):
+            if f not in keep:
+                os.remove(os.path.join(outdir, f))
+        if not os.listdir(outdir):
+            os.rmdir(outdir)
+    return state['preload']
+
 posts = []
 for d in sorted(os.listdir(ROOT)):
     m = re.match(r'^(\d+)-', d)
     p = os.path.join(ROOT, d, 'index.html')
     if not m or not os.path.exists(p):
         continue
+    preload = responsive_images(p, d)
     soup = BeautifulSoup(open(p, encoding='utf-8').read(), 'html.parser')
     art = soup.find('article')
     h1 = art.find('h1')
@@ -346,7 +449,12 @@ for d in sorted(os.listdir(ROOT)):
     for sel in ['h1', 'time', '.x-callout', 'script', '.num-menu-pop']:
         for el in clean.select(sel):
             el.decompose()
-    posts.append(dict(
+    for pic in clean.select('picture'):
+        im_el = pic.find('img')
+        for k in GEN_ATTRS:
+            im_el.attrs.pop(k, None)
+        pic.replace_with(im_el)
+    posts.append(dict(preload=preload,
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,
         thumb='/thumbs/%s.jpg' % d, desc=desc, alt=alt, url=url, og=og_url,
@@ -401,7 +509,10 @@ for q in posts:
         {'@type': 'Blog', '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/'},
         PERSON,
     ] + [term_ref(x) for x in q['topics']]}
-    lines = common_head(q['page_title'], q['desc'], q['url']) + [
+    lines = common_head(q['page_title'], q['desc'], q['url'])
+    if q['preload']:
+        lines.insert(3, q['preload'])
+    lines += [
         '  <meta name="keywords" content="%s">' % html.escape(', '.join(kw)),
         '  <meta property="og:type" content="article">',
         '  <meta property="og:title" content="%s">' % html.escape(q['page_title']),
@@ -700,6 +811,81 @@ for q in chron:
         if tx and not blk.find_parent(['p', 'li', 'blockquote']):
             full += [tx, '']
 open(os.path.join(ROOT, 'llms-full.txt'), 'w', encoding='utf-8').write('\n'.join(full))
+
+# ---------------------------------------------------------------------------
+# PWA: offline page, web app manifest, service worker, versioned script URLs
+off_dir = os.path.join(ROOT, 'offline')
+os.makedirs(off_dir, exist_ok=True)
+off_head = [
+    '  <meta charset="utf-8">',
+    '  <meta name="viewport" content="width=device-width, initial-scale=1">',
+    '  <title>Offline · %s</title>' % SITE,
+    '  <meta name="robots" content="noindex">',
+    ICONS,
+    THEME_HEAD,
+]
+open(os.path.join(off_dir, 'index.html'), 'w', encoding='utf-8').write(
+    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(off_head) + '\n</head>\n' + f"""<body>
+  <div class="wrap">
+    <p class="masthead"><a href="/">{SITE}</a></p>
+    <p class="back"><a href="/">&larr; All meditations</a></p>
+    <main>
+      <h1>You are offline</h1>
+      <p>This page has not been saved for reading without a connection yet. Meditations you have opened before are still available, as are the <a href="/">home page</a> and the <a href="/glossary/">glossary</a> if you have visited them.</p>
+    </main>
+  </div>
+  <script src="/theme.js"></script>
+</body>
+</html>
+""")
+
+manifest = {
+    'id': '/',
+    'name': SITE_TITLE,
+    'short_name': SITE,
+    'description': HOME_DESC,
+    'lang': 'en',
+    'dir': 'ltr',
+    'start_url': '/',
+    'scope': '/',
+    'display': 'standalone',
+    'background_color': '#f6f1e8',
+    'theme_color': '#f6f1e8',
+    'categories': ['books', 'education'],
+    'icons': [
+        {'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+        {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+        {'src': '/icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
+        {'src': '/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml', 'purpose': 'any'},
+    ],
+}
+open(os.path.join(ROOT, 'manifest.webmanifest'), 'w', encoding='utf-8').write(
+    json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
+
+# Scripts are referenced as /name.js?v=<content hash>, so vercel.json can cache
+# them for a year and a changed file always gets a new URL.
+ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js']
+ASSET_V = {a: hashlib.sha1(open(os.path.join(ROOT, a), 'rb').read()).hexdigest()[:10] for a in ASSETS}
+ASSET_RE = re.compile(r'(src|href)="/(%s)(?:\?v=[0-9a-f]+)?"' % '|'.join(re.escape(a) for a in ASSETS))
+html_files = [ip, os.path.join(gdir, 'index.html'), os.path.join(ROOT, '404.html'),
+              os.path.join(off_dir, 'index.html')] + [q['path'] for q in posts]
+for f in html_files:
+    t = open(f, encoding='utf-8').read()
+    t2 = ASSET_RE.sub(lambda m: '%s="/%s?v=%s"' % (m.group(1), m.group(2), ASSET_V[m.group(2)]), t)
+    if t2 != t:
+        open(f, 'w', encoding='utf-8').write(t2)
+
+# Service worker: precache the offline page and the shared scripts; the cache
+# version changes whenever any of them (or sw.js itself) changes.
+sw_path = os.path.join(ROOT, 'sw.js')
+sw = open(sw_path, encoding='utf-8').read()
+precache = ['/offline/', '/manifest.webmanifest', '/favicon.svg'] + ['/%s?v=%s' % (a, ASSET_V[a]) for a in ASSETS]
+sw = re.sub(r"const PRECACHE = \[.*?\];", lambda _: 'const PRECACHE = %s;' % json.dumps(precache), sw, count=1, flags=re.S)
+sw_body = re.sub(r"const VERSION = '[^']*';", "const VERSION = '';", sw, count=1)
+ver = hashlib.sha1((sw_body + open(os.path.join(off_dir, 'index.html'), encoding='utf-8').read()
+                    + json.dumps(manifest)).encode('utf-8')).hexdigest()[:10]
+sw = re.sub(r"const VERSION = '[^']*';", "const VERSION = '%s';" % ver, sw, count=1)
+open(sw_path, 'w', encoding='utf-8').write(sw)
 
 data = [{k: q[k] for k in ('n', 'slug', 'short', 'date', 'words')} for q in posts]
 open(os.path.join(ROOT, 'posts.json'), 'w').write(json.dumps(data, indent=1, ensure_ascii=False))

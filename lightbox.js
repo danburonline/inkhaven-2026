@@ -37,7 +37,7 @@
     if (!box) build();
     viaKey = !!key;
     lastFocus = img;
-    big.src = img.currentSrc || img.src;
+    big.src = img.getAttribute('data-full') || img.currentSrc || img.src;
     big.alt = img.alt || '';
     lock();
     box.classList.add('on');

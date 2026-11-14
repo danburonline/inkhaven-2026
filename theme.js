@@ -17,15 +17,22 @@
   var embeds = [];
   document.querySelectorAll('.tweet-embed').forEach(function (wrap) {
     var bq = wrap.querySelector('blockquote.twitter-tweet');
-    if (bq) { embeds.push({ wrap: wrap, html: bq.outerHTML }); reserve(wrap); wrap.classList.add('loading'); }
+    if (bq) { embeds.push({ wrap: wrap, html: bq.outerHTML }); reserve(wrap, columnWidth()); wrap.classList.add('loading'); }
   });
+  // Text column width computed from the viewport (styles.css: .wrap is at most
+  // 38rem with 1.25rem padding; html is 17px under 40rem, else 18px), so the
+  // first reservation doesn't force a layout while the page is still loading.
+  function columnWidth() {
+    var vw = window.innerWidth, fs = vw <= 640 ? 17 : 18;
+    return Math.min(vw, 38 * fs) - 2.5 * fs;
+  }
   // Reserve roughly the final embed height so the page doesn't jump.
   // data-h="w1:h1,w2:h2,..." are measured card heights at given widths.
-  function estimate(wrap) {
+  function estimate(wrap, width) {
     var pts = (wrap.getAttribute('data-h') || '').split(',').map(function (x) { return x.split(':').map(Number); })
       .filter(function (x) { return x[0] && x[1]; }).sort(function (a, b) { return a[0] - b[0]; });
     if (!pts.length) return 0;
-    var w = wrap.clientWidth, base = pts[pts.length - 1];
+    var w = width || wrap.clientWidth, base = pts[pts.length - 1];
     if (w >= base[0]) return base[1] * (w > 550 ? w / 550 : 1) + 20;
     for (var i = pts.length - 1; i > 0; i--) {
       var a = pts[i - 1], b = pts[i];
@@ -33,8 +40,8 @@
     }
     return pts[0][1] + 20;
   }
-  function reserve(wrap) {
-    var h = estimate(wrap); if (!h) return;
+  function reserve(wrap, width) {
+    var h = estimate(wrap, width); if (!h) return;
     wrap.style.minHeight = Math.round(h) + 'px';
     var bq = wrap.querySelector('blockquote.twitter-tweet');
     if (bq) bq.style.minHeight = Math.round(h - 20) + 'px';
@@ -49,10 +56,10 @@
     });
   }
   var bindTries = 0;
-  (function bind() {
+  function bind() {
     if (window.twttr && twttr.events && twttr.events.bind) { twttr.events.bind('rendered', settle); return; }
     if (++bindTries < 80) setTimeout(bind, 250);
-  })();
+  }
   var embedTheme = null;
   function themeEmbeds(t) {
     if (t === embedTheme) return;
@@ -128,5 +135,26 @@
     }
     setTimeout(check, 4000);
   }
-  if (embeds.length) { loadScript(); setTimeout(check, 6000); }
+  // X's widgets.js (and its cookies and frames) is only fetched once an embed
+  // comes within about two screens of the viewport; the skeleton holds the space.
+  var started = false;
+  function start() {
+    if (started) return; started = true;
+    window.xEmbedsStarted = true;
+    document.dispatchEvent(new Event('x-embeds-start'));
+    loadScript(); bind(); setTimeout(check, 6000);
+  }
+  if (embeds.length) {
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (en) { return en.isIntersecting; })) { io.disconnect(); start(); }
+      }, { rootMargin: '1200px 0px' });
+      embeds.forEach(function (e) { io.observe(e.wrap); });
+    } else start();
+  }
+
+  // Offline reading and "install as app": register the service worker quietly.
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+  }
 })();

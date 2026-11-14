@@ -27,9 +27,13 @@
     });
   }
   window.addEventListener('resize', function () { document.querySelectorAll('.tweet-embed').forEach(fit); });
-  var tries = 0, t = setInterval(function () {
-    scan();
-    if (window.twttr && twttr.events && !scan.bound) { scan.bound = true; twttr.events.bind('rendered', function () { scan(); setTimeout(scan, 300); }); }
-    if (++tries > 40) clearInterval(t);
-  }, 500);
+  // theme.js loads X's widgets.js lazily and announces it with 'x-embeds-start'
+  function poll() {
+    var tries = 0, t = setInterval(function () {
+      scan();
+      if (window.twttr && twttr.events && !scan.bound) { scan.bound = true; twttr.events.bind('rendered', function () { scan(); setTimeout(scan, 300); }); }
+      if (++tries > 40) clearInterval(t);
+    }, 500);
+  }
+  if (window.xEmbedsStarted) poll(); else document.addEventListener('x-embeds-start', poll, { once: true });
 })();
