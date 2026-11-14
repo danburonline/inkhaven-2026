@@ -204,7 +204,9 @@ a.ref:hover {
 .pv-open { display: inline-block; margin-top: 0.55rem; font-weight: 600; }
 
 /* Full-screen image viewer */
-img.zoomable { cursor: zoom-in; }
+img.zoomable { cursor: zoom-in; -webkit-tap-highlight-color: transparent; }
+img.zoomable:focus { outline: none; }
+img.zoomable:focus-visible { outline: 2px solid var(--muted); outline-offset: 4px; border-radius: 2px; }
 .lb {
   position: fixed;
   inset: 0;
@@ -248,7 +250,8 @@ img.zoomable { cursor: zoom-in; }
   padding: 0;
   cursor: pointer;
 }
-.lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
+.lb-close:focus { outline: none; }
+.lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, 0.28); }
 
 /* X embeds: widgets.js renders the card at most 550px wide inside its iframe,
    so embed-fit.js scales it up to the text column width */

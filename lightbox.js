@@ -2,7 +2,7 @@
 (function () {
   var imgs = document.querySelectorAll('article img:not(.pv-img)');
   if (!imgs.length) return;
-  var box, big, scrollY = 0, lastFocus = null;
+  var box, big, scrollY = 0, lastFocus = null, viaKey = false;
 
   function lock() {
     scrollY = window.scrollY || window.pageYOffset;
@@ -33,9 +33,10 @@
     box.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
     document.body.appendChild(box);
   }
-  function open(img) {
+  function open(img, key) {
     if (!box) build();
-    lastFocus = document.activeElement;
+    viaKey = !!key;
+    lastFocus = img;
     big.src = img.currentSrc || img.src;
     big.alt = img.alt || '';
     lock();
@@ -46,14 +47,15 @@
     if (!box || !box.classList.contains('on')) return;
     box.classList.remove('on');
     unlock();
-    if (lastFocus) lastFocus.focus({ preventScroll: true });
+    if (viaKey && lastFocus) lastFocus.focus({ preventScroll: true });
+    else if (document.activeElement) document.activeElement.blur();
   }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   imgs.forEach(function (img) {
     img.classList.add('zoomable');
     img.setAttribute('tabindex', '0');
     img.setAttribute('role', 'button');
-    img.addEventListener('click', function (e) { e.preventDefault(); open(img); });
-    img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); } });
+    img.addEventListener('click', function (e) { e.preventDefault(); open(img, false); });
+    img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img, true); } });
   });
 })();
