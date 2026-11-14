@@ -371,3 +371,18 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
    the browser paint an opaque white backdrop behind the iframe. Matching the
    scheme keeps the iframe transparent so only the dark card shows. */
 .tweet-embed iframe { color-scheme: light; background: transparent; }
+
+/* Fallback while an X embed loads, or if X can't be reached */
+.tweet-embed blockquote.twitter-tweet {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.tweet-embed blockquote.twitter-tweet p { margin: 0 0 0.5rem; text-align: left; color: var(--text); }
+.tweet-embed blockquote.twitter-tweet a { font-weight: 600; text-decoration: none; }

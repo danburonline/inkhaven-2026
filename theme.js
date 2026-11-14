@@ -59,9 +59,35 @@
   }
   apply(getMode());
 
-  if (embeds.length) {
+  // Load widgets.js with retries: X's script and embed backend fail now and
+  // then (slow mobile networks, timeouts), which leaves the bare fallback link.
+  function pending() {
+    return embeds.filter(function (e) { return !e.wrap.querySelector('.twitter-tweet-rendered'); });
+  }
+  var scriptTries = 0, renderTries = 0;
+  function loadScript() {
     var s = document.createElement('script');
-    s.async = true; s.src = 'https://platform.twitter.com/widgets.js'; s.charset = 'utf-8';
+    s.async = true; s.charset = 'utf-8';
+    s.src = 'https://platform.twitter.com/widgets.js' + (scriptTries ? '?r=' + scriptTries : '');
+    s.onerror = function () { s.remove(); if (++scriptTries < 4) setTimeout(loadScript, 1500 * scriptTries); };
     document.body.appendChild(s);
   }
+  function check() {
+    var p = pending();
+    if (!p.length || renderTries >= 4) return;
+    if (window.twttr && twttr.widgets) {
+      renderTries++;
+      p.forEach(function (e) {
+        // reset a half-rendered or failed embed to its original markup, then retry
+        if (!e.wrap.querySelector('blockquote.twitter-tweet') || e.wrap.querySelector('iframe')) {
+          e.wrap.innerHTML = e.html;
+          var bq = e.wrap.querySelector('blockquote.twitter-tweet');
+          if (bq) bq.setAttribute('data-theme', embedTheme);
+        }
+        twttr.widgets.load(e.wrap);
+      });
+    }
+    setTimeout(check, 4000);
+  }
+  if (embeds.length) { loadScript(); setTimeout(check, 6000); }
 })();
