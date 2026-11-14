@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Meditations on Synthetic Consciousness and Hybrid Mind Uploading</title>
+    <link>https://consciousness.ink/</link>
+    <description>Meditations in the old sense: thinking out loud, one day at a time. These are working notes, not papers. They are messy, unfinished and sometimes wrong.</description>
+    <language>en</language>
+    <atom:link href="https://consciousness.ink/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>2/30 What Could Be Hybrid about Mind Uploading? · Meditations on Synthetic Consciousness</title>
+      <link>https://consciousness.ink/2-hybrid-mind-uploading/</link>
+      <guid isPermaLink="true">https://consciousness.ink/2-hybrid-mind-uploading/</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 -0800</pubDate>
+      <dc:creator>Daniel Burger</dc:creator>
+      <description>The next item in the Ontology is the mission, which, as I understand and use it, is the undertaking that leads to the vision (and "hybrid mind uploading" is its name)</description>
+    </item>
+    <item>
+      <title>1/30 Causa Finalis · Meditations on Synthetic Consciousness</title>
+      <link>https://consciousness.ink/1-causa-finalis/</link>
+      <guid isPermaLink="true">https://consciousness.ink/1-causa-finalis/</guid>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 -0800</pubDate>
+      <dc:creator>Daniel Burger</dc:creator>
+      <description>The first item in my Ontology is the "future state of being" =&gt; that's the entity "Vision", i.e. a state (as opposed to a way of getting there) that doesn't hold yet.</description>
+    </item>
+    <item>
+      <title>0/30 The Start · Meditations on Synthetic Consciousness</title>
+      <link>https://consciousness.ink/0-the-start/</link>
+      <guid isPermaLink="true">https://consciousness.ink/0-the-start/</guid>
+      <pubDate>Wed, 11 Nov 2026 00:00:00 -0800</pubDate>
+      <dc:creator>Daniel Burger</dc:creator>
+      <description>On the first day of this year, I created a small ontology editor for the all-encompassing ontology of my life and its vision, mission, goals, etc.</description>
+    </item>
+  </channel>
+</rss>

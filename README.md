@@ -4,7 +4,7 @@ Thirty days of writing for Inkhaven, **11 November to 10 December 2026**.
 
 **Site:** [https://consciousness.ink](https://consciousness.ink/)
 
-The site is plain static HTML. Every push to `main` deploys to Vercel.
+The site is plain static HTML. Every push to `main` deploys to Vercel. There is also an [RSS feed](https://consciousness.ink/feed.xml).
 
 ## Published posts
 
@@ -14,7 +14,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel.
 
 ## Adding a post
 
-1. Create a new folder such as `1-synthetic-consciousness/` with an `index.html`. The easiest starting point is to copy `0-the-start/index.html` and replace the title, date, canonical/og URLs (`og:url`, `og:image`, `og:site_name`), and article body. Keep the `consciousness.ink` wordmark at the top.
-2. Run `python3 tools/build.py` from the repo root. This rebuilds the home list, thumbnails and `posts.json`, and adds the wordmark and `og:site_name` if they are missing.
+1. Create a new folder such as `1-synthetic-consciousness/` with an `index.html`. The easiest starting point is to copy `0-the-start/index.html` and replace the heading, date and article body. Keep the `consciousness.ink` wordmark at the top.
+2. Run `python3 tools/build.py` from the repo root. This rebuilds the home list, thumbnails, 1200×630 share images, sitemap, `robots.txt`, RSS feed and SEO tags (title, description, Open Graph, Twitter and JSON-LD), and adds the wordmark if it is missing.
 3. Add the post to the list above, with both the site URL and the X post URL.
 4. Commit and push to `main`. Vercel will publish the new page at a path matching the folder name, for example `https://consciousness.ink/1-synthetic-consciousness/`.
