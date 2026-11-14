@@ -366,3 +366,8 @@ footer.site {
 .theme-toggle:focus { outline: none; }
 .theme-toggle:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
 body { transition: background-color 0.2s ease, color 0.2s ease; }
+
+/* X's embed document is light-scheme; in dark mode a scheme mismatch makes
+   the browser paint an opaque white backdrop behind the iframe. Matching the
+   scheme keeps the iframe transparent so only the dark card shows. */
+.tweet-embed iframe { color-scheme: light; background: transparent; }
