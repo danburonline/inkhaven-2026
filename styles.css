@@ -140,3 +140,15 @@ footer.site {
   .wrap { padding: 1.75rem 1rem 3rem; }
   h1 { font-size: 1.45rem; }
 }
+
+/* Justified body text (Blocksatz) with hyphenation to avoid wide gaps */
+article p,
+article .footnotes li {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+}
+article p.x-origin {
+  text-align: left;
+}
