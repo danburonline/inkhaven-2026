@@ -152,3 +152,13 @@ article .footnotes li {
 article p.x-origin {
   text-align: left;
 }
+
+/* Inline references: short bracketed labels instead of bare URLs */
+a.ref {
+  white-space: nowrap;
+  font-size: 0.85em;
+  text-decoration: none;
+}
+a.ref:hover {
+  text-decoration: underline;
+}
