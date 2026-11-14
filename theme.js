@@ -33,7 +33,12 @@
     }
     return pts[0][1] + 20;
   }
-  function reserve(wrap) { var h = estimate(wrap); if (h) wrap.style.minHeight = Math.round(h) + 'px'; }
+  function reserve(wrap) {
+    var h = estimate(wrap); if (!h) return;
+    wrap.style.minHeight = Math.round(h) + 'px';
+    var bq = wrap.querySelector('blockquote.twitter-tweet');
+    if (bq) bq.style.minHeight = Math.round(h - 20) + 'px';
+  }
   function settle() {
     embeds.forEach(function (e) {
       if (e.wrap.querySelector('.twitter-tweet-rendered iframe')) {

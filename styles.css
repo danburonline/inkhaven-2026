@@ -120,9 +120,11 @@ header.site {
   margin: 0 0 0.2rem;
 }
 .site-subtitle {
-  margin: 0 0 0.6rem;
-  font-size: 1.05rem;
-  font-style: italic;
+  margin: -0.2rem 0 0.8rem;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: 0.005em;
   color: var(--muted);
 }
 .site-title a { color: inherit; text-decoration: none; }
@@ -381,10 +383,9 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 
 /* While an X embed loads: spinner plus a link to the post; space is reserved
    by theme.js so nothing jumps when the card appears */
-.tweet-embed.loading,
-.tweet-embed.failed { display: flex; }
 .tweet-embed blockquote.twitter-tweet {
-  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
