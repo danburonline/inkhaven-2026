@@ -41,7 +41,7 @@ posts.sort(key=lambda x: -x['n'])
 
 items = []
 for q in posts:
-    items.append(f'''        <li data-search="{html.escape((q['title'] + ' ' + q['date']).lower())}">
+    items.append(f'''        <li data-n="{q['n']}" data-words="{q['words']}" data-search="{html.escape((q['title'] + ' ' + q['date']).lower())}">
           <a class="thumb" href="/{q['slug']}/" tabindex="-1" aria-hidden="true"><img src="{q['thumb']}" width="180" height="120" alt="" loading="lazy"></a>
           <div class="post-info">
             <a class="title" href="/{q['slug']}/">{html.escape(q['title'])}</a>
@@ -50,7 +50,7 @@ for q in posts:
         </li>''')
 total = sum(q['words'] for q in posts)
 block = ('<!-- posts:start -->\n'
-         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words so far</span></div>\n'
+         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><select class="sort" aria-label="Sort meditations"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option><option value="short">Shortest first</option></select><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words so far</span></div>\n'
          '      <ul class="post-list">\n' + '\n'.join(items) + '\n      </ul>\n'
          '      <p class="no-match" hidden>No meditations match that.</p>\n'
          '      <!-- posts:end -->')

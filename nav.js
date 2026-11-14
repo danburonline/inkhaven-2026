@@ -15,6 +15,12 @@
       });
       if (none) none.hidden = shown !== 0;
     });
+    var sort = document.querySelector('.sort'), list = document.querySelector('.post-list');
+    if (sort && list) sort.addEventListener('change', function () {
+      var k = sort.value, key = k === 'new' || k === 'old' ? 'data-n' : 'data-words', dir = k === 'old' || k === 'short' ? 1 : -1;
+      items.slice().sort(function (a, b) { return dir * (+a.getAttribute(key) - +b.getAttribute(key)); })
+        .forEach(function (li) { list.appendChild(li); });
+    });
   }
 
   // Post title menu
