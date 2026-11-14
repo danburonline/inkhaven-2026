@@ -139,13 +139,14 @@ header.site {
   margin: 0 0 0.2rem;
 }
 .site-title { margin-bottom: 0.8rem; }
-.site-subtitle {
+.series {
   text-decoration: underline;
   text-decoration-color: var(--muted);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
   text-decoration-skip-ink: auto;
 }
+.site-subtitle { text-decoration: none; }
 @media (min-width: 700px) {
   .site-subtitle {
     display: block;

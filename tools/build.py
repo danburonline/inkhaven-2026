@@ -49,6 +49,11 @@ def ensure_chrome(path):
     if 'class="masthead"' not in s:
         s = re.sub(r'(<div class="wrap">\n)', r'\1' + MASTHEAD, s, count=1)
         changed = True
+    if 'class="series"' not in s:
+        s2 = re.sub(r'(<h1>.*?)Meditations on Synthetic Consciousness', r'\1<span class="series">Meditations on Synthetic Consciousness</span>', s, count=1, flags=re.S)
+        if s2 != s:
+            s = s2
+            changed = True
     if changed:
         open(path, 'w', encoding='utf-8').write(s)
 
