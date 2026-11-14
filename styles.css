@@ -112,6 +112,25 @@ article code {
 header.site {
   margin-bottom: 2.25rem;
 }
+.masthead {
+  margin: 0 0 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.masthead a {
+  color: inherit;
+  text-decoration: none;
+}
+.masthead a:hover,
+.masthead a:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.masthead a:focus { outline: none; }
+.masthead a:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
 .site-title {
   font-size: 1.55rem;
   line-height: 1.25;

@@ -1,3 +1,16 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "danbur-inkhaven.vercel.app"
+        }
+      ],
+      "destination": "https://consciousness.ink/:path*",
+      "permanent": true
+    }
+  ]
 }

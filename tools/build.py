@@ -6,6 +6,28 @@ from bs4 import BeautifulSoup
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SITE = 'consciousness.ink'
+OG_SITE = '  <meta property="og:site_name" content="%s">\n' % SITE
+MASTHEAD = '    <p class="masthead"><a href="/">%s</a></p>\n' % SITE
+
+def ensure_chrome(path):
+    """Add the wordmark and og:site_name so new posts copied from an older
+    template still get them after a build."""
+    s = open(path, encoding='utf-8').read()
+    changed = False
+    if 'property="og:site_name"' not in s and "property='og:site_name'" not in s:
+        if re.search(r'<meta property="og:url"[^>]*>\n', s):
+            s = re.sub(r'(<meta property="og:url"[^>]*>\n)', r'\1' + OG_SITE, s, count=1)
+        else:
+            s = s.replace('</head>', OG_SITE + '</head>', 1)
+        changed = True
+    if 'class="masthead"' not in s:
+        s = re.sub(r'(<div class="wrap">\n)', r'\1' + MASTHEAD, s, count=1)
+        changed = True
+    if changed:
+        open(path, 'w', encoding='utf-8').write(s)
+
 posts = []
 for d in sorted(os.listdir(ROOT)):
     m = re.match(r'^(\d+)-', d)
@@ -61,4 +83,7 @@ open(ip, 'w', encoding='utf-8').write(s)
 
 data = [{k: q[k] for k in ('n', 'slug', 'short', 'date', 'words')} for q in posts]
 open(os.path.join(ROOT, 'posts.json'), 'w').write(json.dumps(data, indent=1, ensure_ascii=False))
+for q in posts:
+    ensure_chrome(os.path.join(ROOT, q['slug'], 'index.html'))
+ensure_chrome(os.path.join(ROOT, 'index.html'))
 print(json.dumps(data, ensure_ascii=False))
