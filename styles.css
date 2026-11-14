@@ -402,16 +402,53 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
   text-align: center;
 }
 .tweet-embed blockquote.twitter-tweet > :not(a) { display: none; }
-.tweet-embed.loading blockquote.twitter-tweet::before {
-  content: "";
-  width: 26px;
-  height: 26px;
-  border: 2.5px solid var(--rule);
-  border-top-color: var(--muted);
-  border-radius: 50%;
-  animation: tw-spin 0.8s linear infinite;
+/* Skeleton card while loading: avatar, name and handle, text lines and a
+   media area, pulsing softly. The link to the post sits at the bottom. */
+.tweet-embed.loading blockquote.twitter-tweet {
+  align-items: stretch;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 1rem 1rem 1.1rem;
 }
-@keyframes tw-spin { to { transform: rotate(360deg); } }
+.tweet-embed.loading blockquote.twitter-tweet::before,
+.tweet-embed.loading blockquote.twitter-tweet::after {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  animation: tw-pulse 1.4s ease-in-out infinite;
+}
+.tweet-embed.loading blockquote.twitter-tweet::before {
+  order: 0;
+  flex: none;
+  height: 44px;
+  background-image:
+    radial-gradient(circle at 22px 22px, var(--rule) 21.5px, transparent 22.5px),
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule));
+  background-size: 44px 44px, 38% 12px, 24% 10px;
+  background-position: 0 0, 58px 7px, 58px 27px;
+}
+.tweet-embed.loading blockquote.twitter-tweet::after {
+  order: 1;
+  flex: 1 1 auto;
+  min-height: 70px;
+  background-image:
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(color-mix(in srgb, var(--rule) 55%, transparent), color-mix(in srgb, var(--rule) 55%, transparent));
+  background-size: 100% 11px, 93% 11px, 97% 11px, 58% 11px, 100% calc(100% - 104px);
+  background-position: 0 2px, 0 24px, 0 46px, 0 68px, 0 104px;
+  border-radius: 4px;
+  animation-delay: 0.15s;
+}
+.tweet-embed.loading blockquote.twitter-tweet a:last-of-type { order: 2; align-self: flex-start; }
+@keyframes tw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) {
+  .tweet-embed.loading blockquote.twitter-tweet::before,
+  .tweet-embed.loading blockquote.twitter-tweet::after { animation: none; }
+}
 .tweet-embed blockquote.twitter-tweet a { display: none; }
 .tweet-embed blockquote.twitter-tweet a:last-of-type {
   display: inline-flex;
