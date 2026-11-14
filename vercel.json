@@ -62,6 +62,24 @@
       ]
     },
     {
+      "source": "/og-:hash([0-9a-f]+).jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:slug/og-:hash([0-9a-f]+).jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(previews|posts).json",
       "headers": [
         {

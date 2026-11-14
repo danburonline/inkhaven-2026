@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild the home page list, thumbnails, share images, SEO tags, sitemap and feed.
 Run from the repo root after adding or editing a post: python3 tools/build.py"""
-import html, json, os, re
+import html, json, os, re, io, hashlib
 from datetime import datetime, timezone, timedelta
 from xml.sax.saxutils import escape as xml_esc
 from bs4 import BeautifulSoup
@@ -10,7 +10,9 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'consciousness.ink'
 SITE_URL = 'https://%s' % SITE
-SITE_TITLE = 'Meditations on Synthetic Consciousness and Hybrid Mind Uploading'
+SERIES = 'Meditations on Synthetic Consciousness'
+SERIES_SUB = 'and Hybrid Mind Uploading'
+SITE_TITLE = SERIES + ' ' + SERIES_SUB
 AUTHOR = 'Daniel Burger'
 AUTHOR_X = 'https://x.com/danburonline'
 PT = timezone(timedelta(hours=-8))
@@ -32,8 +34,10 @@ THEME_HEAD = '''  <meta name="color-scheme" content="light dark">
   <style>%s</style>''' % CSS_INLINE
 FEED_LINK = '  <link rel="alternate" type="application/rss+xml" title="%s" href="%s/feed.xml">' % (
     html.escape(SITE_TITLE), SITE_URL)
-SERIF = '/usr/share/fonts/truetype/sand-box/custom/Source Serif Pro/SourceSerifPro-Regular.ttf'
-SERIF_SB = '/usr/share/fonts/truetype/sand-box/custom/Source Serif Pro/SourceSerifPro-Semibold.ttf'
+# Crimson Pro is close to the site's Iowan/Palatino stack and supports weight axes.
+CRIMSON = '/usr/share/fonts/truetype/sand-box/google/Crimson Pro/CrimsonPro-VariableFont_wght.ttf'
+SERIF_FALLBACK = '/usr/share/fonts/truetype/sand-box/custom/Source Serif Pro/SourceSerifPro-Regular.ttf'
+FONT_PATH = CRIMSON if os.path.exists(CRIMSON) else SERIF_FALLBACK
 
 def ensure_chrome(path):
     """Add the wordmark and og:site_name so new posts copied from an older
@@ -131,13 +135,11 @@ def first_para(art):
             return t
     return body.get_text(' ', strip=True)
 
-def cover_og(src, dest):
-    im = Image.open(src).convert('RGB')
-    s = max(OG_W / im.width, OG_H / im.height)
-    im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
-    l, t = (im.width - OG_W) // 2, (im.height - OG_H) // 2
-    im.crop((l, t, l + OG_W, t + OG_H)).save(
-        dest, 'JPEG', quality=88, optimize=True, progressive=True)
+# Dark typographic share cards, 1200x630, drawn at 2x then downsampled.
+# Palette matches the site's dark theme. No pills, boxes, bars or gradients.
+OG_BG, OG_TEXT, OG_MUTED = '#15130f', '#e8e1d5', '#a69d90'
+OG_SCALE = 2
+OG_BYLINE = AUTHOR + ' · Inkhaven 2026'
 
 def wrap_text(draw, text, font, max_width):
     words = text.split()
@@ -154,32 +156,164 @@ def wrap_text(draw, text, font, max_width):
         lines.append(cur)
     return lines
 
-def make_home_og(dest):
-    im = Image.new('RGB', (OG_W, OG_H), '#f6f1e8')
-    dr = ImageDraw.Draw(im)
-    word = ImageFont.truetype(SERIF, 54)
-    sub = ImageFont.truetype(SERIF, 28)
-    by = ImageFont.truetype(SERIF, 22)
-    max_w = 920
-    title_lines = wrap_text(dr, SITE_TITLE, sub, max_w)
-    gap1, gap2 = 28, 22
-    h_word = word.getbbox(SITE)[3] - word.getbbox(SITE)[1]
-    h_sub = sum(sub.getbbox(line)[3] - sub.getbbox(line)[1] + 8 for line in title_lines)
-    h_by = by.getbbox(AUTHOR)[3] - by.getbbox(AUTHOR)[1]
-    block = h_word + gap1 + h_sub + gap2 + h_by
-    y = (OG_H - block) // 2
-    x = (OG_W - dr.textlength(SITE, font=word)) / 2
-    dr.text((x, y), SITE, font=word, fill='#1c1916')
-    y += h_word + gap1
-    for line in title_lines:
-        x = (OG_W - dr.textlength(line, font=sub)) / 2
-        dr.text((x, y), line, font=sub, fill='#5e574e')
-        y += sub.getbbox(line)[3] - sub.getbbox(line)[1] + 8
-    y += gap2 - 8
-    x = (OG_W - dr.textlength(AUTHOR, font=by)) / 2
-    dr.text((x, y), AUTHOR, font=by, fill='#5e574e')
-    os.makedirs(os.path.dirname(dest) or '.', exist_ok=True)
-    im.save(dest, 'JPEG', quality=90, optimize=True, progressive=True)
+def wrap_balanced(draw, text, font, max_width):
+    """Greedy wrap, then rebalance so the last line is not a single leftover word."""
+    words = text.split()
+    n = len(words)
+    if n <= 1:
+        return words or ['']
+    widths = [draw.textlength(w, font=font) for w in words]
+    space = draw.textlength(' ', font=font)
+    def lw(i, j):
+        return sum(widths[i:j]) + space * max(0, j - i - 1)
+    if lw(0, n) <= max_width:
+        return [' '.join(words)]
+    best = None
+    for mid in range(1, n):
+        w1, w2 = lw(0, mid), lw(mid, n)
+        if w1 <= max_width and w2 <= max_width:
+            cost = abs(w1 - w2) + (max_width if n - mid == 1 else 0)
+            if best is None or cost < best[0]:
+                best = (cost, [' '.join(words[:mid]), ' '.join(words[mid:])])
+    if best:
+        return best[1]
+    best = None
+    for a in range(1, n - 1):
+        for b in range(a + 1, n):
+            ws = [lw(0, a), lw(a, b), lw(b, n)]
+            if all(w <= max_width for w in ws):
+                cost = max(ws) - min(ws) + (max_width * 0.5 if n - b == 1 else 0)
+                if best is None or cost < best[0]:
+                    best = (cost, [' '.join(words[:a]), ' '.join(words[a:b]), ' '.join(words[b:])])
+    if best:
+        return best[1]
+    return wrap_text(draw, text, font, max_width)
+
+def og_font(size, weight=400):
+    f = ImageFont.truetype(FONT_PATH, size * OG_SCALE)
+    if hasattr(f, 'set_variation_by_axes'):
+        try:
+            f.set_variation_by_axes([weight])
+        except Exception:
+            pass
+    return f
+
+def og_fh(f):
+    a, d = f.getmetrics()
+    return a + d
+
+def og_underline(dr, x, y, text, font, size):
+    w = dr.textlength(text, font=font)
+    thick = max(2 * OG_SCALE, round(0.055 * size * OG_SCALE))
+    offset = round(0.18 * size * OG_SCALE)
+    uy = y + font.getmetrics()[0] + offset
+    dr.rectangle([x, uy, x + w, uy + thick], fill=OG_MUTED)
+
+def fit_title(draw, text, max_width, min_size=44, max_size=80, max_lines=3):
+    for size in range(max_size, min_size - 1, -1):
+        f = og_font(size, 650)
+        lines = wrap_balanced(draw, text, f, max_width)
+        if len(lines) <= max_lines:
+            return f, size, lines
+    f = og_font(min_size, 650)
+    return f, min_size, wrap_balanced(draw, text, f, max_width)
+
+def _og_canvas():
+    sw, sh = OG_W * OG_SCALE, OG_H * OG_SCALE
+    im = Image.new('RGB', (sw, sh), OG_BG)
+    return im, ImageDraw.Draw(im), sw, sh
+
+def _og_down(im):
+    return im.resize((OG_W, OG_H), Image.LANCZOS)
+
+def compose_home_og():
+    im, dr, sw, sh = _og_canvas()
+    word, by = og_font(32, 400), og_font(26, 400)
+    size, max_w = 56, (OG_W - 160) * OG_SCALE
+    while size >= 36 and dr.textlength(SERIES, font=og_font(size, 650)) > max_w:
+        size -= 1
+    title = og_font(size, 650)
+    gap1, gap_t, gap2 = 48 * OG_SCALE, 12 * OG_SCALE, 44 * OG_SCALE
+    block = og_fh(word) + gap1 + og_fh(title) + gap_t + og_fh(title) + gap2 + og_fh(by)
+    y = (sh - block) // 2
+    def cx(text, font):
+        return (sw - dr.textlength(text, font=font)) // 2
+    dr.text((cx(SITE, word), y), SITE, font=word, fill=OG_MUTED)
+    y += og_fh(word) + gap1
+    x = cx(SERIES, title)
+    dr.text((x, y), SERIES, font=title, fill=OG_TEXT)
+    og_underline(dr, x, y, SERIES, title, size)
+    y += og_fh(title) + gap_t
+    dr.text((cx(SERIES_SUB, title), y), SERIES_SUB, font=title, fill=OG_TEXT)
+    y += og_fh(title) + gap2
+    dr.text((cx(OG_BYLINE, by), y), OG_BYLINE, font=by, fill=OG_MUTED)
+    return _og_down(im)
+
+def compose_post_og(num, short, date):
+    im, dr, sw, sh = _og_canvas()
+    mx = 96 * OG_SCALE
+    word, kicker = og_font(30, 400), og_font(32, 400)
+    series_f, date_f = og_font(28, 400), og_font(26, 400)
+    tf, size, lines = fit_title(dr, short, sw - 2 * mx)
+    lead = int(round(size * 1.12 * OG_SCALE))
+    title_h = lead * (len(lines) - 1) + og_fh(tf) if lines else 0
+    gap_k, gap_s, gap_d = 10 * OG_SCALE, 28 * OG_SCALE, 32 * OG_SCALE
+    block = (og_fh(word) + 52 * OG_SCALE + og_fh(kicker) + gap_k + title_h
+             + gap_s + og_fh(series_f) + gap_d + og_fh(date_f))
+    y = (sh - block) // 2
+    dr.text((mx, y), SITE, font=word, fill=OG_MUTED)
+    y += og_fh(word) + 52 * OG_SCALE
+    dr.text((mx, y), '%s/30' % num, font=kicker, fill=OG_MUTED)
+    y += og_fh(kicker) + gap_k
+    for i, line in enumerate(lines):
+        dr.text((mx, y), line, font=tf, fill=OG_TEXT)
+        y += lead if i < len(lines) - 1 else og_fh(tf)
+    y += gap_s
+    dr.text((mx, y), SERIES, font=series_f, fill=OG_MUTED)
+    y += og_fh(series_f) + gap_d
+    dr.text((mx, y), date, font=date_f, fill=OG_MUTED)
+    return _og_down(im)
+
+def compose_glossary_og():
+    im, dr, sw, sh = _og_canvas()
+    word, hero = og_font(32, 400), og_font(72, 650)
+    size, max_w = 36, (OG_W - 160) * OG_SCALE
+    while size >= 28 and dr.textlength(SERIES, font=og_font(size, 650)) > max_w:
+        size -= 1
+    title, by = og_font(size, 650), og_font(26, 400)
+    gap0, gap1, gap_t, gap2 = 40 * OG_SCALE, 36 * OG_SCALE, 10 * OG_SCALE, 44 * OG_SCALE
+    block = (og_fh(word) + gap0 + og_fh(hero) + gap1 + og_fh(title)
+             + gap_t + og_fh(title) + gap2 + og_fh(by))
+    y = (sh - block) // 2
+    def cx(text, font):
+        return (sw - dr.textlength(text, font=font)) // 2
+    dr.text((cx(SITE, word), y), SITE, font=word, fill=OG_MUTED)
+    y += og_fh(word) + gap0
+    dr.text((cx('Glossary', hero), y), 'Glossary', font=hero, fill=OG_TEXT)
+    y += og_fh(hero) + gap1
+    x = cx(SERIES, title)
+    dr.text((x, y), SERIES, font=title, fill=OG_TEXT)
+    og_underline(dr, x, y, SERIES, title, size)
+    y += og_fh(title) + gap_t
+    dr.text((cx(SERIES_SUB, title), y), SERIES_SUB, font=title, fill=OG_TEXT)
+    y += og_fh(title) + gap2
+    dr.text((cx(OG_BYLINE, by), y), OG_BYLINE, font=by, fill=OG_MUTED)
+    return _og_down(im)
+
+def write_og(im, directory):
+    """Save a content-hashed og-<hash>.jpg and remove stale share images."""
+    os.makedirs(directory, exist_ok=True)
+    buf = io.BytesIO()
+    im.save(buf, 'JPEG', quality=92, optimize=True, progressive=True, subsampling=0)
+    data = buf.getvalue()
+    name = 'og-%s.jpg' % hashlib.sha1(data).hexdigest()[:10]
+    path = os.path.join(directory, name)
+    if not os.path.exists(path):
+        open(path, 'wb').write(data)
+    for f in os.listdir(directory):
+        if f != name and (f == 'og.jpg' or re.match(r'^og-[0-9a-f]+\.jpg$', f)):
+            os.remove(os.path.join(directory, f))
+    return name
 
 def set_head(path, lines):
     s = open(path, encoding='utf-8').read()
@@ -400,7 +534,7 @@ for d in sorted(os.listdir(ROOT)):
     art = soup.find('article')
     h1 = art.find('h1')
     title = h1.get_text(' ', strip=True)
-    title = re.sub(r'\s+', ' ', title).replace(' /', '/').strip()
+    title = re.sub(r'\s+', ' ', title).replace(' /', '/').replace(' :', ':').strip()
     t = art.find('time')
     num = int(m.group(1))
     short = title.split(':', 1)[1].strip() if ':' in title else title
@@ -430,8 +564,7 @@ for d in sorted(os.listdir(ROOT)):
     l, tp = (thumb.width - W) // 2, (thumb.height - H) // 2
     thumb.crop((l, tp, l + W, tp + H)).save(
         os.path.join(ROOT, 'thumbs', d + '.jpg'), quality=82, optimize=True)
-    og_file = os.path.join(ROOT, d, 'og.jpg')
-    cover_og(src_path, og_file)
+    og_name = write_og(compose_post_og(num, short, t.get_text(strip=True)), os.path.join(ROOT, d))
     text = body_text(art)
     words = len(re.findall(r"[\w'’-]+", text))
     # dateModified: the day the article text last changed (tracked in tools/modified.json)
@@ -445,7 +578,8 @@ for d in sorted(os.listdir(ROOT)):
     mentions = [x for x in MENTIONS if re.search(x['pattern'], text, re.I)]
     xc = art.find('a', class_='x-callout')
     url = '%s/%s/' % (SITE_URL, d)
-    og_url = '%s/%s/og.jpg' % (SITE_URL, d)
+    og_url = '%s/%s/%s' % (SITE_URL, d, og_name)
+    og_alt = '%s/30 %s' % (num, short)
     video_src = None
     if video and video.get('src'):
         video_src = SITE_URL + video['src']
@@ -462,7 +596,7 @@ for d in sorted(os.listdir(ROOT)):
     posts.append(dict(preload=preload,
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,
-        thumb='/thumbs/%s.jpg' % d, desc=desc, alt=alt, url=url, og=og_url,
+        thumb='/thumbs/%s.jpg' % d, desc=desc, alt=alt, og_alt=og_alt, url=url, og=og_url,
         video=video_src, vw=video.get('width') if video else None,
         vh=video.get('height') if video else None, topics=topics, mentions=mentions,
         x=xc['href'] if xc else None, html=absolutize(clean.decode_contents().strip()),
@@ -528,7 +662,7 @@ for q in posts:
         '  <meta property="og:image" content="%s">' % q['og'],
         '  <meta property="og:image:width" content="%s">' % OG_W,
         '  <meta property="og:image:height" content="%s">' % OG_H,
-        '  <meta property="og:image:alt" content="%s">' % html.escape(q['alt']),
+        '  <meta property="og:image:alt" content="%s">' % html.escape(q['og_alt']),
     ]
     if q['video']:
         lines += [
@@ -549,7 +683,7 @@ for q in posts:
         '  <meta name="twitter:title" content="%s">' % html.escape(q['page_title']),
         '  <meta name="twitter:description" content="%s">' % html.escape(q['desc']),
         '  <meta name="twitter:image" content="%s">' % q['og'],
-        '  <meta name="twitter:image:alt" content="%s">' % html.escape(q['alt']),
+        '  <meta name="twitter:image:alt" content="%s">' % html.escape(q['og_alt']),
         ld(graph),
         THEME_HEAD,
     ]
@@ -582,9 +716,8 @@ if 'href="/glossary/"' not in s:
 open(ip, 'w', encoding='utf-8').write(s)
 
 home_desc = HOME_DESC
-home_og = os.path.join(ROOT, 'og.jpg')
-make_home_og(home_og)
-home_og_url = SITE_URL + '/og.jpg'
+home_og_name = write_og(compose_home_og(), ROOT)
+home_og_url = SITE_URL + '/' + home_og_name
 about_terms = [{'@id': GLOSSARY_URL + '#' + x['slug']} for x in TERMS]
 home_ld = {
     '@context': 'https://schema.org',
@@ -629,6 +762,7 @@ set_head(ip, common_head(HOME_TITLE, home_desc, SITE_URL + '/') + [
     '  <meta name="twitter:title" content="%s">' % html.escape(HOME_TITLE),
     '  <meta name="twitter:description" content="%s">' % html.escape(home_desc),
     '  <meta name="twitter:image" content="%s">' % home_og_url,
+    '  <meta name="twitter:image:alt" content="%s">' % html.escape(SITE_TITLE),
     ld(home_ld),
     THEME_HEAD,
 ])
@@ -685,6 +819,9 @@ gl_ld = {'@context': 'https://schema.org', '@graph': [
 ] + [term_ref(x, full=True) for x in TERMS]}
 gdir = os.path.join(ROOT, 'glossary')
 os.makedirs(gdir, exist_ok=True)
+gl_og_name = write_og(compose_glossary_og(), gdir)
+gl_og_url = SITE_URL + '/glossary/' + gl_og_name
+gl_og_alt = 'Glossary · ' + SERIES
 gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
     '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS)),
     '  <meta property="og:type" content="website">',
@@ -692,11 +829,17 @@ gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
     '  <meta property="og:description" content="%s">' % html.escape(gl_desc),
     '  <meta property="og:url" content="%s">' % GLOSSARY_URL,
     '  <meta property="og:site_name" content="%s">' % SITE,
-    '  <meta property="og:image" content="%s">' % home_og_url,
+    '  <meta property="og:image" content="%s">' % gl_og_url,
     '  <meta property="og:image:width" content="%s">' % OG_W,
     '  <meta property="og:image:height" content="%s">' % OG_H,
+    '  <meta property="og:image:alt" content="%s">' % html.escape(gl_og_alt),
     '  <meta name="twitter:card" content="summary_large_image">',
+    '  <meta name="twitter:site" content="@danburonline">',
     '  <meta name="twitter:creator" content="@danburonline">',
+    '  <meta name="twitter:title" content="%s">' % html.escape(gl_title),
+    '  <meta name="twitter:description" content="%s">' % html.escape(gl_desc),
+    '  <meta name="twitter:image" content="%s">' % gl_og_url,
+    '  <meta name="twitter:image:alt" content="%s">' % html.escape(gl_og_alt),
     ld(gl_ld),
     THEME_HEAD,
 ]
