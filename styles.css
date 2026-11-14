@@ -106,15 +106,30 @@ h1 {
 .post-date { display: block; margin-bottom: 1.5rem; font-size: 0.95rem; }
 article p { margin: 0 0 1.1rem; }
 article p:last-child { margin-bottom: 0; }
-.x-origin {
-  display: block;
-  margin: 2rem 0 0;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: #fffdf8;
-  font-size: 1rem;
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
 }
+.post-meta .post-date { margin-bottom: 0; }
+.x-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: #fffdf8;
+  color: var(--text);
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.x-read:hover { border-color: var(--text); color: var(--text); }
+.x-read svg { display: block; }
 .back { margin: 0 0 1.5rem; font-size: 0.95rem; }
 .post-list {
   list-style: none;
@@ -148,9 +163,6 @@ article .footnotes li {
   -webkit-hyphens: auto;
   hyphens: auto;
   hyphenate-limit-chars: 6 3 3;
-}
-article p.x-origin {
-  text-align: left;
 }
 
 /* Inline references: short bracketed labels instead of bare URLs */
@@ -237,3 +249,14 @@ img.zoomable { cursor: zoom-in; }
   cursor: pointer;
 }
 .lb-close:hover, .lb-close:focus-visible { background: rgba(255, 255, 255, 0.28); outline: none; }
+
+/* X embeds: widgets.js renders the card at most 550px wide inside its iframe,
+   so embed-fit.js scales it up to the text column width */
+.tweet-embed { display: block; }
+.tweet-embed.fit { overflow: hidden; }
+.tweet-embed.fit .twitter-tweet-rendered {
+  width: 550px !important;
+  max-width: none !important;
+  margin: 0 !important;
+  transform-origin: 0 0;
+}
