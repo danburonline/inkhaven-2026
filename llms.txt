@@ -24,6 +24,9 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Deprivation view of death](https://consciousness.ink/glossary/#deprivation-view): Nagel: death is bad for the one who dies because it deprives them of what would have been worth having.
 - [Adaptive preferences](https://consciousness.ink/glossary/#adaptive-preferences): Elster's "sour grapes": making peace with what cannot be changed, used in 3/30 about accepting death.
 - [Genetic fallacy](https://consciousness.ink/glossary/#genetic-fallacy): Judging a claim by its origin; in 3/30, causes of a wish do not show the goal is good or bad.
+- [Death](https://consciousness.ink/glossary/#death): The irreversible end of a conscious process world-line, irreversible by anything physics allows.
+- [Amortality](https://consciousness.ink/glossary/#amortality): Dying halted, so no internal clock runs out; step zero, not yet solving death.
+- [Immortality](https://consciousness.ink/glossary/#immortality): Death cannot occur at all; sought after solving death, not part of the goal.
 
 ## Meditations
 

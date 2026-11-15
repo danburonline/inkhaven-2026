@@ -189,7 +189,8 @@ TERMS = [
             'Reversing ageing halts the dying but does not solve death, since you can still get hit by a bus. '
             'The goal says "no one has to end", never "no one is allowed to end", because only a continuation '
             'worth having counts. In the Ontology it is one of the three hard goals the mission has to achieve; '
-            'functional brain isolation is step zero towards it, and gradual replacement comes after.'
+            'functional brain isolation is step zero towards it, and gradual replacement comes after. Solved '
+            'means the remaining risk keeps falling fast enough that all the yearly risks add up to a finite total.'
         ),
         short='The goal that no one has to end; halting ageing stops dying but does not solve death.',
         sources=['3-solving-death'],
@@ -251,6 +252,50 @@ TERMS = [
             'inferring either from them is the genetic fallacy.'
         ),
         short='Judging a claim by its origin; in 3/30, causes of a wish do not show the goal is good or bad.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='death',
+        name='Death',
+        also=['irreversible end'],
+        pattern=r'irreversible end of a conscious process world-line|irreversible destruction of the physical and dynamic processes',
+        sameAs=[],
+        text=(
+            'The irreversible end of a conscious process world-line; seen from the engineering side, the '
+            'irreversible destruction of the physical and dynamic processes of consciousness. "Irreversible" is '
+            'meant strictly: the end that cannot be undone by anything that physics allows. Medicine keeps '
+            'pushing the point where a stop turns into an end further out, so solving death is never about '
+            'bringing somebody back from an end, only about never letting a stop turn into one.'
+        ),
+        short='The irreversible end of a conscious process world-line, irreversible by anything physics allows.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='amortality',
+        name='Amortality',
+        also=['amortal', 'stop dying'],
+        pattern=r'\bamortal',
+        sameAs=[],
+        text=(
+            'What you get when the dying is halted (ageing, failing organs): no clock in you runs out by itself '
+            'anymore. It is step zero, not solving death, since a risk that just stays where it is, like being '
+            'hit by a bus, still gets everybody in the end, only later.'
+        ),
+        short='Dying halted, so no internal clock runs out; step zero, not yet solving death.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='immortality',
+        name='Immortality',
+        also=['immortal'],
+        pattern=r'\bimmortality\b',
+        sameAs=['https://en.wikipedia.org/wiki/Immortality'],
+        text=(
+            'The state in which death cannot occur at all anymore. In the order "stop dying and achieve '
+            'amortality, then solve death and seek immortality", it is something one can seek once death is '
+            'solved, and not part of the goal.'
+        ),
+        short='Death cannot occur at all; sought after solving death, not part of the goal.',
         sources=['3-solving-death'],
     ),
 ]

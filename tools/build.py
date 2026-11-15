@@ -597,7 +597,7 @@ for d in sorted(os.listdir(ROOT)):
     posts.append(dict(preload=preload,
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,
-        thumb='/thumbs/%s.jpg' % d, desc=desc, alt=alt, og_alt=og_alt, url=url, og=og_url,
+        thumb='/thumbs/%s.jpg?v=%s' % (d, hashlib.sha1(open(os.path.join(ROOT, 'thumbs', d + '.jpg'), 'rb').read()).hexdigest()[:8]), desc=desc, alt=alt, og_alt=og_alt, url=url, og=og_url,
         video=video_src, vw=video.get('width') if video else None,
         vh=video.get('height') if video else None, topics=topics, mentions=mentions,
         x=xc['href'] if xc else None, html=absolutize(clean.decode_contents().strip()),
