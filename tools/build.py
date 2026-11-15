@@ -347,6 +347,7 @@ SAME_AS = [
     'https://danielburger.online/',
     'https://x.com/danburonline',
     'https://github.com/danburonline',
+    'https://substack.com/@danburonline',
 ]
 PERSON = {
     '@type': 'Person',

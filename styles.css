@@ -382,7 +382,8 @@ footer.site a:hover,
 }
 .site-links { display: flex; flex-wrap: nowrap; align-items: center; gap: 0.5rem; }
 .site-links a.icon { padding: 0; width: 2.2rem; height: 2.2rem; justify-content: center; }
-.site-links a.icon svg { display: block; }
+.site-links a svg { display: block; flex: none; }
+.site-links a:not(.icon) { height: 2.2rem; }
 .site-links .theme-toggle { height: 2.2rem; }
 footer.site {
   display: flex;
