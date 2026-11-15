@@ -830,6 +830,7 @@ gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
     '  <meta property="og:description" content="%s">' % html.escape(gl_desc),
     '  <meta property="og:url" content="%s">' % GLOSSARY_URL,
     '  <meta property="og:site_name" content="%s">' % SITE,
+    '  <meta property="og:locale" content="en_GB">',
     '  <meta property="og:image" content="%s">' % gl_og_url,
     '  <meta property="og:image:width" content="%s">' % OG_W,
     '  <meta property="og:image:height" content="%s">' % OG_H,
