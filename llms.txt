@@ -19,12 +19,18 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Serial lesion effect](https://consciousness.ink/glossary/#serial-lesion-effect): Cited as evidence that a different piece of brain can take over a function.
 - [Gradual reorganisation principle](https://consciousness.ink/glossary/#gradual-reorganisation-principle): Barrett (2013); cited as evidence that a different piece of brain can take over a function.
 - [Cortical reorganisation](https://consciousness.ink/glossary/#cortical-reorganisation): Changes in which parts of the cortex carry which functions, also called cortical remapping.
+- [Solving death](https://consciousness.ink/glossary/#solving-death): The goal that no one has to end; halting ageing stops dying but does not solve death.
+- [Functional brain isolation](https://consciousness.ink/glossary/#functional-brain-isolation): Keeping a living brain alive outside its body for as long as possible; step zero towards solving death.
+- [Deprivation view of death](https://consciousness.ink/glossary/#deprivation-view): Nagel: death is bad for the one who dies because it deprives them of what would have been worth having.
+- [Adaptive preferences](https://consciousness.ink/glossary/#adaptive-preferences): Elster's "sour grapes": making peace with what cannot be changed, used in 3/30 about accepting death.
+- [Genetic fallacy](https://consciousness.ink/glossary/#genetic-fallacy): Judging a claim by its origin; in 3/30, causes of a wish do not show the goal is good or bad.
 
 ## Meditations
 
 - [0/30 Meditations on Synthetic Consciousness: The Start](https://consciousness.ink/0-the-start/): Day 0 of 30: why I am working through my ontology of synthetic consciousness and hybrid mind uploading in public, one item a day, as Cartesian meditations.
 - [1/30 Meditations on Synthetic Consciousness: Causa Finalis](https://consciousness.ink/1-causa-finalis/): Day 1 of 30, the vision: why synthetic consciousness, rather than artificial or machine consciousness, names a consciousness that no longer has to end.
 - [2/30 Meditations on Synthetic Consciousness: What Could Be Hybrid about Mind Uploading?](https://consciousness.ink/2-hybrid-mind-uploading/): Day 2 of 30, the mission: hybrid mind uploading versus classical mind uploading and whole brain emulation, and what "hybrid" means for the process world-line.
+- [3/30 Meditations on Synthetic Consciousness: Solving Death](https://consciousness.ink/3-solving-death/): Day 3 of 30: why I want to solve death, cause versus reason, the lightbulb analogy and where it breaks, and the deprivation view of why death is bad for the one who dies.
 
 ## Optional
 

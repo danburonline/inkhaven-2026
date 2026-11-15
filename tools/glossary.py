@@ -100,7 +100,7 @@ TERMS = [
             'series, death is the irreversible end of the process world-line.'
         ),
         short='The 4D trajectory of the physical processes that constitute a brain; its irreversible end is death.',
-        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading'],
+        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death'],
     ),
     dict(
         slug='gradual-brain-replacement',
@@ -177,6 +177,81 @@ TERMS = [
         ),
         short='Changes in which parts of the cortex carry which functions, also called cortical remapping.',
         sources=[],
+    ),
+    dict(
+        slug='solving-death',
+        name='Solving death',
+        also=['solve death'],
+        pattern=r'solv(?:e|ing) death|death (?:is )?solved',
+        sameAs=[],
+        text=(
+            'The goal that no one has to end, which is different from halting the natural process of dying. '
+            'Reversing ageing halts the dying but does not solve death, since you can still get hit by a bus. '
+            'The goal says "no one has to end", never "no one is allowed to end", because only a continuation '
+            'worth having counts. In the Ontology it is one of the three hard goals the mission has to achieve; '
+            'functional brain isolation is step zero towards it, and gradual replacement comes after.'
+        ),
+        short='The goal that no one has to end; halting ageing stops dying but does not solve death.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='functional-brain-isolation',
+        name='Functional brain isolation',
+        also=['functionally isolated brain', 'brain isolation'],
+        pattern=r'functional(?:ly)? (?:brain )?isolat|isolat\w* (?:the )?brains?',
+        sameAs=['https://en.wikipedia.org/wiki/Isolated_brain'],
+        text=(
+            'Taking a living brain out of its body and keeping it alive outside of it for as long as possible, '
+            'the work of Eightsix: early success in rodents, work towards a large animal brain, and ultimately '
+            'humans. In this series it is step zero on the route to solving death, before gradual replacement.'
+        ),
+        short='Keeping a living brain alive outside its body for as long as possible; step zero towards solving death.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='deprivation-view',
+        name='Deprivation view of death',
+        also=['deprivation account', 'deprivationism'],
+        pattern=r'deprivation (?:view|account)',
+        sameAs=[],
+        text=(
+            'Nagel\'s view, used in 3/30 as the central reason why death is bad: death is the irreversible end '
+            'of a conscious process world-line, so everything that would have come after does not happen for '
+            'the someone that this world-line is, and if that would have been worth having, missing out on it '
+            'is bad for that someone.'
+        ),
+        short='Nagel: death is bad for the one who dies because it deprives them of what would have been worth having.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='adaptive-preferences',
+        name='Adaptive preferences',
+        also=['sour grapes', 'adaptive preference formation'],
+        pattern=r'adaptive preferences?|sour grapes',
+        sameAs=[],
+        needs_wording=True,
+        text=(
+            'Elster\'s term, also called "sour grapes": wanting what you can get because you cannot get what you '
+            'want. Used in 3/30 to note that accepting death can be explained away just as easily as wanting to '
+            'solve it, since for most of human history nothing could be done about it.'
+        ),
+        short='Elster\'s "sour grapes": making peace with what cannot be changed, used in 3/30 about accepting death.',
+        sources=['3-solving-death'],
+    ),
+    dict(
+        slug='genetic-fallacy',
+        name='Genetic fallacy',
+        also=[],
+        pattern=r'genetic fallacy',
+        sameAs=['https://en.wikipedia.org/wiki/Genetic_fallacy'],
+        needs_wording=True,
+        text=(
+            'Judging a claim by where it came from rather than on its merits. In 3/30, the causes of wanting to '
+            'solve death (upbringing, a teenage bookshelf) neither show that the goal is good nor that it is bad; '
+            'inferring either from them is the genetic fallacy.'
+        ),
+        short='Judging a claim by its origin; in 3/30, causes of a wish do not show the goal is good or bad.',
+        sources=['3-solving-death'],
     ),
 ]
 
