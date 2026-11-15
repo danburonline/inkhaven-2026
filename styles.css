@@ -413,7 +413,8 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 
 /* While an X embed loads: spinner plus a link to the post; space is reserved
    by theme.js so nothing jumps when the card appears */
-.tweet-embed blockquote.twitter-tweet {
+.tweet-embed blockquote.twitter-tweet,
+.tweet-embed .tw-skel {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -434,20 +435,24 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 .tweet-embed blockquote.twitter-tweet > :not(a) { display: none; }
 /* Skeleton card while loading: avatar, name and handle, text lines and a
    media area, pulsing softly. The link to the post sits at the bottom. */
-.tweet-embed.loading blockquote.twitter-tweet {
+.tweet-embed.loading blockquote.twitter-tweet,
+.tweet-embed .tw-skel {
   align-items: stretch;
   justify-content: flex-start;
   text-align: left;
   padding: 1rem 1rem 1.1rem;
 }
 .tweet-embed.loading blockquote.twitter-tweet::before,
-.tweet-embed.loading blockquote.twitter-tweet::after {
+.tweet-embed.loading blockquote.twitter-tweet::after,
+.tweet-embed .tw-skel::before,
+.tweet-embed .tw-skel::after {
   content: "";
   display: block;
   background-repeat: no-repeat;
   animation: tw-pulse 1.4s ease-in-out infinite;
 }
-.tweet-embed.loading blockquote.twitter-tweet::before {
+.tweet-embed.loading blockquote.twitter-tweet::before,
+.tweet-embed .tw-skel::before {
   order: 0;
   flex: none;
   height: 44px;
@@ -458,7 +463,8 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
   background-size: 44px 44px, 38% 12px, 24% 10px;
   background-position: 0 0, 58px 7px, 58px 27px;
 }
-.tweet-embed.loading blockquote.twitter-tweet::after {
+.tweet-embed.loading blockquote.twitter-tweet::after,
+.tweet-embed .tw-skel::after {
   order: 1;
   flex: 1 1 auto;
   min-height: 70px;
@@ -477,7 +483,9 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 @keyframes tw-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 @media (prefers-reduced-motion: reduce) {
   .tweet-embed.loading blockquote.twitter-tweet::before,
-  .tweet-embed.loading blockquote.twitter-tweet::after { animation: none; }
+  .tweet-embed.loading blockquote.twitter-tweet::after,
+  .tweet-embed .tw-skel::before,
+  .tweet-embed .tw-skel::after { animation: none; }
 }
 .tweet-embed blockquote.twitter-tweet a { display: none; }
 .tweet-embed blockquote.twitter-tweet a:last-of-type {
@@ -491,6 +499,24 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
   text-decoration: none;
 }
 .tweet-embed blockquote.twitter-tweet a:last-of-type:hover { border-color: var(--text); }
+/* Once X has replaced the placeholder, embed-fit.js keeps the same skeleton
+   (.tw-skel) over the still invisible card until the card has loaded at its
+   final width, then fades the card in (.ready). */
+.tweet-embed { position: relative; }
+.tweet-embed .tw-skel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.tweet-embed.ready .tw-skel { opacity: 0; }
+.tweet-embed .twitter-tweet-rendered { opacity: 0; }
+.tweet-embed:not(.ready) .twitter-tweet-rendered { position: absolute !important; top: 0; left: 0; }
+.tweet-embed.ready .twitter-tweet-rendered { opacity: 1; transition: opacity 0.25s ease; }
 
 /* Home: intro, filter, thumbnails and word counts */
 .about { color: var(--muted); font-size: 0.98rem; margin: 0.6rem 0 0; }

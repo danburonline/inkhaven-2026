@@ -1,12 +1,14 @@
 /* Service worker for consciousness.ink
    - Pages (navigations): network first, so new posts and edits show up at once;
      the last good copy is used offline, then the offline page.
-   - Same-origin static files (scripts, images, icons, JSON): stale-while-revalidate.
+   - Data files (/previews.json, /posts.json): network first, cache as offline
+     fallback, so new link previews and posts are never hidden by an old copy.
+   - Same-origin static files (scripts, images, icons): stale-while-revalidate.
    - Everything else (other origins such as X embeds, non-GET, video ranges,
      feeds and text files) is not touched and goes straight to the network.
    VERSION and PRECACHE are filled in by tools/build.py. */
-const VERSION = 'e000a38ee2';
-const PRECACHE = ["/offline/", "/manifest.webmanifest", "/favicon.svg", "/theme.js?v=ee08ac4ef8", "/nav.js?v=8027db20fc", "/preview.js?v=4da7c2a5b2", "/lightbox.js?v=fb94a747e9", "/embed-fit.js?v=f9df00aeb9"];
+const VERSION = '392308af23';
+const PRECACHE = ["/offline/", "/manifest.webmanifest", "/favicon.svg", "/theme.js?v=be8e19676b", "/nav.js?v=79c8a2d769", "/preview.js?v=77b5af0707", "/lightbox.js?v=fb94a747e9", "/embed-fit.js?v=d979f65494"];
 const PREFIX = 'ci-';
 const STATIC = PREFIX + 'static-' + VERSION;
 const PAGES = PREFIX + 'pages-' + VERSION;
@@ -77,6 +79,20 @@ async function asset(event) {
   return net.catch(() => Response.error());
 }
 
+async function data(event) {
+  const req = event.request;
+  try {
+    const res = await fetch(req);
+    if (storable(res)) {
+      const copy = res.clone();
+      event.waitUntil(caches.open(ASSETS).then((c) => c.put(req, copy)).then(() => trim(ASSETS, MAX_ASSETS)));
+    }
+    return res;
+  } catch (err) {
+    return (await caches.match(req, { ignoreSearch: true })) || Response.error();
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
@@ -85,6 +101,10 @@ self.addEventListener('fetch', (event) => {
   if (req.headers.has('range') || url.pathname === '/sw.js') return;
   if (req.mode === 'navigate') {
     event.respondWith(page(event));
+    return;
+  }
+  if (url.pathname === '/previews.json' || url.pathname === '/posts.json') {
+    event.respondWith(data(event));
     return;
   }
   if (ASSET_RE.test(url.pathname)) event.respondWith(asset(event));

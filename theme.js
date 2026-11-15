@@ -33,7 +33,7 @@
       .filter(function (x) { return x[0] && x[1]; }).sort(function (a, b) { return a[0] - b[0]; });
     if (!pts.length) return 0;
     var w = width || wrap.clientWidth, base = pts[pts.length - 1];
-    if (w >= base[0]) return base[1] * (w > 550 ? w / 550 : 1) + 20;
+    if (w >= base[0]) return w > 554 ? base[1] * w / 550 : base[1] + 20; // scaled cards have no margins (embed-fit.js)
     for (var i = pts.length - 1; i > 0; i--) {
       var a = pts[i - 1], b = pts[i];
       if (w >= a[0]) return a[1] + (b[1] - a[1]) * (w - a[0]) / (b[0] - a[0]) + 20;
@@ -49,9 +49,9 @@
   function settle() {
     embeds.forEach(function (e) {
       if (e.wrap.querySelector('.twitter-tweet-rendered iframe')) {
-        e.wrap.classList.remove('loading');
-        // let the iframe size itself before dropping the reservation
-        setTimeout(function () { if (!e.wrap.classList.contains('loading')) e.wrap.style.minHeight = ''; }, 600);
+        // embed-fit.js reveals the card and drops the reserved height once
+        // the card has loaded at its final size; this is only a fallback
+        setTimeout(function () { if (!e.wrap.classList.contains('ready')) { e.wrap.classList.add('ready'); e.wrap.classList.remove('loading'); e.wrap.style.minHeight = ''; } }, 6000);
       }
     });
   }
@@ -65,7 +65,7 @@
     if (t === embedTheme) return;
     var first = embedTheme === null; embedTheme = t;
     embeds.forEach(function (e) {
-      if (!first) { e.wrap.innerHTML = e.html; e.wrap.classList.remove('fit'); e.wrap.style.height = ''; e.wrap.classList.add('loading'); reserve(e.wrap); }
+      if (!first) { e.wrap.innerHTML = e.html; e.wrap.classList.remove('fit', 'ready'); e.wrap.style.height = ''; e.wrap.classList.add('loading'); reserve(e.wrap); }
       var bq = e.wrap.querySelector('blockquote.twitter-tweet');
       if (bq) bq.setAttribute('data-theme', t);
       if (!first && window.twttr && twttr.widgets) twttr.widgets.load(e.wrap);
@@ -126,7 +126,7 @@
       p.forEach(function (e) {
         // reset a half-rendered or failed embed to its original markup, then retry
         if (!e.wrap.querySelector('blockquote.twitter-tweet') || e.wrap.querySelector('iframe')) {
-          e.wrap.innerHTML = e.html;
+          e.wrap.innerHTML = e.html; e.wrap.classList.remove('fit', 'ready'); e.wrap.style.height = '';
           var bq = e.wrap.querySelector('blockquote.twitter-tweet');
           if (bq) bq.setAttribute('data-theme', embedTheme);
         }

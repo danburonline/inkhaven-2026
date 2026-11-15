@@ -1012,6 +1012,20 @@ manifest = {
 open(os.path.join(ROOT, 'manifest.webmanifest'), 'w', encoding='utf-8').write(
     json.dumps(manifest, indent=1, ensure_ascii=False) + '\n')
 
+data = [{k: q[k] for k in ('n', 'slug', 'short', 'date', 'words')} for q in posts]
+open(os.path.join(ROOT, 'posts.json'), 'w').write(json.dumps(data, indent=1, ensure_ascii=False))
+
+# preview.js and nav.js fetch /previews.json and /posts.json with ?v=<content
+# hash>, so a changed file always gets a new URL and no browser or service
+# worker cache can serve a copy without the newest entries.
+for js, jf in (('preview.js', 'previews.json'), ('nav.js', 'posts.json')):
+    jv = hashlib.sha1(open(os.path.join(ROOT, jf), 'rb').read()).hexdigest()[:10]
+    jp = os.path.join(ROOT, js)
+    t = open(jp, encoding='utf-8').read()
+    t2 = re.sub(r"'/%s(?:\?v=[0-9a-f]+)?'" % re.escape(jf), "'/%s?v=%s'" % (jf, jv), t)
+    if t2 != t:
+        open(jp, 'w', encoding='utf-8').write(t2)
+
 # Scripts are referenced as /name.js?v=<content hash>, so vercel.json can cache
 # them for a year and a changed file always gets a new URL.
 ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js']
@@ -1037,8 +1051,6 @@ ver = hashlib.sha1((sw_body + open(os.path.join(off_dir, 'index.html'), encoding
 sw = re.sub(r"const VERSION = '[^']*';", "const VERSION = '%s';" % ver, sw, count=1)
 open(sw_path, 'w', encoding='utf-8').write(sw)
 
-data = [{k: q[k] for k in ('n', 'slug', 'short', 'date', 'words')} for q in posts]
-open(os.path.join(ROOT, 'posts.json'), 'w').write(json.dumps(data, indent=1, ensure_ascii=False))
 print(json.dumps([{**{k: q[k] for k in ('n', 'slug', 'page_title', 'desc', 'modified')},
                    'topics': [x['slug'] for x in q['topics']]} for q in posts]
                  + [{'home_desc': home_desc, 'len': len(home_desc)}], ensure_ascii=False, indent=2))
