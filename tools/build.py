@@ -59,6 +59,27 @@ def ensure_chrome(path):
     if changed:
         open(path, 'w', encoding='utf-8').write(s)
 
+SOCIAL_ICON_RE = re.compile(
+    r'<a\b(?=[^>]*\bclass="[^"]*\bicon\b[^"]*")[^>]*href="https://(?:www\.)?(?:x\.com|twitter\.com|github\.com|substack\.com)[^"]*"[^>]*>',
+    re.I)
+
+def ensure_social_newtab(path):
+    """Give X / GitHub / Substack icon links target=_blank rel=noopener.
+    Glossary and other same-origin links stay in this tab."""
+    s = open(path, encoding='utf-8').read()
+    def add_blank(m):
+        tag = m.group(0)
+        if re.search(r'\btarget=', tag):
+            if 'noopener' not in tag and 'rel=' not in tag:
+                tag = re.sub(r'\btarget="[^"]*"', 'target="_blank" rel="noopener"', tag, count=1)
+            return tag
+        if tag.endswith('/>'):
+            return tag[:-2] + ' target="_blank" rel="noopener"/>'
+        return tag[:-1] + ' target="_blank" rel="noopener">'
+    s2, n = SOCIAL_ICON_RE.subn(add_blank, s)
+    if n:
+        open(path, 'w', encoding='utf-8').write(s2)
+
 NUM_WRAP_RE = re.compile(r'(<span class="num-wrap">.*?</span>)', re.S)
 DEFAULT_NUM_WRAP = (
     '<span class="num-wrap"><button class="num-menu" type="button" '
@@ -89,12 +110,16 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
     nav = (
         '    <nav class="post-nav" aria-label="Site">\n'
         '      <a class="post-nav-brand" href="/" title="%s" aria-label="%s">'
+        '<svg class="brand-back" aria-hidden="true" viewBox="0 0 12 12" width="11" height="11">'
+        '<path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" '
+        'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
         '<span class="brand-full">%s</span>'
         '<span class="brand-short">Meditations</span></a>\n'
         '      <div class="post-nav-end">\n'
         '        %s\n'
         '      </div>\n'
-        '    </nav>\n' % (html.escape(SERIES), html.escape(SERIES),
+        '    </nav>\n' % (html.escape(SERIES),
+                           html.escape('Back to home: ' + SERIES),
                            html.escape(SERIES), num_wrap)
     )
     header = (
@@ -1094,6 +1119,7 @@ for f in html_files:
     t2 = ASSET_RE.sub(lambda m: '%s="/%s?v=%s"' % (m.group(1), m.group(2), ASSET_V[m.group(2)]), t)
     if t2 != t:
         open(f, 'w', encoding='utf-8').write(t2)
+    ensure_social_newtab(f)
 
 # Service worker: precache the offline page and the shared scripts; the cache
 # version changes whenever any of them (or sw.js itself) changes.

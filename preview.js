@@ -2,7 +2,7 @@
 (function () {
   var links = document.querySelectorAll('a.ref');
   if (!links.length) return;
-  var data = null, card = null, cur = null, hideT = null, showT = null;
+  var data = null, card = null, cur = null, hideT = null, showT = null, skipFocusShow = false;
   var touch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
   var lastTouch = 0;
   document.addEventListener('touchstart', function () { lastTouch = Date.now(); touch = true; }, { passive: true, capture: true });
@@ -14,6 +14,32 @@
   function fmtDate(s) {
     var d = new Date(s); if (isNaN(d)) return '';
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+  function parseUrl(href) {
+    try { return new URL(href, document.baseURI || location.href); } catch (err) { return null; }
+  }
+  function hostOf(href) {
+    var u = parseUrl(href);
+    return u ? u.hostname.replace(/^www\./i, '') : '';
+  }
+  function isExternal(href) {
+    var u = parseUrl(href);
+    return !u || u.origin !== location.origin;
+  }
+  function openLabel(href, e) {
+    var host = hostOf(href);
+    var path = (parseUrl(href) || {}).pathname || '';
+    if ((e && e.type === 'x') || /(^|\.)(x\.com|twitter\.com)$/i.test(host)) return 'Open on X';
+    if (/(^|\.)arxiv\.org$/i.test(host)) return 'Open on arXiv';
+    if (/(^|\.)wikipedia\.org$/i.test(host)) return 'Open on Wikipedia';
+    if (host === 'consciousness.ink' || host === location.hostname || (href && href.charAt(0) === '/')) {
+      if (/(^|\/)glossary(\/|$)/.test(path)) return 'Open glossary';
+      return 'Read meditation';
+    }
+    return host ? ('Open on ' + host) : 'Open link';
+  }
+  function overCard() {
+    return card && (card.matches(':hover') || card.contains(document.activeElement));
   }
   function build(a, e) {
     var h = '';
@@ -27,7 +53,10 @@
     }
     h += '<div class="pv-text">' + esc(e.text).replace(/\n+/g, '<br>') + '</div>';
     if (e.quote) h += '<div class="pv-quote"><strong>' + esc(e.quote.author) + '</strong> ' + esc(e.quote.text) + '</div>';
-    if (isTouch()) h += '<a class="pv-open" href="' + a.href + '" target="_blank" rel="noopener">Open ' + (e.type === 'x' ? 'post on X' : esc(e.site)) + ' ↗</a>';
+    var ext = isExternal(a.href);
+    h += '<div class="pv-foot"><a class="pv-open" href="' + esc(a.href) + '"'
+      + (ext ? ' target="_blank" rel="noopener"' : '')
+      + '>' + esc(openLabel(a.href, e)) + ' <span aria-hidden="true">↗</span></a></div>';
     h += '</div>';
     return h;
   }
@@ -47,21 +76,25 @@
       card = document.createElement('div'); card.className = 'pv-card'; document.body.appendChild(card);
       card.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') clearTimeout(hideT); });
       card.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(); });
-      card.addEventListener('click', function (e) {
-        if (!isTouch() || !cur) return;
-        if (e.target.closest('a')) return;
-        window.open(cur.href, '_blank', 'noopener');
-      });
     }
-    if (cur !== a || card._touch !== isTouch()) {
-      card._touch = isTouch();
+    if (cur !== a) {
       card.innerHTML = build(a, data[a.getAttribute('href')]);
       var img = card.querySelector('img'); if (img) img.onload = function () { if (cur === a) place(a); };
     }
     cur = a; card.classList.add('on'); place(a);
     return true;
   }
-  function hide() { hideT = setTimeout(function () { if (card) card.classList.remove('on'); cur = null; }, 150); }
+  function hideNow() {
+    if (card) card.classList.remove('on');
+    cur = null;
+  }
+  function hide() {
+    clearTimeout(hideT);
+    hideT = setTimeout(function () {
+      if (overCard()) return;
+      hideNow();
+    }, 220);
+  }
 
   links.forEach(function (a) {
     a.addEventListener('click', function (ev) {
@@ -77,11 +110,22 @@
       if (e.pointerType !== 'mouse') return;
       clearTimeout(showT); hide();
     });
-    a.addEventListener('focus', function () { if (!isTouch()) show(a); });
+    a.addEventListener('focus', function () {
+      if (isTouch()) return;
+      if (skipFocusShow) { skipFocusShow = false; return; }
+      show(a);
+    });
     a.addEventListener('blur', function () { if (!isTouch()) hide(); });
   });
   document.addEventListener('click', function (ev) {
-    if (card && cur && !card.contains(ev.target) && ev.target !== cur) { card.classList.remove('on'); cur = null; }
+    if (card && cur && !card.contains(ev.target) && ev.target !== cur) hideNow();
   });
-  window.addEventListener('scroll', function () { if (cur && !isTouch()) { card.classList.remove('on'); cur = null; } }, { passive: true });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Escape' || !card || !card.classList.contains('on')) return;
+    var back = cur;
+    hideNow();
+    if (back && typeof back.focus === 'function') { skipFocusShow = true; back.focus(); }
+    ev.preventDefault();
+  });
+  window.addEventListener('scroll', function () { if (cur && !isTouch()) hideNow(); }, { passive: true });
 })();
