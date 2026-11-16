@@ -1,9 +1,7 @@
 """Glossary terms for consciousness.ink.
 
 Each definition is grounded in Daniel Burger's own published posts on the site
-(or, for HMU/CMU, in his HMU constitution). Entries marked needs_wording=True are
-not defined in those sources yet and are described only minimally; replace the
-text with Daniel's own wording when he has written it.
+(or, for HMU/CMU, in his HMU constitution).
 
 pattern: regex (case-insensitive) that detects the topic in a post's text, used
 for the per-post Topics line and JSON-LD 'about'. Keep it strict.
@@ -123,15 +121,14 @@ TERMS = [
         also=['MGBR'],
         pattern=r'mechanistic gradual|\bMGBR\b',
         sameAs=[],
-        needs_wording=True,
         text=(
-            'The open question of whether a different, engineered substrate can take over brain function piece '
-            'by piece. The serial lesion effect and the gradual reorganisation principle show that another '
-            'piece of brain can take over a function; they do not show that a different substrate can. The '
-            'series treats this as a hypothesis to be tested, not a result.'
+            'Named in 3/30 as the core of hybrid mind uploading, and as step one towards solving death, after '
+            'functional brain isolation. 0/30 says that a different piece of brain can take over a function, '
+            'but that a different substrate taking over is still open and is the reason for the replacement '
+            'work. 3/30 says whether a world-line truly went on via a replacement has to be shown physically.'
         ),
-        short='Whether a different, engineered substrate can take over brain function piece by piece; an open hypothesis.',
-        sources=['0-the-start'],
+        short='The core of hybrid mind uploading; whether a different substrate can take over, and whether a world-line went on via replacement, still has to be shown.',
+        sources=['0-the-start', '3-solving-death'],
     ),
     dict(
         slug='serial-lesion-effect',
@@ -139,13 +136,12 @@ TERMS = [
         also=['SLE'],
         pattern=r'serial lesion',
         sameAs=[],
-        needs_wording=True,
         text=(
-            'Cited in 0/30, together with the gradual reorganisation principle, as evidence that a different '
-            'piece of brain can take over a function. It does not by itself show that a different substrate '
-            'can take over.'
+            'Cited in 0/30, together with Barrett\'s (2013) gradual reorganisation principle: a different '
+            'piece of brain can take over a function. What neither of them gives you, the post says, is a '
+            'different substrate taking over, which is still open.'
         ),
-        short='Cited as evidence that a different piece of brain can take over a function.',
+        short='A different piece of brain can take over a function; it does not show that a different substrate can.',
         sources=['0-the-start'],
     ),
     dict(
@@ -154,29 +150,13 @@ TERMS = [
         also=['gradual reorganization principle', 'GRP'],
         pattern=r'gradual reorgani[sz]ation principle',
         sameAs=[],
-        needs_wording=True,
         text=(
-            'Barrett\'s (2013) principle, cited in 0/30 alongside the serial lesion effect as evidence that a '
-            'different piece of brain can take over a function. Like the serial lesion effect, it does not by '
-            'itself show that a different substrate can take over.'
+            'Barrett\'s (2013) principle, cited in 0/30 together with the serial lesion effect: a different '
+            'piece of brain can take over a function. What neither of them gives you, the post says, is a '
+            'different substrate taking over, which is still open.'
         ),
-        short='Barrett (2013); cited as evidence that a different piece of brain can take over a function.',
+        short='Barrett (2013): a different piece of brain can take over a function; it does not show that a different substrate can.',
         sources=['0-the-start'],
-    ),
-    dict(
-        slug='cortical-reorganisation',
-        name='Cortical reorganisation',
-        also=['cortical reorganization', 'cortical remapping'],
-        pattern=r'cortical (?:re-?organi[sz]ation|remapping)',
-        sameAs=['https://en.wikipedia.org/wiki/Cortical_remapping', 'https://www.wikidata.org/wiki/Q17084665'],
-        needs_wording=True,
-        text=(
-            'Changes in which parts of the cortex carry which functions, also called cortical remapping. '
-            'Listed here as a topic related to the serial lesion effect and the gradual reorganisation '
-            'principle; the series has not discussed it yet.'
-        ),
-        short='Changes in which parts of the cortex carry which functions, also called cortical remapping.',
-        sources=[],
     ),
     dict(
         slug='solving-death',
@@ -230,13 +210,13 @@ TERMS = [
         also=['sour grapes', 'adaptive preference formation'],
         pattern=r'adaptive preferences?|sour grapes',
         sameAs=[],
-        needs_wording=True,
         text=(
-            'Elster\'s term, also called "sour grapes": wanting what you can get because you cannot get what you '
-            'want. Used in 3/30 to note that accepting death can be explained away just as easily as wanting to '
-            'solve it, since for most of human history nothing could be done about it.'
+            'Elster\'s term, also called "sour grapes", used in 3/30 for making your peace with death because, '
+            'for basically all of human history, there was nothing anybody could do about it. The post says '
+            'that the wish to solve death can be explained away, but so can everybody else\'s acceptance, and '
+            'that explaining away doesn\'t decide anything.'
         ),
-        short='Elster\'s "sour grapes": making peace with what cannot be changed, used in 3/30 about accepting death.',
+        short='Elster\'s "sour grapes", used in 3/30: acceptance of death can be explained away just as easily as the wish to solve it.',
         sources=['3-solving-death'],
     ),
     dict(
@@ -245,13 +225,14 @@ TERMS = [
         also=[],
         pattern=r'genetic fallacy',
         sameAs=['https://en.wikipedia.org/wiki/Genetic_fallacy'],
-        needs_wording=True,
         text=(
-            'Judging a claim by where it came from rather than on its merits. In 3/30, the causes of wanting to '
-            'solve death (upbringing, a teenage bookshelf) neither show that the goal is good nor that it is bad; '
-            'inferring either from them is the genetic fallacy.'
+            'Used in 3/30 for treating the causes of wanting to solve death (an upbringing, a teenage bookshelf) '
+            'as if they showed that the goal itself is bad. The post distinguishes a cause (what made you want it) '
+            'from a reason (what makes it worth wanting): those stories tell you how he ended up with death as his '
+            'main topic, but they don\'t tell you at all if the goal itself is any good, and they also can\'t tell '
+            'you that it\'s bad.'
         ),
-        short='Judging a claim by its origin; in 3/30, causes of a wish do not show the goal is good or bad.',
+        short='Used in 3/30: the causes of a wish don\'t tell you if the goal is any good, and they also can\'t tell you that it\'s bad.',
         sources=['3-solving-death'],
     ),
     dict(

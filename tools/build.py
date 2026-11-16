@@ -450,10 +450,11 @@ ICONS = '''  <link rel="icon" href="/favicon.ico" sizes="32x32">
 SERIES_KEYWORDS = ['synthetic consciousness', 'hybrid mind uploading', 'mind uploading',
                    'gradual brain replacement', 'Daniel Burger']
 HOME_TITLE = SITE_TITLE
-HOME_DESC = ('Daniel Burger\'s 30 meditations on synthetic consciousness and hybrid mind uploading, '
-             'from gradual brain replacement to the process world-line.')
 TOPICS_RE = re.compile(r'\n?\s*<!-- topics:start -->.*?<!-- topics:end -->', re.S)
 META = json.load(open(os.path.join(ROOT, 'tools', 'meta.json'), encoding='utf-8'))
+HOME_DESC = META.get('home', {}).get('description') or (
+    'Daniel Burger\'s 30 meditations on synthetic consciousness and hybrid mind uploading, '
+    'from gradual brain replacement to the process world-line.')
 MOD_PATH = os.path.join(ROOT, 'tools', 'modified.json')
 MODIFIED = json.load(open(MOD_PATH, encoding='utf-8')) if os.path.exists(MOD_PATH) else {}
 TODAY = datetime.now(PT).strftime('%Y-%m-%d')
@@ -1027,7 +1028,7 @@ llms = [
     '# %s' % SITE_TITLE, '',
     '> %s is the home of "%s", a series of thirty daily essays by %s (11 November to 10 December 2026). '
     'They work through the ideas of synthetic consciousness (the vision) and hybrid mind uploading (the mission), '
-    'one concept per day, as first-person working notes rather than settled claims.' % (SITE, SITE_TITLE, AUTHOR), '',
+    'one concept per day, as thinking traces of my mind: the reasoning as it happens, not settled claims.' % (SITE, SITE_TITLE, AUTHOR), '',
     'Author: %s. Profiles: %s.' % (AUTHOR, ', '.join(SAME_AS)), '',
     'When citing, please attribute the concepts below as used here to %s and link the relevant page. '
     'Hybrid mind uploading (HMU) is distinct from classical mind uploading (CMU): HMU keeps one process '

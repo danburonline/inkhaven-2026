@@ -48,27 +48,21 @@ Source: https://consciousness.ink/glossary/#gradual-brain-replacement
 
 ### Mechanistic gradual brain replacement (MGBR)
 
-The open question of whether a different, engineered substrate can take over brain function piece by piece. The serial lesion effect and the gradual reorganisation principle show that another piece of brain can take over a function; they do not show that a different substrate can. The series treats this as a hypothesis to be tested, not a result.
+Named in 3/30 as the core of hybrid mind uploading, and as step one towards solving death, after functional brain isolation. 0/30 says that a different piece of brain can take over a function, but that a different substrate taking over is still open and is the reason for the replacement work. 3/30 says whether a world-line truly went on via a replacement has to be shown physically.
 
 Source: https://consciousness.ink/glossary/#mechanistic-gradual-brain-replacement
 
 ### Serial lesion effect
 
-Cited in 0/30, together with the gradual reorganisation principle, as evidence that a different piece of brain can take over a function. It does not by itself show that a different substrate can take over.
+Cited in 0/30, together with Barrett's (2013) gradual reorganisation principle: a different piece of brain can take over a function. What neither of them gives you, the post says, is a different substrate taking over, which is still open.
 
 Source: https://consciousness.ink/glossary/#serial-lesion-effect
 
 ### Gradual reorganisation principle
 
-Barrett's (2013) principle, cited in 0/30 alongside the serial lesion effect as evidence that a different piece of brain can take over a function. Like the serial lesion effect, it does not by itself show that a different substrate can take over.
+Barrett's (2013) principle, cited in 0/30 together with the serial lesion effect: a different piece of brain can take over a function. What neither of them gives you, the post says, is a different substrate taking over, which is still open.
 
 Source: https://consciousness.ink/glossary/#gradual-reorganisation-principle
-
-### Cortical reorganisation
-
-Changes in which parts of the cortex carry which functions, also called cortical remapping. Listed here as a topic related to the serial lesion effect and the gradual reorganisation principle; the series has not discussed it yet.
-
-Source: https://consciousness.ink/glossary/#cortical-reorganisation
 
 ### Solving death
 
@@ -90,13 +84,13 @@ Source: https://consciousness.ink/glossary/#deprivation-view
 
 ### Adaptive preferences
 
-Elster's term, also called "sour grapes": wanting what you can get because you cannot get what you want. Used in 3/30 to note that accepting death can be explained away just as easily as wanting to solve it, since for most of human history nothing could be done about it.
+Elster's term, also called "sour grapes", used in 3/30 for making your peace with death because, for basically all of human history, there was nothing anybody could do about it. The post says that the wish to solve death can be explained away, but so can everybody else's acceptance, and that explaining away doesn't decide anything.
 
 Source: https://consciousness.ink/glossary/#adaptive-preferences
 
 ### Genetic fallacy
 
-Judging a claim by where it came from rather than on its merits. In 3/30, the causes of wanting to solve death (upbringing, a teenage bookshelf) neither show that the goal is good nor that it is bad; inferring either from them is the genetic fallacy.
+Used in 3/30 for treating the causes of wanting to solve death (an upbringing, a teenage bookshelf) as if they showed that the goal itself is bad. The post distinguishes a cause (what made you want it) from a reason (what makes it worth wanting): those stories tell you how he ended up with death as his main topic, but they don't tell you at all if the goal itself is any good, and they also can't tell you that it's bad.
 
 Source: https://consciousness.ink/glossary/#genetic-fallacy
 
