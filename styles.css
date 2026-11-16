@@ -695,6 +695,7 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
 }
 body:has(.num-wrap.open) .post-nav {
   z-index: 60;
+  border-bottom-color: transparent;
 }
 body:has(.num-wrap.open) .post-nav::before {
   content: "";
@@ -703,7 +704,7 @@ body:has(.num-wrap.open) .post-nav::before {
   width: 100vw;
   margin-left: -50vw;
   top: -1.75rem;
-  bottom: 0;
+  bottom: -1px;
   background: var(--bg);
   border-bottom: 1px solid var(--rule);
   z-index: -1;
