@@ -89,11 +89,14 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         '', s, count=1, flags=re.S)
     nav = (
         '    <nav class="post-nav" aria-label="Site">\n'
-        '      <a class="post-nav-brand" href="/">%s</a>\n'
+        '      <a class="post-nav-brand" href="/" title="%s" aria-label="%s">'
+        '<span class="brand-full">%s</span>'
+        '<span class="brand-short">Meditations</span></a>\n'
         '      <div class="post-nav-end">\n'
         '        %s\n'
         '      </div>\n'
-        '    </nav>\n' % (html.escape(SERIES), num_wrap)
+        '    </nav>\n' % (html.escape(SERIES), html.escape(SERIES),
+                           html.escape(SERIES), num_wrap)
     )
     header = (
         '      <header class="post-header">\n'

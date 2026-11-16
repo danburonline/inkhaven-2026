@@ -685,6 +685,7 @@ body { transition: background-color 0.2s ease, color 0.2s ease; }
    The home page and glossary keep their existing chrome. */
 .post-nav {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1rem;
@@ -742,16 +743,21 @@ body:has(.post-nav) article {
   outline-offset: 2px;
 }
 .post-nav-brand {
+  display: inline-flex;
+  align-items: center;
   min-width: 0;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+  white-space: nowrap;
 }
+.post-nav-brand .brand-short { display: none; }
 .post-nav-end {
   display: flex;
   align-items: center;
   flex: none;
   gap: 0.85rem;
+  white-space: nowrap;
 }
 .post-nav .num-menu {
   font-variant-numeric: tabular-nums;
@@ -800,17 +806,11 @@ body:has(.post-nav) article {
 }
 .post-byline .post-date { display: inline; margin: 0; }
 
-/* Series name is too long to share a row with 4/30 + theme at phone width */
+/* Full series name no longer fits beside 4/30 + theme below ~40rem */
 @media (max-width: 40rem) {
   .post-nav {
-    flex-wrap: wrap;
-    row-gap: 0.35rem;
+    flex-wrap: nowrap;
   }
-  .post-nav-brand {
-    flex: 1 0 100%;
-  }
-  .post-nav-end {
-    width: 100%;
-    justify-content: flex-end;
-  }
+  .post-nav-brand .brand-full { display: none; }
+  .post-nav-brand .brand-short { display: inline; }
 }
