@@ -766,7 +766,7 @@ body:has(.num-wrap.open) .post-nav::before {
 }
 .topics a { white-space: nowrap; }
 .glossary .intro { margin-bottom: 2rem; }
-.glossary .term { margin: 0 0 2rem; scroll-margin-top: 1.5rem; }
+.glossary .term { margin: 0 0 2rem; scroll-margin-top: 3.5rem; }
 .glossary .term h2 {
   font-size: 1.15rem;
   line-height: 1.3;

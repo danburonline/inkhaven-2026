@@ -93,6 +93,25 @@ DEFAULT_NUM_WRAP = (
 def words_label(n):
     return '{:,} words'.format(n)
 
+def slim_nav_html(end_inner=''):
+    """Slim sticky site nav: back chevron + series title, optional right slot
+    (4/30 menu on posts; empty on glossary/404/offline so theme.js can add
+    the icon-only toggle)."""
+    end = ('\n        %s\n      ' % end_inner) if end_inner else ''
+    return (
+        '    <nav class="post-nav" aria-label="Site">\n'
+        '      <a class="post-nav-brand" href="/" title="%s" aria-label="%s">'
+        '<svg class="brand-back" aria-hidden="true" viewBox="0 0 12 12" width="11" height="11">'
+        '<path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" '
+        'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        '<span class="brand-full">%s</span>'
+        '<span class="brand-short">Meditations</span></a>\n'
+        '      <div class="post-nav-end">%s</div>\n'
+        '    </nav>\n' % (html.escape(SERIES),
+                           html.escape('Back to home: ' + SERIES),
+                           html.escape(SERIES), end)
+    )
+
 def rewrite_post_chrome(path, num, short, iso, date_text, words):
     """Idempotent: turn a post's top chrome into the slim nav + title + byline."""
     s = open(path, encoding='utf-8').read()
@@ -107,21 +126,7 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         r'(?:<span class="series">.*?</span>:\s*)?.*?</h1>\s*'
         r'<time class="post-date"[^>]*>.*?</time>',
         '', s, count=1, flags=re.S)
-    nav = (
-        '    <nav class="post-nav" aria-label="Site">\n'
-        '      <a class="post-nav-brand" href="/" title="%s" aria-label="%s">'
-        '<svg class="brand-back" aria-hidden="true" viewBox="0 0 12 12" width="11" height="11">'
-        '<path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" '
-        'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-        '<span class="brand-full">%s</span>'
-        '<span class="brand-short">Meditations</span></a>\n'
-        '      <div class="post-nav-end">\n'
-        '        %s\n'
-        '      </div>\n'
-        '    </nav>\n' % (html.escape(SERIES),
-                           html.escape('Back to home: ' + SERIES),
-                           html.escape(SERIES), num_wrap)
-    )
+    nav = slim_nav_html(num_wrap)
     header = (
         '      <header class="post-header">\n'
         '        <h1>%s</h1>\n'
@@ -894,7 +899,7 @@ for x in TERMS:
       </section>''')
 gl_body = f'''<body>
   <div class="wrap glossary">
-    <p class="back"><a href="/">&larr; All meditations</a></p>
+{slim_nav_html()}
     <main>
       <h1>Glossary</h1>
       <p class="intro">Terms as they are used in <a href="/">{html.escape(SITE_TITLE)}</a> by {AUTHOR}. These are working definitions and will change as the series does.</p>
@@ -957,7 +962,7 @@ nf_head = [
 open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(
     '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(nf_head) + '\n</head>\n' + f'''<body>
   <div class="wrap">
-    <p class="back"><a href="/">&larr; All meditations</a></p>
+{slim_nav_html()}
     <main>
       <h1>Page not found</h1>
       <p>There is nothing at this address. The meditations are listed on the <a href="/">home page</a>, and the terms they use are in the <a href="/glossary/">glossary</a>.</p>
@@ -1073,7 +1078,7 @@ off_head = [
 open(os.path.join(off_dir, 'index.html'), 'w', encoding='utf-8').write(
     '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(off_head) + '\n</head>\n' + f"""<body>
   <div class="wrap">
-    <p class="back"><a href="/">&larr; All meditations</a></p>
+{slim_nav_html()}
     <main>
       <h1>You are offline</h1>
       <p>This page has not been saved for reading without a connection yet. Meditations you have opened before are still available, as are the <a href="/">home page</a> and the <a href="/glossary/">glossary</a> if you have visited them.</p>
