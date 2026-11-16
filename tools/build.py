@@ -39,9 +39,13 @@ CRIMSON = '/usr/share/fonts/truetype/sand-box/google/Crimson Pro/CrimsonPro-Vari
 SERIF_FALLBACK = '/usr/share/fonts/truetype/sand-box/custom/Source Serif Pro/SourceSerifPro-Regular.ttf'
 FONT_PATH = CRIMSON if os.path.exists(CRIMSON) else SERIF_FALLBACK
 
+def is_post_path(path):
+    return bool(re.search(r'[/\\]\d+-[^/\\]+[/\\]index\.html$', path))
+
 def ensure_chrome(path):
-    """Add the wordmark and og:site_name so new posts copied from an older
-    template still get them after a build."""
+    """Add og:site_name, and the wordmark on non-post pages, so older
+    templates still get them after a build. Post pages get their chrome
+    from rewrite_post_chrome instead (no masthead, no series-in-h1)."""
     s = open(path, encoding='utf-8').read()
     changed = False
     if 'property="og:site_name"' not in s and "property='og:site_name'" not in s:
@@ -50,16 +54,63 @@ def ensure_chrome(path):
         else:
             s = s.replace('</head>', OG_SITE + '</head>', 1)
         changed = True
-    if 'class="masthead"' not in s:
+    if not is_post_path(path) and 'class="masthead"' not in s:
         s = re.sub(r'(<div class="wrap">\n)', r'\1' + MASTHEAD, s, count=1)
         changed = True
-    if 'class="series"' not in s:
-        s2 = re.sub(r'(<h1>.*?)Meditations on Synthetic Consciousness', r'\1<span class="series">Meditations on Synthetic Consciousness</span>', s, count=1, flags=re.S)
-        if s2 != s:
-            s = s2
-            changed = True
     if changed:
         open(path, 'w', encoding='utf-8').write(s)
+
+NUM_WRAP_RE = re.compile(r'(<span class="num-wrap">.*?</span>)', re.S)
+DEFAULT_NUM_WRAP = (
+    '<span class="num-wrap"><button class="num-menu" type="button" '
+    'aria-haspopup="menu" aria-expanded="false" title="All meditations">'
+    '%s/30<svg aria-hidden="true" viewBox="0 0 12 12" width="11" height="11">'
+    '<path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" '
+    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
+    '</svg></button></span>'
+)
+
+def words_label(n):
+    return '{:,} words'.format(n)
+
+def rewrite_post_chrome(path, num, short, iso, date_text, words):
+    """Idempotent: turn a post's top chrome into the slim nav + title + byline."""
+    s = open(path, encoding='utf-8').read()
+    m = NUM_WRAP_RE.search(s)
+    num_wrap = m.group(1) if m else (DEFAULT_NUM_WRAP % num)
+    s = re.sub(r'\s*<p class="masthead">.*?</p>', '', s, count=1, flags=re.S)
+    s = re.sub(r'\s*<p class="back">.*?</p>', '', s, count=1, flags=re.S)
+    s = re.sub(r'\s*<nav class="post-nav"[^>]*>.*?</nav>', '', s, count=1, flags=re.S)
+    s = re.sub(r'\s*<header class="post-header">.*?</header>', '', s, count=1, flags=re.S)
+    s = re.sub(
+        r'\s*<h1>(?:<span class="num-wrap">.*?</span>\s*)?'
+        r'(?:<span class="series">.*?</span>:\s*)?.*?</h1>\s*'
+        r'<time class="post-date"[^>]*>.*?</time>',
+        '', s, count=1, flags=re.S)
+    nav = (
+        '    <nav class="post-nav" aria-label="Site">\n'
+        '      <a class="post-nav-brand" href="/">%s</a>\n'
+        '      <div class="post-nav-end">\n'
+        '        %s\n'
+        '      </div>\n'
+        '    </nav>\n' % (html.escape(SERIES), num_wrap)
+    )
+    header = (
+        '      <header class="post-header">\n'
+        '        <h1>%s</h1>\n'
+        '        <p class="post-byline"><time class="post-date" datetime="%s">%s</time>'
+        '<span class="post-meta-sep" aria-hidden="true">·</span>'
+        '<span class="post-words">%s</span></p>\n'
+        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words))
+    )
+    s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
+    if n != 1:
+        raise SystemExit('could not insert post-nav in %s' % path)
+    s = s2
+    s2, n = re.subn(r'(<article>\s*)', r'\1' + header, s, count=1)
+    if n != 1:
+        raise SystemExit('could not insert post-header in %s' % path)
+    open(path, 'w', encoding='utf-8').write(s2)
 
 ABBREV = re.compile(r'\b(i\.e|e\.g|vs|Mr|Mrs|Ms|Dr|Prof)\.', re.I)
 
@@ -126,7 +177,7 @@ def close_excerpt(chosen, text, limit, ellipsis=False):
 
 def first_para(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
         for el in body.select(sel):
             el.decompose()
     for p in body.find_all('p'):
@@ -392,7 +443,7 @@ def plain_name(t):
 
 def body_text(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
         for el in body.select(sel):
             el.decompose()
     return re.sub(r'\s+', ' ', body.get_text(' ')).strip()
@@ -534,11 +585,16 @@ for d in sorted(os.listdir(ROOT)):
     soup = BeautifulSoup(open(p, encoding='utf-8').read(), 'html.parser')
     art = soup.find('article')
     h1 = art.find('h1')
-    title = h1.get_text(' ', strip=True)
-    title = re.sub(r'\s+', ' ', title).replace(' /', '/').replace(' :', ':').strip()
+    raw = re.sub(r'\s+', ' ', h1.get_text(' ', strip=True)).replace(' /', '/').replace(' :', ':').strip()
     t = art.find('time')
     num = int(m.group(1))
-    short = title.split(':', 1)[1].strip() if ':' in title else title
+    # New chrome: h1 is only the post title. Old chrome: "N/30 Series: Title".
+    if art.find(class_='post-header') or ':' not in raw:
+        short = raw
+    else:
+        short = raw.split(':', 1)[1].strip()
+    # Keep the historical full title so JSON-LD, llms.txt and search stay stable.
+    title = '%s/30 %s: %s' % (num, SERIES, short)
     page_title = '%s/30 %s · Meditations on Synthetic Consciousness' % (num, short)
     if len(page_title) > 66:
         page_title = '%s/30 %s · %s' % (num, short, SITE)
@@ -586,7 +642,7 @@ for d in sorted(os.listdir(ROOT)):
         video_src = SITE_URL + video['src']
     # full article HTML for the feed and plain text for llms-full.txt
     clean = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.x-callout', 'script', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', 'script', '.num-menu-pop']:
         for el in clean.select(sel):
             el.decompose()
     for pic in clean.select('picture'):
@@ -594,6 +650,7 @@ for d in sorted(os.listdir(ROOT)):
         for k in GEN_ATTRS:
             im_el.attrs.pop(k, None)
         pic.replace_with(im_el)
+    rewrite_post_chrome(p, num, short, t['datetime'], t.get_text(strip=True), words)
     posts.append(dict(preload=preload,
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,

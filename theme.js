@@ -78,7 +78,8 @@
     var t = effective(mode);
     themeEmbeds(t);
     if (btn) {
-      btn.innerHTML = ICON[mode] + '<span>' + LABEL[mode] + '</span>';
+      var iconOnly = btn.classList.contains('icon');
+      btn.innerHTML = ICON[mode] + (iconOnly ? '' : '<span>' + LABEL[mode] + '</span>');
       btn.setAttribute('aria-label', 'Theme: ' + LABEL[mode] + (mode === 'auto' ? ' (' + t + ')' : '') + '. Click to change.');
       btn.title = mode === 'auto' ? 'Following system (' + t + ')' : LABEL[mode] + ' theme';
     }
@@ -87,7 +88,8 @@
   btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'theme-toggle';
-  var host = document.querySelector('.site-links') || document.querySelector('.back');
+  var host = document.querySelector('.post-nav-end') || document.querySelector('.site-links') || document.querySelector('.back');
+  if (host && host.classList.contains('post-nav-end')) btn.classList.add('icon');
   if (host) host.appendChild(btn);
   btn.addEventListener('click', function () {
     var next = ORDER[(ORDER.indexOf(getMode()) + 1) % ORDER.length];
