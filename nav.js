@@ -36,7 +36,8 @@
       var cur = p.slug === here;
       return '<a role="menuitem" href="/' + p.slug + '/"' + (cur ? ' class="current" aria-current="page"' : '') + '>' +
         '<span class="nm-n">' + p.n + '/30</span><span class="nm-t">' + esc(p.short) + '</span>' +
-        '<span class="nm-d">' + esc(p.date.replace(/ \d{4}$/, '')) + ' &middot; ' + p.words.toLocaleString('en') + ' words</span></a>';
+        '<span class="nm-d">' + esc(p.date.replace(/ \d{4}$/, '')) + ' &middot; ' + p.words.toLocaleString('en') + ' words' +
+        (cur ? '<span class="nm-now"> &middot; Reading</span>' : '') + '</span></a>';
     }).join('') + '<a class="nm-all" role="menuitem" href="/">View all on the home page</a>';
     wrap.appendChild(pop);
   }
