@@ -26,8 +26,17 @@
   // Post title menu
   var btn = document.querySelector('.num-menu');
   if (!btn) return;
-  var wrap = btn.parentNode, pop = null;
+  var wrap = btn.parentNode, pop = null, dim = null;
   var here = location.pathname.replace(/\/+$/, '').split('/').pop();
+  function ensureDim() {
+    if (dim) return dim;
+    dim = document.createElement('div');
+    dim.className = 'num-menu-dim';
+    dim.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dim);
+    dim.addEventListener('click', function () { close(); });
+    return dim;
+  }
   function build(posts) {
     pop = document.createElement('div');
     pop.className = 'num-menu-pop';
@@ -43,10 +52,17 @@
   }
   function open() {
     if (!pop) return;
+    ensureDim();
+    dim.classList.add('on');
     wrap.classList.add('open'); btn.setAttribute('aria-expanded', 'true');
     var c = pop.querySelector('.current') || pop.querySelector('a'); if (c) c.focus({ preventScroll: true });
   }
-  function close(focus) { wrap.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); if (focus) btn.focus(); }
+  function close(focus) {
+    wrap.classList.remove('open');
+    if (dim) dim.classList.remove('on');
+    btn.setAttribute('aria-expanded', 'false');
+    if (focus) btn.focus();
+  }
   btn.addEventListener('click', function (e) { e.stopPropagation(); wrap.classList.contains('open') ? close() : open(); });
   document.addEventListener('click', function (e) { if (pop && !pop.contains(e.target)) close(); });
   document.addEventListener('keydown', function (e) {
