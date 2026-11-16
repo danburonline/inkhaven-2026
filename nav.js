@@ -58,5 +58,5 @@
       links[i].focus();
     }
   });
-  fetch('/posts.json?v=3af6c5610c').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(build).catch(function () {});
+  fetch('/posts.json?v=5bd2fc83bf').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(build).catch(function () {});
 })();
