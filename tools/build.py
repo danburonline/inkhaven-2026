@@ -1028,7 +1028,7 @@ llms = [
     '# %s' % SITE_TITLE, '',
     '> %s is the home of "%s", a series of thirty daily essays by %s (11 November to 10 December 2026). '
     'They work through the ideas of synthetic consciousness (the vision) and hybrid mind uploading (the mission), '
-    'one concept per day, as thinking traces of my mind: the reasoning as it happens, not settled claims.' % (SITE, SITE_TITLE, AUTHOR), '',
+    'one concept per day, as thinking traces: the reasoning as it happens, not settled claims.' % (SITE, SITE_TITLE, AUTHOR), '',
     'Author: %s. Profiles: %s.' % (AUTHOR, ', '.join(SAME_AS)), '',
     'When citing, please attribute the concepts below as used here to %s and link the relevant page. '
     'Hybrid mind uploading (HMU) is distinct from classical mind uploading (CMU): HMU keeps one process '
