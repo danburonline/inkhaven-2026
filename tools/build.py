@@ -730,7 +730,7 @@ for q in posts:
          'breadcrumb': {'@type': 'BreadcrumbList', 'itemListElement': [
              {'@type': 'ListItem', 'position': 1, 'name': SITE, 'item': SITE_URL + '/'},
              {'@type': 'ListItem', 'position': 2, 'name': q['title'], 'item': q['url']}]}},
-        {'@type': 'Blog', '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/'},
+        {'@type': ['Blog', 'CreativeWorkSeries'], '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/'},
         PERSON,
     ] + [term_ref(x) for x in q['topics']]}
     lines = common_head(q['page_title'], q['desc'], q['url'])
@@ -813,7 +813,7 @@ home_ld = {
             'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
         },
         {
-            '@type': 'Blog', '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/',
+            '@type': ['Blog', 'CreativeWorkSeries'], '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/',
             'description': home_desc, 'inLanguage': 'en', 'isPartOf': {'@id': WEBSITE_ID},
             'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
             'image': home_og_url, 'dateModified': last_mod,
@@ -855,6 +855,20 @@ set_head(ip, common_head(HOME_TITLE, home_desc, SITE_URL + '/') + [
 for q in posts:
     ensure_chrome(q['path'])
 ensure_chrome(ip)
+# Home header icons live in a nav, not a paragraph, so the page has a landmark.
+hs = open(ip, encoding='utf-8').read()
+hs2, n = re.subn(
+    r'<p class="site-links">',
+    '<nav class="site-links" aria-label="Site">',
+    hs, count=1)
+if n:
+    hs2, n2 = re.subn(
+        r'</p>(\s*</header>)',
+        r'</nav>\1',
+        hs2, count=1)
+    if n2:
+        open(ip, 'w', encoding='utf-8').write(hs2)
+
 
 # ---------------------------------------------------------------------------
 # Glossary page
