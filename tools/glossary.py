@@ -298,6 +298,160 @@ TERMS = [
         short='Death cannot occur at all; sought after solving death, not part of the goal.',
         sources=['3-solving-death'],
     ),
+    dict(
+        slug='understand-consciousness',
+        name='Understand consciousness',
+        also=['understanding consciousness'],
+        pattern=r'understand(?:ing)? consciousness',
+        sameAs=[],
+        text=(
+            'The second of the three goals of the Ontology. "Understand" comes in three levels: measuring it, '
+            'modelling it and explaining it. The goal counts as reached at the second level, a model that can tell '
+            'you before a replacement step if the experience will change; the third is the horizon, and it may never '
+            'be reachable by science. It is ordered second because it is what is needed to check that death really '
+            'got solved: hybrid mind uploading can sidestep a theory of consciousness when building the thing that '
+            'carries the process, but it cannot sidestep measuring.'
+        ),
+        short='The Ontology\'s second goal: reached at a model that can predict whether experience will change, not only at a full theory.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='measurement-theory',
+        name='Measurement theory',
+        also=['measurement theories'],
+        pattern=r'measurement theor',
+        sameAs=[],
+        text=(
+            'The most modest of the three: it only tells you what kind of data count at all (reports, behaviour, '
+            'neural markers, and so on) and how to read that data as experience; it doesn\'t say why. In this series, '
+            'measurement comes first, before a full theory, with the two correcting each other in turns, because what '
+            'you think consciousness is already shapes what you accept as a measurement of it.'
+        ),
+        short='What data count as a measurement of experience, and how to read them; it does not say what consciousness is.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='model-of-consciousness',
+        name='Model of consciousness',
+        also=['models of consciousness'],
+        pattern=r'models? of consciousness',
+        sameAs=[],
+        text=(
+            'With a model you can already predict which experience goes with which physical state. In this series it '
+            'is the second of three levels of "understand" (measure, model, explain), and the level at which the goal '
+            'counts as reached: a model that allows us to measure, predict and steer experience across a replacement '
+            'step, and that can tell you before a step you cannot undo whether the experience will change.'
+        ),
+        short='A model that predicts which experience goes with which physical state, and whether experience will change before a replacement step.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='theory-of-consciousness',
+        name='Theory of consciousness',
+        also=['theories of consciousness'],
+        pattern=r'theor(?:y|ies) of consciousness',
+        sameAs=[],
+        text=(
+            'A theory would say what consciousness is and why there is any of it in the first place. 4/30 treats this '
+            'as the third level of "understand", the horizon, and worries that it may belong with questions science '
+            'cannot settle, so that a theory of consciousness may always be poetry in Bohr\'s sense. Hybrid mind '
+            'uploading does not let its success depend on any single theory of consciousness being the only true one; '
+            'rival theories become predictions that a measurement can test.'
+        ),
+        short='An account of what consciousness is and why there is any of it; the horizon of the second goal, which may stay out of reach of science.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='goal-vs-outcome',
+        name='Goal vs outcome',
+        also=['goals and outcomes'],
+        pattern=r'goals? and outcomes?|difference between goals and outcomes',
+        sameAs=[],
+        text=(
+            'A goal is something that we strive for and could fail at; an outcome is what follows either way, as long '
+            'as we work on the mission. Understanding consciousness is a goal, at least up to the level of '
+            'measurement, and not a mere outcome, because without a way to tell that experience is still there, and '
+            'that it\'s still this experience, we could never know if the mission succeeded.'
+        ),
+        short='A goal is something one could fail at; an outcome follows either way from working on the mission.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='consciousness-engineering',
+        name='Consciousness engineering',
+        also=[],
+        pattern=r'consciousness engineering',
+        sameAs=[],
+        text=(
+            'Engineering with matter that we try to couple and integrate with the biological brain, so that experience '
+            'extends across both parts ("bridging" phenomenal consciousness), with the aim of ultimately letting it '
+            'host synthetic consciousness. 4/30 uses this name both for that work and for the Frontiers Research Topic '
+            'Daniel co-organised, and contrasts it with consciousness science: an engineering mindset rather than a '
+            'science mindset, though the measurement problem of consciousness may be solved from this work.'
+        ),
+        short='Engineering that couples with the living brain so experience can extend across both parts and eventually host synthetic consciousness.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='biomimetic-neuromorphics',
+        name='Biomimetic neuromorphics',
+        also=[],
+        pattern=r'biomimetic neuromorphics',
+        sameAs=[],
+        text=(
+            'The slot that whole brain emulation has in classical mind uploading, but in hybrid mind uploading. 4/30 '
+            'expects measurement theories, and maybe even models of consciousness, to emerge from this work, and treats '
+            'a good model of consciousness here as useful enough to say that we understand consciousness.'
+        ),
+        short='In hybrid mind uploading, the counterpart to the slot that whole brain emulation has in classical mind uploading.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='sidestepping',
+        name='Sidestepping',
+        also=['sidestep'],
+        pattern=r'sidestep',
+        sameAs=[],
+        text=(
+            'What hybrid mind uploading does with a theory of consciousness: it does not need a theory in order to make '
+            'the work succeed, or to have confidence in it, but it does not ignore theories either. Ignoring them '
+            'completely would be insanity, as you\'d end up assuming one anyway. Sidestepping means hybrid mind '
+            'uploading doesn\'t let its success depend on any single theory of consciousness being the only true one; '
+            'it assumes a few things openly (the process world-line is one, held as a hypothesis), and rival theories '
+            'become predictions that a measurement can test.'
+        ),
+        short='Not ignoring theories of consciousness, but not letting success depend on any one of them being the only true one.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='adversarial-collaboration',
+        name='Adversarial collaboration',
+        also=['adversarial collaborations'],
+        pattern=r'adversarial collaborations?',
+        sameAs=[],
+        text=(
+            'Named in 4/30 as one of the first signs of a rigorisation of the consciousness sciences: theories with '
+            'conflicting predictions get tested against each other.'
+        ),
+        short='Theories with conflicting predictions tested against each other; cited as a sign of rigorisation in consciousness science.',
+        sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='inventing-temperature',
+        name='Inventing Temperature',
+        also=['calibration circle'],
+        pattern=r'inventing temperature|calibrate a thermometer',
+        sameAs=[],
+        text=(
+            'Hasok Chang\'s example, used in 4/30: thermometers and fixed scales (Fahrenheit, 1724) were around long '
+            'before a kinetic theory explained what temperature is (1850s–1870s). You can\'t calibrate a thermometer '
+            'without knowing what temperature really is, and you can\'t know what temperature is without a thermometer, '
+            'so every round of measuring corrected the concept, and also the other way around. This is the picture for '
+            'how a measurement theory and a theory of consciousness correct each other in turns.'
+        ),
+        short='Chang\'s temperature example: measurement and concept correct each other in turns, because neither comes first on its own.',
+        sources=['4-measurements-models-theories'],
+    ),
 ]
 
 # Things a post may mention that are not glossary terms but have a clear

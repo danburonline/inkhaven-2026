@@ -27,6 +27,16 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Death](https://consciousness.ink/glossary/#death): The irreversible end of a conscious process world-line, irreversible by anything physics allows.
 - [Amortality](https://consciousness.ink/glossary/#amortality): Dying halted, so no internal clock runs out; step zero, not yet solving death.
 - [Immortality](https://consciousness.ink/glossary/#immortality): Death cannot occur at all; sought after solving death, not part of the goal.
+- [Understand consciousness](https://consciousness.ink/glossary/#understand-consciousness): The Ontology's second goal: reached at a model that can predict whether experience will change, not only at a full theory.
+- [Measurement theory](https://consciousness.ink/glossary/#measurement-theory): What data count as a measurement of experience, and how to read them; it does not say what consciousness is.
+- [Model of consciousness](https://consciousness.ink/glossary/#model-of-consciousness): A model that predicts which experience goes with which physical state, and whether experience will change before a replacement step.
+- [Theory of consciousness](https://consciousness.ink/glossary/#theory-of-consciousness): An account of what consciousness is and why there is any of it; the horizon of the second goal, which may stay out of reach of science.
+- [Goal vs outcome](https://consciousness.ink/glossary/#goal-vs-outcome): A goal is something one could fail at; an outcome follows either way from working on the mission.
+- [Consciousness engineering](https://consciousness.ink/glossary/#consciousness-engineering): Engineering that couples with the living brain so experience can extend across both parts and eventually host synthetic consciousness.
+- [Biomimetic neuromorphics](https://consciousness.ink/glossary/#biomimetic-neuromorphics): In hybrid mind uploading, the counterpart to the slot that whole brain emulation has in classical mind uploading.
+- [Sidestepping](https://consciousness.ink/glossary/#sidestepping): Not ignoring theories of consciousness, but not letting success depend on any one of them being the only true one.
+- [Adversarial collaboration](https://consciousness.ink/glossary/#adversarial-collaboration): Theories with conflicting predictions tested against each other; cited as a sign of rigorisation in consciousness science.
+- [Inventing Temperature](https://consciousness.ink/glossary/#inventing-temperature): Chang's temperature example: measurement and concept correct each other in turns, because neither comes first on its own.
 
 ## Meditations
 

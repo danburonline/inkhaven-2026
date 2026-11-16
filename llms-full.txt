@@ -118,6 +118,66 @@ The state in which death cannot occur at all anymore. In the order "stop dying a
 
 Source: https://consciousness.ink/glossary/#immortality
 
+### Understand consciousness
+
+The second of the three goals of the Ontology. "Understand" comes in three levels: measuring it, modelling it and explaining it. The goal counts as reached at the second level, a model that can tell you before a replacement step if the experience will change; the third is the horizon, and it may never be reachable by science. It is ordered second because it is what is needed to check that death really got solved: hybrid mind uploading can sidestep a theory of consciousness when building the thing that carries the process, but it cannot sidestep measuring.
+
+Source: https://consciousness.ink/glossary/#understand-consciousness
+
+### Measurement theory
+
+The most modest of the three: it only tells you what kind of data count at all (reports, behaviour, neural markers, and so on) and how to read that data as experience; it doesn't say why. In this series, measurement comes first, before a full theory, with the two correcting each other in turns, because what you think consciousness is already shapes what you accept as a measurement of it.
+
+Source: https://consciousness.ink/glossary/#measurement-theory
+
+### Model of consciousness
+
+With a model you can already predict which experience goes with which physical state. In this series it is the second of three levels of "understand" (measure, model, explain), and the level at which the goal counts as reached: a model that allows us to measure, predict and steer experience across a replacement step, and that can tell you before a step you cannot undo whether the experience will change.
+
+Source: https://consciousness.ink/glossary/#model-of-consciousness
+
+### Theory of consciousness
+
+A theory would say what consciousness is and why there is any of it in the first place. 4/30 treats this as the third level of "understand", the horizon, and worries that it may belong with questions science cannot settle, so that a theory of consciousness may always be poetry in Bohr's sense. Hybrid mind uploading does not let its success depend on any single theory of consciousness being the only true one; rival theories become predictions that a measurement can test.
+
+Source: https://consciousness.ink/glossary/#theory-of-consciousness
+
+### Goal vs outcome
+
+A goal is something that we strive for and could fail at; an outcome is what follows either way, as long as we work on the mission. Understanding consciousness is a goal, at least up to the level of measurement, and not a mere outcome, because without a way to tell that experience is still there, and that it's still this experience, we could never know if the mission succeeded.
+
+Source: https://consciousness.ink/glossary/#goal-vs-outcome
+
+### Consciousness engineering
+
+Engineering with matter that we try to couple and integrate with the biological brain, so that experience extends across both parts ("bridging" phenomenal consciousness), with the aim of ultimately letting it host synthetic consciousness. 4/30 uses this name both for that work and for the Frontiers Research Topic Daniel co-organised, and contrasts it with consciousness science: an engineering mindset rather than a science mindset, though the measurement problem of consciousness may be solved from this work.
+
+Source: https://consciousness.ink/glossary/#consciousness-engineering
+
+### Biomimetic neuromorphics
+
+The slot that whole brain emulation has in classical mind uploading, but in hybrid mind uploading. 4/30 expects measurement theories, and maybe even models of consciousness, to emerge from this work, and treats a good model of consciousness here as useful enough to say that we understand consciousness.
+
+Source: https://consciousness.ink/glossary/#biomimetic-neuromorphics
+
+### Sidestepping
+
+What hybrid mind uploading does with a theory of consciousness: it does not need a theory in order to make the work succeed, or to have confidence in it, but it does not ignore theories either. Ignoring them completely would be insanity, as you'd end up assuming one anyway. Sidestepping means hybrid mind uploading doesn't let its success depend on any single theory of consciousness being the only true one; it assumes a few things openly (the process world-line is one, held as a hypothesis), and rival theories become predictions that a measurement can test.
+
+Source: https://consciousness.ink/glossary/#sidestepping
+
+### Adversarial collaboration
+
+Named in 4/30 as one of the first signs of a rigorisation of the consciousness sciences: theories with conflicting predictions get tested against each other.
+
+Source: https://consciousness.ink/glossary/#adversarial-collaboration
+
+### Inventing Temperature
+
+Hasok Chang's example, used in 4/30: thermometers and fixed scales (Fahrenheit, 1724) were around long before a kinetic theory explained what temperature is (1850s–1870s). You can't calibrate a thermometer without knowing what temperature really is, and you can't know what temperature is without a thermometer, so every round of measuring corrected the concept, and also the other way around. This is the picture for how a measurement theory and a theory of consciousness correct each other in turns.
+
+Source: https://consciousness.ink/glossary/#inventing-temperature
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -125,7 +185,7 @@ Source: https://consciousness.ink/glossary/#immortality
 URL: https://consciousness.ink/0-the-start/
 Author: Daniel Burger
 Published: 2026-11-11
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality, theory of consciousness
 
 On the first day of this year, I created a small ontology editor (similar to, e.g. Protégé, just a lot simpler and without the formal OWL logic behind it) for the all-encompassing ontology* of my life and its vision, mission, goals, etc. It starts with the main vision (i.e. the future state of being I'm working towards), which is "synthetic consciousness". Simply summarised: engineered phenomenology on a designed substrate you could gradually become. I break it down into the mission, which is hybrid mind uploading (the most pragmatic way to achieve the same goals as classical mind uploading, just not by following the free-standing position of "creating something external to the brain that recreates the brain" but rather by building something that can be integrated into the thing at hand (i.e. your brain), hence the hybrid status in between. If you read some of my recent tweets, you'll know what I mean, as I've been talking about it in great detail + there's the upcoming manuscript on it. Then there are a few principles and rejections, some goals, one of which is quite practical: solve death (more on this below), and a few other things.
 
@@ -263,7 +323,7 @@ One last thing: I deliberately stopped the definition at the universe itself, as
 URL: https://consciousness.ink/4-measurements-models-theories/
 Author: Daniel Burger
 Published: 2026-11-15
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, understand consciousness, measurement theory, model of consciousness, theory of consciousness, goal vs outcome, consciousness engineering, biomimetic neuromorphics, sidestepping, adversarial collaboration, inventing temperature
 
 The second goal of the Ontology is simply called "understand consciousness". To be clear about which goals I mean: the Ontology ( [Sep 2026] ) has three of them, which are "solve death" (that was yesterday: [Nov 2026] ), understand consciousness and human transcendence, and they're no longer identical with the original goals of mind uploading that I listed on day two. What I mean by this second one is that in order to make hybrid mind uploading work as a mission towards the vision of synthetic consciousness, one will definitely have to solve death, as the first goal, but probably, and that's a big probably, also understand consciousness. I do believe that in the coming years, especially due to the progress in artificial intelligence, we will see a great "rigorisation of science", and especially of the consciousness sciences as well. The reason being that we can now reason across hundreds of papers, or across whole piles of data, at the same time, and with that we uncover many of the inconsistencies in thinking and in terminology, and also the data flaws and mistakes that we've made in science up to this point (computational philosophy is basically the same move btw). In the consciousness sciences, this matters even more, as that field can't hide its measurement problem and is being forced to work out what even counts as a test of a theory ( [Oct 2026] ). You can already see the first signs of it btw, e.g. in the adversarial collaborations, where theories with conflicting predictions get tested against each other. I also assume that the overfocus on neurocomputational functionalism will fade away, as right now it's mostly held as a faith rather than tested as a hypothesis ( [Jul 2026] ), and that we'll look back at those days and wonder how quickly we anthropomorphised anything that outputs "I'm angry" (the angry chair from an earlier tweet: [Feb 2026] ).
 
