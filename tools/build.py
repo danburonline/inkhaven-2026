@@ -18,7 +18,6 @@ AUTHOR_X = 'https://x.com/danburonline'
 PT = timezone(timedelta(hours=-8))
 OG_W, OG_H = 1200, 630
 OG_SITE = '  <meta property="og:site_name" content="%s">\n' % SITE
-MASTHEAD = '    <p class="masthead"><a href="/">%s</a></p>\n' % SITE
 def min_css(css):
     """Small, safe minifier: comments and whitespace only (selectors are left alone)."""
     css = re.sub(r'/\*.*?\*/', '', css, flags=re.S)
@@ -43,9 +42,9 @@ def is_post_path(path):
     return bool(re.search(r'[/\\]\d+-[^/\\]+[/\\]index\.html$', path))
 
 def ensure_chrome(path):
-    """Add og:site_name, and the wordmark on non-post pages, so older
-    templates still get them after a build. Post pages get their chrome
-    from rewrite_post_chrome instead (no masthead, no series-in-h1)."""
+    """Add og:site_name, and strip the old wordmark, so older templates
+    stay consistent after a build. Post pages get their chrome from
+    rewrite_post_chrome instead (no masthead, no series-in-h1)."""
     s = open(path, encoding='utf-8').read()
     changed = False
     if 'property="og:site_name"' not in s and "property='og:site_name'" not in s:
@@ -54,8 +53,8 @@ def ensure_chrome(path):
         else:
             s = s.replace('</head>', OG_SITE + '</head>', 1)
         changed = True
-    if not is_post_path(path) and 'class="masthead"' not in s:
-        s = re.sub(r'(<div class="wrap">\n)', r'\1' + MASTHEAD, s, count=1)
+    if 'class="masthead"' in s:
+        s = re.sub(r'\s*<p class="masthead">.*?</p>', '', s, count=1, flags=re.S)
         changed = True
     if changed:
         open(path, 'w', encoding='utf-8').write(s)
@@ -856,7 +855,6 @@ for x in TERMS:
       </section>''')
 gl_body = f'''<body>
   <div class="wrap glossary">
-    <p class="masthead"><a href="/">{SITE}</a></p>
     <p class="back"><a href="/">&larr; All meditations</a></p>
     <main>
       <h1>Glossary</h1>
@@ -920,7 +918,6 @@ nf_head = [
 open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(
     '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(nf_head) + '\n</head>\n' + f'''<body>
   <div class="wrap">
-    <p class="masthead"><a href="/">{SITE}</a></p>
     <p class="back"><a href="/">&larr; All meditations</a></p>
     <main>
       <h1>Page not found</h1>
@@ -1037,7 +1034,6 @@ off_head = [
 open(os.path.join(off_dir, 'index.html'), 'w', encoding='utf-8').write(
     '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(off_head) + '\n</head>\n' + f"""<body>
   <div class="wrap">
-    <p class="masthead"><a href="/">{SITE}</a></p>
     <p class="back"><a href="/">&larr; All meditations</a></p>
     <main>
       <h1>You are offline</h1>
