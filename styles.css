@@ -1165,3 +1165,17 @@ body:has(.post-nav) article {
 main:has(.post-list) { overflow-x: visible; }
 .post-list li::before,
 .post-list a.title::after { inset: 0 -0.85rem; }
+
+/* The row itself extends past the column (lines included), with matching
+   padding, so dividers, hover and focus ring share one edge while the
+   thumbnail stays aligned with the column text. */
+.post-list li { margin-inline: -0.85rem; padding-inline: 0.85rem; }
+.post-list li::before,
+.post-list a.title::after { inset: 0; }
+/* On narrow screens the column padding is only 1rem, so run rows edge to
+   edge (square corners) rather than leaving a hairline gap at the screen edge. */
+@media (max-width: 40rem) {
+  .post-list li { margin-inline: -1rem; padding-inline: 1rem; }
+  .post-list li::before,
+  .post-list a.title::after { border-radius: 0; }
+}
