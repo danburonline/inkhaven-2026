@@ -29,7 +29,7 @@ def min_css(css):
 # does not wait for a second request. Re-run the build after editing it.
 CSS_INLINE = min_css(open(os.path.join(ROOT, 'styles.css'), encoding='utf-8').read())
 THEME_HEAD = '''  <meta name="color-scheme" content="light dark">
-  <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()</script>
+  <script>(function(){var r=document.documentElement;window.__inkTheme=function(t){var x=t==='light'||t==='dark',m=document.querySelectorAll('meta[name="theme-color"]'),c=document.querySelector('meta[name="color-scheme"]');if(x){r.setAttribute('data-theme',t);r.style.colorScheme=t}else{r.removeAttribute('data-theme');r.style.removeProperty('color-scheme')}for(var i=0;i<m.length;i++){m[i].content=x?(t==='dark'?'#15130f':'#f6f1e8'):(i===0?'#f6f1e8':'#15130f');if(x)m[i].removeAttribute('media');else m[i].setAttribute('media','(prefers-color-scheme: '+(i===0?'light':'dark')+')')}if(c)c.content=x?t:'light dark'};var t='auto';try{t=localStorage.getItem('theme')||'auto'}catch(e){}window.__inkTheme(t)})()</script>
   <style>%s</style>''' % CSS_INLINE
 FEED_LINK = '  <link rel="alternate" type="application/rss+xml" title="%s" href="%s/feed.xml">' % (
     html.escape(SITE_TITLE), SITE_URL)

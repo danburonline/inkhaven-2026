@@ -74,7 +74,9 @@
 
   var btn;
   function apply(mode) {
-    if (mode === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
+    // The head helper sets the browser chrome before paint and on each toggle.
+    if (window.__inkTheme) window.__inkTheme(mode);
+    else if (mode === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
     var t = effective(mode);
     themeEmbeds(t);
     if (btn) {
