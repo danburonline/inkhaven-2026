@@ -608,6 +608,67 @@ def responsive_images(path, slug):
             os.rmdir(outdir)
     return state['preload']
 
+# Section outline (tools/outline.json): the posts are continuous prose, so the
+# build gives the paragraph where each section starts a stable id and renders a
+# <nav class="toc" aria-label="Sections"> before the article. outline.js makes it
+# a sticky sidebar on wide screens and a bottom sheet on narrow ones.
+OUTLINE_PATH = os.path.join(ROOT, 'tools', 'outline.json')
+OUTLINE = {k: v for k, v in json.load(open(OUTLINE_PATH, encoding='utf-8')).items() if not k.startswith('_')}
+TOC_RE = re.compile(r'\s*<nav class="toc"[^>]*>.*?</nav>', re.S)
+SEC_ID_RE = re.compile(r'<p id="sec-[^"]*"')
+P_RE = re.compile(r'<p(\s[^>]*)?>(.*?)</p>', re.S)
+
+def sec_id(label):
+    return 'sec-' + (re.sub(r'[^a-z0-9]+', '-', label.lower()).strip('-') or 'part')
+
+def norm_text(fragment):
+    t = html.unescape(re.sub(r'<[^>]+>', ' ', fragment))
+    return re.sub(r'\s+', ' ', t).strip()
+
+def apply_outline(path, slug):
+    """Idempotent: ids on section-start paragraphs plus the Sections nav."""
+    s = open(path, encoding='utf-8').read()
+    orig = s
+    s = TOC_RE.sub('', s, count=1)
+    s = SEC_ID_RE.sub('<p', s)
+    entries = OUTLINE.get(slug)
+    if not entries:
+        print('WARNING: no outline for %s; add it to tools/outline.json' % slug)
+    else:
+        a0 = s.index('<article>')
+        a1 = s.index('</article>', a0)
+        art = s[a0:a1]
+        items, used = [], set()
+        paras = list(P_RE.finditer(art))
+        for e in entries:
+            want = re.sub(r'\s+', '', html.unescape(e['starts']))
+            hit = next((m for m in paras if m.start() not in used
+                        and re.sub(r'\s+', '', norm_text(m.group(2))).startswith(want)), None)
+            if not hit:
+                print('WARNING: outline for %s: no paragraph starts with %r' % (slug, want))
+                continue
+            used.add(hit.start())
+            sid = e.get('id') or sec_id(e['label'])
+            if not re.fullmatch(r'sec-[a-z0-9-]+', sid):
+                raise SystemExit('invalid outline id for %s: %s' % (slug, sid))
+            while sid in [i[0] for i in items]:
+                sid += '-2'
+            items.append((sid, e['label'], hit.start()))
+        for sid, _, pos in sorted(items, key=lambda x: -x[2]):
+            art = art[:pos] + '<p id="%s"' % sid + art[pos + 2:]
+        s = s[:a0] + art + s[a1:]
+        items.sort(key=lambda x: x[2])
+        nav = ('    <nav class="toc" id="toc" aria-label="Sections">\n'
+               '      <p class="toc-head" aria-hidden="true">Sections</p>\n      <ol>\n'
+               + ''.join('        <li><a href="#%s">%s</a></li>\n' % (sid, html.escape(lab, quote=False)) for sid, lab, _ in items)
+               + '      </ol>\n    </nav>\n')
+        s2, n = re.subn(r'(<main>\n)', lambda m: m.group(1) + nav, s, count=1)
+        if n != 1:
+            raise SystemExit('could not insert outline in %s' % path)
+        s = s2
+    if s != orig:
+        open(path, 'w', encoding='utf-8').write(s)
+
 posts = []
 for d in sorted(os.listdir(ROOT)):
     m = re.match(r'^(\d+)-', d)
@@ -615,6 +676,7 @@ for d in sorted(os.listdir(ROOT)):
     if not m or not os.path.exists(p):
         continue
     preload = responsive_images(p, d)
+    apply_outline(p, d)
     soup = BeautifulSoup(open(p, encoding='utf-8').read(), 'html.parser')
     art = soup.find('article')
     h1 = art.find('h1')
@@ -678,6 +740,8 @@ for d in sorted(os.listdir(ROOT)):
     for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', 'script', '.num-menu-pop']:
         for el in clean.select(sel):
             el.decompose()
+    for el in clean.select('p[id^="sec-"]'):
+        del el['id']
     for pic in clean.select('picture'):
         im_el = pic.find('img')
         for k in GEN_ATTRS:
@@ -1129,17 +1193,22 @@ for js, jf in (('preview.js', 'previews.json'), ('nav.js', 'posts.json')):
 
 # Scripts are referenced as /name.js?v=<content hash>, so vercel.json can cache
 # them for a year and a changed file always gets a new URL.
-ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js', 'highlight.js']
+ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js', 'highlight.js', 'outline.js']
 ASSET_V = {a: hashlib.sha1(open(os.path.join(ROOT, a), 'rb').read()).hexdigest()[:10] for a in ASSETS}
 ASSET_RE = re.compile(r'(src|href)="/(%s)(?:\?v=[0-9a-f]+)?"' % '|'.join(re.escape(a) for a in ASSETS))
 html_files = [ip, os.path.join(gdir, 'index.html'), os.path.join(ROOT, '404.html'),
               os.path.join(off_dir, 'index.html')] + [q['path'] for q in posts]
 HIGHLIGHT_TAG = '  <script defer src="/highlight.js"></script>\n'
+OUTLINE_TAG = '  <script defer src="/outline.js"></script>\n'
 for f in html_files:
     t = open(f, encoding='utf-8').read()
     # every post gets highlight.js (copy link to highlight, #hl= landing)
     if is_post_path(f) and '/highlight.js' not in t:
         t = t.replace('</body>', HIGHLIGHT_TAG + '</body>', 1)
+        open(f, 'w', encoding='utf-8').write(t)
+    # posts with an outline get outline.js (sidebar / bottom sheet)
+    if is_post_path(f) and 'class="toc"' in t and '/outline.js' not in t:
+        t = t.replace('</body>', OUTLINE_TAG + '</body>', 1)
         open(f, 'w', encoding='utf-8').write(t)
     t2 = ASSET_RE.sub(lambda m: '%s="/%s?v=%s"' % (m.group(1), m.group(2), ASSET_V[m.group(2)]), t)
     if t2 != t:

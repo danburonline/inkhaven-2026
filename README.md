@@ -20,6 +20,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel. There is 
    - It also makes responsive AVIF and WebP copies of every image in the post (see "Performance" below), wraps the post in `<main>`, and versions the script URLs.
    - Optional: give the post a hand-written description in `tools/meta.json`; otherwise the opening of the post is used.
    - `tools/modified.json` records when each post's text last changed (used for `dateModified` and the sitemap).
+   - Before building, add the post's section outline to `tools/outline.json` (see "Section outline" below). The build prints a warning for any post without one.
 3. Add the post to the list above, with both the site URL and the X post URL.
 4. Commit and push to `main`. Vercel will publish the new page at a path matching the folder name, for example `https://consciousness.ink/1-synthetic-consciousness/`.
 
@@ -44,6 +45,7 @@ Lighthouse target: 100 in Performance, Accessibility, Best Practices and SEO, on
 - **Scripts:** pages load `/theme.js?v=<hash>` and so on; the hash changes when the file does, so `vercel.json` can cache them for a year.
 - **Caching (`vercel.json`):** `<post>/img/*`, hashed share images (`og-<hash>.jpg`) and versioned scripts are cached for a year (`immutable`); other images, icons and video for a week; `previews.json`/`posts.json` for an hour; HTML and `sw.js` are always revalidated.
 - **Links to highlights:** `highlight.js` (on every post; the build adds the script tag if a post lacks it) shows a "Copy link to highlight" button when text in the post is selected. The link is the page URL plus `#hl=<anchors>` and a standard `:~:text=<anchors>` fragment; on load the script marks the passage (`mark.hl`, also across paragraphs) and scrolls it into view. If the text has changed since, the page just loads normally.
+- **Section outline:** the posts have no headings, so `tools/outline.json` holds a short outline per post, keyed by folder name: 3 to 7 sections, each with a `label` (2 to 6 words that summarise that stretch in the post's own terms, no added claims) `id` (a unique `sec-...` anchor, keep it unchanged once published), and `starts` (the first few words of the paragraph where the section begins). For every new post, add its entry before building. The build gives those paragraphs stable ids from the outline, renders `<nav class="toc" aria-label="Sections">` before the article (the text itself is unchanged), adds `/outline.js` and warns if an entry is missing or a `starts` text no longer matches. On screens 1220 px and wider the outline sits in the left margin and marks the section being read; on narrower screens a small pill at the bottom (hidden while scrolling down or selecting text) opens it as a bottom sheet. Clicking a section scrolls there and sets `#sec-...` in the URL.
 - **X embeds:** `theme.js` only loads X's `widgets.js` when an embed comes within about two screens of the viewport. Until then the skeleton (sized from `data-h`) holds the space, so nothing jumps.
 
 ## Offline and installable (PWA)

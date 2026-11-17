@@ -1,0 +1,173 @@
+{
+ "_note": "Static outline per post. Add each new post before building: label (2 to 6 words grounded in the prose), id (keep it unchanged once published) and starts (first words of the section-start paragraph). build.py injects ids and the Sections nav without changing prose.",
+ "0-the-start": [
+  {
+   "label": "An ontology of my life",
+   "starts": "On the first day of this year,",
+   "id": "sec-an-ontology-of-my-life"
+  },
+  {
+   "label": "Meditations in Descartes' sense",
+   "starts": "So, as quickly described yesterday, I'm at",
+   "id": "sec-meditations-in-descartes-sense"
+  },
+  {
+   "label": "Arguing and checking the words",
+   "starts": "In every one of the meditations, I",
+   "id": "sec-arguing-and-checking-the-words"
+  },
+  {
+   "label": "Example: solve death",
+   "starts": "Here is a simple example of what",
+   "id": "sec-example-solve-death"
+  },
+  {
+   "label": "One item per day",
+   "starts": "So the commitment for the next 30",
+   "id": "sec-one-item-per-day"
+  },
+  {
+   "label": "PS on the word ontology",
+   "starts": "* PS: The term \"ontology\" might not",
+   "id": "sec-ps-on-the-word-ontology"
+  }
+ ],
+ "1-causa-finalis": [
+  {
+   "label": "The vision as causa finalis",
+   "starts": "The first item in my Ontology (as",
+   "id": "sec-the-vision-as-causa-finalis"
+  },
+  {
+   "label": "How the term is used",
+   "starts": "Now, what is \"synthetic consciousness\"? It's definitely",
+   "id": "sec-how-the-term-is-used"
+  },
+  {
+   "label": "Why consciousness",
+   "starts": "When choosing the word (or words) for",
+   "id": "sec-why-consciousness"
+  },
+  {
+   "label": "A consciousness that has to end",
+   "starts": "So \"consciousness\" was chosen by me for",
+   "id": "sec-a-consciousness-that-has-to-end"
+  },
+  {
+   "label": "When death counts as solved",
+   "starts": "And on what day could I say",
+   "id": "sec-when-death-counts-as-solved"
+  },
+  {
+   "label": "Two ways to keep consciousness",
+   "starts": "There are two approaches to keeping consciousness",
+   "id": "sec-two-ways-to-keep-consciousness"
+  },
+  {
+   "label": "Artificial, machine or synthetic",
+   "starts": "So, it's artificial? In one sense yes,",
+   "id": "sec-artificial-machine-or-synthetic"
+  }
+ ],
+ "2-hybrid-mind-uploading": [
+  {
+   "label": "The mission and the vision",
+   "starts": "The next item in the Ontology is",
+   "id": "sec-the-mission-and-the-vision"
+  },
+  {
+   "label": "Leaving classical mind uploading",
+   "starts": "Over the past few years, I've been",
+   "id": "sec-leaving-classical-mind-uploading"
+  },
+  {
+   "label": "Mind, uploading, emulation",
+   "starts": "The important story background here is that",
+   "id": "sec-mind-uploading-emulation"
+  },
+  {
+   "label": "Keeping the word, not the method",
+   "starts": "After a few years, I basically realised,",
+   "id": "sec-keeping-the-word-not-the-method"
+  },
+  {
+   "label": "Moving the goals out of CS",
+   "starts": "But I did not like the immediate",
+   "id": "sec-moving-the-goals-out-of-cs"
+  },
+  {
+   "label": "Why hybrid",
+   "starts": "Now the question was: what term to",
+   "id": "sec-why-hybrid"
+  }
+ ],
+ "3-solving-death": [
+  {
+   "label": "Functionally isolating the brain",
+   "starts": "I run a company called @eightsixscience, where",
+   "id": "sec-functionally-isolating-the-brain"
+  },
+  {
+   "label": "Causes, not reasons",
+   "starts": "The short answer, before I ramble on",
+   "id": "sec-causes-not-reasons"
+  },
+  {
+   "label": "The lightbulb analogy",
+   "starts": "So, more societally as an explanation, one",
+   "id": "sec-the-lightbulb-analogy"
+  },
+  {
+   "label": "Why death is bad",
+   "starts": "Now, to come back, I technically have",
+   "id": "sec-why-death-is-bad"
+  },
+  {
+   "label": "Why I want to solve it",
+   "starts": "OK, so that's the \"why-is-death-bad\"-part, and I",
+   "id": "sec-why-i-want-to-solve-it"
+  },
+  {
+   "label": "What death and solving mean",
+   "starts": "\"Solving death\" is one of the three",
+   "id": "sec-what-death-and-solving-mean"
+  },
+  {
+   "label": "Step zero: stopping the dying",
+   "starts": "So when I said \"towards\" at the",
+   "id": "sec-step-zero-stopping-the-dying"
+  }
+ ],
+ "4-measurements-models-theories": [
+  {
+   "label": "A rigorisation of consciousness science",
+   "starts": "The second goal of the Ontology is",
+   "id": "sec-a-rigorisation-of-consciousness-science"
+  },
+  {
+   "label": "Measurement, model, theory",
+   "starts": "And due to this rigorisation, I do",
+   "id": "sec-measurement-model-theory"
+  },
+  {
+   "label": "Consciousness engineering",
+   "starts": "The nuanced difference here, and why this",
+   "id": "sec-consciousness-engineering"
+  },
+  {
+   "label": "Sidestepping, not ignoring, theory",
+   "starts": "I always say that the whole point",
+   "id": "sec-sidestepping-not-ignoring-theory"
+  },
+  {
+   "label": "Temperature and levels of understanding",
+   "starts": "It's all about doing something useful, and",
+   "id": "sec-temperature-and-levels-of-understanding"
+  },
+  {
+   "label": "Two uses of \"understand\"",
+   "starts": "Trying to answer this question properly is",
+   "id": "sec-two-uses-of-understand"
+  }
+ ]
+}
