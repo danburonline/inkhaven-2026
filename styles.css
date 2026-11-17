@@ -1159,3 +1159,9 @@ body:has(.post-nav) article {
 .post-list a.title:focus-visible::after { outline: 2px solid var(--muted); outline-offset: -2px; }
 @media (prefers-reduced-motion: reduce) { .post-list li::before { transition: none; } }
 .post-list li:hover a.title { color: var(--link-hover); }
+
+/* Let the home row's hover background and focus ring extend past the
+   column edge, so the thumbnail gets breathing room instead of being clipped. */
+main:has(.post-list) { overflow-x: visible; }
+.post-list li::before,
+.post-list a.title::after { inset: 0 -0.85rem; }
