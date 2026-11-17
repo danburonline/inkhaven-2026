@@ -12,7 +12,7 @@
   if (!links.length || secs.indexOf(null) >= 0) return;
   var wide = window.matchMedia('(min-width: 1220px)');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var cur = -1, pill = null, pillText = null, dim = null, isOpen = false, lastFocus = null;
+  var cur = -1, pill = null, pillText = null, pillKick = null, dim = null, isOpen = false, lastFocus = null;
 
   function headH() {
     var pn = document.querySelector('.post-nav');
@@ -26,10 +26,15 @@
     links.forEach(function (a, i) {
       if (i === k) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
     });
-    if (pillText) {
-      pillText.textContent = k >= 0 ? links[k].textContent : 'Sections';
-      pill.setAttribute('aria-label', k >= 0 ? 'Sections: ' + links[k].textContent : 'Sections');
-    }
+    if (pillText) setPill(k);
+  }
+  function setPill(k) {
+    var n = links.length;
+    pillKick.textContent = k >= 0 ? 'Section ' + (k + 1) + ' of ' + n : n + ' sections';
+    pillText.textContent = k >= 0 ? links[k].textContent : 'In this meditation';
+    pill.setAttribute('aria-label', k >= 0
+      ? 'Sections: current section ' + (k + 1) + ' of ' + n + ', ' + links[k].textContent + ', open list'
+      : 'Sections: ' + n + ' sections in this meditation, open list');
   }
   var raf = 0;
   function soon() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; update(); }); }
@@ -65,10 +70,10 @@
     pill.setAttribute('aria-controls', 'toc');
     pill.setAttribute('aria-expanded', 'false');
     pill.setAttribute('aria-haspopup', 'dialog');
-    pill.innerHTML = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><g fill="currentColor"><circle cx="2.5" cy="4" r="1.25"/><circle cx="2.5" cy="8" r="1.25"/><circle cx="2.5" cy="12" r="1.25"/></g><path d="M6 4h8M6 8h8M6 12h5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="toc-pill-t"></span>';
-    pillText = pill.lastChild;
-    pillText.textContent = 'Sections';
-    pill.setAttribute('aria-label', 'Sections');
+    pill.innerHTML = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><g fill="currentColor"><circle cx="2.5" cy="4" r="1.25"/><circle cx="2.5" cy="8" r="1.25"/><circle cx="2.5" cy="12" r="1.25"/></g><path d="M6 4h8M6 8h8M6 12h5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="toc-pill-b"><span class="toc-pill-k"></span><span class="toc-pill-t"></span></span>';
+    pillKick = pill.querySelector('.toc-pill-k');
+    pillText = pill.querySelector('.toc-pill-t');
+    setPill(-1);
     pill.addEventListener('click', function () { isOpen ? close(true) : open(); });
     dim = document.createElement('div');
     dim.className = 'toc-dim';

@@ -1078,9 +1078,9 @@ body:has(.post-nav) article {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  min-height: 2.75rem;
+  min-height: 2.9rem;
   max-width: min(22rem, calc(100vw - 2.5rem));
-  padding: 0 1.15rem 0 1rem;
+  padding: 0.38rem 1.2rem 0.4rem 1rem;
   border: 1px solid var(--text);
   border-radius: 999px;
   background: var(--text);
@@ -1102,7 +1102,9 @@ body:has(.post-nav) article {
 .toc-pill.on { opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s; }
 .toc-pill:active { transform: translate(-50%, 0) scale(0.97); }
 .toc-pill svg { display: block; flex: none; width: 16px; height: 16px; color: currentColor; }
-.toc-pill-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.toc-pill-b { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; text-align: left; }
+.toc-pill-k { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; line-height: 1.15; text-transform: uppercase; opacity: 0.8; }
+.toc-pill-t { max-width: 100%; min-width: 0; overflow: hidden; text-overflow: ellipsis; line-height: 1.25; }
 .toc-pill:focus { outline: none; }
 .toc-pill:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
