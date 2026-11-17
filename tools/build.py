@@ -1129,13 +1129,18 @@ for js, jf in (('preview.js', 'previews.json'), ('nav.js', 'posts.json')):
 
 # Scripts are referenced as /name.js?v=<content hash>, so vercel.json can cache
 # them for a year and a changed file always gets a new URL.
-ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js']
+ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js', 'highlight.js']
 ASSET_V = {a: hashlib.sha1(open(os.path.join(ROOT, a), 'rb').read()).hexdigest()[:10] for a in ASSETS}
 ASSET_RE = re.compile(r'(src|href)="/(%s)(?:\?v=[0-9a-f]+)?"' % '|'.join(re.escape(a) for a in ASSETS))
 html_files = [ip, os.path.join(gdir, 'index.html'), os.path.join(ROOT, '404.html'),
               os.path.join(off_dir, 'index.html')] + [q['path'] for q in posts]
+HIGHLIGHT_TAG = '  <script defer src="/highlight.js"></script>\n'
 for f in html_files:
     t = open(f, encoding='utf-8').read()
+    # every post gets highlight.js (copy link to highlight, #hl= landing)
+    if is_post_path(f) and '/highlight.js' not in t:
+        t = t.replace('</body>', HIGHLIGHT_TAG + '</body>', 1)
+        open(f, 'w', encoding='utf-8').write(t)
     t2 = ASSET_RE.sub(lambda m: '%s="/%s?v=%s"' % (m.group(1), m.group(2), ASSET_V[m.group(2)]), t)
     if t2 != t:
         open(f, 'w', encoding='utf-8').write(t2)

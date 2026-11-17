@@ -43,6 +43,7 @@ Lighthouse target: 100 in Performance, Accessibility, Best Practices and SEO, on
 - **CSS:** `styles.css` is the source, but the build inlines a minified copy into every page so the first paint needs no extra request. After editing `styles.css`, run the build.
 - **Scripts:** pages load `/theme.js?v=<hash>` and so on; the hash changes when the file does, so `vercel.json` can cache them for a year.
 - **Caching (`vercel.json`):** `<post>/img/*`, hashed share images (`og-<hash>.jpg`) and versioned scripts are cached for a year (`immutable`); other images, icons and video for a week; `previews.json`/`posts.json` for an hour; HTML and `sw.js` are always revalidated.
+- **Links to highlights:** `highlight.js` (on every post; the build adds the script tag if a post lacks it) shows a "Copy link to highlight" button when text in the post is selected. The link is the page URL plus `#hl=<anchors>` and a standard `:~:text=<anchors>` fragment; on load the script marks the passage (`mark.hl`, also across paragraphs) and scrolls it into view. If the text has changed since, the page just loads normally.
 - **X embeds:** `theme.js` only loads X's `widgets.js` when an embed comes within about two screens of the viewport. Until then the skeleton (sized from `data-h`) holds the space, so nothing jumps.
 
 ## Offline and installable (PWA)
