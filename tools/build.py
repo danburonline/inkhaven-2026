@@ -850,7 +850,7 @@ for q in posts:
 items = []
 for q in posts:
     items.append(f'''        <li data-n="{q['n']}" data-words="{q['words']}" data-search="{html.escape((q['title'] + ' ' + q['date']).lower())}">
-          <a class="thumb" href="/{q['slug']}/" tabindex="-1" aria-hidden="true"><img src="{q['thumb']}" width="180" height="120" alt="" loading="lazy"></a>
+          <div class="thumb"><img src="{q['thumb']}" width="180" height="120" alt="" loading="lazy"></div>
           <div class="post-info">
             <a class="title" href="/{q['slug']}/">{q['n']}/30 {html.escape(q['short'])}</a>
             <span class="meta"><time datetime="{q['iso']}">{q['date']}</time><span class="dot" aria-hidden="true">&middot;</span>{q['words']:,} words</span>
