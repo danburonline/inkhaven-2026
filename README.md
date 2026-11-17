@@ -8,6 +8,8 @@ The site is plain static HTML. Every push to `main` deploys to Vercel. There is 
 
 ## Published posts
 
+- [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/) · [X](https://x.com/danburonline/status/2122573865079709758)
+- [4/30 Meditations on Synthetic Consciousness: Measurements, Models and Theories](https://consciousness.ink/4-measurements-models-theories/) · [X](https://x.com/danburonline/status/2122235784644477415)
 - [3/30 Meditations on Synthetic Consciousness: Solving Death](https://consciousness.ink/3-solving-death/) · [X](https://x.com/danburonline/status/2121890643983151389)
 - [2/30 Meditations on Synthetic Consciousness: What Could Be Hybrid about Mind Uploading?](https://consciousness.ink/2-hybrid-mind-uploading/) · [X](https://x.com/danburonline/status/2121507855979393536)
 - [1/30 Meditations on Synthetic Consciousness: Causa Finalis](https://consciousness.ink/1-causa-finalis/) · [X](https://x.com/danburonline/status/2121143118062031238)
