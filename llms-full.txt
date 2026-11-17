@@ -138,7 +138,7 @@ Source: https://consciousness.ink/glossary/#theory-of-consciousness
 
 ### Goal vs outcome
 
-A goal is something that we strive for and could fail at; an outcome is what follows either way, as long as we work on the mission. Understanding consciousness is a goal, at least up to the level of measurement, and not a mere outcome, because without a way to tell that experience is still there, and that it's still this experience, we could never know if the mission succeeded.
+A goal is something that we strive for and could fail at; an outcome is what follows either way, as long as we work on the mission. Understanding consciousness is a goal, at least up to the level of measurement, and not a mere outcome, because without a way to tell that experience is still there, and that it's still this experience, we could never know if the mission succeeded. 5/30 applies the distinction to transcending humanity: the capability could become possible while nobody goes beyond a limit, or while the minds that do are all replacements. The goal is that we get there as the ones that we are.
 
 Source: https://consciousness.ink/glossary/#goal-vs-outcome
 
@@ -172,6 +172,48 @@ Hasok Chang's example, used in 4/30: thermometers and fixed scales (Fahrenheit, 
 
 Source: https://consciousness.ink/glossary/#inventing-temperature
 
+### Transcend humanity
+
+The third and last of the three goals of the Ontology, and the transformative one, where the thing that changes is us. Until 5/30 it was called "human transcendence". It means going beyond the limits that human biology sets for us, and only those: the limits that physics sets stay where they are. What gets left behind is the species, the kind we were born into with the limits of its biology, not the person who goes beyond them, not the people who would rather stay, and not being humane. It has to stay you, and it does not have to stay human. In terms of the process world-line, it is what lets that same world-line outgrow the limits that it was born with. It comes last because it needs both the engineered carrier that solving death brings and more understanding of consciousness than solving death does.
+
+Source: https://consciousness.ink/glossary/#transcend-humanity
+
+### Limits of biology
+
+The limits that come from the thing that carries us, which came with the biology that we were born into. Death is the one that everybody knows. 5/30 names others: what we can experience (vision is roughly one octave of the electromagnetic spectrum), what we can keep (memory compresses what it stores and rebuilds what it recalls), how much a mind can hold, where a mind can exist, and being one mind, closed off from every other one. A telescope, a notebook or a spacesuit go around a limit and leave it where it was, in the thing that carries the experience. They are distinct from the limits that physics sets, which stay where they are, and from the adumbrations of perception, which hold for any mind.
+
+Source: https://consciousness.ink/glossary/#limits-of-biology
+
+### Adumbrations
+
+Husserl's term (Ideas I, §§41–44), as read in 5/30: walking around a table, I only ever see it from one side at a time, so the table is always "more" than what is given right now, whereas the seeing itself is immanent and does not come in sides. The table is not a thing-in-itself behind its appearances; its transcendence lies in how it is given, which is never completely. Husserl says this holds for any mind that perceives a thing, even for God, so transcending humanity does not try to get rid of it. What can change is how much of that "more" a mind gets to.
+
+Source: https://consciousness.ink/glossary/#adumbrations
+
+### Transhumanism
+
+The position that it is possible and desirable to use technology in order to go beyond the limits of human biology, up to a point where the result may be called posthuman, in the transhumanist sense of a being with capacities far beyond ours (not the "posthumanism" of the humanities). Julian Huxley made the word known in the 1950s, with "man remaining man, but transcending himself", meant for the species as a whole. 5/30 starts with the single someone instead and drops the "remaining man". The goal is not called transhumanism because an -ism is something that you hold, and a goal is something that you reach, or don't.
+
+Source: https://consciousness.ink/glossary/#transhumanism
+
+### Steerable phenomenology
+
+A carrier that gets built, rather than born, can be built differently: a built substrate is a steerable one. With every gradual replacement step there is a bit of the carrier that does not have to repeat every limit of the tissue that it replaced, and where there is freedom like this the substrate becomes steerable, and with it, bit by bit, the phenomenology. Earlier described as the thing that the transhumanist has long dreamt of without once having thought it.
+
+Source: https://consciousness.ink/glossary/#steerable-phenomenology
+
+### Lossless Q-storage
+
+From an unpublished working document of January 2026, "Synthetic Substrates and the Destruction of the Forward Arrow of Personal Time", which leans on Lyre's neurophenomenal structuralism. The "Q" stands for what an experience is like. The thesis is that the losses of memory are a contingent limit of biological storage, not a principled one: a substrate that stored an experience whole would give a memory as rich as the experience and the same at every recall, a personal time one can traverse. There is no guarantee that it can be built, and it involves no time travel, since only the playback changes and the substrate still runs forward. In the Ontology it sits under augmented cognition.
+
+Source: https://consciousness.ink/glossary/#lossless-q-storage
+
+### World-line fidelity
+
+5/30 states the Ontology's rule: the process world-line never breaks, and nothing gets traded against it, enhancement included. A great deal may change, but there cannot be a moment at which one stops and another takes over. At every step it has to be still you, the "continuer", not a promise that you stay the way you are, or about where you end up. That the world-line really goes on through such changes is a hypothesis.
+
+Source: https://consciousness.ink/glossary/#world-line-fidelity
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -179,7 +221,7 @@ Source: https://consciousness.ink/glossary/#inventing-temperature
 URL: https://consciousness.ink/0-the-start/
 Author: Daniel Burger
 Published: 2026-11-11
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality, theory of consciousness
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality, theory of consciousness, world-line fidelity
 
 On the first day of this year, I created a small ontology editor (similar to, e.g. Protégé, just a lot simpler and without the formal OWL logic behind it) for the all-encompassing ontology* of my life and its vision, mission, goals, etc. It starts with the main vision (i.e. the future state of being I'm working towards), which is "synthetic consciousness". Simply summarised: engineered phenomenology on a designed substrate you could gradually become. I break it down into the mission, which is hybrid mind uploading (the most pragmatic way to achieve the same goals as classical mind uploading, just not by following the free-standing position of "creating something external to the brain that recreates the brain" but rather by building something that can be integrated into the thing at hand (i.e. your brain), hence the hybrid status in between. If you read some of my recent tweets, you'll know what I mean, as I've been talking about it in great detail + there's the upcoming manuscript on it. Then there are a few principles and rejections, some goals, one of which is quite practical: solve death (more on this below), and a few other things.
 
@@ -251,7 +293,7 @@ fn3: Most people know it as "cogito, ergo sum", but the Meditations themselves a
 URL: https://consciousness.ink/2-hybrid-mind-uploading/
 Author: Daniel Burger
 Published: 2026-11-13
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, immortality
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, immortality, limits of biology
 
 The next item in the Ontology is the mission, which, as I understand and use it, is the undertaking that leads to the vision (and "hybrid mind uploading" is its name), with the vision being a state of being in the future described as "there will be synthetic consciousness", as discussed in great detail yesterday ( [Nov 2026] ). One thing became quite clear yesterday: you cannot define a single item in the Ontology without first defining its relations to other items, which makes linear-style writing in a left-to-right language such as English quite hard without anticipating some of the other items in the Ontology. The one already mentioned was hybrid mind uploading.
 
@@ -317,7 +359,7 @@ One last thing: I deliberately stopped the definition at the universe itself, as
 URL: https://consciousness.ink/4-measurements-models-theories/
 Author: Daniel Burger
 Published: 2026-11-15
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, understand consciousness, measurement theory, model of consciousness, theory of consciousness, goal vs outcome, consciousness engineering, biomimetic neuromorphics, sidestepping, adversarial collaboration, inventing temperature
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, understand consciousness, measurement theory, model of consciousness, theory of consciousness, goal vs outcome, consciousness engineering, biomimetic neuromorphics, sidestepping, adversarial collaboration, inventing temperature, transcend humanity
 
 The second goal of the Ontology is simply called "understand consciousness". To be clear about which goals I mean: the Ontology ( [Sep 2026] ) has three of them, which are "solve death" (that was yesterday: [Nov 2026] ), understand consciousness and human transcendence, and they're no longer identical with the original goals of mind uploading that I listed on day two. What I mean by this second one is that in order to make hybrid mind uploading work as a mission towards the vision of synthetic consciousness, one will definitely have to solve death, as the first goal, but probably, and that's a big probably, also understand consciousness. I do believe that in the coming years, especially due to the progress in artificial intelligence, we will see a great "rigorisation of science", and especially of the consciousness sciences as well. The reason being that we can now reason across hundreds of papers, or across whole piles of data, at the same time, and with that we uncover many of the inconsistencies in thinking and in terminology, and also the data flaws and mistakes that we've made in science up to this point (computational philosophy is basically the same move btw). In the consciousness sciences, this matters even more, as that field can't hide its measurement problem and is being forced to work out what even counts as a test of a theory ( [Oct 2026] ). You can already see the first signs of it btw, e.g. in the adversarial collaborations, where theories with conflicting predictions get tested against each other. I also assume that the overfocus on neurocomputational functionalism will fade away, as right now it's mostly held as a faith rather than tested as a hypothesis ( [Jul 2026] ), and that we'll look back at those days and wonder how quickly we anthropomorphised anything that outputs "I'm angry" (the angry chair from an earlier tweet: [Feb 2026] ).
 
@@ -338,7 +380,7 @@ Trying to answer this question properly is a Pandora's box tho, or rather a deep
 URL: https://consciousness.ink/5-transcending-biology/
 Author: Daniel Burger
 Published: 2026-11-16
-Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness
+Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness, goal vs outcome, transcend humanity, limits of biology, adumbrations, transhumanism, steerable phenomenology, lossless q-storage, world-line fidelity
 
 The third and last goal of my Ontology is "transcend humanity". It comes after "solve death" (day three: [Nov 2026] ) and "understand consciousness" (day four/yesterday: [Nov 2026] ), and in the Ontology each of the three has a type => there's a "practical goal", a "theoretical one" and a "transformative one" => so today's goal is the one where the thing that changes is us (= the transformative one). It's also the one whose name I'm least happy with. I have three reasons for that, and two of them are why the goal has a new name as of today (until yesterday it was still called "human transcendence", which is also how it appears in yesterday's meditation).
 

@@ -36,6 +36,13 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Sidestepping](https://consciousness.ink/glossary/#sidestepping): Not ignoring theories of consciousness, but not letting success depend on any one of them being the only true one.
 - [Adversarial collaboration](https://consciousness.ink/glossary/#adversarial-collaboration): Theories with conflicting predictions tested against each other; cited as a sign of rigorisation in consciousness science.
 - [Inventing Temperature](https://consciousness.ink/glossary/#inventing-temperature): Chang's temperature example: measurement and concept correct each other in turns, because neither comes first on its own.
+- [Transcend humanity](https://consciousness.ink/glossary/#transcend-humanity): The Ontology's third goal: the same world-line going beyond the limits of biology, while the limits of physics stay.
+- [Limits of biology](https://consciousness.ink/glossary/#limits-of-biology): Limits from the biological carrier we were born with, death among them; distinct from the limits of physics, which stay.
+- [Adumbrations](https://consciousness.ink/glossary/#adumbrations): Husserl: a thing is only ever given from one side at a time, for any mind; the third goal does not try to remove that.
+- [Transhumanism](https://consciousness.ink/glossary/#transhumanism): Using technology to go beyond the limits of human biology; an -ism one holds, where the third goal is something one reaches.
+- [Steerable phenomenology](https://consciousness.ink/glossary/#steerable-phenomenology): A built carrier need not repeat every limit of the tissue it replaced, so substrate and phenomenology become steerable.
+- [Lossless Q-storage](https://consciousness.ink/glossary/#lossless-q-storage): A hypothesised substrate that stores an experience whole, so memory is as rich as the experience; an open engineering question.
+- [World-line fidelity](https://consciousness.ink/glossary/#world-line-fidelity): The world-line never breaks, and nothing is traded against it, enhancement included; at every step it has to be still you.
 
 ## Meditations
 

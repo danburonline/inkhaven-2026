@@ -98,7 +98,7 @@ TERMS = [
             'series, death is the irreversible end of the process world-line.'
         ),
         short='The 4D trajectory of the physical processes that constitute a brain; its irreversible end is death.',
-        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death'],
+        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death', '5-transcending-biology'],
     ),
     dict(
         slug='gradual-brain-replacement',
@@ -173,7 +173,7 @@ TERMS = [
             'means the remaining risk keeps falling fast enough that all the yearly risks add up to a finite total.'
         ),
         short='The goal that no one has to end; halting ageing stops dying but does not solve death.',
-        sources=['3-solving-death'],
+        sources=['3-solving-death', '5-transcending-biology'],
     ),
     dict(
         slug='functional-brain-isolation',
@@ -294,7 +294,7 @@ TERMS = [
             'carries the process, but it cannot sidestep measuring.'
         ),
         short='The Ontology\'s second goal: reached at a model that can predict whether experience will change, not only at a full theory.',
-        sources=['4-measurements-models-theories'],
+        sources=['4-measurements-models-theories', '5-transcending-biology'],
     ),
     dict(
         slug='measurement-theory',
@@ -346,16 +346,18 @@ TERMS = [
         slug='goal-vs-outcome',
         name='Goal vs outcome',
         also=['goals and outcomes'],
-        pattern=r'goals? and outcomes?|difference between goals and outcomes',
+        pattern=r'goals? and outcomes?|difference between goals and outcomes|a goal and no outcome',
         sameAs=[],
         text=(
             'A goal is something that we strive for and could fail at; an outcome is what follows either way, as long '
             'as we work on the mission. Understanding consciousness is a goal, at least up to the level of '
             'measurement, and not a mere outcome, because without a way to tell that experience is still there, and '
-            'that it\'s still this experience, we could never know if the mission succeeded.'
+            'that it\'s still this experience, we could never know if the mission succeeded. 5/30 applies the distinction to '
+            'transcending humanity: the capability could become possible while nobody goes beyond a limit, or while the '
+            'minds that do are all replacements. The goal is that we get there as the ones that we are.'
         ),
         short='A goal is something one could fail at; an outcome follows either way from working on the mission.',
-        sources=['4-measurements-models-theories'],
+        sources=['4-measurements-models-theories', '5-transcending-biology'],
     ),
     dict(
         slug='consciousness-engineering',
@@ -432,6 +434,126 @@ TERMS = [
         ),
         short='Chang\'s temperature example: measurement and concept correct each other in turns, because neither comes first on its own.',
         sources=['4-measurements-models-theories'],
+    ),
+    dict(
+        slug='transcend-humanity',
+        name='Transcend humanity',
+        also=['transcending humanity', 'human transcendence'],
+        pattern=r'transcend(?:ing)? humanity|human transcendence',
+        sameAs=[],
+        text=(
+            'The third and last of the three goals of the Ontology, and the transformative one, where the thing that '
+            'changes is us. Until 5/30 it was called "human transcendence". It means going beyond the limits that '
+            'human biology sets for us, and only those: the limits that physics sets stay where they are. What gets '
+            'left behind is the species, the kind we were born into with the limits of its biology, not the person who '
+            'goes beyond them, not the people who would rather stay, and not being humane. It has to stay you, and it '
+            'does not have to stay human. In terms of the process world-line, it is what lets that same world-line '
+            'outgrow the limits that it was born with. It comes last because it needs both the engineered carrier that '
+            'solving death brings and more understanding of consciousness than solving death does.'
+        ),
+        short='The Ontology\'s third goal: the same world-line going beyond the limits of biology, while the limits of physics stay.',
+        sources=['4-measurements-models-theories', '5-transcending-biology'],
+    ),
+    dict(
+        slug='limits-of-biology',
+        name='Limits of biology',
+        also=['limits that human biology sets'],
+        pattern=r'limits? of (?:human )?biology|limits? that (?:human )?biology sets',
+        sameAs=[],
+        text=(
+            'The limits that come from the thing that carries us, which came with the biology that we were born into. '
+            'Death is the one that everybody knows. 5/30 names others: what we can experience (vision is roughly one '
+            'octave of the electromagnetic spectrum), what we can keep (memory compresses what it stores and rebuilds '
+            'what it recalls), how much a mind can hold, where a mind can exist, and being one mind, closed off from '
+            'every other one. A telescope, a notebook or a spacesuit go around a limit and leave it where it was, in the '
+            'thing that carries the experience. They are distinct from the limits that physics sets, which stay where '
+            'they are, and from the adumbrations of perception, which hold for any mind.'
+        ),
+        short='Limits from the biological carrier we were born with, death among them; distinct from the limits of physics, which stay.',
+        sources=['2-hybrid-mind-uploading', '5-transcending-biology'],
+    ),
+    dict(
+        slug='adumbrations',
+        name='Adumbrations',
+        also=['Abschattung'],
+        pattern=r'adumbration|abschattung',
+        sameAs=[],
+        text=(
+            'Husserl\'s term (Ideas I, \u00a7\u00a741\u201344), as read in 5/30: walking around a table, I only ever see it from '
+            'one side at a time, so the table is always "more" than what is given right now, whereas the seeing itself '
+            'is immanent and does not come in sides. The table is not a thing-in-itself behind its appearances; its '
+            'transcendence lies in how it is given, which is never completely. Husserl says this holds for any mind that '
+            'perceives a thing, even for God, so transcending humanity does not try to get rid of it. What can change is '
+            'how much of that "more" a mind gets to.'
+        ),
+        short='Husserl: a thing is only ever given from one side at a time, for any mind; the third goal does not try to remove that.',
+        sources=['5-transcending-biology'],
+    ),
+    dict(
+        slug='transhumanism',
+        name='Transhumanism',
+        also=['posthuman'],
+        pattern=r'transhumanis[mt]',
+        sameAs=['https://en.wikipedia.org/wiki/Transhumanism', 'https://www.wikidata.org/wiki/Q194100'],
+        text=(
+            'The position that it is possible and desirable to use technology in order to go beyond the limits of human '
+            'biology, up to a point where the result may be called posthuman, in the transhumanist sense of a being with '
+            'capacities far beyond ours (not the "posthumanism" of the humanities). Julian Huxley made the word known in '
+            'the 1950s, with "man remaining man, but transcending himself", meant for the species as a whole. 5/30 starts '
+            'with the single someone instead and drops the "remaining man". The goal is not called transhumanism because '
+            'an -ism is something that you hold, and a goal is something that you reach, or don\'t.'
+        ),
+        short='Using technology to go beyond the limits of human biology; an -ism one holds, where the third goal is something one reaches.',
+        sources=['5-transcending-biology'],
+    ),
+    dict(
+        slug='steerable-phenomenology',
+        name='Steerable phenomenology',
+        also=['steerable substrate', 'built substrate'],
+        pattern=r'steerable',
+        sameAs=[],
+        text=(
+            'A carrier that gets built, rather than born, can be built differently: a built substrate is a steerable '
+            'one. With every gradual replacement step there is a bit of the carrier that does not have to repeat every '
+            'limit of the tissue that it replaced, and where there is freedom like this the substrate becomes steerable, '
+            'and with it, bit by bit, the phenomenology. Earlier described as the thing that the transhumanist has long '
+            'dreamt of without once having thought it.'
+        ),
+        short='A built carrier need not repeat every limit of the tissue it replaced, so substrate and phenomenology become steerable.',
+        sources=['5-transcending-biology'],
+    ),
+    dict(
+        slug='lossless-q-storage',
+        name='Lossless Q-storage',
+        also=['forward arrow of personal time'],
+        pattern=r'lossless q-storage',
+        sameAs=[],
+        text=(
+            'From an unpublished working document of January 2026, "Synthetic Substrates and the Destruction of the '
+            'Forward Arrow of Personal Time", which leans on Lyre\'s neurophenomenal structuralism. The "Q" stands for '
+            'what an experience is like. The thesis is that the losses of memory are a contingent limit of biological '
+            'storage, not a principled one: a substrate that stored an experience whole would give a memory as rich as the '
+            'experience and the same at every recall, a personal time one can traverse. There is no guarantee that it can '
+            'be built, and it involves no time travel, since only the playback changes and the substrate still runs '
+            'forward. In the Ontology it sits under augmented cognition.'
+        ),
+        short='A hypothesised substrate that stores an experience whole, so memory is as rich as the experience; an open engineering question.',
+        sources=['5-transcending-biology'],
+    ),
+    dict(
+        slug='world-line-fidelity',
+        name='World-line fidelity',
+        also=['continuity over similarity'],
+        pattern=r'world-line fidelity',
+        sameAs=[],
+        text=(
+            '5/30 states the Ontology\'s rule: the process world-line never breaks, and nothing gets traded against it, '
+            'enhancement included. A great deal may change, but there cannot be a moment at which one stops and another '
+            'takes over. At every step it has to be still you, the "continuer", not a promise that you stay the way you '
+            'are, or about where you end up. That the world-line really goes on through such changes is a hypothesis.'
+        ),
+        short='The world-line never breaks, and nothing is traded against it, enhancement included; at every step it has to be still you.',
+        sources=['5-transcending-biology'],
     ),
 ]
 

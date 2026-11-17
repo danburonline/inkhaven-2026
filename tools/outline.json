@@ -169,5 +169,42 @@
    "starts": "Trying to answer this question properly is",
    "id": "sec-two-uses-of-understand"
   }
+ ],
+ "5-transcending-biology": [
+  {
+   "label": "Transcend humanity, the third goal",
+   "starts": "The third and last goal of my",
+   "id": "sec-transcend-humanity-the-third-goal"
+  },
+  {
+   "label": "The word is already taken",
+   "starts": "The first reason is that the word",
+   "id": "sec-the-word-is-already-taken"
+  },
+  {
+   "label": "The direction of the change",
+   "starts": "The second reason is the direction.",
+   "id": "sec-the-direction-of-the-change"
+  },
+  {
+   "label": "Where the limits come from",
+   "starts": "My first thought was that when death",
+   "id": "sec-where-the-limits-come-from"
+  },
+  {
+   "label": "A built substrate is steerable",
+   "starts": "Now, a carrier that gets built (and",
+   "id": "sec-a-built-substrate-is-steerable"
+  },
+  {
+   "label": "Between similarity and continuity",
+   "starts": "My main way of keeping the three",
+   "id": "sec-between-similarity-and-continuity"
+  },
+  {
+   "label": "What it means for humanity",
+   "starts": "And what does all of this mean",
+   "id": "sec-what-it-means-for-humanity"
+  }
  ]
 }
