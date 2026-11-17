@@ -936,8 +936,11 @@ body:has(.post-nav) article {
   align-items: center;
   flex: none;
   gap: 0.85rem;
+  min-height: 1.4rem;
   white-space: nowrap;
 }
+/* hold the theme toggle's place until theme.js adds it (no layout shift) */
+.post-nav-end:not(:has(.theme-toggle))::after { content: ""; flex: none; width: 1.4rem; height: 1.4rem; }
 .post-nav .num-menu {
   display: inline-flex;
   align-items: center;
