@@ -1,210 +1,431 @@
 {
- "_note": "Static outline per post. Add each new post before building: label (2 to 6 words grounded in the prose), id (keep it unchanged once published) and starts (first words of the section-start paragraph). build.py injects ids and the Sections nav without changing prose.",
+ "_note": "Static outline per post, 6 to 14 sections. Add each new post before building: label (2 to 6 words grounded in the prose), id (sec-..., unique, keep it unchanged once published), starts (first words of the paragraph) and, for a section that begins inside a paragraph, at (first words of that sentence). build.py injects the anchors and the Sections nav without changing the prose.",
  "0-the-start": [
   {
    "label": "An ontology of my life",
-   "starts": "On the first day of this year,",
-   "id": "sec-an-ontology-of-my-life"
+   "id": "sec-an-ontology-of-my-life",
+   "starts": "On the first day of this year,"
+  },
+  {
+   "label": "A glossary versus a tree",
+   "id": "sec-a-glossary-versus-a-tree",
+   "starts": "Btw, in September I already listed most"
   },
   {
    "label": "Meditations in Descartes' sense",
-   "starts": "So, as quickly described yesterday, I'm at",
-   "id": "sec-meditations-in-descartes-sense"
+   "id": "sec-meditations-in-descartes-sense",
+   "starts": "So, as quickly described yesterday, I'm at"
   },
   {
    "label": "Arguing and checking the words",
-   "starts": "In every one of the meditations, I",
-   "id": "sec-arguing-and-checking-the-words"
+   "id": "sec-arguing-and-checking-the-words",
+   "starts": "In every one of the meditations, I"
   },
   {
    "label": "Example: solve death",
+   "id": "sec-example-solve-death",
+   "starts": "Here is a simple example of what"
+  },
+  {
+   "label": "The premise and the move",
+   "id": "sec-the-premise-and-the-move",
    "starts": "Here is a simple example of what",
-   "id": "sec-example-solve-death"
+   "at": "Either way, the premise: death is a"
+  },
+  {
+   "label": "What I can argue today",
+   "id": "sec-what-i-can-argue-today",
+   "starts": "Now, what I can actually argue for"
+  },
+  {
+   "label": "\"Solved\" doesn't mean immortal",
+   "id": "sec-solved-doesn-t-mean-immortal",
+   "starts": "Now, what I can actually argue for",
+   "at": "Also, \"solved\" doesn't mean immortal => the"
   },
   {
    "label": "One item per day",
-   "starts": "So the commitment for the next 30",
-   "id": "sec-one-item-per-day"
+   "id": "sec-one-item-per-day",
+   "starts": "So the commitment for the next 30"
   },
   {
    "label": "PS on the word ontology",
-   "starts": "* PS: The term \"ontology\" might not",
-   "id": "sec-ps-on-the-word-ontology"
+   "id": "sec-ps-on-the-word-ontology",
+   "starts": "* PS: The term \"ontology\" might not"
   }
  ],
  "1-causa-finalis": [
   {
    "label": "The vision as causa finalis",
+   "id": "sec-the-vision-as-causa-finalis",
+   "starts": "The first item in my Ontology (as"
+  },
+  {
+   "label": "The whole meditation in one line",
+   "id": "sec-the-whole-meditation-in-one-line",
    "starts": "The first item in my Ontology (as",
-   "id": "sec-the-vision-as-causa-finalis"
+   "at": "Or, to put all of that in"
   },
   {
    "label": "How the term is used",
-   "starts": "Now, what is \"synthetic consciousness\"? It's definitely",
-   "id": "sec-how-the-term-is-used"
+   "id": "sec-how-the-term-is-used",
+   "starts": "Now, what is \"synthetic consciousness\"? It's definitely"
   },
   {
    "label": "Why consciousness",
+   "id": "sec-why-consciousness",
+   "starts": "When choosing the word (or words) for"
+  },
+  {
+   "label": "The most fundamental thing to anyone",
+   "id": "sec-the-most-fundamental-thing-to-anyone",
    "starts": "When choosing the word (or words) for",
-   "id": "sec-why-consciousness"
+   "at": "From a physical perspective you might say,"
   },
   {
    "label": "A consciousness that has to end",
-   "starts": "So \"consciousness\" was chosen by me for",
-   "id": "sec-a-consciousness-that-has-to-end"
+   "id": "sec-a-consciousness-that-has-to-end",
+   "starts": "So \"consciousness\" was chosen by me for"
+  },
+  {
+   "label": "Global and individual death",
+   "id": "sec-global-and-individual-death",
+   "starts": "Generally, I care because I made it"
   },
   {
    "label": "When death counts as solved",
-   "starts": "And on what day could I say",
-   "id": "sec-when-death-counts-as-solved"
+   "id": "sec-when-death-counts-as-solved",
+   "starts": "And on what day could I say"
   },
   {
    "label": "Two ways to keep consciousness",
-   "starts": "There are two approaches to keeping consciousness",
-   "id": "sec-two-ways-to-keep-consciousness"
+   "id": "sec-two-ways-to-keep-consciousness",
+   "starts": "There are two approaches to keeping consciousness"
+  },
+  {
+   "label": "Hardening consciousness itself",
+   "id": "sec-hardening-consciousness-itself",
+   "starts": "The other approach goes at consciousness itself."
+  },
+  {
+   "label": "Hardened de novo consciousness",
+   "id": "sec-hardened-de-novo-consciousness",
+   "starts": "So, what is this hardened de novo"
   },
   {
    "label": "Artificial, machine or synthetic",
-   "starts": "So, it's artificial? In one sense yes,",
-   "id": "sec-artificial-machine-or-synthetic"
+   "id": "sec-artificial-machine-or-synthetic",
+   "starts": "So, it's artificial? In one sense yes,"
+  },
+  {
+   "label": "Synthetic, like lab-made sucrose",
+   "id": "sec-synthetic-like-lab-made-sucrose",
+   "starts": "So, what term is the right one?"
+  },
+  {
+   "label": "The same kind, not an imitation",
+   "id": "sec-the-same-kind-not-an-imitation",
+   "starts": "Now, this of course commits me to"
   }
  ],
  "2-hybrid-mind-uploading": [
   {
    "label": "The mission and the vision",
-   "starts": "The next item in the Ontology is",
-   "id": "sec-the-mission-and-the-vision"
+   "id": "sec-the-mission-and-the-vision",
+   "starts": "The next item in the Ontology is"
+  },
+  {
+   "label": "What is the process?",
+   "id": "sec-what-is-the-process",
+   "starts": "It seems that, in order not to"
   },
   {
    "label": "Leaving classical mind uploading",
-   "starts": "Over the past few years, I've been",
-   "id": "sec-leaving-classical-mind-uploading"
+   "id": "sec-leaving-classical-mind-uploading",
+   "starts": "Over the past few years, I've been"
+  },
+  {
+   "label": "Dying with extra steps",
+   "id": "sec-dying-with-extra-steps",
+   "starts": "Now, the problem with this classical approach"
   },
   {
    "label": "Mind, uploading, emulation",
+   "id": "sec-mind-uploading-emulation",
+   "starts": "The important story background here is that"
+  },
+  {
+   "label": "Koene's whole brain emulation",
+   "id": "sec-koene-s-whole-brain-emulation",
    "starts": "The important story background here is that",
-   "id": "sec-mind-uploading-emulation"
+   "at": "I was obviously not the first person"
+  },
+  {
+   "label": "Why whole, brain and emulation?",
+   "id": "sec-why-whole-brain-and-emulation",
+   "starts": "Now, I thought that \"whole brain emulation\""
   },
   {
    "label": "Keeping the word, not the method",
-   "starts": "After a few years, I basically realised,",
-   "id": "sec-keeping-the-word-not-the-method"
+   "id": "sec-keeping-the-word-not-the-method",
+   "starts": "After a few years, I basically realised,"
   },
   {
-   "label": "Moving the goals out of CS",
-   "starts": "But I did not like the immediate",
-   "id": "sec-moving-the-goals-out-of-cs"
+   "label": "Scan, store, simulate",
+   "id": "sec-moving-the-goals-out-of-cs",
+   "starts": "But I did not like the immediate"
+  },
+  {
+   "label": "Moving the original goals",
+   "id": "sec-moving-the-original-goals",
+   "starts": "So I thought of \"moving the original"
   },
   {
    "label": "Why hybrid",
+   "id": "sec-why-hybrid",
+   "starts": "Now the question was: what term to"
+  },
+  {
+   "label": "The carrier is hybrid",
+   "id": "sec-the-carrier-is-hybrid",
    "starts": "Now the question was: what term to",
-   "id": "sec-why-hybrid"
+   "at": "And to answer the question from the"
+  },
+  {
+   "label": "A physical claim, not a feeling",
+   "id": "sec-a-physical-claim-not-a-feeling",
+   "starts": "Now the question was: what term to",
+   "at": "And by \"process world-line\" I mean a"
   }
  ],
  "3-solving-death": [
   {
    "label": "Functionally isolating the brain",
-   "starts": "I run a company called @eightsixscience, where",
-   "id": "sec-functionally-isolating-the-brain"
+   "id": "sec-functionally-isolating-the-brain",
+   "starts": "I run a company called @eightsixscience, where"
+  },
+  {
+   "label": "The short answer",
+   "id": "sec-causes-not-reasons",
+   "starts": "The short answer, before I ramble on"
   },
   {
    "label": "Causes, not reasons",
-   "starts": "The short answer, before I ramble on",
-   "id": "sec-causes-not-reasons"
+   "id": "sec-cause-or-reason",
+   "starts": "Depending on who asks, I've come to",
+   "at": "Now, the thing is, and I have"
+  },
+  {
+   "label": "Fear of death and sour grapes",
+   "id": "sec-fear-of-death-and-sour-grapes",
+   "starts": "Depending on who asks, I've come to",
+   "at": "The usual comeback here is \"so it's"
+  },
+  {
+   "label": "Forbidden fruit and other myths",
+   "id": "sec-forbidden-fruit-and-other-myths",
+   "starts": "Other avenues of explanation are usually more"
   },
   {
    "label": "The lightbulb analogy",
-   "starts": "So, more societally as an explanation, one",
-   "id": "sec-the-lightbulb-analogy"
+   "id": "sec-the-lightbulb-analogy",
+   "starts": "So, more societally as an explanation, one"
+  },
+  {
+   "label": "Where the analogy falls apart",
+   "id": "sec-where-the-analogy-falls-apart",
+   "starts": "I used to end this pitch with",
+   "at": "And there's one place where my nice"
   },
   {
    "label": "Why death is bad",
-   "starts": "Now, to come back, I technically have",
-   "id": "sec-why-death-is-bad"
+   "id": "sec-why-death-is-bad",
+   "starts": "Now, to come back, I technically have"
   },
   {
    "label": "Why I want to solve it",
-   "starts": "OK, so that's the \"why-is-death-bad\"-part, and I",
-   "id": "sec-why-i-want-to-solve-it"
+   "id": "sec-why-i-want-to-solve-it",
+   "starts": "OK, so that's the \"why-is-death-bad\"-part, and I"
   },
   {
-   "label": "What death and solving mean",
-   "starts": "\"Solving death\" is one of the three",
-   "id": "sec-what-death-and-solving-mean"
+   "label": "The goal versus the vision",
+   "id": "sec-what-death-and-solving-mean",
+   "starts": "\"Solving death\" is one of the three"
+  },
+  {
+   "label": "Irreversible according to whom?",
+   "id": "sec-irreversible-according-to-whom",
+   "starts": "What is death? => the irreversible end"
+  },
+  {
+   "label": "Amortality, solved, immortality",
+   "id": "sec-amortality-solved-immortality",
+   "starts": "What is solving death? Solving meaning that"
   },
   {
    "label": "Step zero: stopping the dying",
+   "id": "sec-step-zero-stopping-the-dying",
+   "starts": "So when I said \"towards\" at the"
+  },
+  {
+   "label": "Step one: gradual replacement",
+   "id": "sec-step-one-gradual-replacement",
    "starts": "So when I said \"towards\" at the",
-   "id": "sec-step-zero-stopping-the-dying"
+   "at": "Mechanistic gradual brain replacement, the core of"
   }
  ],
  "4-measurements-models-theories": [
   {
+   "label": "Understand consciousness, the second goal",
+   "id": "sec-a-rigorisation-of-consciousness-science",
+   "starts": "The second goal of the Ontology is"
+  },
+  {
    "label": "A rigorisation of consciousness science",
+   "id": "sec-rigorisation-of-science",
    "starts": "The second goal of the Ontology is",
-   "id": "sec-a-rigorisation-of-consciousness-science"
+   "at": "I do believe that in the coming"
   },
   {
    "label": "Measurement, model, theory",
-   "starts": "And due to this rigorisation, I do",
-   "id": "sec-measurement-model-theory"
+   "id": "sec-measurement-model-theory",
+   "starts": "And due to this rigorisation, I do"
   },
   {
    "label": "Consciousness engineering",
+   "id": "sec-consciousness-engineering",
+   "starts": "The nuanced difference here, and why this"
+  },
+  {
+   "label": "Why it is the second goal",
+   "id": "sec-why-it-is-the-second-goal",
    "starts": "The nuanced difference here, and why this",
-   "id": "sec-consciousness-engineering"
+   "at": "And yes, understanding consciousness is such a"
+  },
+  {
+   "label": "A goal, not an outcome",
+   "id": "sec-a-goal-not-an-outcome",
+   "starts": "The nuanced difference here, and why this",
+   "at": "So why isn't understanding consciousness just an"
   },
   {
    "label": "Sidestepping, not ignoring, theory",
-   "starts": "I always say that the whole point",
-   "id": "sec-sidestepping-not-ignoring-theory"
+   "id": "sec-sidestepping-not-ignoring-theory",
+   "starts": "I always say that the whole point"
   },
   {
-   "label": "Temperature and levels of understanding",
+   "label": "Motors before electrons",
+   "id": "sec-motors-before-electrons",
+   "starts": "I always say that the whole point",
+   "at": "It's, e.g. similar to how steam engines"
+  },
+  {
+   "label": "You can't see a world-line",
+   "id": "sec-you-can-t-see-a-world-line",
+   "starts": "I always say that the whole point",
+   "at": "The analogy breaks at one place tho,"
+  },
+  {
+   "label": "Engineering, not science",
+   "id": "sec-temperature-and-levels-of-understanding",
+   "starts": "It's all about doing something useful, and"
+  },
+  {
+   "label": "Inventing temperature",
+   "id": "sec-inventing-temperature",
    "starts": "It's all about doing something useful, and",
-   "id": "sec-temperature-and-levels-of-understanding"
+   "at": "The example from another discipline that fits"
+  },
+  {
+   "label": "Measuring, modelling, explaining",
+   "id": "sec-measuring-modelling-explaining",
+   "starts": "It's all about doing something useful, and",
+   "at": "Or let me be more exact, as"
+  },
+  {
+   "label": "What is a theory even?",
+   "id": "sec-two-uses-of-understand",
+   "starts": "Trying to answer this question properly is"
   },
   {
    "label": "Two uses of \"understand\"",
+   "id": "sec-uses-of-understand",
    "starts": "Trying to answer this question properly is",
-   "id": "sec-two-uses-of-understand"
+   "at": "For a very \"Wittgensteinian reason\": the meaning"
   }
  ],
  "5-transcending-biology": [
   {
    "label": "Transcend humanity, the third goal",
-   "starts": "The third and last goal of my",
-   "id": "sec-transcend-humanity-the-third-goal"
+   "id": "sec-transcend-humanity-the-third-goal",
+   "starts": "The third and last goal of my"
   },
   {
    "label": "The word is already taken",
+   "id": "sec-the-word-is-already-taken",
+   "starts": "The first reason is that the word"
+  },
+  {
+   "label": "Husserl's table",
+   "id": "sec-husserl-s-table",
    "starts": "The first reason is that the word",
-   "id": "sec-the-word-is-already-taken"
+   "at": "I came across the word mostly through"
+  },
+  {
+   "label": "Only the limits of biology",
+   "id": "sec-only-the-limits-of-biology",
+   "starts": "Does my third goal want to get"
   },
   {
    "label": "The direction of the change",
-   "starts": "The second reason is the direction.",
-   "id": "sec-the-direction-of-the-change"
+   "id": "sec-the-direction-of-the-change",
+   "starts": "The second reason is the direction. \"Human"
+  },
+  {
+   "label": "A verb and a thing",
+   "id": "sec-a-verb-and-a-thing",
+   "starts": "So yes, this is basically about transhumanism,",
+   "at": "Which brings me to the third reason,"
   },
   {
    "label": "Where the limits come from",
-   "starts": "My first thought was that when death",
-   "id": "sec-where-the-limits-come-from"
+   "id": "sec-where-the-limits-come-from",
+   "starts": "My first thought was that when death"
   },
   {
    "label": "A built substrate is steerable",
-   "starts": "Now, a carrier that gets built (and",
-   "id": "sec-a-built-substrate-is-steerable"
+   "id": "sec-a-built-substrate-is-steerable",
+   "starts": "Now, a carrier that gets built (and"
+  },
+  {
+   "label": "Lossless Q-storage",
+   "id": "sec-lossless-q-storage",
+   "starts": "It's only this January that I properly"
+  },
+  {
+   "label": "Augmentation, then a change of kind",
+   "id": "sec-augmentation-then-a-change-of-kind",
+   "starts": "So I think of the third goal"
   },
   {
    "label": "Between similarity and continuity",
-   "starts": "My main way of keeping the three",
-   "id": "sec-between-similarity-and-continuity"
+   "id": "sec-between-similarity-and-continuity",
+   "starts": "My main way of keeping the three"
+  },
+  {
+   "label": "A goal, not merely an outcome",
+   "id": "sec-a-goal-not-merely-an-outcome",
+   "starts": "I'm having some trouble saying what exactly"
   },
   {
    "label": "What it means for humanity",
-   "starts": "And what does all of this mean",
-   "id": "sec-what-it-means-for-humanity"
+   "id": "sec-what-it-means-for-humanity",
+   "starts": "And what does all of this mean"
+  },
+  {
+   "label": "Borrowing a word from heaven",
+   "id": "sec-borrowing-a-word-from-heaven",
+   "starts": "Will it stay the third goal? The"
   }
  ]
 }

@@ -19,14 +19,28 @@
     return pn ? pn.getBoundingClientRect().height : 0;
   }
   function update() {
-    var line = headH() + window.innerHeight * 0.25, k = -1;
-    for (var i = 0; i < secs.length; i++) if (secs[i].getBoundingClientRect().top <= line) k = i;
+    // reading line a little below the nav; capped so close sections (some start mid-paragraph) don't skip ahead
+    var line = headH() + Math.min(window.innerHeight * 0.25, 120), k = -1;
+    var hh = headH(), pinned = -1;
+    for (var i = 0; i < secs.length; i++) {
+      var t = secs[i].getBoundingClientRect().top;
+      if (t <= line) k = i;
+      // a section sitting right under the nav (e.g. just jumped to) wins over a close next one
+      if (pinned < 0 && t >= hh - 2 && t <= hh + 40) pinned = i;
+    }
+    if (pinned >= 0 && pinned < k) k = pinned;
     if (k === cur) return;
     cur = k;
     links.forEach(function (a, i) {
       if (i === k) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
     });
     if (pillText) setPill(k);
+    // long outlines: keep the current entry in view inside the sidebar
+    if (wide.matches && k >= 0 && nav.scrollHeight > nav.clientHeight + 1) {
+      var a = links[k], top = a.offsetTop - nav.offsetTop, h = a.offsetHeight;
+      if (top < nav.scrollTop + 24) nav.scrollTop = Math.max(0, top - 24);
+      else if (top + h > nav.scrollTop + nav.clientHeight - 24) nav.scrollTop = top + h - nav.clientHeight + 24;
+    }
   }
   function setPill(k) {
     var n = links.length;

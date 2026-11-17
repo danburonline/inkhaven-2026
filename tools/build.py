@@ -625,12 +625,37 @@ def norm_text(fragment):
     t = html.unescape(re.sub(r'<[^>]+>', ' ', fragment))
     return re.sub(r'\s+', ' ', t).strip()
 
+SEC_AT_RE = re.compile(r'<span class="sec-at" id="sec-[^"]*"></span>')
+
+def text_positions(fragment):
+    """(non-space text, html offset of each of its characters) for an HTML fragment."""
+    chars, offs, i = [], [], 0
+    while i < len(fragment):
+        c = fragment[i]
+        if c == '<':
+            i = fragment.index('>', i) + 1
+            continue
+        if c == '&':
+            m = re.match(r'&(#x[0-9a-fA-F]+|#[0-9]+|[a-zA-Z]+);', fragment[i:])
+            if m:
+                for ch in html.unescape(m.group(0)):
+                    if not ch.isspace():
+                        chars.append(ch); offs.append(i)
+                i += len(m.group(0))
+                continue
+        if not c.isspace():
+            chars.append(c); offs.append(i)
+        i += 1
+    return ''.join(chars), offs
+
 def apply_outline(path, slug):
-    """Idempotent: ids on section-start paragraphs plus the Sections nav."""
+    """Idempotent: section anchors (an id on the paragraph, or an empty
+    <span class="sec-at"> before a sentence inside it) plus the Sections nav."""
     s = open(path, encoding='utf-8').read()
     orig = s
     s = TOC_RE.sub('', s, count=1)
     s = SEC_ID_RE.sub('<p', s)
+    s = SEC_AT_RE.sub('', s)
     entries = OUTLINE.get(slug)
     if not entries:
         print('WARNING: no outline for %s; add it to tools/outline.json' % slug)
@@ -638,29 +663,43 @@ def apply_outline(path, slug):
         a0 = s.index('<article>')
         a1 = s.index('</article>', a0)
         art = s[a0:a1]
-        items, used = [], set()
+        items, used, ids = [], set(), set()
         paras = list(P_RE.finditer(art))
         for e in entries:
             want = re.sub(r'\s+', '', html.unescape(e['starts']))
-            hit = next((m for m in paras if m.start() not in used
-                        and re.sub(r'\s+', '', norm_text(m.group(2))).startswith(want)), None)
+            hit = next((m for m in paras if re.sub(r'\s+', '', norm_text(m.group(2))).startswith(want)), None)
             if not hit:
                 print('WARNING: outline for %s: no paragraph starts with %r' % (slug, want))
                 continue
-            used.add(hit.start())
             sid = e.get('id') or sec_id(e['label'])
             if not re.fullmatch(r'sec-[a-z0-9-]+', sid):
                 raise SystemExit('invalid outline id for %s: %s' % (slug, sid))
-            while sid in [i[0] for i in items]:
-                sid += '-2'
-            items.append((sid, e['label'], hit.start()))
-        for sid, _, pos in sorted(items, key=lambda x: -x[2]):
-            art = art[:pos] + '<p id="%s"' % sid + art[pos + 2:]
+            if sid in ids:
+                raise SystemExit('duplicate outline id for %s: %s' % (slug, sid))
+            ids.add(sid)
+            if e.get('at'):
+                txt, offs = text_positions(hit.group(2))
+                at = re.sub(r'\s+', '', html.unescape(e['at']))
+                k = txt.find(at)
+                if k < 0:
+                    print('WARNING: outline for %s: %r not found in the paragraph starting %r' % (slug, e['at'], e['starts']))
+                    continue
+                items.append((sid, e['label'], hit.start(2) + offs[k], 'span'))
+            else:
+                if hit.start() in used:
+                    raise SystemExit('two outline entries start the same paragraph in %s' % slug)
+                used.add(hit.start())
+                items.append((sid, e['label'], hit.start(), 'p'))
+        for sid, _, pos, kind in sorted(items, key=lambda x: -x[2]):
+            if kind == 'p':
+                art = art[:pos] + '<p id="%s"' % sid + art[pos + 2:]
+            else:
+                art = art[:pos] + '<span class="sec-at" id="%s"></span>' % sid + art[pos:]
         s = s[:a0] + art + s[a1:]
         items.sort(key=lambda x: x[2])
         nav = ('    <nav class="toc" id="toc" aria-label="Sections">\n'
                '      <p class="toc-head" aria-hidden="true">Sections</p>\n      <ol>\n'
-               + ''.join('        <li><a href="#%s">%s</a></li>\n' % (sid, html.escape(lab, quote=False)) for sid, lab, _ in items)
+               + ''.join('        <li><a href="#%s">%s</a></li>\n' % (sid, html.escape(lab, quote=False)) for sid, lab, _, _ in items)
                + '      </ol>\n    </nav>\n')
         s2, n = re.subn(r'(<main>\n)', lambda m: m.group(1) + nav, s, count=1)
         if n != 1:
@@ -742,6 +781,8 @@ for d in sorted(os.listdir(ROOT)):
             el.decompose()
     for el in clean.select('p[id^="sec-"]'):
         del el['id']
+    for el in clean.select('span.sec-at'):
+        el.decompose()
     for pic in clean.select('picture'):
         im_el = pic.find('img')
         for k in GEN_ATTRS:
