@@ -65,7 +65,7 @@
     pill.setAttribute('aria-controls', 'toc');
     pill.setAttribute('aria-expanded', 'false');
     pill.setAttribute('aria-haspopup', 'dialog');
-    pill.innerHTML = '<svg aria-hidden="true" viewBox="0 0 12 12" width="11" height="11"><path d="M2 3h8M2 6h8M2 9h5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="toc-pill-t"></span>';
+    pill.innerHTML = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><g fill="currentColor"><circle cx="2.5" cy="4" r="1.25"/><circle cx="2.5" cy="8" r="1.25"/><circle cx="2.5" cy="12" r="1.25"/></g><path d="M6 4h8M6 8h8M6 12h5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="toc-pill-t"></span>';
     pillText = pill.lastChild;
     pillText.textContent = 'Sections';
     pill.setAttribute('aria-label', 'Sections');
