@@ -1080,12 +1080,12 @@ body:has(.post-nav) article {
   gap: 0.55rem;
   min-height: 2.9rem;
   max-width: min(22rem, calc(100vw - 2.5rem));
-  padding: 0.38rem 1.2rem 0.4rem 1rem;
-  border: 1px solid var(--text);
+  padding: calc(0.38rem + 4px) calc(1.2rem + 6px) calc(0.4rem + 4px) calc(1rem + 6px);
+  border: 0;
   border-radius: 999px;
   background: var(--text);
   color: var(--bg);
-  box-shadow: 0 0 0 2px var(--bg), 0 8px 24px rgba(0, 0, 0, 0.28);
+  box-shadow: none;
   font: inherit;
   font-size: 0.94rem;
   font-weight: 600;
