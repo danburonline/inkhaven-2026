@@ -1117,3 +1117,17 @@ body:has(.post-nav) article {
   .toc-close:focus-visible { outline: 2px solid var(--muted); outline-offset: 1px; border-radius: 3px; }
   body:has(.num-wrap.open) .toc-pill, body:has(.lb.on) .toc-pill { opacity: 0; visibility: hidden; }
 }
+
+/* Optical alignment of the small nav icons: sit each icon on the text
+   baseline and lift it so its centre is at half the cap height (1cap), in
+   whatever font the browser actually uses (Iowan on Apple, others elsewhere).
+   Older browsers without the cap unit keep the em-based nudge above. */
+@supports (top: 1cap) {
+  .num-menu,
+  .post-nav .num-menu,
+  .post-nav-brand { align-items: baseline; }
+  .num-menu svg { top: calc(0.36em - 0.5cap - 0.015em); }
+  .post-nav-brand .brand-back { top: calc(0.36em - 0.5cap); }
+  .post-nav-end { align-items: baseline; }
+  .post-nav .theme-toggle { align-self: baseline; font-size: inherit; position: relative; top: calc(7px - 0.5cap); }
+}
