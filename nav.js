@@ -75,5 +75,5 @@
       links[i].focus();
     }
   });
-  fetch('/posts.json?v=bca5439e7e').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(build).catch(function () {});
+  fetch('/posts.json?v=e21eb38abd').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(build).catch(function () {});
 })();
