@@ -8,7 +8,7 @@
   document.addEventListener('touchstart', function () { lastTouch = Date.now(); touch = true; }, { passive: true, capture: true });
   document.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch' || e.pointerType === 'pen') { lastTouch = Date.now(); touch = true; } }, true);
   function isTouch() { return touch || Date.now() - lastTouch < 1000; }
-  fetch('/previews.json?v=8ccdaa3dde').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (j) { data = j; }).catch(function () {});
+  fetch('/previews.json?v=fc7c2b9935').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (j) { data = j; }).catch(function () {});
 
   function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
   function fmtDate(s) {

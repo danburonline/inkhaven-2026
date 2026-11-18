@@ -7,8 +7,8 @@
    - Everything else (other origins such as X embeds, non-GET, video ranges,
      feeds and text files) is not touched and goes straight to the network.
    VERSION and PRECACHE are filled in by tools/build.py. */
-const VERSION = '8cef2928f3';
-const PRECACHE = ["/offline/", "/manifest.webmanifest", "/favicon.svg", "/theme.js?v=b28d86952e", "/nav.js?v=6acfc8eecd", "/preview.js?v=4a435a8217", "/lightbox.js?v=d9b0f1adcc", "/embed-fit.js?v=d979f65494", "/highlight.js?v=2c738ccc8e", "/outline.js?v=0471b63513"];
+const VERSION = 'd130b23b4c';
+const PRECACHE = ["/offline/", "/manifest.webmanifest", "/favicon.svg", "/theme.js?v=b28d86952e", "/nav.js?v=6acfc8eecd", "/preview.js?v=ddd5da533d", "/lightbox.js?v=d9b0f1adcc", "/embed-fit.js?v=d979f65494", "/highlight.js?v=2c738ccc8e", "/outline.js?v=0471b63513"];
 const PREFIX = 'ci-';
 const STATIC = PREFIX + 'static-' + VERSION;
 const PAGES = PREFIX + 'pages-' + VERSION;

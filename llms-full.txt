@@ -214,6 +214,36 @@ Source: https://consciousness.ink/glossary/#lossless-q-storage
 
 Source: https://consciousness.ink/glossary/#world-line-fidelity
 
+### Substrate independence
+
+The first of the three outcomes of the Ontology, listed as a state: mind no longer tied to biological substrate. It pairs with the goal of solving death: gradual replacement brings a carrier that is no longer the biology that we were born with. It is an outcome, not a goal, as it comes along with the work, and it was never meant as a guarantee, since how far it can go is decided by physics. 6/30 rejects the reading in which the substrate simply does not matter and keeps only the two words: what it means by them is the re-creation of the brain's constraints in another material, which it calls physical substrate independence.
+
+Source: https://consciousness.ink/glossary/#substrate-independence
+
+### Computational substrate independence
+
+What Bostrom and classical mind uploading mean by substrate independence: a mind depends only on the computation, so whatever runs it will do. Bostrom wrote "substrate-independence" into his 2003 simulation argument, introducing it as "a common assumption in the philosophy of mind". 6/30 recounts how, in May 2026, the series filed it under the commitments that fix the answers in advance.
+
+Source: https://consciousness.ink/glossary/#computational-substrate-independence
+
+### Physical substrate independence
+
+What the series means by substrate independence: a mind depends on what its carrier physically does, so whatever does the same will do, be it biological or not. What it is supposed to become independent of is biology, and physics it never leaves. It claims less than the computational version, as a material that does the same physics also runs the same computation along the way, but not the other way round. Whether any material other than living cells can do the job is a question for experiments.
+
+Source: https://consciousness.ink/glossary/#physical-substrate-independence
+
+### Multiple realisability
+
+Putnam's argument in "Psychological Predicates" (1967): pain cannot be one particular state of the brain, as an octopus presumably feels pain with a brain built very differently, so pain has to be a functional state that many kinds of matter can realise. 6/30 starts instead from an observation within humans: we have somewhat the same kind of experience although our brains all differ, and slow-growing gliomas show living neural tissue taking over from living neural tissue. In that bio-to-bio sense (weak multiple realisability) it is evidenced; whether a different kind of substrate can take over is still open.
+
+Source: https://consciousness.ink/glossary/#multiple-realisability
+
+### Medium independence
+
+Gualtiero Piccinini's term: a computation does not care what its vehicles are made of, as long as they have the right degrees of freedom. He contrasts it with multiple realisability, via the mousetrap, which can be built in many ways but still has to catch actual mice. 6/30: classical mind uploading turned out to need medium independence for minds, while the series needs at most multiple realisability, as in the heart-lung machine, whose "lung" is a bundle of plastic fibres.
+
+Source: https://consciousness.ink/glossary/#medium-independence
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -248,7 +278,7 @@ Tomorrow it's 1/30, which is the vision itself => synthetic consciousness! :-)
 URL: https://consciousness.ink/1-causa-finalis/
 Author: Daniel Burger
 Published: 2026-11-12
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, solving death, deprivation view of death
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, solving death, deprivation view of death, substrate independence
 
 The first item in my Ontology (as discussed yesterday, with an uppercase "O" to denote "my ontology as discussed yesterday," rather than a lowercase "o" for any ontology or the general concept itself) is the "future state of being" => that's the entity "Vision", i.e. a state (as opposed to a way of getting there) that doesn't hold yet. Within the Ontology it's the "causa finalis", i.e. the end every other item in there is done for (the "that for the sake of which"), with no claim that it's the highest good: nothing matters except to someone conscious, and ordinary biological consciousness already meets that condition. So the end this Ontology is ordered to is that no consciousness has to end, and synthetic consciousness is that end as a state of being: consciousness that no longer has to end (the vision), and the route to it is hybrid mind uploading (the mission). Or, to put all of that in one line (which is basically today's whole meditation already): consciousness is the reason why its end matters at all, the world-line is the thing that actually has to continue, and "synthetic" is just there to say that the result is the real kind via a creation process. So I want to have synthetic consciousness (what exactly the term commits me to follows below) reached and then kept in the – hopefully near – future.
 
@@ -293,7 +323,7 @@ fn3: Most people know it as "cogito, ergo sum", but the Meditations themselves a
 URL: https://consciousness.ink/2-hybrid-mind-uploading/
 Author: Daniel Burger
 Published: 2026-11-13
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, immortality, limits of biology
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, mind uploading, whole brain emulation, process world-line, solving death, immortality, limits of biology, substrate independence
 
 The next item in the Ontology is the mission, which, as I understand and use it, is the undertaking that leads to the vision (and "hybrid mind uploading" is its name), with the vision being a state of being in the future described as "there will be synthetic consciousness", as discussed in great detail yesterday ( [Nov 2026] ). One thing became quite clear yesterday: you cannot define a single item in the Ontology without first defining its relations to other items, which makes linear-style writing in a left-to-right language such as English quite hard without anticipating some of the other items in the Ontology. The one already mentioned was hybrid mind uploading.
 
@@ -380,7 +410,7 @@ Trying to answer this question properly is a Pandora's box tho, or rather a deep
 URL: https://consciousness.ink/5-transcending-biology/
 Author: Daniel Burger
 Published: 2026-11-16
-Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness, goal vs outcome, transcend humanity, limits of biology, adumbrations, transhumanism, steerable phenomenology, lossless q-storage, world-line fidelity
+Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness, goal vs outcome, transcend humanity, limits of biology, adumbrations, transhumanism, steerable phenomenology, lossless q-storage, world-line fidelity, substrate independence
 
 The third and last goal of my Ontology is "transcend humanity". It comes after "solve death" (day three: [Nov 2026] ) and "understand consciousness" (day four/yesterday: [Nov 2026] ), and in the Ontology each of the three has a type => there's a "practical goal", a "theoretical one" and a "transformative one" => so today's goal is the one where the thing that changes is us (= the transformative one). It's also the one whose name I'm least happy with. I have three reasons for that, and two of them are why the goal has a new name as of today (until yesterday it was still called "human transcendence", which is also how it appears in yesterday's meditation).
 
@@ -419,7 +449,7 @@ Will it stay the third goal? The goal, yes. The name I've just changed, and I'm 
 URL: https://consciousness.ink/6-substrate-independence/
 Author: Daniel Burger
 Published: 2026-11-17
-Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity
+Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity, substrate independence, computational substrate independence, physical substrate independence, multiple realisability, medium independence
 
 Over the past three days, we discussed the goals of my Ontology. Today we start with the first of the three outcomes, which also sit right below the mission called hybrid mind uploading. It's called "substrate independence". What does this term mean in this context? In the Ontology, it's listed as a state, and the one line under it says: mind no longer tied to biological substrate. There's a widespread reading of these two words in which the substrate simply doesn't matter. That's no good frame of mind for somebody who wants to build one, and it's not what I mean. The trouble sits in "independence", as the word asks a question that it doesn't answer (the same way "transcending" did yesterday with its "beyond what?") => independent of what? And dependent on what instead?
 

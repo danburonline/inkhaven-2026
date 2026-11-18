@@ -427,5 +427,80 @@
    "id": "sec-borrowing-a-word-from-heaven",
    "starts": "Will it stay the third goal? The"
   }
+ ],
+ "6-substrate-independence": [
+  {
+   "label": "The first outcome",
+   "id": "sec-the-first-outcome",
+   "starts": "Over the past three days, we discussed"
+  },
+  {
+   "label": "Independent of what?",
+   "id": "sec-independent-of-what",
+   "starts": "Over the past three days, we discussed",
+   "at": "There's a widespread reading of these"
+  },
+  {
+   "label": "An outcome, not a guarantee",
+   "id": "sec-an-outcome-not-a-guarantee",
+   "starts": "On day four I said that a"
+  },
+  {
+   "label": "The idea is older than the term",
+   "id": "sec-the-idea-is-older-than-the-term",
+   "starts": "So why substrate independence? I'll go"
+  },
+  {
+   "label": "Answers fixed in advance",
+   "id": "sec-answers-fixed-in-advance",
+   "starts": "That went on until this May,"
+  },
+  {
+   "label": "A rock running any program",
+   "id": "sec-a-rock-running-any-program",
+   "starts": "That went on until this May,",
+   "at": "Putnam, of all people, had been"
+  },
+  {
+   "label": "The same two words again",
+   "id": "sec-the-same-two-words-again",
+   "starts": "Now, here I am again, with the"
+  },
+  {
+   "label": "Correcting the June bracket",
+   "id": "sec-correcting-the-june-bracket",
+   "starts": "Now, here I am again, with the",
+   "at": "I also have to correct myself."
+  },
+  {
+   "label": "Piccinini's mousetrap",
+   "id": "sec-piccinini-s-mousetrap",
+   "starts": "Gualtiero Piccinini (a philosopher of computation)"
+  },
+  {
+   "label": "Does physics allow it?",
+   "id": "sec-does-physics-allow-it",
+   "starts": "So in that modest sense, substrate"
+  },
+  {
+   "label": "Computational vs physical",
+   "id": "sec-computational-vs-physical",
+   "starts": "There's a kind of substrate independence"
+  },
+  {
+   "label": "A spectrum of materials",
+   "id": "sec-a-spectrum-of-materials",
+   "starts": "There's a spectrum in this, and"
+  },
+  {
+   "label": "Replacing a piece, not copying it",
+   "id": "sec-replacing-a-piece-not-copying-it",
+   "starts": "That's basically the outcome => if"
+  },
+  {
+   "label": "Re-creating the constraints",
+   "id": "sec-re-creating-the-constraints",
+   "starts": "Which leaves the question of what exactly"
+  }
  ]
 }

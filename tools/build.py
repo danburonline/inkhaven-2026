@@ -730,8 +730,6 @@ for d in sorted(os.listdir(ROOT)):
     # Keep the historical full title so JSON-LD, llms.txt and search stay stable.
     title = '%s/30 %s: %s' % (num, SERIES, short)
     page_title = '%s/30 %s · Meditations on Synthetic Consciousness' % (num, short)
-    if len(page_title) > 66:
-        page_title = '%s/30 %s · %s' % (num, short, SITE)
     meta = META.get(d, {})
     desc = meta.get('description') or excerpt(first_para(art))
     img_el = art.find('img')
@@ -1060,7 +1058,7 @@ open(os.path.join(gdir, 'index.html'), 'w', encoding='utf-8').write(
 nf_head = [
     '  <meta charset="utf-8">',
     '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-    '  <title>Page not found · %s</title>' % SITE,
+    '  <title>Page not found · Meditations on Synthetic Consciousness</title>',
     '  <meta name="robots" content="noindex">',
     ICONS,
     THEME_HEAD,
@@ -1176,7 +1174,7 @@ os.makedirs(off_dir, exist_ok=True)
 off_head = [
     '  <meta charset="utf-8">',
     '  <meta name="viewport" content="width=device-width, initial-scale=1">',
-    '  <title>Offline · %s</title>' % SITE,
+    '  <title>Offline · Meditations on Synthetic Consciousness</title>',
     '  <meta name="robots" content="noindex">',
     ICONS,
     THEME_HEAD,

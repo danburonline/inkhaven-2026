@@ -8,7 +8,7 @@
     <lastBuildDate>Tue, 17 Nov 2026 00:00:00 -0800</lastBuildDate>
     <atom:link href="https://consciousness.ink/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>6/30 Computational Vs. Physical Substrate Independence · consciousness.ink</title>
+      <title>6/30 Computational Vs. Physical Substrate Independence · Meditations on Synthetic Consciousness</title>
       <link>https://consciousness.ink/6-substrate-independence/</link>
       <guid isPermaLink="true">https://consciousness.ink/6-substrate-independence/</guid>
       <pubDate>Tue, 17 Nov 2026 00:00:00 -0800</pubDate>
@@ -24,7 +24,12 @@
       <category>understand consciousness</category>
       <category>theory of consciousness</category>
       <category>transcend humanity</category>
-      <description>Over the past three days, we discussed the goals of my Ontology. Today we start with the first of the three outcomes, which also sit right below the mission called hybrid…</description>
+      <category>substrate independence</category>
+      <category>computational substrate independence</category>
+      <category>physical substrate independence</category>
+      <category>multiple realisability</category>
+      <category>medium independence</category>
+      <description>Day 6 of 30: the first outcome of the Ontology, substrate independence, and why I mean physical rather than computational substrate independence: independent of biology, never of physics.</description>
       <content:encoded><![CDATA[<p><img alt="Diagram titled Independence of biology, not of physics, in three panels. Living tissue: a mind depends on its substrate, here biology. Engineered material: physical substrate independence, where whatever does the same physics will do, biological or not. Program: computational substrate independence, where whatever runs the computation will do." height="2160" src="https://consciousness.ink/6-substrate-independence/substrate-independence.png" width="3840"/></p>
 
 <p>Over the past three days, we discussed the goals of my Ontology. Today we start with the first of the three outcomes, which also sit right below the mission called hybrid mind uploading. It's called "substrate independence". What does this term mean in this context? In the Ontology, it's listed as a state, and the one line under it says: mind no longer tied to biological substrate. There's a widespread reading of these two words in which the substrate simply doesn't matter. That's no good frame of mind for somebody who wants to build one, and it's not what I mean. The trouble sits in "independence", as the word asks a question that it doesn't answer (the same way "transcending" did yesterday with its "beyond what?") =&gt; independent of what? And dependent on what instead?</p>
@@ -43,7 +48,7 @@
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>5/30 Transcending Biology, but not Physics · consciousness.ink</title>
+      <title>5/30 Transcending Biology, but not Physics · Meditations on Synthetic Consciousness</title>
       <link>https://consciousness.ink/5-transcending-biology/</link>
       <guid isPermaLink="true">https://consciousness.ink/5-transcending-biology/</guid>
       <pubDate>Mon, 16 Nov 2026 00:00:00 -0800</pubDate>
@@ -65,6 +70,7 @@
       <category>steerable phenomenology</category>
       <category>lossless q-storage</category>
       <category>world-line fidelity</category>
+      <category>substrate independence</category>
       <description>Day 5 of 30: the third goal of the Ontology, renamed "transcend humanity": going beyond the limits that human biology sets for us, while the limits of physics stay where they are.</description>
       <content:encoded><![CDATA[<p><img alt="Chart titled Transcend biology, not physics: keep the world-line going, understand what runs along it, and let it outgrow the limits that it was born with. Below a dashed line, the limits of biology (what we can experience, what we can keep, how much a mind can hold, where a mind can exist, being one mind) and death; the same process world-line passes 1 solve death and 2 understand consciousness, then rises at 3 transcend beyond the limits of biology, while the limits of physics stay where they are. Biology today and the classical picture end at a cross; a copy is very convincing, most likely not conscious." height="2160" src="https://consciousness.ink/5-transcending-biology/transcend-biology.png" width="3840"/></p>
 
@@ -88,7 +94,7 @@
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>4/30 Measurements, Models and Theories · consciousness.ink</title>
+      <title>4/30 Measurements, Models and Theories · Meditations on Synthetic Consciousness</title>
       <link>https://consciousness.ink/4-measurements-models-theories/</link>
       <guid isPermaLink="true">https://consciousness.ink/4-measurements-models-theories/</guid>
       <pubDate>Sun, 15 Nov 2026 00:00:00 -0800</pubDate>
@@ -164,7 +170,7 @@
 </div>]]></content:encoded>
     </item>
     <item>
-      <title>2/30 What Could Be Hybrid about Mind Uploading? · consciousness.ink</title>
+      <title>2/30 What Could Be Hybrid about Mind Uploading? · Meditations on Synthetic Consciousness</title>
       <link>https://consciousness.ink/2-hybrid-mind-uploading/</link>
       <guid isPermaLink="true">https://consciousness.ink/2-hybrid-mind-uploading/</guid>
       <pubDate>Fri, 13 Nov 2026 00:00:00 -0800</pubDate>
@@ -178,6 +184,7 @@
       <category>solving death</category>
       <category>immortality</category>
       <category>limits of biology</category>
+      <category>substrate independence</category>
       <description>Day 2 of 30, the mission: hybrid mind uploading versus classical mind uploading and whole brain emulation, and what "hybrid" means for the process world-line.</description>
       <content:encoded><![CDATA[<p><img alt="Timeline diagram titled Make the brain hybrid: your original body runs from birth until the body dies, your brain continues as one unbroken line from biological to engineered, and a new body (e.g. robot, etc.) joins later. Callout: if the brain remains biological, it is limited by biological constraints, making it less resilient to factors such as heat and infections." height="2304" src="https://consciousness.ink/2-hybrid-mind-uploading/slide.jpg" width="4096"/></p>
 
@@ -208,6 +215,7 @@
       <category>process world-line</category>
       <category>solving death</category>
       <category>deprivation view of death</category>
+      <category>substrate independence</category>
       <description>Day 1 of 30, the vision: why synthetic consciousness, rather than artificial or machine consciousness, names a consciousness that no longer has to end.</description>
       <content:encoded><![CDATA[<p><video controls="" height="720" playsinline="" poster="https://consciousness.ink/1-causa-finalis/poster.jpg" preload="metadata" src="https://consciousness.ink/1-causa-finalis/video.mp4" width="1280"></video></p>
 

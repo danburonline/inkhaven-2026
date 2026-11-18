@@ -555,6 +555,87 @@ TERMS = [
         short='The world-line never breaks, and nothing is traded against it, enhancement included; at every step it has to be still you.',
         sources=['5-transcending-biology'],
     ),
+    dict(
+        slug='substrate-independence',
+        name='Substrate independence',
+        also=['substrate-independence'],
+        pattern=r'substrate[- ]independen',
+        sameAs=[],
+        text=(
+            'The first of the three outcomes of the Ontology, listed as a state: mind no longer tied to biological '
+            'substrate. It pairs with the goal of solving death: gradual replacement brings a carrier that is no longer '
+            'the biology that we were born with. It is an outcome, not a goal, as it comes along with the work, and it '
+            'was never meant as a guarantee, since how far it can go is decided by physics. 6/30 rejects the reading in '
+            'which the substrate simply does not matter and keeps only the two words: what it means by them is the '
+            're-creation of the brain\'s constraints in another material, which it calls physical substrate independence.'
+        ),
+        short='The first outcome of the Ontology: mind no longer tied to biological substrate, read as re-creating the brain\'s constraints in another material.',
+        sources=['5-transcending-biology', '6-substrate-independence'],
+    ),
+    dict(
+        slug='computational-substrate-independence',
+        name='Computational substrate independence',
+        also=[],
+        pattern=r'computational substrate independence',
+        sameAs=[],
+        text=(
+            'What Bostrom and classical mind uploading mean by substrate independence: a mind depends only on the '
+            'computation, so whatever runs it will do. Bostrom wrote "substrate-independence" into his 2003 simulation '
+            'argument, introducing it as "a common assumption in the philosophy of mind". 6/30 recounts how, in May '
+            '2026, the series filed it under the commitments that fix the answers in advance.'
+        ),
+        short='A mind depends only on the computation, so whatever runs it will do; the assumption of classical mind uploading.',
+        sources=['6-substrate-independence'],
+    ),
+    dict(
+        slug='physical-substrate-independence',
+        name='Physical substrate independence',
+        also=[],
+        pattern=r'physical substrate independence|substrate independence, in the physical sense',
+        sameAs=[],
+        text=(
+            'What the series means by substrate independence: a mind depends on what its carrier physically does, so '
+            'whatever does the same will do, be it biological or not. What it is supposed to become independent of is '
+            'biology, and physics it never leaves. It claims less than the computational version, as a material that '
+            'does the same physics also runs the same computation along the way, but not the other way round. Whether '
+            'any material other than living cells can do the job is a question for experiments.'
+        ),
+        short='A mind depends on what its carrier physically does, so whatever does the same will do; independent of biology, never of physics.',
+        sources=['6-substrate-independence'],
+    ),
+    dict(
+        slug='multiple-realisability',
+        name='Multiple realisability',
+        also=['multiple realizability', 'weak multiple realisability'],
+        pattern=r'multiple reali[sz]ab',
+        sameAs=['https://en.wikipedia.org/wiki/Multiple_realizability', 'https://www.wikidata.org/wiki/Q1414884'],
+        text=(
+            'Putnam\'s argument in "Psychological Predicates" (1967): pain cannot be one particular state of the brain, '
+            'as an octopus presumably feels pain with a brain built very differently, so pain has to be a functional '
+            'state that many kinds of matter can realise. 6/30 starts instead from an observation within humans: we have '
+            'somewhat the same kind of experience although our brains all differ, and slow-growing gliomas show living '
+            'neural tissue taking over from living neural tissue. In that bio-to-bio sense (weak multiple '
+            'realisability) it is evidenced; whether a different kind of substrate can take over is still open.'
+        ),
+        short='Many kinds of matter can realise the same mental state; evidenced bio-to-bio, open for a different kind of substrate.',
+        sources=['6-substrate-independence'],
+    ),
+    dict(
+        slug='medium-independence',
+        name='Medium independence',
+        also=[],
+        pattern=r'medium independen',
+        sameAs=[],
+        text=(
+            'Gualtiero Piccinini\'s term: a computation does not care what its vehicles are made of, as long as they '
+            'have the right degrees of freedom. He contrasts it with multiple realisability, via the mousetrap, which '
+            'can be built in many ways but still has to catch actual mice. 6/30: classical mind uploading turned out to '
+            'need medium independence for minds, while the series needs at most multiple realisability, as in the '
+            'heart-lung machine, whose "lung" is a bundle of plastic fibres.'
+        ),
+        short='Piccinini: a computation does not care what its vehicles are made of; unlike a mousetrap, which still has to catch mice.',
+        sources=['6-substrate-independence'],
+    ),
 ]
 
 # Things a post may mention that are not glossary terms but have a clear
