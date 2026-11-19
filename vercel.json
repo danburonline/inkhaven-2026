@@ -44,6 +44,21 @@
       ]
     },
     {
+      "source": "/:path*.:ext(jpg|jpeg|png|webp|avif|svg|ico|mp4)",
+      "missing": [
+        {
+          "type": "query",
+          "key": "v"
+        }
+      ],
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
       "source": "/:file(favicon.ico|favicon.svg|favicon-32.png|apple-touch-icon.png|icon-192.png|icon-512.png|icon-maskable-512.png)",
       "has": [
         {
@@ -55,15 +70,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/:path*.:ext(jpg|jpeg|png|webp|avif|svg|ico|mp4)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=604800, stale-while-revalidate=86400"
         }
       ]
     },
