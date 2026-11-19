@@ -209,7 +209,7 @@ def close_excerpt(chosen, text, limit, ellipsis=False):
 
 def first_para(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
         for el in body.select(sel):
             el.decompose()
     for p in body.find_all('p'):
@@ -476,7 +476,7 @@ def plain_name(t):
 
 def body_text(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
         for el in body.select(sel):
             el.decompose()
     return re.sub(r'\s+', ' ', body.get_text(' ')).strip()
@@ -648,6 +648,35 @@ def text_positions(fragment):
         i += 1
     return ''.join(chars), offs
 
+# Essence card (tools/essence.json): a short summary under the chart that also
+# carries the "Originally posted on X" line as its footer. Idempotent: an existing
+# card is unwrapped back to the plain banner first, so removing a key reverts it.
+ESSENCE_PATH = os.path.join(ROOT, 'tools', 'essence.json')
+ESSENCE = {k: v for k, v in json.load(open(ESSENCE_PATH, encoding='utf-8')).items() if not k.startswith('_')} if os.path.exists(ESSENCE_PATH) else {}
+ESSENCE_RE = re.compile(r'<aside class="essence"[^>]*>.*?(<a class="x-callout".*?</a>)</aside>', re.S)
+XC_RE = re.compile(r'<a class="x-callout".*?</a>', re.S)
+
+def apply_essence(path, slug):
+    s = open(path, encoding='utf-8').read()
+    orig = s
+    s = ESSENCE_RE.sub(lambda m: m.group(1), s)
+    text = ESSENCE.get(slug)
+    if text:
+        words = len(text.split())
+        if words >= 50:
+            raise SystemExit('essence for %s has %d words; keep it under 50' % (slug, words))
+        m = XC_RE.search(s)
+        if not m:
+            print('WARNING: essence for %s: no x-callout to attach to' % slug)
+        else:
+            card = ('<aside class="essence" id="sec-essence" aria-labelledby="essence-label">'
+                    '<p class="essence-label" id="essence-label">Essence</p>'
+                    '<p class="essence-text">%s</p>%s</aside>'
+                    % (html.escape(text, quote=False), m.group(0)))
+            s = s[:m.start()] + card + s[m.end():]
+    if s != orig:
+        open(path, 'w', encoding='utf-8').write(s)
+
 def apply_outline(path, slug):
     """Idempotent: section anchors (an id on the paragraph, or an empty
     <span class="sec-at"> before a sentence inside it) plus the Sections nav."""
@@ -696,6 +725,9 @@ def apply_outline(path, slug):
             else:
                 art = art[:pos] + '<span class="sec-at" id="%s"></span>' % sid + art[pos:]
         s = s[:a0] + art + s[a1:]
+        ep = art.find('<aside class="essence" id="sec-essence"')
+        if ep >= 0:
+            items.append(('sec-essence', 'Essence', ep, 'aside'))
         items.sort(key=lambda x: x[2])
         nav = ('    <nav class="toc" id="toc" aria-label="Sections">\n'
                '      <p class="toc-head" aria-hidden="true">Sections</p>\n      <ol>\n'
@@ -715,6 +747,7 @@ for d in sorted(os.listdir(ROOT)):
     if not m or not os.path.exists(p):
         continue
     preload = responsive_images(p, d)
+    apply_essence(p, d)
     apply_outline(p, d)
     soup = BeautifulSoup(open(p, encoding='utf-8').read(), 'html.parser')
     art = soup.find('article')
@@ -774,7 +807,7 @@ for d in sorted(os.listdir(ROOT)):
         video_src = SITE_URL + video['src']
     # full article HTML for the feed and plain text for llms-full.txt
     clean = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.x-callout', 'script', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', 'script', '.num-menu-pop']:
         for el in clean.select(sel):
             el.decompose()
     for el in clean.select('p[id^="sec-"]'):

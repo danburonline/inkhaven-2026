@@ -298,6 +298,40 @@ article p:last-child { margin-bottom: 0; }
 @media (max-width: 520px) {
   .x-callout-text span { display: none; }
 }
+/* Essence card: summary below the chart; the X line becomes its footer.
+   Scoped to .essence so plain .x-callout banners on other posts are unchanged. */
+.essence {
+  margin: -0.4rem 0 1.8rem;
+  padding: 1rem 1.15rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--surface);
+  scroll-margin-top: 1.5rem;
+}
+article .essence-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+article .essence-text { margin: 0; font-size: 1.05rem; line-height: 1.6; color: var(--text); text-align: left; hyphens: manual; }
+.essence .x-callout {
+  margin: 0.95rem -1.15rem 0;
+  padding: 0.7rem 0.75rem 0.7rem 1.15rem;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0 0 12px 12px;
+  background: transparent;
+}
+.essence .x-callout:hover { box-shadow: none; background: var(--bg); }
+.essence .x-callout:focus-visible { outline: 2px solid var(--muted); outline-offset: -2px; }
+@media (max-width: 520px) {
+  .essence { padding: 0.9rem 0.95rem 0; }
+  article .essence-text { font-size: 1rem; }
+  .essence .x-callout { margin: 0.85rem -0.95rem 0; padding-left: 0.95rem; }
+}
 .back { margin: 0 0 1.5rem; font-size: 0.95rem; }
 .post-list {
   list-style: none;
