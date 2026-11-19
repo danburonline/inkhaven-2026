@@ -15,6 +15,9 @@ SERIES_SUB = 'and Hybrid Mind Uploading'
 SITE_TITLE = SERIES + ' ' + SERIES_SUB
 AUTHOR = 'Daniel Burger'
 AUTHOR_X = 'https://x.com/danburonline'
+INKHAVEN_URL = 'https://inkhaven.blog'
+INKHAVEN_LINK = ('<a class="inkhaven" href="%s" target="_blank" rel="noopener">Inkhaven</a>'
+                 % INKHAVEN_URL)
 PT = timezone(timedelta(hours=-8))
 OG_W, OG_H = 1200, 630
 OG_SITE = '  <meta property="og:site_name" content="%s">\n' % SITE
@@ -132,8 +135,10 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         '        <h1>%s</h1>\n'
         '        <p class="post-byline"><time class="post-date" datetime="%s">%s</time>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
-        '<span class="post-words">%s</span></p>\n'
-        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words))
+        '<span class="post-words">%s</span>'
+        '<span class="post-meta-sep" aria-hidden="true">·</span>'
+        '%s</p>\n'
+        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words), INKHAVEN_LINK)
     )
     s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
     if n != 1:
@@ -1024,7 +1029,21 @@ if n:
         r'</nav>\1',
         hs2, count=1)
     if n2:
-        open(ip, 'w', encoding='utf-8').write(hs2)
+        hs = hs2
+        open(ip, 'w', encoding='utf-8').write(hs)
+
+# Link the home intro's Inkhaven mention to the official residency site.
+def _link_intro_inkhaven(m):
+    block = m.group(0)
+    if 'inkhaven.blog' in block or 'class="inkhaven"' in block:
+        return block
+    if 'Inkhaven' not in block:
+        return block
+    return block.replace('Inkhaven', INKHAVEN_LINK, 1)
+hs = open(ip, encoding='utf-8').read()
+hs2, n = re.subn(r'<p class="intro">.*?</p>', _link_intro_inkhaven, hs, count=1, flags=re.S)
+if n and hs2 != hs:
+    open(ip, 'w', encoding='utf-8').write(hs2)
 
 
 # ---------------------------------------------------------------------------
