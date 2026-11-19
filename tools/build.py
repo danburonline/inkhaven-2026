@@ -743,9 +743,7 @@ def apply_outline(path, slug):
             else:
                 art = art[:pos] + '<span class="sec-at" id="%s"></span>' % sid + art[pos:]
         s = s[:a0] + art + s[a1:]
-        ep = art.find('<aside class="essence" id="sec-essence"')
-        if ep >= 0:
-            items.append(('sec-essence', 'TL;DR', ep, 'aside'))
+        # The TL;DR card stays on the page but is not a section in the outline.
         items.sort(key=lambda x: x[2])
         nav = ('    <nav class="toc" id="toc" aria-label="Sections">\n'
                '      <p class="toc-head" aria-hidden="true">Sections</p>\n      <ol>\n'
