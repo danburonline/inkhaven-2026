@@ -135,10 +135,8 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         '        <h1>%s</h1>\n'
         '        <p class="post-byline"><time class="post-date" datetime="%s">%s</time>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
-        '<span class="post-words">%s</span>'
-        '<span class="post-meta-sep" aria-hidden="true">·</span>'
-        '%s</p>\n'
-        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words), INKHAVEN_LINK)
+        '<span class="post-words">%s</span></p>\n'
+        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words))
     )
     s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
     if n != 1:

@@ -248,19 +248,16 @@ a {
 }
 a:hover { color: var(--link-hover); }
 
-/* Inkhaven credit in the home intro and post byline: same colour as the
-   surrounding text, underline only on hover, keyboard focus, or tap. */
+/* Home intro Inkhaven link: looks like the surrounding text, no underline,
+   including on hover or tap. A focus ring remains for keyboard use. */
 a.inkhaven {
   color: inherit;
   text-decoration: none;
 }
 a.inkhaven:hover,
-a.inkhaven:focus-visible,
 a.inkhaven:active {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
+  text-decoration: none;
 }
 a.inkhaven:focus { outline: none; }
 a.inkhaven:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
