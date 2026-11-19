@@ -1089,9 +1089,11 @@ body:has(.post-nav) article {
   .toc.open { transform: none; visibility: visible; transition: transform 0.22s ease-out, visibility 0s; }
   .toc-grip { display: block; width: 2.25rem; height: 4px; margin: 0.2rem auto 0.7rem; border-radius: 2px; background: var(--rule); }
   .toc-head { padding: 0 0.6rem; font-size: 0.72rem; color: var(--text); opacity: 0.85; }
-  .toc a { padding: 0.55rem 0.6rem; border-radius: 8px; color: var(--text); }
-  .toc a[aria-current] { background: var(--bg); box-shadow: inset 3px 0 0 var(--text); font-weight: 600; }
-  .toc a[aria-current]::after { content: " · Reading"; color: var(--muted); font-size: 0.85em; }
+  /* Active item is typographic only: muted vs full-contrast, plus the
+     existing "· Reading" label. No rounded card, background, or stripe. */
+  .toc a { padding: 0.55rem 0.6rem; color: var(--muted); }
+  .toc a[aria-current] { color: var(--text); font-weight: 600; }
+  .toc a[aria-current]::after { content: " · Reading"; color: var(--muted); font-size: 0.85em; font-weight: 400; }
   .toc-dim {
     position: fixed;
     inset: 0;
