@@ -244,6 +244,36 @@ Gualtiero Piccinini's term: a computation does not care what its vehicles are ma
 
 Source: https://consciousness.ink/glossary/#medium-independence
 
+### Augmented cognition
+
+The second outcome of the Ontology. 7/30 uses it neither in DARPA's sense (a programme from the early 2000s about computers that adapt to the measured cognitive state of their user) nor in Engelbart's (1962) sense of better tools around a person, but for expanding the normal baseline of human cognition, and of conscious experience, which the name does not say. It is the bet that if a mind sits on a carrier that we built, the phenomenal space itself becomes steerable, not only the tools around it. Whatever takes what somebody can experience or do outside the range that they had before is called augmentation. In the Ontology's order it comes late, after preservation.
+
+Source: https://consciousness.ink/glossary/#augmented-cognition
+
+### Baseline first
+
+7/30: not to start from an augmented state as step one. First the same constraints, then changes to them, one at a time, and never both at once, with augmentation last. The baseline means the person's own, so how they experienced things and what they could do before, and no norm of what a human should be. It only shows what changed: that it is still the same someone hangs on the process having gone on, not on anybody's report. The baseline does not have to be better; it only has to come first.
+
+Source: https://consciousness.ink/glossary/#baseline-first
+
+### Comparison and verification problem
+
+7/30's main objection to classical mind uploading and whole brain emulation: scanned, emulated and switched on, the substrate, the body, the surroundings and probably the capacities all change in one step. Whoever comes out has no before of their own to compare to, and from in there a loss looks exactly like a difference. An emulation saying that it is fine shows nothing, as it would say that either way.
+
+Source: https://consciousness.ink/glossary/#comparison-and-verification-problem
+
+### Transformative experience
+
+L. A. Paul's name for experiences, such as becoming a vampire or having a child, that one cannot judge from the outside beforehand. 7/30 uses it for the second reason to keep the baseline first: deciding for a new sense from the outside is like ordering from a menu in a language one does not speak, where the dish then also changes what one likes to eat. So if there is a sane place to decide such things from, it is a stable one, one step at a time.
+
+Source: https://consciousness.ink/glossary/#transformative-experience
+
+### Experience machine
+
+Robert Nozick's thought experiment. 7/30 links it to what people outside the field most often say about "being embodied in a computer simulation": that they would feel trapped. Most of them do not want new colours, but to stick around in their familiar environment, with their own place and their friends.
+
+Source: https://consciousness.ink/glossary/#experience-machine
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -410,7 +440,7 @@ Trying to answer this question properly is a Pandora's box tho, or rather a deep
 URL: https://consciousness.ink/5-transcending-biology/
 Author: Daniel Burger
 Published: 2026-11-16
-Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness, goal vs outcome, transcend humanity, limits of biology, adumbrations, transhumanism, steerable phenomenology, lossless q-storage, world-line fidelity, substrate independence
+Topics: hybrid mind uploading, classical mind uploading, mind uploading, process world-line, gradual brain replacement, mechanistic gradual brain replacement, solving death, death, understand consciousness, goal vs outcome, transcend humanity, limits of biology, adumbrations, transhumanism, steerable phenomenology, lossless q-storage, world-line fidelity, substrate independence, augmented cognition
 
 The third and last goal of my Ontology is "transcend humanity". It comes after "solve death" (day three: [Nov 2026] ) and "understand consciousness" (day four/yesterday: [Nov 2026] ), and in the Ontology each of the three has a type => there's a "practical goal", a "theoretical one" and a "transformative one" => so today's goal is the one where the thing that changes is us (= the transformative one). It's also the one whose name I'm least happy with. I have three reasons for that, and two of them are why the goal has a new name as of today (until yesterday it was still called "human transcendence", which is also how it appears in yesterday's meditation).
 
@@ -449,7 +479,7 @@ Will it stay the third goal? The goal, yes. The name I've just changed, and I'm 
 URL: https://consciousness.ink/6-substrate-independence/
 Author: Daniel Burger
 Published: 2026-11-17
-Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity, substrate independence, computational substrate independence, physical substrate independence, multiple realisability, medium independence
+Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity, substrate independence, computational substrate independence, physical substrate independence, multiple realisability, medium independence, augmented cognition
 
 Over the past three days, we discussed the goals of my Ontology. Today we start with the first of the three outcomes, which also sit right below the mission called hybrid mind uploading. It's called "substrate independence". What does this term mean in this context? In the Ontology, it's listed as a state, and the one line under it says: mind no longer tied to biological substrate. There's a widespread reading of these two words in which the substrate simply doesn't matter. That's no good frame of mind for somebody who wants to build one, and it's not what I mean. The trouble sits in "independence", as the word asks a question that it doesn't answer (the same way "transcending" did yesterday with its "beyond what?") => independent of what? And dependent on what instead?
 
@@ -480,7 +510,7 @@ Which leaves the question of what exactly has to be re-created. Earlier this yea
 URL: https://consciousness.ink/7-augmented-cognition/
 Author: Daniel Burger
 Published: 2026-11-18
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, whole brain emulation, understand consciousness, transcend humanity, transhumanism, steerable phenomenology, substrate independence, physical substrate independence
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, whole brain emulation, understand consciousness, transcend humanity, transhumanism, steerable phenomenology, substrate independence, physical substrate independence, augmented cognition, baseline first, comparison and verification problem, transformative experience, experience machine
 
 The second outcome (type "Outcome") of my Ontology is called "augmented cognition" (yesterday's was "substrate independence"). This term is not very clean, as depending on who you ask, it gives you a different response. If you ask DARPA, it's a programme from the early 2000s about computers that adapt to the measured cognitive state of their user, and if you ask Engelbart (1962), it's about better tools around a person. I'm referring to neither. How I'm using it, as an outcome of hybrid mind uploading towards the vision of synthetic consciousness, is to expand the normal baseline of human cognition as we're used to it today (and of conscious experience (which the name doesn't say)). At the core, it's the bet that if a mind sits "on a carrier" that we built (physical substrate independence => in yesterday's words), then we'd be able to steer the phenomenal space itself and not only the tools around it, or as I put it in September: a substrate we can build is a substrate we can steer ( [Sep 2026] ). So whatever takes what somebody can experience or do outside the range that they had before, I'll call augmentation. The full catalogue I'll leave to the transhumanists. You know the usual examples: more experienced time per physical second, feelings that nobody has had yet, or colours that don't exist in the spectrum. (I'm unsure how far the first one goes btw, as a mind on such a "mechanistically created" carrier is still bound to the same physics, and to a world that keeps running at its own pace). And about those colours ... well, we all see one of them already: it's magenta! There's no single wavelength for it anywhere in the physical light spectrum, and our brain just makes it up in our phenomenal space anyway (out of red and blue light with the green missing; this is also the reason why my personal brand's main colour is magenta btw!). So if ordinary biology can already do that, then on a steerable carrier we can probably engineer – and therefore experience – a LOT more colours that don't exist in the spectrum. In 2009, adult monkeys that had been colour-blind since birth got a third cone pigment by gene therapy, and started to tell colours apart that they couldn't before ( [nature.com] ). Similarly, last year a handful of people were shown a colour outside the natural gamut, by a laser that stimulated (almost) only their M cones (they called it "olo": [science.org] ). And in the same vein, I suspect that some of what gets called augmentation is possible in biology already, so what a steerable substrate would add is range, and hopefully a way back.
 

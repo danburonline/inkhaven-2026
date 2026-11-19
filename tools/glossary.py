@@ -636,6 +636,85 @@ TERMS = [
         short='Piccinini: a computation does not care what its vehicles are made of; unlike a mousetrap, which still has to catch mice.',
         sources=['6-substrate-independence'],
     ),
+    dict(
+        slug='augmented-cognition',
+        name='Augmented cognition',
+        also=['augmentation'],
+        pattern=r'augmented cognition',
+        sameAs=[],
+        text=(
+            'The second outcome of the Ontology. 7/30 uses it neither in DARPA\'s sense (a programme from the early '
+            '2000s about computers that adapt to the measured cognitive state of their user) nor in Engelbart\'s (1962) '
+            'sense of better tools around a person, but for expanding the normal baseline of human cognition, and of '
+            'conscious experience, which the name does not say. It is the bet that if a mind sits on a carrier that we '
+            'built, the phenomenal space itself becomes steerable, not only the tools around it. Whatever takes what '
+            'somebody can experience or do outside the range that they had before is called augmentation. In the '
+            'Ontology\'s order it comes late, after preservation.'
+        ),
+        short='The second outcome: expanding the baseline of human cognition and conscious experience on a built, steerable carrier; it comes late.',
+        sources=['7-augmented-cognition'],
+    ),
+    dict(
+        slug='baseline-first',
+        name='Baseline first',
+        also=['the same baseline'],
+        pattern=r'same baseline|baseline first|baseline to compare',
+        sameAs=[],
+        text=(
+            '7/30: not to start from an augmented state as step one. First the same constraints, then changes to '
+            'them, one at a time, and never both at once, with augmentation last. The baseline means the person\'s '
+            'own, so how they experienced things and what they could do before, and no norm of what a human should '
+            'be. It only shows what changed: that it is still the same someone hangs on the process having gone on, '
+            'not on anybody\'s report. The baseline does not have to be better; it only has to come first.'
+        ),
+        short='First the same constraints, then changes one at a time, augmentation last; the baseline is the person\'s own.',
+        sources=['7-augmented-cognition'],
+    ),
+    dict(
+        slug='comparison-and-verification-problem',
+        name='Comparison and verification problem',
+        also=[],
+        pattern=r'comparison and verification problem',
+        sameAs=[],
+        text=(
+            '7/30\'s main objection to classical mind uploading and whole brain emulation: scanned, emulated and '
+            'switched on, the substrate, the body, the surroundings and probably the capacities all change in one step. '
+            'Whoever comes out has no before of their own to compare to, and from in there a loss looks exactly like a '
+            'difference. An emulation saying that it is fine shows nothing, as it would say that either way.'
+        ),
+        short='When everything changes in one step, there is no before to compare to, and a loss looks exactly like a difference.',
+        sources=['7-augmented-cognition'],
+    ),
+    dict(
+        slug='transformative-experience',
+        name='Transformative experience',
+        also=[],
+        pattern=r'transformative experiences?',
+        sameAs=[],
+        text=(
+            'L. A. Paul\'s name for experiences, such as becoming a vampire or having a child, that one cannot judge '
+            'from the outside beforehand. 7/30 uses it for the second reason to keep the baseline first: deciding for a '
+            'new sense from the outside is like ordering from a menu in a language one does not speak, where the dish '
+            'then also changes what one likes to eat. So if there is a sane place to decide such things from, it is a '
+            'stable one, one step at a time.'
+        ),
+        short='L. A. Paul: experiences one cannot judge beforehand; so augmentation is best decided from a stable baseline.',
+        sources=['7-augmented-cognition'],
+    ),
+    dict(
+        slug='experience-machine',
+        name='Experience machine',
+        also=[],
+        pattern=r'experience machine',
+        sameAs=['https://en.wikipedia.org/wiki/Experience_machine', 'https://www.wikidata.org/wiki/Q5421060'],
+        text=(
+            'Robert Nozick\'s thought experiment. 7/30 links it to what people outside the field most often say about '
+            '"being embodied in a computer simulation": that they would feel trapped. Most of them do not want new '
+            'colours, but to stick around in their familiar environment, with their own place and their friends.'
+        ),
+        short='Nozick\'s thought experiment; in 7/30, why people say they would feel trapped in a computer simulation.',
+        sources=['7-augmented-cognition'],
+    ),
 ]
 
 # Things a post may mention that are not glossary terms but have a clear
