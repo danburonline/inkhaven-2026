@@ -20,11 +20,13 @@
     if (bq) { embeds.push({ wrap: wrap, html: bq.outerHTML }); reserve(wrap, columnWidth()); wrap.classList.add('loading'); }
   });
   // Text column width computed from the viewport (styles.css: .wrap is at most
-  // 38rem with 1.25rem padding; html is 17px under 40rem, else 18px), so the
-  // first reservation doesn't force a layout while the page is still loading.
+  // 38rem, with 1rem padding under 40rem / 640px and 1.25rem otherwise; html is
+  // 17px under 40rem, else 18px), so the first reservation doesn't force a
+  // layout while the page is still loading.
   function columnWidth() {
     var vw = window.innerWidth, fs = vw <= 640 ? 17 : 18;
-    return Math.min(vw, 38 * fs) - 2.5 * fs;
+    var pad = vw <= 640 ? 2 : 2.5;
+    return Math.min(vw, 38 * fs) - pad * fs;
   }
   // Reserve roughly the final embed height so the page doesn't jump.
   // data-h="w1:h1,w2:h2,..." are measured card heights at given widths.
