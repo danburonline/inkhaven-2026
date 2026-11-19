@@ -58,6 +58,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [4/30 Meditations on Synthetic Consciousness: Measurements, Models and Theories](https://consciousness.ink/4-measurements-models-theories/): Day 4 of 30: the second goal of the Ontology, understand consciousness, and why measurement comes before models and models before any theory of what consciousness is.
 - [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/): Day 5 of 30: the third goal of the Ontology, renamed "transcend humanity": going beyond the limits that human biology sets for us, while the limits of physics stay where they are.
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/): Day 6 of 30: the first outcome of the Ontology, substrate independence, and why I mean physical rather than computational substrate independence: independent of biology, never of physics.
+- [7/30 Meditations on Synthetic Consciousness: Augmented Cognition Needs a Baseline First](https://consciousness.ink/7-augmented-cognition/): The second outcome (type "Outcome") of my Ontology is called "augmented cognition".
 
 ## Optional
 
