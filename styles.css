@@ -327,6 +327,8 @@ article .essence-text { margin: 0; font-size: 1.05rem; line-height: 1.6; color: 
 }
 .essence .x-callout:hover { box-shadow: none; background: var(--bg); }
 .essence .x-callout:focus-visible { outline: 2px solid var(--muted); outline-offset: -2px; }
+.essence .x-callout-text strong { display: block; margin-right: 0; }
+.essence .x-callout-text span { display: block; margin-top: 0.1rem; }
 @media (max-width: 520px) {
   .essence { padding: 0.9rem 0.95rem 0; }
   article .essence-text { font-size: 1rem; }

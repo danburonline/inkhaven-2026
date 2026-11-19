@@ -685,7 +685,7 @@ def apply_essence(path, slug):
             print('WARNING: essence for %s: no x-callout to attach to' % slug)
         else:
             card = ('<aside class="essence" id="sec-essence" aria-labelledby="essence-label">'
-                    '<p class="essence-label" id="essence-label">Essence</p>'
+                    '<p class="essence-label" id="essence-label">TL;DR</p>'
                     '<p class="essence-text">%s</p>%s</aside>'
                     % (html.escape(text, quote=False), m.group(0)))
             s = s[:m.start()] + card + s[m.end():]
@@ -742,7 +742,7 @@ def apply_outline(path, slug):
         s = s[:a0] + art + s[a1:]
         ep = art.find('<aside class="essence" id="sec-essence"')
         if ep >= 0:
-            items.append(('sec-essence', 'Essence', ep, 'aside'))
+            items.append(('sec-essence', 'TL;DR', ep, 'aside'))
         items.sort(key=lambda x: x[2])
         nav = ('    <nav class="toc" id="toc" aria-label="Sections">\n'
                '      <p class="toc-head" aria-hidden="true">Sections</p>\n      <ol>\n'
