@@ -441,12 +441,27 @@ PERSON = {
     'knowsAbout': [{'@id': GLOSSARY_URL + '#' + t['slug']} for t in TERMS],
 }
 REL_ME = '\n'.join('  <link rel="me" href="%s">' % u for u in SAME_AS)
-ICONS = '''  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+def file_v(name):
+    return hashlib.sha1(open(os.path.join(ROOT, name), 'rb').read()).hexdigest()[:10]
+
+# Icon URLs carry a content hash so browsers, the service worker and Vercel's
+# week-long image cache pick up a new file as soon as the mark is regenerated.
+ICON_FILES = ('favicon.svg', 'favicon.ico', 'favicon-32.png', 'apple-touch-icon.png',
+              'icon-192.png', 'icon-512.png', 'icon-maskable-512.png')
+ICON_V = {n: file_v(n) for n in ICON_FILES}
+
+def icon_src(name):
+    return '/%s?v=%s' % (name, ICON_V[name])
+
+ICONS = '''  <link rel="icon" href="%s" type="image/svg+xml">
+  <link rel="icon" href="%s" type="image/png" sizes="32x32">
+  <link rel="icon" href="%s" sizes="16x16 32x32 48x48">
+  <link rel="apple-touch-icon" href="%s" sizes="180x180">
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)">'''
+  <meta name="theme-color" content="#15130f" media="(prefers-color-scheme: dark)">''' % (
+    icon_src('favicon.svg'), icon_src('favicon-32.png'),
+    icon_src('favicon.ico'), icon_src('apple-touch-icon.png'))
 SERIES_KEYWORDS = ['synthetic consciousness', 'hybrid mind uploading', 'mind uploading',
                    'gradual brain replacement', 'Daniel Burger']
 HOME_TITLE = SITE_TITLE
@@ -1240,10 +1255,10 @@ manifest = {
     'theme_color': '#f6f1e8',
     'categories': ['books', 'education'],
     'icons': [
-        {'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
-        {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
-        {'src': '/icon-maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
-        {'src': '/favicon.svg', 'sizes': 'any', 'type': 'image/svg+xml', 'purpose': 'any'},
+        {'src': icon_src('icon-192.png'), 'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+        {'src': icon_src('icon-512.png'), 'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+        {'src': icon_src('icon-maskable-512.png'), 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
+        {'src': icon_src('favicon.svg'), 'sizes': 'any', 'type': 'image/svg+xml', 'purpose': 'any'},
     ],
 }
 open(os.path.join(ROOT, 'manifest.webmanifest'), 'w', encoding='utf-8').write(
@@ -1291,7 +1306,7 @@ for f in html_files:
 # version changes whenever any of them (or sw.js itself) changes.
 sw_path = os.path.join(ROOT, 'sw.js')
 sw = open(sw_path, encoding='utf-8').read()
-precache = ['/offline/', '/manifest.webmanifest', '/favicon.svg'] + ['/%s?v=%s' % (a, ASSET_V[a]) for a in ASSETS]
+precache = ['/offline/', '/manifest.webmanifest', icon_src('favicon.svg')] + ['/%s?v=%s' % (a, ASSET_V[a]) for a in ASSETS]
 sw = re.sub(r"const PRECACHE = \[.*?\];", lambda _: 'const PRECACHE = %s;' % json.dumps(precache), sw, count=1, flags=re.S)
 sw_body = re.sub(r"const VERSION = '[^']*';", "const VERSION = '';", sw, count=1)
 ver = hashlib.sha1((sw_body + open(os.path.join(off_dir, 'index.html'), encoding='utf-8').read()

@@ -1,4 +1,4 @@
 {
  "_comment": "Essence card per post, keyed by slug: one or two sentences, under 50 words. build.py renders it below the chart and moves the Originally-posted-on-X line inside it. Remove a key to fall back to the plain X banner.",
- "7-augmented-cognition": "Augmented cognition is the second outcome of my Ontology, but not step one. A steerable substrate should first carry the same baseline, so any change can be noticed and compared. Augmentation, like seeing a new colour, comes later, by choice, one change at a time."
+ "7-augmented-cognition": "Augmented cognition is the second outcome of my Ontology, but not step one: a steerable substrate should first carry the same baseline, so any change can be noticed and compared. Augmentation, like seeing a new colour, comes later, by choice, one change at a time."
 }

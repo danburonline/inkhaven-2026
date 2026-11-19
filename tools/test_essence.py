@@ -15,6 +15,7 @@ class EssenceTests(unittest.TestCase):
         self.assertEqual(card.select_one('.essence-label').text, 'Essence')
         text = card.select_one('.essence-text').text
         self.assertLess(len(text.split()), 50)
+        self.assertLessEqual(text.count('.'), 2)
         self.assertEqual(text, json.loads((ROOT / 'tools/essence.json').read_text())['7-augmented-cognition'])
         self.assertEqual(card.select_one('a.x-callout')['href'], 'https://x.com/danburonline/status/2123299553327849974')
         self.assertEqual(len(soup.select('a.x-callout')), 1)
