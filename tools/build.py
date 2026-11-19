@@ -432,6 +432,7 @@ TERMSET_ID = GLOSSARY_URL + '#terms'
 SAME_AS = [
     'https://danielburger.online/',
     'https://x.com/danburonline',
+    'https://www.linkedin.com/in/danburonline/',
     'https://github.com/danburonline',
     'https://substack.com/@danburonline',
 ]
