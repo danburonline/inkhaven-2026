@@ -15,7 +15,7 @@
   var ICON_CHEV = '<svg aria-hidden="true" viewBox="0 0 12 12" width="10" height="10"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   // ---- plain-text extraction ---------------------------------------------
-  var SKIP = 'header.post-header, .essence-label, .x-callout, .tweet-embed, .twitter-tweet, iframe, picture, img, video, audio, figure, svg, script, style, noscript, button, nav, footer, .toc, .sec-at, .tcopy, .hl-pop, .pv-card, [aria-hidden="true"], [hidden]';
+  var SKIP = 'header.post-header, .essence, .x-callout, .tweet-embed, .twitter-tweet, iframe, picture, img, video, audio, figure, svg, script, style, noscript, button, nav, footer, .toc, .sec-at, .tcopy, .hl-pop, .pv-card, [aria-hidden="true"], [hidden]';
   var BLOCK = /^(P|H[1-6]|LI|BLOCKQUOTE|PRE|DIV|ASIDE|SECTION|UL|OL|TABLE|TR|FIGCAPTION|DL|DT|DD)$/;
   function bare(u) { return u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, ''); }
   function linkText(a) {
