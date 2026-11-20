@@ -125,8 +125,10 @@
     box.classList.add('menu-open', 'shown');
     more.setAttribute('aria-expanded', 'true');
     menu.style.left = ''; menu.style.right = '';
-    var r = menu.getBoundingClientRect(), vw = document.documentElement.clientWidth;
-    if (r.right > vw - 8) { menu.style.left = 'auto'; menu.style.right = '0'; }
+    // keep it inside the text column (ancestors clip horizontal overflow)
+    var r = menu.getBoundingClientRect(),
+        edge = Math.min(document.documentElement.clientWidth - 8, h1.getBoundingClientRect().right);
+    if (r.right > edge) { menu.style.left = 'auto'; menu.style.right = '0'; }
     if (focusFirst) items[0].focus();
   }
   function closeMenu(focusBack) {
