@@ -135,10 +135,12 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         # empty .tcopy slot: titlecopy.js fills it; reserving its width here
         # keeps the title from rewrapping when the script runs
         '        <h1>%s <span class="tcopy"></span></h1>\n'
-        '        <p class="post-byline"><time class="post-date" datetime="%s">%s</time>'
+        '        <p class="post-byline"><a class="author-link post-author" href="%s" target="_blank" rel="author me noopener">%s</a>'
+        '<span class="post-meta-sep" aria-hidden="true">·</span>'
+        '<time class="post-date" datetime="%s">%s</time>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
         '<span class="post-words">%s</span></p>\n'
-        '      </header>\n' % (html.escape(short), iso, html.escape(date_text), words_label(words))
+        '      </header>\n' % (html.escape(short), AUTHOR_X, html.escape(AUTHOR), iso, html.escape(date_text), words_label(words))
     )
     s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
     if n != 1:
