@@ -107,5 +107,75 @@
       links[i].focus();
     }
   });
-  fetch('/posts.json?v=a4fac6c87a').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(build).catch(function () {});
+  // Shift + ArrowLeft / ArrowRight: previous (older) / next (newer) meditation
+  var order = null;
+  btn.title = 'All meditations (Shift + \u2190 / \u2192 for previous / next)';
+  document.addEventListener('keydown', function (e) {
+    if (!order || !e.shiftKey || e.ctrlKey || e.altKey || e.metaKey || e.defaultPrevented) return;
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    var sel = window.getSelection && window.getSelection();
+    if (sel && !sel.isCollapsed && String(sel)) return;
+    var i = -1;
+    for (var k = 0; k < order.length; k++) if (order[k].slug === here) i = k;
+    if (i === -1) return;
+    var to = order[i + (e.key === 'ArrowLeft' ? -1 : 1)];
+    if (!to) return;
+    e.preventDefault();
+    location.href = '/' + to.slug + '/';
+  });
+
+  fetch('/posts.json?v=a4fac6c87a').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (posts) {
+    order = posts.slice().sort(function (a, b) { return a.n - b.n; });
+    build(posts);
+  }).catch(function () {});
+
+  // Reading position, per post, in localStorage ("pos:<slug>"). Stored as the
+  // block at the top of the viewport plus the pixel offset into it (survives
+  // small layout changes), with the plain scrollY as a fallback. A #hash in
+  // the URL wins; a post never opened before starts at the top.
+  var main = document.querySelector('main');
+  if (!main || !here) return;
+  var KEY = 'pos:' + here;
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  function blocks() { return main.querySelectorAll('article > *, main > :not(article):not(.toc)'); }
+  function read() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+  var ready = false, userMoved = false, saveT = 0;
+  function save() {
+    saveT = 0;
+    if (!ready) return;
+    var y = window.pageYOffset, b = blocks(), i = -1, o = 0;
+    if (y > 0) for (var k = 0; k < b.length; k++) {
+      var r = b[k].getBoundingClientRect();
+      if (r.bottom > 0) { i = k; o = Math.round(-r.top); break; }
+    }
+    try { localStorage.setItem(KEY, JSON.stringify({ i: i, o: o, y: Math.round(y) })); } catch (e) {}
+  }
+  function target(p) {
+    if (!p || !p.y) return 0;
+    var b = blocks()[p.i];
+    return b ? b.getBoundingClientRect().top + window.pageYOffset + p.o : p.y;
+  }
+  var stored = location.hash ? null : read();
+  function restore() {
+    if (!stored || userMoved) return;
+    var y = Math.round(target(stored));
+    if (Math.abs(window.pageYOffset - y) > 1) window.scrollTo(0, y);
+  }
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true });
+  });
+  if (stored) {
+    restore();
+    // re-apply once layout settles (fonts, images, embeds), unless the reader already moved
+    var again = function () { restore(); };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(again);
+    if (document.readyState === 'complete') setTimeout(again, 0); else window.addEventListener('load', function () { again(); setTimeout(again, 400); });
+  }
+  ready = true;
+  if (!stored && !location.hash) save();  // mark as opened (at the top)
+  window.addEventListener('scroll', function () { if (!saveT) saveT = setTimeout(save, 250); }, { passive: true });
+  window.addEventListener('pagehide', save);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') save(); });
 })();
