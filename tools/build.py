@@ -545,12 +545,16 @@ def ensure_pager(path, prev_q, next_q):
     """Idempotent: quiet previous / next line between </main> and the footer."""
     s = PAGER_RE.sub('', open(path, encoding='utf-8').read())
     parts = []
+    def link(q, kind, word, label):
+        name = '%s/30 %s' % (q['n'], q['short'])
+        return ('<a class="pager-%s" rel="%s" href="/%s/" title="%s" aria-label="%s: %s">'
+                '<span class="pager-label" aria-hidden="true">%s</span>'
+                '<span class="pager-title">%s</span></a>'
+                % (kind, kind, q['slug'], html.escape(name), word, html.escape(name), label, html.escape(name)))
     if prev_q:
-        parts.append('<a class="pager-prev" rel="prev" href="/%s/"><span aria-hidden="true">&larr; </span>%s/30 %s</a>'
-                     % (prev_q['slug'], prev_q['n'], html.escape(prev_q['short'])))
+        parts.append(link(prev_q, 'prev', 'Previous', '&larr; Previous'))
     if next_q:
-        parts.append('<a class="pager-next" rel="next" href="/%s/">%s/30 %s<span aria-hidden="true"> &rarr;</span></a>'
-                     % (next_q['slug'], next_q['n'], html.escape(next_q['short'])))
+        parts.append(link(next_q, 'next', 'Next', 'Next &rarr;'))
     if parts:
         block = ('\n    <!-- pager:start -->\n    <nav class="pager" aria-label="Previous and next meditations">%s</nav>\n    <!-- pager:end -->'
                  % ''.join(parts))

@@ -277,22 +277,44 @@ article p:last-child { margin-bottom: 0; }
 /* top image / video: a captionless <figure>, spaced like the paragraph it replaced */
 article figure.post-media { margin: 0 0 1.1rem; }
 
-/* previous / next meditation, one quiet muted line above the footer */
+/* previous / next meditation: two equal columns, each a small muted label
+   over a one-line title (ellipsis; full title in title / aria-label) */
 .pager {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.4rem 1.5rem;
-  margin: 2.25rem 0 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 2rem;
+  row-gap: 1.1rem;
+  margin: 2.5rem 0 0;
+  line-height: 1.35;
 }
-.pager a { color: var(--muted); text-decoration: none; max-width: 100%; }
-.pager a:hover, .pager a:focus-visible { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); }
+.pager + footer.site { margin-top: 2.5rem; }
+.pager a { display: block; min-width: 0; color: var(--text); text-decoration: none; }
+.pager .pager-prev { grid-column: 1; text-align: left; }
+.pager .pager-next { grid-column: 2; text-align: right; }
+.pager-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pager-title {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.95rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+.pager a:hover .pager-title, .pager a:focus-visible .pager-title { text-decoration: underline; text-decoration-color: var(--muted); }
 .pager a:focus { outline: none; }
 .pager a:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
-.pager .pager-next { margin-left: auto; text-align: right; }
-@media (min-width: 40rem) { .pager { flex-wrap: nowrap; } .pager a { max-width: calc(50% - 0.75rem); } }
+@media (max-width: 40rem) {
+  .pager { grid-template-columns: minmax(0, 1fr); }
+  .pager .pager-prev, .pager .pager-next { grid-column: 1; }
+}
 .x-callout {
   display: flex;
   align-items: center;
