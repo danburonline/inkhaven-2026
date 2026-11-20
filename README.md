@@ -9,6 +9,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel. There is 
 ## Published posts
 
 - [7/30 Meditations on Synthetic Consciousness: Augmented Cognition Needs a Baseline First](https://consciousness.ink/7-augmented-cognition/) · [X](https://x.com/danburonline/status/2123299553327849974)
+- [8/30 Meditations on Synthetic Consciousness: Who Says Individuality Will Stay Forever?](https://consciousness.ink/8-collective-mind/) · [X](https://x.com/danburonline/status/2123682201342759353)
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/) · [X](https://x.com/danburonline/status/2122956433914478644)
 - [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/) · [X](https://x.com/danburonline/status/2122573865079709758)
 - [4/30 Meditations on Synthetic Consciousness: Measurements, Models and Theories](https://consciousness.ink/4-measurements-models-theories/) · [X](https://x.com/danburonline/status/2122235784644477415)

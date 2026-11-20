@@ -21,7 +21,7 @@ class EssenceTests(unittest.TestCase):
         self.assertEqual(text, json.loads((ROOT / 'tools/essence.json').read_text())['7-augmented-cognition'])
         self.assertEqual(card.select_one('a.x-callout')['href'], 'https://x.com/danburonline/status/2123299553327849974')
         self.assertEqual(len(soup.select('a.x-callout')), 1)
-        self.assertIsNotNone(card.find_previous_sibling('p').select_one('picture'))
+        self.assertIsNotNone(card.find_previous_sibling('figure').select_one('picture'))
         self.assertIn('1,821 words', soup.select_one('.post-byline').text)
 
     def test_every_post_has_a_card(self):

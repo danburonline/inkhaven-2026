@@ -53,6 +53,13 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Comparison and verification problem](https://consciousness.ink/glossary/#comparison-and-verification-problem): When everything changes in one step, there is no before to compare to, and a loss looks exactly like a difference.
 - [Transformative experience](https://consciousness.ink/glossary/#transformative-experience): L. A. Paul: experiences one cannot judge beforehand; so augmentation is best decided from a stable baseline.
 - [Experience machine](https://consciousness.ink/glossary/#experience-machine): Nozick's thought experiment; in 7/30, why people say they would feel trapped in a computer simulation.
+- [Collective mind](https://consciousness.ink/glossary/#collective-mind): The third outcome: a merge into one giant, phenomenally conscious mind with one process world-line, instead of staying individuals.
+- [Neurophenomenal structuralism](https://consciousness.ink/glossary/#neurophenomenal-structuralism): Lyre: what an experience is like is fixed by its position in a structure of relations to all other experiences.
+- [Ecphoric reconstruction](https://consciousness.ink/glossary/#ecphoric-reconstruction): A brain keeps a lossy version of an experience and rebuilds the rest from priors, so a memory never lands exactly on the original.
+- [Q-time and P-time](https://consciousness.ink/glossary/#q-time-and-p-time): Personal, phenomenal time versus substrate time; only Q-time loses its forward arrow, and both stay within physics.
+- [Branching identity](https://consciousness.ink/glossary/#branching-identity): Re-entering past experiences turns a personal history into a graph with branches: many of "me", one person in P-time.
+- [Distributed unification](https://consciousness.ink/glossary/#distributed-unification): Many nodes, one mind: during replacement, old tissue and new parts have to be one mind the whole time.
+- [Show, don't tell](https://consciousness.ink/glossary/#show-dont-tell): Words cannot carry over what an experience is like; really showing it means one shared phenomenal space.
 
 ## Meditations
 
@@ -64,6 +71,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/): Day 5 of 30: the third goal of the Ontology, renamed "transcend humanity": going beyond the limits that human biology sets for us, while the limits of physics stay where they are.
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/): Day 6 of 30: the first outcome of the Ontology, substrate independence, and why I mean physical rather than computational substrate independence: independent of biology, never of physics.
 - [7/30 Meditations on Synthetic Consciousness: Augmented Cognition Needs a Baseline First](https://consciousness.ink/7-augmented-cognition/): Day 7 of 30: the second outcome of the Ontology, augmented cognition, and why augmentation comes last: a baseline first, so we can see what changed.
+- [8/30 Meditations on Synthetic Consciousness: Who Says Individuality Will Stay Forever?](https://consciousness.ink/8-collective-mind/): Day 8 of 30: the third and last outcome of the Ontology, collective mind. Who says that we stay individuals, and don't merge into one collective mind?
 
 ## Optional
 

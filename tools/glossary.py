@@ -98,7 +98,7 @@ TERMS = [
             'series, death is the irreversible end of the process world-line.'
         ),
         short='The 4D trajectory of the physical processes that constitute a brain; its irreversible end is death.',
-        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death', '5-transcending-biology'],
+        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death', '5-transcending-biology', '8-collective-mind'],
     ),
     dict(
         slug='gradual-brain-replacement',
@@ -249,7 +249,7 @@ TERMS = [
             'bringing somebody back from an end, only about never letting a stop turn into one.'
         ),
         short='The irreversible end of a conscious process world-line, irreversible by anything physics allows.',
-        sources=['3-solving-death'],
+        sources=['3-solving-death', '8-collective-mind'],
     ),
     dict(
         slug='amortality',
@@ -538,7 +538,7 @@ TERMS = [
             'forward. In the Ontology it sits under augmented cognition.'
         ),
         short='A hypothesised substrate that stores an experience whole, so memory is as rich as the experience; an open engineering question.',
-        sources=['5-transcending-biology'],
+        sources=['5-transcending-biology', '8-collective-mind'],
     ),
     dict(
         slug='world-line-fidelity',
@@ -714,6 +714,117 @@ TERMS = [
         ),
         short='Nozick\'s thought experiment; in 7/30, why people say they would feel trapped in a computer simulation.',
         sources=['7-augmented-cognition'],
+    ),
+    dict(
+        slug='collective-mind',
+        name='Collective mind',
+        also=['hivemind'],
+        pattern=r'collective minds?|hive ?minds?|hivemindism',
+        sameAs=[],
+        text=(
+            'The third and last outcome of the Ontology (8/30). As soon as synthetic consciousness has been achieved via '
+            'hybrid mind uploading, there is technically the possibility to merge into one giant collective mind, with one '
+            'process world-line instead of "society", and phenomenally conscious as a whole, not only smart as a whole the '
+            'way a society or the internet can be. Most transhumanists assume that they stay single individuals. 8/30 '
+            'expects it to start occasionally, to show something instead of telling it, until coming apart again is the '
+            'exception. Whether one would then still be around as oneself is left open.'
+        ),
+        short='The third outcome: a merge into one giant, phenomenally conscious mind with one process world-line, instead of staying individuals.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='neurophenomenal-structuralism',
+        name='Neurophenomenal structuralism',
+        also=['Q-structure'],
+        pattern=r'neurophenomenal structuralism|Q-structure',
+        sameAs=[],
+        text=(
+            'Holger Lyre\'s view, which 8/30 takes seriously: what an experience is like is fixed by its position in a '
+            'structure of relations to all other experiences (the Q-structure), and how that position gets activated, by '
+            'the eyes or by a memory, should not matter. That it obviously does matter, as a remembered sunset is pale '
+            'next to the one in front of you, is what the January 2026 essay explains with ecphoric reconstruction.'
+        ),
+        short='Lyre: what an experience is like is fixed by its position in a structure of relations to all other experiences.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='ecphoric-reconstruction',
+        name='Ecphoric reconstruction',
+        also=[],
+        pattern=r'ecphoric',
+        sameAs=[],
+        text=(
+            'The name 8/30 uses for how a biological brain remembers: it keeps a compressed, lossy version of an '
+            'experience (its engram) and rebuilds the rest from priors at recall. So remembering lands somewhere near the '
+            'original position in the structure of experiences and never exactly on it. Take that bottleneck away on a '
+            'substrate built without the compression constraint, and a memory would be the full experience again '
+            '(lossless Q-storage), if that can be built at all.'
+        ),
+        short='A brain keeps a lossy version of an experience and rebuilds the rest from priors, so a memory never lands exactly on the original.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='q-time-and-p-time',
+        name='Q-time and P-time',
+        also=['substrate time'],
+        pattern=r'\bQ-time\b|\bP-time\b',
+        sameAs=[],
+        text=(
+            'Two layers of time from the unpublished January 2026 essay. Q-time is personal, phenomenal time; P-time is '
+            'substrate time, the physical time in which the substrate keeps moving forward like everything else. With a '
+            'past that can be re-entered at full resolution, personal time turns from something one gets pushed through '
+            'into something one can walk around in, like a DVD that can be rewound while the player does not get a day '
+            'younger. The destruction of the forward arrow only ever happens in Q-time, and no dualism is implied: both '
+            'stay within physics.'
+        ),
+        short='Personal, phenomenal time versus substrate time; only Q-time loses its forward arrow, and both stay within physics.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='branching-identity',
+        name='Branching identity',
+        also=['directed acyclic graph of selves'],
+        pattern=r'branching identity|directed acyclic graph',
+        sameAs=[],
+        text=(
+            'If one can go back into a past experiential state, one can also decide differently from there and see where '
+            'it goes, so the history of what one has experienced stops being a simple line and turns into a graph with '
+            'branches (a directed acyclic graph, a picture borrowed from Toby Ord). In 8/30 this is the intrapersonal, '
+            'Q-time kind of hivemind: one substrate, one ongoing process, many of "me", and in P-time still exactly one person.'
+        ),
+        short='Re-entering past experiences turns a personal history into a graph with branches: many of "me", one person in P-time.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='distributed-unification',
+        name='Distributed unification',
+        also=['many nodes, one mind'],
+        pattern=r'distributed unification',
+        sameAs=[],
+        text=(
+            'An operational requirement of the Ontology: many nodes, one mind. A brain that gets replaced piece by piece is '
+            'for a long time a mix of old tissue and new parts, and that mix has to be one mind the whole time and not two. '
+            'If that can be done between the parts of one brain, 8/30 sees nothing in the method that would care whose '
+            'skull the parts came from, which is why collective mind is an outcome and not a goal.'
+        ),
+        short='Many nodes, one mind: during replacement, old tissue and new parts have to be one mind the whole time.',
+        sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='show-dont-tell',
+        name='Show, don\'t tell',
+        also=[],
+        pattern=r'show, don.t tell',
+        sameAs=[],
+        text=(
+            'How someone multiplies 17 × 24 in their head can at best be described, and even a much better description '
+            'fails to carry over what it is like (Feynman and Tukey both "counted", in different ways, and only found out '
+            'by trying). 8/30 connects this with Wittgenstein: what can be shown cannot be said, and the beetle in the box. '
+            'Whatever turns experience into signals and back is still telling, only with more channels; the moment '
+            'something really gets shown, there is a bit less of "two heads" than before.'
+        ),
+        short='Words cannot carry over what an experience is like; really showing it means one shared phenomenal space.',
+        sources=['8-collective-mind'],
     ),
 ]
 
