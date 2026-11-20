@@ -471,7 +471,7 @@ ICONS = '''  <link rel="icon" href="%s" type="image/svg+xml">
     icon_src('favicon.svg'), icon_src('favicon-32.png'),
     icon_src('favicon.ico'), icon_src('apple-touch-icon.png'))
 SERIES_KEYWORDS = ['synthetic consciousness', 'hybrid mind uploading', 'mind uploading',
-                   'gradual brain replacement', 'Daniel Burger']
+                   'gradual brain replacement']
 HOME_TITLE = SITE_TITLE
 TOPICS_RE = re.compile(r'\n?\s*<!-- topics:start -->.*?<!-- topics:end -->', re.S)
 META = json.load(open(os.path.join(ROOT, 'tools', 'meta.json'), encoding='utf-8'))
@@ -522,6 +522,42 @@ def ensure_extras(path, topics):
         s = s.replace(end, end + '\n    </main>', 1)
     if 'href="/glossary/"' not in s:
         s = re.sub(r'(<footer class="site">\s*<a href="/">[^<]*</a>)', r'\1<a href="/glossary/">Glossary</a>', s, count=1)
+    open(path, 'w', encoding='utf-8').write(s)
+
+READ_WPM = 230  # twitter:data1 reading time
+
+def ensure_media(path, q):
+    """Idempotent: the top image / video sits in a <figure> (no caption), and a
+    video gets an accessible name from the post title."""
+    s = open(path, encoding='utf-8').read()
+    s = re.sub(r'<p>\s*(<picture data-r>.*?</picture>)\s*</p>', r'<figure class="post-media">\1</figure>', s, flags=re.S)
+    s = re.sub(r'<p>\s*(<video\b[^>]*>\s*</video>)\s*</p>', r'<figure class="post-media">\1</figure>', s, flags=re.S)
+    label = 'Video: %s/30 %s' % (q['n'], q['short'])
+    def vid(m):
+        tag = re.sub(r'\saria-label="[^"]*"', '', m.group(0))
+        return tag[:-1] + ' aria-label="%s">' % html.escape(label)
+    s = re.sub(r'<video\b[^>]*>', vid, s)
+    open(path, 'w', encoding='utf-8').write(s)
+
+PAGER_RE = re.compile(r'\n?\s*<!-- pager:start -->.*?<!-- pager:end -->', re.S)
+
+def ensure_pager(path, prev_q, next_q):
+    """Idempotent: quiet previous / next line between </main> and the footer."""
+    s = PAGER_RE.sub('', open(path, encoding='utf-8').read())
+    parts = []
+    if prev_q:
+        parts.append('<a class="pager-prev" rel="prev" href="/%s/"><span aria-hidden="true">&larr; </span>%s/30 %s</a>'
+                     % (prev_q['slug'], prev_q['n'], html.escape(prev_q['short'])))
+    if next_q:
+        parts.append('<a class="pager-next" rel="next" href="/%s/">%s/30 %s<span aria-hidden="true"> &rarr;</span></a>'
+                     % (next_q['slug'], next_q['n'], html.escape(next_q['short'])))
+    if parts:
+        block = ('\n    <!-- pager:start -->\n    <nav class="pager" aria-label="Previous and next meditations">%s</nav>\n    <!-- pager:end -->'
+                 % ''.join(parts))
+        s2, n = re.subn(r'(</main>)', lambda m: m.group(1) + block, s, count=1)
+        if n != 1:
+            raise SystemExit('could not insert pager in %s' % path)
+        s = s2
     open(path, 'w', encoding='utf-8').write(s)
 
 def common_head(title, desc, canonical):
@@ -826,6 +862,15 @@ for d in sorted(os.listdir(ROOT)):
     video_src = None
     if video and video.get('src'):
         video_src = SITE_URL + video['src']
+    # the post's own top image (or video poster) for BlogPosting.image
+    hero_img = None
+    if img_el and img_el.get('src'):
+        hero_img = {'@type': 'ImageObject', 'url': SITE_URL + img_el['src']}
+        if img_el.get('width') and img_el.get('height'):
+            hero_img.update(width=int(img_el['width']), height=int(img_el['height']))
+    elif video and video.get('poster'):
+        hero_img = {'@type': 'ImageObject', 'url': SITE_URL + video['poster']}
+    video_poster = SITE_URL + video['poster'] if video is not None and video.get('poster') else None
     # full article HTML for the feed and plain text for llms-full.txt
     clean = BeautifulSoup(str(art), 'html.parser').find('article')
     for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', 'script', '.num-menu-pop']:
@@ -845,12 +890,13 @@ for d in sorted(os.listdir(ROOT)):
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,
         thumb='/thumbs/%s.jpg?v=%s' % (d, hashlib.sha1(open(os.path.join(ROOT, 'thumbs', d + '.jpg'), 'rb').read()).hexdigest()[:8]), desc=desc, alt=alt, og_alt=og_alt, url=url, og=og_url,
-        video=video_src, vw=video.get('width') if video else None,
+        video=video_src, video_poster=video_poster, hero_img=hero_img, vw=video.get('width') if video else None,
         vh=video.get('height') if video else None, topics=topics, mentions=mentions,
         x=xc['href'] if xc else None, html=absolutize(clean.decode_contents().strip()),
         text=text, path=p))
 
 posts.sort(key=lambda x: -x['n'])
+BY_N = {q['n']: q for q in posts}
 json.dump(MODIFIED, open(MOD_PATH, 'w', encoding='utf-8'), indent=1, sort_keys=True)
 last_mod = max(q['modified'] for q in posts)
 
@@ -868,10 +914,10 @@ for q in posts:
         'datePublished': q['iso'],
         'dateModified': q['modified'],
         'wordCount': q['words'],
-        'inLanguage': 'en',
+        'inLanguage': 'en-GB',
         'author': {'@id': PERSON_ID},
         'publisher': {'@id': PERSON_ID},
-        'image': {'@type': 'ImageObject', 'url': q['og'], 'width': OG_W, 'height': OG_H},
+        'image': [{'@type': 'ImageObject', 'url': q['og'], 'width': OG_W, 'height': OG_H}] + ([q['hero_img']] if q.get('hero_img') else []),
         'mainEntityOfPage': {'@id': q['url']},
         'isPartOf': {'@id': BLOG_ID},
         'position': q['n'],
@@ -883,12 +929,20 @@ for q in posts:
     if q['x']:
         posting['discussionUrl'] = q['x']
     if q['video']:
-        posting['video'] = {'@type': 'VideoObject', 'name': q['title'], 'contentUrl': q['video'],
-                            'thumbnailUrl': q['og'], 'uploadDate': q['iso'], 'description': q['desc']}
+        vmeta = META.get(q['slug'], {})
+        posting['video'] = {'@type': 'VideoObject', 'name': q['title'], 'description': q['desc'],
+                            'contentUrl': q['video'],
+                            'thumbnailUrl': [u for u in (q.get('video_poster'), q['og']) if u],
+                            'uploadDate': q['iso'], 'inLanguage': 'en-GB',
+                            'author': {'@id': PERSON['@id']}}
+        if vmeta.get('video_duration'):
+            posting['video']['duration'] = vmeta['video_duration']
+        if q.get('vw') and q.get('vh'):
+            posting['video'].update(width=int(q['vw']), height=int(q['vh']))
     graph = {'@context': 'https://schema.org', '@graph': [
         posting,
         {'@type': 'WebPage', '@id': q['url'], 'url': q['url'], 'name': q['page_title'],
-         'isPartOf': {'@id': WEBSITE_ID}, 'inLanguage': 'en',
+         'isPartOf': {'@id': WEBSITE_ID}, 'inLanguage': 'en-GB',
          'primaryImageOfPage': {'@type': 'ImageObject', 'url': q['og']},
          'breadcrumb': {'@type': 'BreadcrumbList', 'itemListElement': [
              {'@type': 'ListItem', 'position': 1, 'name': SITE, 'item': SITE_URL + '/'},
@@ -897,6 +951,9 @@ for q in posts:
         PERSON,
     ] + [term_ref(x) for x in q['topics']]}
     lines = common_head(q['page_title'], q['desc'], q['url'])
+    prev_q, next_q = BY_N.get(q['n'] - 1), BY_N.get(q['n'] + 1)
+    lines += (['  <link rel="prev" href="%s">' % prev_q['url']] if prev_q else []) + \
+             (['  <link rel="next" href="%s">' % next_q['url']] if next_q else [])
     if q['preload']:
         lines.insert(3, q['preload'])
     lines += [
@@ -932,11 +989,15 @@ for q in posts:
         '  <meta name="twitter:description" content="%s">' % html.escape(q['desc']),
         '  <meta name="twitter:image" content="%s">' % q['og'],
         '  <meta name="twitter:image:alt" content="%s">' % html.escape(q['og_alt']),
+        '  <meta name="twitter:label1" content="Reading time">',
+        '  <meta name="twitter:data1" content="%d min read">' % max(1, round(q['words'] / READ_WPM)),
         ld(graph),
         THEME_HEAD,
     ]
     set_head(q['path'], lines)
     ensure_extras(q['path'], q['topics'])
+    ensure_media(q['path'], q)
+    ensure_pager(q['path'], prev_q, next_q)
 
 # ---------------------------------------------------------------------------
 # Home
@@ -945,7 +1006,7 @@ for q in posts:
     items.append(f'''        <li data-n="{q['n']}" data-words="{q['words']}" data-search="{html.escape((q['title'] + ' ' + q['date']).lower())}">
           <div class="thumb"><img src="{q['thumb']}" width="180" height="120" alt="" loading="lazy"></div>
           <div class="post-info">
-            <a class="title" href="/{q['slug']}/">{q['n']}/30 {html.escape(q['short'])}</a>
+            <h2 class="title-h"><a class="title" href="/{q['slug']}/">{q['n']}/30 {html.escape(q['short'])}</a></h2>
             <span class="meta"><time datetime="{q['iso']}">{q['date']}</time><span class="dot" aria-hidden="true">&middot;</span>{q['words']:,} words</span>
           </div>
         </li>''')
@@ -972,12 +1033,12 @@ home_ld = {
     '@graph': [
         {
             '@type': 'WebSite', '@id': WEBSITE_ID, 'name': SITE, 'alternateName': SITE_TITLE,
-            'url': SITE_URL + '/', 'description': home_desc, 'inLanguage': 'en',
+            'url': SITE_URL + '/', 'description': home_desc, 'inLanguage': 'en-GB',
             'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
         },
         {
             '@type': ['Blog', 'CreativeWorkSeries'], '@id': BLOG_ID, 'name': SITE_TITLE, 'url': SITE_URL + '/',
-            'description': home_desc, 'inLanguage': 'en', 'isPartOf': {'@id': WEBSITE_ID},
+            'description': home_desc, 'inLanguage': 'en-GB', 'isPartOf': {'@id': WEBSITE_ID},
             'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
             'image': home_og_url, 'dateModified': last_mod,
             'keywords': ', '.join(plain_name(x).lower() for x in TERMS),
@@ -987,13 +1048,13 @@ home_ld = {
                          for q in posts],
         },
         {'@type': 'WebPage', '@id': SITE_URL + '/', 'url': SITE_URL + '/', 'name': HOME_TITLE,
-         'isPartOf': {'@id': WEBSITE_ID}, 'about': {'@id': BLOG_ID}, 'inLanguage': 'en'},
+         'isPartOf': {'@id': WEBSITE_ID}, 'about': {'@id': BLOG_ID}, 'inLanguage': 'en-GB'},
         PERSON,
         {'@type': 'DefinedTermSet', '@id': TERMSET_ID, 'name': 'Glossary', 'url': GLOSSARY_URL},
     ] + [term_ref(x) for x in TERMS],
 }
 set_head(ip, common_head(HOME_TITLE, home_desc, SITE_URL + '/') + [
-    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS) + ', Daniel Burger'),
+    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS)),
     '  <meta property="og:type" content="website">',
     '  <meta property="og:title" content="%s">' % html.escape(HOME_TITLE),
     '  <meta property="og:description" content="%s">' % html.escape(home_desc),
@@ -1087,7 +1148,7 @@ gl_body = f'''<body>
 '''
 gl_ld = {'@context': 'https://schema.org', '@graph': [
     {'@type': ['DefinedTermSet', 'WebPage'], '@id': TERMSET_ID, 'url': GLOSSARY_URL, 'name': 'Glossary',
-     'description': gl_desc, 'inLanguage': 'en', 'isPartOf': {'@id': WEBSITE_ID},
+     'description': gl_desc, 'inLanguage': 'en-GB', 'isPartOf': {'@id': WEBSITE_ID},
      'author': {'@id': PERSON_ID}, 'dateModified': last_mod,
      'hasDefinedTerm': [{'@id': GLOSSARY_URL + '#' + x['slug']} for x in TERMS]},
     PERSON,
@@ -1120,7 +1181,7 @@ gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
     THEME_HEAD,
 ]
 open(os.path.join(gdir, 'index.html'), 'w', encoding='utf-8').write(
-    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(gl_head) + '\n</head>\n' + gl_body)
+    '<!DOCTYPE html>\n<html lang="en-GB">\n<head>\n' + '\n'.join(gl_head) + '\n</head>\n' + gl_body)
 
 # 404 page
 nf_head = [
@@ -1132,7 +1193,7 @@ nf_head = [
     THEME_HEAD,
 ]
 open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(
-    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(nf_head) + '\n</head>\n' + f'''<body>
+    '<!DOCTYPE html>\n<html lang="en-GB">\n<head>\n' + '\n'.join(nf_head) + '\n</head>\n' + f'''<body>
   <div class="wrap">
 {slim_nav_html()}
     <main>
@@ -1174,7 +1235,7 @@ feed = [
     '    <title>%s</title>' % xml_esc(SITE_TITLE),
     '    <link>%s/</link>' % SITE_URL,
     '    <description>%s</description>' % xml_esc(home_desc),
-    '    <language>en</language>',
+    '    <language>en-gb</language>',
     '    <lastBuildDate>%s</lastBuildDate>' % rfc822(last_mod),
     '    <atom:link href="%s/feed.xml" rel="self" type="application/rss+xml"/>' % SITE_URL,
 ]
@@ -1248,7 +1309,7 @@ off_head = [
     THEME_HEAD,
 ]
 open(os.path.join(off_dir, 'index.html'), 'w', encoding='utf-8').write(
-    '<!DOCTYPE html>\n<html lang="en">\n<head>\n' + '\n'.join(off_head) + '\n</head>\n' + f"""<body>
+    '<!DOCTYPE html>\n<html lang="en-GB">\n<head>\n' + '\n'.join(off_head) + '\n</head>\n' + f"""<body>
   <div class="wrap">
 {slim_nav_html()}
     <main>
@@ -1321,6 +1382,10 @@ for f in html_files:
     # every post gets titlecopy.js (copy link / title / plain text from the h1)
     if is_post_path(f) and '/titlecopy.js' not in t:
         t = t.replace('</body>', TITLECOPY_TAG + '</body>', 1)
+        open(f, 'w', encoding='utf-8').write(t)
+    t0 = t
+    t = t.replace('<html lang="en">', '<html lang="en-GB">', 1)
+    if t != t0:
         open(f, 'w', encoding='utf-8').write(t)
     t2 = ASSET_RE.sub(lambda m: '%s="/%s?v=%s"' % (m.group(1), m.group(2), ASSET_V[m.group(2)]), t)
     if t2 != t:

@@ -274,6 +274,25 @@ h1 {
 .post-date { display: block; margin-bottom: 1.5rem; font-size: 0.95rem; }
 article p { margin: 0 0 1.1rem; }
 article p:last-child { margin-bottom: 0; }
+/* top image / video: a captionless <figure>, spaced like the paragraph it replaced */
+article figure.post-media { margin: 0 0 1.1rem; }
+
+/* previous / next meditation, one quiet muted line above the footer */
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  margin: 2.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.pager a { color: var(--muted); text-decoration: none; max-width: 100%; }
+.pager a:hover, .pager a:focus-visible { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); }
+.pager a:focus { outline: none; }
+.pager a:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+.pager .pager-next { margin-left: auto; text-align: right; }
+@media (min-width: 40rem) { .pager { flex-wrap: nowrap; } .pager a { max-width: calc(50% - 0.75rem); } }
 .x-callout {
   display: flex;
   align-items: center;
@@ -365,6 +384,7 @@ article .essence-text { margin: 0; font-size: 1.05rem; line-height: 1.6; color: 
 .post-list li:last-child { border-bottom: 1px solid var(--rule); }
 .post-list a.title { font-weight: 600; }
 .post-list .meta { display: block; font-size: 0.9rem; margin-top: 0.15rem; }
+.post-list h2.title-h { margin: 0; font: inherit; letter-spacing: inherit; }
 footer.site {
   margin-top: 3rem;
   padding-top: 1rem;
