@@ -277,43 +277,46 @@ article p:last-child { margin-bottom: 0; }
 /* top image / video: a captionless <figure>, spaced like the paragraph it replaced */
 article figure.post-media { margin: 0 0 1.1rem; }
 
-/* previous / next meditation: two equal columns, each a small muted label
-   over a one-line title (ellipsis; full title in title / aria-label) */
+/* previous / next meditation: one quiet row, two equal columns on every
+   viewport. A title that does not fit fades out at its trailing edge
+   (nav.js adds .fade only when it actually overflows); arrows stay visible. */
 .pager {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: 2rem;
-  row-gap: 1.1rem;
+  column-gap: 1.5rem;
   margin: 2.5rem 0 0;
-  line-height: 1.35;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 .pager + footer.site { margin-top: 2.5rem; }
-.pager a { display: block; min-width: 0; color: var(--text); text-decoration: none; }
-.pager .pager-prev { grid-column: 1; text-align: left; }
-.pager .pager-next { grid-column: 2; text-align: right; }
-.pager-label {
-  display: block;
-  margin-bottom: 0.2rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.pager a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  min-width: 0;
+  max-width: 100%;
   color: var(--muted);
+  text-decoration: none;
 }
-.pager-title {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 0.95rem;
+.pager .pager-prev { grid-column: 1; justify-self: start; }
+.pager .pager-next { grid-column: 2; justify-self: end; }
+.pager-arrow { flex: none; }
+.pager-text { flex: 0 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; }
+.pager-text.fade {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5em), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2.5em), transparent);
+}
+.pager-t {
+  color: var(--muted);
+  color: color-mix(in srgb, var(--text) 70%, var(--muted));
   text-decoration-thickness: 1px;
   text-underline-offset: 0.15em;
 }
-.pager a:hover .pager-title, .pager a:focus-visible .pager-title { text-decoration: underline; text-decoration-color: var(--muted); }
+.pager a:hover .pager-t, .pager a:focus-visible .pager-t { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); }
 .pager a:focus { outline: none; }
 .pager a:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
 @media (max-width: 40rem) {
-  .pager { grid-template-columns: minmax(0, 1fr); }
-  .pager .pager-prev, .pager .pager-next { grid-column: 1; }
+  .pager { font-size: 0.85rem; column-gap: 1.25rem; }
 }
 .x-callout {
   display: flex;

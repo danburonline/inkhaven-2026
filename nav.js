@@ -131,6 +131,18 @@
     build(posts);
   }).catch(function () {});
 
+  // Previous / next line: fade a title only when it actually overflows.
+  var pagerTexts = [].slice.call(document.querySelectorAll('.pager-text'));
+  function fitPager() {
+    pagerTexts.forEach(function (t) { t.classList.toggle('fade', t.scrollWidth > t.clientWidth + 1); });
+  }
+  if (pagerTexts.length) {
+    fitPager();
+    if (window.ResizeObserver) new ResizeObserver(fitPager).observe(pagerTexts[0].parentNode.parentNode);
+    else window.addEventListener('resize', fitPager);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPager);
+  }
+
   // Reading position, per post, in localStorage ("pos:<slug>"). Stored as the
   // block at the top of the viewport plus the pixel offset into it (survives
   // small layout changes), with the plain scrollY as a fallback. A #hash in
