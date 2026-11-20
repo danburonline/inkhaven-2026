@@ -1107,6 +1107,8 @@ body:has(.post-nav) article {
   line-height: 1.2;
   margin: 0 0 0.4rem;
 }
+/* last title word + copy control, kept together on one line */
+.h1-end { white-space: nowrap; }
 /* Title copy control (titlecopy.js): link icon + chevron menu at the end of
    the h1. Always in the flow at full size, only faded in, so nothing shifts. */
 .tcopy {

@@ -115,6 +115,12 @@ def slim_nav_html(end_inner=''):
                            html.escape(SERIES), end)
     )
 
+def title_with_slot(short):
+    head, _, last = short.rpartition(' ')
+    end = '<span class="h1-end">%s <span class="tcopy"></span></span>' % html.escape(last)
+    return (html.escape(head) + ' ' + end) if head else end
+
+
 def rewrite_post_chrome(path, num, short, iso, date_text, words):
     """Idempotent: turn a post's top chrome into the slim nav + title + byline."""
     s = open(path, encoding='utf-8').read()
@@ -133,14 +139,16 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
     header = (
         '      <header class="post-header">\n'
         # empty .tcopy slot: titlecopy.js fills it; reserving its width here
-        # keeps the title from rewrapping when the script runs
-        '        <h1>%s <span class="tcopy"></span></h1>\n'
+        # keeps the title from rewrapping when the script runs. The last word
+        # and the slot share a nowrap span, so the control never wraps onto a
+        # line of its own: if it doesn't fit, the last word moves down with it.
+        '        <h1>%s</h1>\n'
         '        <p class="post-byline"><a class="author-link post-author" href="%s" target="_blank" rel="author me noopener">%s</a>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
         '<time class="post-date" datetime="%s">%s</time>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
         '<span class="post-words">%s</span></p>\n'
-        '      </header>\n' % (html.escape(short), AUTHOR_X, html.escape(AUTHOR), iso, html.escape(date_text), words_label(words))
+        '      </header>\n' % (title_with_slot(short), AUTHOR_X, html.escape(AUTHOR), iso, html.escape(date_text), words_label(words))
     )
     s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
     if n != 1:
