@@ -851,7 +851,34 @@ body:has(.num-wrap.open) .post-nav::before {
 }
 .nm-d { grid-column: 2; font-size: 0.8rem; color: var(--muted); min-width: 0; }
 .nm-now { white-space: nowrap; }
-.num-menu-pop a.nm-all { display: block; margin-top: 0.25rem; border-top: 1px solid var(--rule); border-radius: 0 0 var(--radius) var(--radius); font-size: 0.85rem; color: var(--link); text-align: center; }
+.num-menu-pop a[hidden] { display: none; }
+/* footer link: bleeds into the pop's bottom padding so the space above and
+   below the text (between divider and pop edge) is the same */
+.num-menu-pop a.nm-all { display: block; margin: 0.3rem -0.4rem -0.4rem; padding: 0.6rem; border-top: 1px solid var(--rule); border-radius: 0 0 calc(var(--radius) - 1px) calc(var(--radius) - 1px); font-size: 0.85rem; line-height: 1.3; color: var(--link); text-align: center; }
+.nm-filter {
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% - 1.2rem);
+  margin: 0 0.6rem 0.35rem;
+  padding: 0.35rem 0.2rem 0.4rem 1.45rem;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999088' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 0 center;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s ease;
+}
+.nm-filter:focus { border-bottom-color: var(--muted); }
+.nm-filter::placeholder { color: var(--muted); opacity: 1; }
+.nm-filter::-webkit-search-decoration,
+.nm-filter::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+@media (pointer: coarse) { .nm-filter { font-size: 16px; } } /* no iOS focus zoom */
+.nm-none { margin: 0; padding: 0.5rem 0.6rem; font-size: 0.85rem; color: var(--muted); }
 
 .sort {
   font: inherit;
@@ -1036,6 +1063,94 @@ body:has(.post-nav) article {
 .post-header h1 {
   line-height: 1.2;
   margin: 0 0 0.4rem;
+}
+/* Title copy control (titlecopy.js): link icon + chevron menu at the end of
+   the h1. Always in the flow at full size, only faded in, so nothing shifts. */
+.tcopy {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 2.6rem;
+  height: 1rem;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+@media (hover: hover) {
+  .post-header h1:hover .tcopy { opacity: 1; pointer-events: auto; }
+}
+.tcopy.shown, .tcopy.menu-open, .tcopy.done { opacity: 1; pointer-events: auto; }
+.tcopy:has(:focus-visible) { opacity: 1; pointer-events: auto; }
+.tcopy > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.6rem;
+  flex: none;
+  margin: -0.3rem 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease;
+}
+.tcopy-main { width: 1.6rem; }
+.tcopy-more { width: 1rem; }
+.tcopy > button svg { display: block; }
+.tcopy-more svg { transition: transform 0.15s ease; }
+.tcopy.menu-open .tcopy-more svg { transform: rotate(180deg); }
+.tcopy > button:hover, .tcopy.menu-open .tcopy-more, .tcopy.done .tcopy-main { color: var(--text); }
+.tcopy button:focus { outline: none; }
+.tcopy button:focus-visible { outline: 2px solid var(--muted); outline-offset: 1px; }
+.tcopy-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  min-width: 8.5rem;
+  padding: 0.3rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--card-shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s linear 0.14s;
+}
+.tcopy.menu-open .tcopy-menu { opacity: 1; visibility: visible; transform: none; transition: opacity 0.14s ease, transform 0.14s ease, visibility 0s; }
+.tcopy-menu button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.42rem 0.6rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+.tcopy-menu button:hover, .tcopy-menu button:focus-visible { background: var(--bg); outline: none; }
+.tcopy-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+  .tcopy, .tcopy-menu, .tcopy-more svg { transition: none; }
 }
 .post-byline {
   display: flex;
