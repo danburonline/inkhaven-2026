@@ -651,5 +651,77 @@
    "id": "sec-the-lightbulb-and-the-candles",
    "starts": "This is also one of the things that I meant"
   }
+ ],
+ "9-multiple-realisability": [
+  {
+   "label": "The first requirement",
+   "id": "sec-the-first-requirement",
+   "starts": "The first requirement (type \"Requirement\")"
+  },
+  {
+   "label": "Operational and axiomatic",
+   "id": "sec-operational-and-axiomatic",
+   "starts": "The Ontology has two kinds of requirements"
+  },
+  {
+   "label": "The second half of the history",
+   "id": "sec-the-second-half-of-the-history",
+   "starts": "On day six I told the first half"
+  },
+  {
+   "label": "All about taxonomy",
+   "id": "sec-all-about-taxonomy",
+   "starts": "Whatever you think of this debate"
+  },
+  {
+   "label": "The serial lesion effect",
+   "id": "sec-the-serial-lesion-effect",
+   "starts": "Now to the data: If you take a piece"
+  },
+  {
+   "label": "Low-grade gliomas",
+   "id": "sec-low-grade-gliomas",
+   "starts": "The human version of the two-stage rat"
+  },
+  {
+   "label": "A weak and a strong form",
+   "id": "sec-a-weak-and-a-strong-form",
+   "starts": "So here's my idea of a weak and a strong form"
+  },
+  {
+   "label": "How fast",
+   "id": "sec-how-fast",
+   "starts": "How fast first:"
+  },
+  {
+   "label": "Where",
+   "id": "sec-where",
+   "starts": "Where next:"
+  },
+  {
+   "label": "The direction",
+   "id": "sec-the-direction",
+   "starts": "So, lastly, the direction:"
+  },
+  {
+   "label": "What makes a destination",
+   "id": "sec-what-makes-a-destination",
+   "starts": "The single most useful thing"
+  },
+  {
+   "label": "The grandmother's face problem",
+   "id": "sec-the-grandmother-s-face-problem",
+   "starts": "Which brings me to what I call the grandmother's face problem"
+  },
+  {
+   "label": "A measurement problem",
+   "id": "sec-a-measurement-problem",
+   "starts": "And it's a measurement problem"
+  },
+  {
+   "label": "A second axis",
+   "id": "sec-a-second-axis",
+   "starts": "This adds a second axis"
+  }
  ]
 }

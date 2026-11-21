@@ -60,6 +60,10 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Branching identity](https://consciousness.ink/glossary/#branching-identity): Re-entering past experiences turns a personal history into a graph with branches: many of "me", one person in P-time.
 - [Distributed unification](https://consciousness.ink/glossary/#distributed-unification): Many nodes, one mind: during replacement, old tissue and new parts have to be one mind the whole time.
 - [Show, don't tell](https://consciousness.ink/glossary/#show-dont-tell): Words cannot carry over what an experience is like; really showing it means one shared phenomenal space.
+- [Strong multiple realisability](https://consciousness.ink/glossary/#strong-multiple-realisability): De novo tissue, never part of that brain and maybe not biological, can store and implement the same functions.
+- [Operational and axiomatic requirements](https://consciousness.ink/glossary/#operational-and-axiomatic-requirements): Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.
+- [Lesion momentum](https://consciousness.ink/glossary/#lesion-momentum): How fast a lesion grows; the speed limit of gradual reorganisation, so far known only as "slower than a stroke".
+- [Grandmother's face problem](https://consciousness.ink/glossary/#grandmothers-face-problem): Rarely recalled engrams may be lost during slow reorganisation, and testing for them changes them.
 
 ## Meditations
 
@@ -72,6 +76,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/): Day 6 of 30: the first outcome of the Ontology, substrate independence, and why I mean physical rather than computational substrate independence: independent of biology, never of physics.
 - [7/30 Meditations on Synthetic Consciousness: Augmented Cognition Needs a Baseline First](https://consciousness.ink/7-augmented-cognition/): Day 7 of 30: the second outcome of the Ontology, augmented cognition, and why augmentation comes last: a baseline first, so we can see what changed.
 - [8/30 Meditations on Synthetic Consciousness: Who Says Individuality Will Stay Forever?](https://consciousness.ink/8-collective-mind/): Day 8 of 30: the third and last outcome of the Ontology, collective mind. Who says that we stay individuals, and don't merge into one collective mind?
+- [9/30 Meditations on Synthetic Consciousness: Weak and Strong Multiple Realisability](https://consciousness.ink/9-multiple-realisability/): Day 9 of 30: the first requirement of the Ontology, multiple realisability, in a weak form (living tissue takes over) and a strong one (de novo tissue).
 
 ## Optional
 

@@ -142,7 +142,7 @@ TERMS = [
             'different substrate taking over, which is still open.'
         ),
         short='A different piece of brain can take over a function; it does not show that a different substrate can.',
-        sources=['0-the-start'],
+        sources=['0-the-start', '9-multiple-realisability'],
     ),
     dict(
         slug='gradual-reorganisation-principle',
@@ -156,7 +156,7 @@ TERMS = [
             'different substrate taking over, which is still open.'
         ),
         short='Barrett (2013): a different piece of brain can take over a function; it does not show that a different substrate can.',
-        sources=['0-the-start'],
+        sources=['0-the-start', '9-multiple-realisability'],
     ),
     dict(
         slug='solving-death',
@@ -618,7 +618,7 @@ TERMS = [
             'realisability) it is evidenced; whether a different kind of substrate can take over is still open.'
         ),
         short='Many kinds of matter can realise the same mental state; evidenced bio-to-bio, open for a different kind of substrate.',
-        sources=['6-substrate-independence'],
+        sources=['6-substrate-independence', '9-multiple-realisability'],
     ),
     dict(
         slug='medium-independence',
@@ -825,6 +825,70 @@ TERMS = [
         ),
         short='Words cannot carry over what an experience is like; really showing it means one shared phenomenal space.',
         sources=['8-collective-mind'],
+    ),
+    dict(
+        slug='strong-multiple-realisability',
+        name='Strong multiple realisability',
+        also=['de novo tissue'],
+        pattern=r'strong(?:ly)? (?:form|multipl[ey] reali[sz]ab)|weakly or strongly',
+        sameAs=[],
+        text=(
+            'The strong form of the Ontology\'s first requirement (9/30). Weak multiple realisability holds if engrams or '
+            'functions get shifted around from living tissue to living tissue inside one brain, which the serial lesion '
+            'effect and slowly growing low-grade gliomas show to some degree. The strong form holds if de novo tissue, '
+            'tissue that was never part of that brain and maybe is not even biological, can also store and implement the '
+            'same functions. If only living de novo tissue can, hybrid mind uploading has to go towards extreme biology.'
+        ),
+        short='De novo tissue, never part of that brain and maybe not biological, can store and implement the same functions.',
+        sources=['9-multiple-realisability'],
+    ),
+    dict(
+        slug='operational-and-axiomatic-requirements',
+        name='Operational and axiomatic requirements',
+        also=['requirement'],
+        pattern=r'operational and axiomatic',
+        sameAs=[],
+        text=(
+            'A requirement is something that has to be true about brains for hybrid mind uploading to have a chance at '
+            'all. The Ontology has four of each kind. The operational ones (multiple realisability, continuer migration, '
+            'morphological independence, distributed unification) are things a brain turns out to be able to do or not, '
+            'so an experiment can come back with a no, and each has a weak and a strong form. The axiomatic ones '
+            '(brain-centredness, methodological physicalism, non-organicism, scale separation) have to be granted before '
+            'any of those experiments means anything, so each is taken in its least committal form.'
+        ),
+        short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
+        sources=['9-multiple-realisability'],
+    ),
+    dict(
+        slug='lesion-momentum',
+        name='Lesion momentum',
+        also=[],
+        pattern=r'lesion momentum',
+        sameAs=[],
+        text=(
+            'The clinic\'s word for how fast a lesion grows, the variable that the gradual reorganisation principle hangs '
+            'on. In rats ten days between two stages is too fast for a frontal cortex and twenty is enough; in people with '
+            'low-grade gliomas about 4 mm a year is slow enough for speech and movement. In between there is apparently '
+            'nothing, and 9/30 wants it as an actual measurement, a speed limit more accurate than "slower than a stroke".'
+        ),
+        short='How fast a lesion grows; the speed limit of gradual reorganisation, so far known only as "slower than a stroke".',
+        sources=['9-multiple-realisability'],
+    ),
+    dict(
+        slug='grandmothers-face-problem',
+        name='Grandmother\'s face problem',
+        also=[],
+        pattern=r'grandmother.s face',
+        sameAs=[],
+        text=(
+            'Slow lesions spare what is measurable from the outside, such as speech and motor function, which are '
+            'retrieved all day long. But what about engrams that you are not aware of having until you recall them, such '
+            'as the rarely retrieved memory of your grandmother\'s face? The only test for an engram is to retrieve it, '
+            'and retrieving is an intervention that rehearses the trace and opens it up to change, so there is no '
+            'baseline for the unmeasured ones, and forgetting does not feel like anything.'
+        ),
+        short='Rarely recalled engrams may be lost during slow reorganisation, and testing for them changes them.',
+        sources=['9-multiple-realisability'],
     ),
 ]
 
