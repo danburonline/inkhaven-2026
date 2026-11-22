@@ -300,6 +300,7 @@ article figure.post-media { margin: 0 0 1.1rem; }
 }
 .pager .pager-prev { grid-column: 1; justify-self: start; }
 .pager .pager-next { grid-column: 2; justify-self: end; }
+.pager-n { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .pager-arrow { flex: none; }
 .pager-text { flex: 0 1 auto; min-width: 0; overflow: hidden; white-space: nowrap; }
 .pager-text.fade {
@@ -875,7 +876,8 @@ body:has(.num-wrap.open) .post-nav::before {
 .nm-head { padding: 0.35rem 0.6rem 0.4rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .num-menu-pop a {
   display: grid;
-  grid-template-columns: 2.6rem minmax(0, 1fr);
+  /* number column fits the widest "30/30" so every title starts at the same x */
+  grid-template-columns: 5ch minmax(0, 1fr);
   column-gap: 0.4rem;
   padding: 0.5rem 0.6rem;
   border-radius: var(--radius);
@@ -885,7 +887,7 @@ body:has(.num-wrap.open) .post-nav::before {
   min-width: 0;
 }
 .num-menu-pop a:hover, .num-menu-pop a:focus-visible { background: var(--bg); }
-.nm-n { grid-row: span 2; font-weight: 650; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nm-n { grid-row: span 2; font-weight: 650; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .num-menu-pop a.current .nm-n { color: var(--text); }
 .nm-t {
   font-weight: 600;
