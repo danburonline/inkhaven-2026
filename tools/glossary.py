@@ -890,6 +890,22 @@ TERMS = [
         short='Rarely recalled engrams may be lost during slow reorganisation, and testing for them changes them.',
         sources=['9-multiple-realisability'],
     ),
+    dict(
+        slug='continuer-migration',
+        name='Continuer migration',
+        also=['continuer'],
+        pattern=r'continuer migration',
+        sameAs=[],
+        text=(
+            'The second requirement of the Ontology (10/30). It is about how the move has to go so that it is still you '
+            'who arrives, and its one particular word, the continuer, brings the entire philosophy of personal identity '
+            'along. 10/30 sets the thought experiments aside: whether psychological or physical continuity carries you '
+            'through, what matters is the continuity of the human brain, kept running so that no accident or disease '
+            'robs you of it.'
+        ),
+        short='How the move has to go so that it is still you who arrives; in 10/30, the continuity of the human brain.',
+        sources=['10-continuer-migration'],
+    ),
 ]
 
 # Things a post may mention that are not glossary terms but have a clear

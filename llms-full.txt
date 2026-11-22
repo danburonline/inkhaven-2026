@@ -340,6 +340,12 @@ Slow lesions spare what is measurable from the outside, such as speech and motor
 
 Source: https://consciousness.ink/glossary/#grandmothers-face-problem
 
+### Continuer migration
+
+The second requirement of the Ontology (10/30). It is about how the move has to go so that it is still you who arrives, and its one particular word, the continuer, brings the entire philosophy of personal identity along. 10/30 sets the thought experiments aside: whether psychological or physical continuity carries you through, what matters is the continuity of the human brain, kept running so that no accident or disease robs you of it.
+
+Source: https://consciousness.ink/glossary/#continuer-migration
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -347,7 +353,7 @@ Source: https://consciousness.ink/glossary/#grandmothers-face-problem
 URL: https://consciousness.ink/0-the-start/
 Author: Daniel Burger
 Published: 2026-11-11
-Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality, theory of consciousness, world-line fidelity
+Topics: synthetic consciousness, hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, immortality, theory of consciousness, world-line fidelity, continuer migration
 
 On the first day of this year, I created a small ontology editor (similar to, e.g. Protégé, just a lot simpler and without the formal OWL logic behind it) for the all-encompassing ontology* of my life and its vision, mission, goals, etc. It starts with the main vision (i.e. the future state of being I'm working towards), which is "synthetic consciousness". Simply summarised: engineered phenomenology on a designed substrate you could gradually become. I break it down into the mission, which is hybrid mind uploading (the most pragmatic way to achieve the same goals as classical mind uploading, just not by following the free-standing position of "creating something external to the brain that recreates the brain" but rather by building something that can be integrated into the thing at hand (i.e. your brain), hence the hybrid status in between. If you read some of my recent tweets, you'll know what I mean, as I've been talking about it in great detail + there's the upcoming manuscript on it. Then there are a few principles and rejections, some goals, one of which is quite practical: solve death (more on this below), and a few other things.
 
@@ -630,7 +636,7 @@ This is also one of the things that I meant with the lightbulb and the candles o
 URL: https://consciousness.ink/9-multiple-realisability/
 Author: Daniel Burger
 Published: 2026-11-20
-Topics: synthetic consciousness, hybrid mind uploading, mind uploading, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, multiple realisability, distributed unification, strong multiple realisability, operational and axiomatic requirements, lesion momentum, grandmother's face problem
+Topics: synthetic consciousness, hybrid mind uploading, mind uploading, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, multiple realisability, distributed unification, strong multiple realisability, operational and axiomatic requirements, lesion momentum, grandmother's face problem, continuer migration
 
 The first requirement (type "Requirement") of my Ontology is called "multiple realisability" (the three outcomes are done as of yesterday). A requirement is something that has to be true about brains for hybrid mind uploading to have a chance at all for it to work/to make synthetic consciousness possible as a vision. Fair warning: today is more technical than the last few days (less of a meditation tbh).
 
@@ -673,3 +679,34 @@ So do we even know if the gradual reorganisation principle applies to anything e
 This adds a second axis to the weak and strong views, namely "what type of information" moves around. So, where does that leave them? – Capacities from bio to bio => shown, but with a speed limit that nobody has measured yet – Engrams from bio to bio => shown in rats that practised – Capacities into a new tissue => one result in mice afaik – Engrams into a new tissue => nothing afaik (on day six I still signed "must exist" for the bio-to-bio kind, and after today I'd sign it for capacities and put a question mark behind it for engrams)
 
 There are ways to figure this out and/or work around it, but today's meditation is already too long lol, and this is part of our research roadmap at the Synconetics Org ( @synconeticsorg / [synconetics.org] ) – happy to discuss further!
+
+---
+
+## 10/30 Meditations on Synthetic Consciousness: I Care Deeply about the Continuity of the Human Brain
+
+URL: https://consciousness.ink/10-continuer-migration/
+Author: Daniel Burger
+Published: 2026-11-21
+Topics: process world-line, world-line fidelity, multiple realisability, continuer migration
+
+Do you know that feeling where you finally get to the question that you've put years of thought into, but now that it's your turn to write about it, you'd actually rather not discuss it at all?
+
+Today that feeling is caused by the second requirement of my Ontology, which is called "continuer migration" (yesterday's was "multiple realisability"). It's about how the move has to go so that it's still you who arrives, and one particular word in it (the continuer) brings the entire philosophy of personal identity along. For whatever reason, this is the part that I've scrutinised for many, many years; I had the metaphysical thought experiments, and I had the frameworks of psychological continuity (I somehow came up with my own), so why not put them all into today's meditation?
+
+For a bit of a change, especially to yesterday, I won't. I've worked through psychological vs physical continuity, through copy-based survivalism, through the question of whether functionalism is true, and through the idea that maybe the entire universe is a simulation (pancomputationalism), etc. There are cool ideas in all of them, and they've kept my mind busy for years. But I don't care about them any more, as I'd want the same thing however they come out.
+
+Somewhere out there, at this very moment, somebody is splitting me in two inside a thought experiment and asking which of the halves I am. And I'm not going to tell them. And if I did, the next thought experiment would already be waiting, and the one after that.
+
+The only thing that I care about deeply is the continuity of the human brain.
+
+We're migrating forward in time. We're not static, and we're not the same => the Daniel of 20 years ago wasn't the same as the Daniel of today. At the end of the day, our brains continue tho, they keep running. They're what we were born with, and they work, some less well, some better; we all have quirks, some things are weird, there are parts that we'd like to improve (to be better humans), and sometimes we do dumb stuff. But overall it's all we have. We only have our brains, the substrate of the most fundamental thing that we have, the doors to reality, and we exist just once, only here, in the brains that were given to us during the process in the wombs of our mothers. Isn't this fascinating?
+
+And this continuity can't be messy and sloppy. It can't be an abstraction either => we can't ignore the brain and just say "the mind is just xyz" (some heavily coarse-grained view with no backing behind it). It would be dumb to ignore the only thing at hand that we can investigate empirically, and the only thing (unless you're a solipsist) that we know for sure works, as you are conscious!
+
+I am, as you know by now, very philosophically inclined. By professional experience, I'm highly technical (engineering), and I'm formally trained as a neuroscientist. I'm fine with going into the weeds of complex things and somehow making things work, being pragmatic, and I'd rather not lose focus by just talking. But discussing philosophy this intensely for the past few years has worn me out tbh.
+
+So I'm going to say what I want, just for me => I want our brains to keep running, for as long as possible and for everyone, so that no accident or disease robs you of the continuity of your brain, and therefore also of you. And if psychological continuity is what carries me through that, great. And if it's the physical one, even better. But I can't deal with either of them right now. I care so deeply about this, and I mostly don't care about anything else (it's nearly emotional). That's it. More on process world-line fidelity later, when we discuss the Synconetics programme as part of these meditations.
+
+So if you've read this far, you've witnessed the first of these meditations in which I hardly argue for anything, and maybe you'll come along for the other twenty anyway.
+
+Picture: Coloured scanning electron micrograph of neuronal cells (glia and neurons) by Thomas Deerinck
