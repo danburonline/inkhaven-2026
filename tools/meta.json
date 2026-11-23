@@ -40,6 +40,7 @@
  },
  "11-morphological-independence": {
   "description": "Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?",
-  "video_duration": "PT16S"
+  "video_duration": "PT16S",
+  "video_description": "Animation in five stages, Biological, Biohybrid, Biomimetic, Mechanistic and Smaller: one neuron in the whole brain is replaced until it runs at half the route length and half the carrier speed, so every delay (route length / carrier speed) is kept on the process world-line."
  }
 }

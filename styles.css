@@ -602,7 +602,8 @@ footer.site a:hover,
 }
 .site-links { display: flex; flex-wrap: nowrap; align-items: center; gap: 0.5rem; }
 .site-links a.icon { padding: 0; width: 2.2rem; height: 2.2rem; justify-content: center; }
-.site-links a svg { display: block; flex: none; }
+.site-links a svg,
+footer.site a svg { display: block; flex: none; }
 .site-links a:not(.icon) { height: 2.2rem; }
 .site-links .theme-toggle { height: 2.2rem; }
 footer.site {
@@ -1337,6 +1338,8 @@ body:has(.post-nav) article {
   .toc-close { display: block; position: absolute; right: 0.6rem; top: 0.9rem; min-height: 2.6rem; background: none; border: 0; padding: 0.3rem 0.8rem; color: var(--text); font: inherit; font-size: 0.85rem; cursor: pointer; }
   .toc-close:focus-visible { outline: 2px solid var(--muted); outline-offset: 1px; border-radius: 3px; }
   body:has(.num-wrap.open) .toc-pill, body:has(.lb.on) .toc-pill { opacity: 0; visibility: hidden; }
+  /* room below the footer so the section pill never covers its links */
+  body:has(.toc-pill) .wrap { padding-bottom: calc(5.25rem + env(safe-area-inset-bottom)); }
 }
 
 /* Optical alignment of the small nav icons: sit each icon on the text

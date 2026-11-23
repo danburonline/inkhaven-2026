@@ -86,7 +86,7 @@ def ensure_social_newtab(path):
 NUM_WRAP_RE = re.compile(r'(<span class="num-wrap">.*?</span>)', re.S)
 DEFAULT_NUM_WRAP = (
     '<span class="num-wrap"><button class="num-menu" type="button" '
-    'aria-haspopup="menu" aria-expanded="false" title="All meditations">'
+    'aria-haspopup="dialog" aria-expanded="false" title="All meditations">'
     '%s/30<svg aria-hidden="true" viewBox="0 0 12 12" width="11" height="11">'
     '<path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" '
     'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
@@ -515,6 +515,9 @@ def body_text(art):
 def article_hash(text):
     return hashlib.sha1(text.encode('utf-8')).hexdigest()
 
+# same markup as the home page's Glossary pill
+FOOTER_GLOSSARY = '<a href="/glossary/">' + '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 1.5 1.5 0 0 0 1.5 1.5H20"/><path d="M8 7.5h8M8 11h6"/></svg>' + '<span>Glossary</span></a>'
+
 def ensure_extras(path, topics):
     """Glossary link in the footer and the Topics line after the article."""
     s = open(path, encoding='utf-8').read()
@@ -528,8 +531,8 @@ def ensure_extras(path, topics):
         s = s.replace('<article>', '<main>\n    <article>', 1)
         end = '<!-- topics:end -->' if topics else '</article>'
         s = s.replace(end, end + '\n    </main>', 1)
-    if 'href="/glossary/"' not in s:
-        s = re.sub(r'(<footer class="site">\s*<a href="/">[^<]*</a>)', r'\1<a href="/glossary/">Glossary</a>', s, count=1)
+    # the footer's Glossary pill matches the home page one (book icon + label)
+    s = re.sub(r'(<footer class="site">\s*<a href="/">[^<]*</a>)(?:<a href="/glossary/">.*?</a>)?', lambda m: m.group(1) + FOOTER_GLOSSARY, s, count=1, flags=re.S)
     open(path, 'w', encoding='utf-8').write(s)
 
 READ_WPM = 230  # twitter:data1 reading time
@@ -944,7 +947,7 @@ for q in posts:
         posting['discussionUrl'] = q['x']
     if q['video']:
         vmeta = META.get(q['slug'], {})
-        posting['video'] = {'@type': 'VideoObject', 'name': q['title'], 'description': q['desc'],
+        posting['video'] = {'@type': 'VideoObject', 'name': q['title'], 'description': vmeta.get('video_description') or q['desc'],
                             'contentUrl': q['video'],
                             'thumbnailUrl': [u for u in (q.get('video_poster'), q['og']) if u],
                             'uploadDate': q['iso'], 'inLanguage': 'en-GB',

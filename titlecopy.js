@@ -22,6 +22,8 @@
     var href = a.href, t = a.textContent.replace(/\s+/g, ' ').trim();
     if (!href || /^javascript:/i.test(href)) return t;
     // a.ref are bracketed stand-ins like [Nov 2026] for a raw link in the original post
+    // a.int are internal links added on the site, not in the original post
+    if (a.classList.contains('int')) return t;
     if (a.classList.contains('ref') || !t || bare(t) === bare(href)) return href;
     return t + ' (' + href + ')';
   }

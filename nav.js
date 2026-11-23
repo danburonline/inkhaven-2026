@@ -42,18 +42,18 @@
   function build(posts) {
     pop = document.createElement('div');
     pop.className = 'num-menu-pop';
-    pop.setAttribute('role', 'menu');
+    pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-labelledby', 'nm-head');
     pop.innerHTML = '<div class="nm-head" id="nm-head">All meditations</div>' +
       '<input class="nm-filter" type="search" placeholder="Filter by title, number or date" aria-label="Filter meditations" autocomplete="off" spellcheck="false">' +
       posts.map(function (p) {
       var cur = p.slug === here;
       var search = (p.n + '/30 ' + p.short + ' ' + p.date).toLowerCase();
-      return '<a role="menuitem" href="/' + p.slug + '/" data-search="' + esc(search) + '"' + (cur ? ' class="current" aria-current="page"' : '') + '>' +
+      return '<a href="/' + p.slug + '/" data-search="' + esc(search) + '"' + (cur ? ' class="current" aria-current="page"' : '') + '>' +
         '<span class="nm-n">' + p.n + '/30</span><span class="nm-t">' + esc(p.short) + '</span>' +
         '<span class="nm-d">' + esc(p.date.replace(/ \d{4}$/, '')) + ' &middot; ' + p.words.toLocaleString('en') + ' words' +
         (cur ? '<span class="nm-now"> &middot; Reading</span>' : '') + '</span></a>';
     }).join('') + '<p class="nm-none" hidden>No matches</p>' +
-      '<a class="nm-all" role="menuitem" href="/">View all on the home page</a>';
+      '<a class="nm-all" href="/">View all on the home page</a>';
     wrap.appendChild(pop);
     input2 = pop.querySelector('.nm-filter');
     none2 = pop.querySelector('.nm-none');
