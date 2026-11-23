@@ -128,7 +128,7 @@ TERMS = [
             'work. 3/30 says whether a world-line truly went on via a replacement has to be shown physically.'
         ),
         short='The core of hybrid mind uploading; whether a different substrate can take over, and whether a world-line went on via replacement, still has to be shown.',
-        sources=['0-the-start', '3-solving-death'],
+        sources=['0-the-start', '3-solving-death', '11-morphological-independence'],
     ),
     dict(
         slug='serial-lesion-effect',
@@ -173,7 +173,7 @@ TERMS = [
             'means the remaining risk keeps falling fast enough that all the yearly risks add up to a finite total.'
         ),
         short='The goal that no one has to end; halting ageing stops dying but does not solve death.',
-        sources=['3-solving-death', '5-transcending-biology'],
+        sources=['3-solving-death', '5-transcending-biology', '11-morphological-independence'],
     ),
     dict(
         slug='functional-brain-isolation',
@@ -187,7 +187,7 @@ TERMS = [
             'humans. In this series it is step zero on the route to solving death, before gradual replacement.'
         ),
         short='Keeping a living brain alive outside its body for as long as possible; step zero towards solving death.',
-        sources=['3-solving-death'],
+        sources=['3-solving-death', '11-morphological-independence'],
     ),
     dict(
         slug='deprivation-view',
@@ -634,7 +634,7 @@ TERMS = [
             'heart-lung machine, whose "lung" is a bundle of plastic fibres.'
         ),
         short='Piccinini: a computation does not care what its vehicles are made of; unlike a mousetrap, which still has to catch mice.',
-        sources=['6-substrate-independence'],
+        sources=['6-substrate-independence', '11-morphological-independence'],
     ),
     dict(
         slug='augmented-cognition',
@@ -905,6 +905,67 @@ TERMS = [
         ),
         short='How the move has to go so that it is still you who arrives; in 10/30, the continuity of the human brain.',
         sources=['10-continuer-migration'],
+    ),
+    dict(
+        slug='morphological-independence',
+        name='Morphological independence',
+        also=[],
+        pattern=r'morphological independence',
+        sameAs=[],
+        text=(
+            'The third operational requirement of the Ontology (11/30): a mind tolerates local change and it tolerates '
+            'major refactorisations, and size is the simplest refactorisation. Who says that a mechanistic neuron is '
+            'literally the same size as the biological neuron that it replaces? On the coarse-grained view of 11/30, a '
+            'delay is a length divided by a speed, so how big a replacement piece gets is decided by how slow its carriers '
+            'are, with noise as the floor. Which parts of the NCC are like mass and which like radius is open.'
+        ),
+        short='A mind tolerates local change and major refactorisations, size included; delays can be kept over another length.',
+        sources=['11-morphological-independence'],
+    ),
+    dict(
+        slug='computational-irreducibility',
+        name='Computational irreducibility',
+        also=[],
+        pattern=r'computational(?:ly)? irreducib|reducibility question',
+        sameAs=['https://en.wikipedia.org/wiki/Computational_irreducibility'],
+        text=(
+            'Wolfram\'s term for processes whose outcome cannot be had any faster than by letting them run. 11/30 asks '
+            'which parts of what the biological brain physically does can be shortcut into something else in a different '
+            'substrate while still doing or harnessing physics: another route through physics to the same place, like a '
+            'car train through a tunnel, not a simulation, like moving the car on a GPS map.'
+        ),
+        short='Wolfram: processes whose outcome cannot be had faster than by running them; in 11/30, which brain physics can be shortcut.',
+        sources=['11-morphological-independence'],
+    ),
+    dict(
+        slug='neural-correlate-of-consciousness',
+        name='Neural correlate of consciousness',
+        also=['NCC'],
+        pattern=r'neural correlates? of consciousness|\bNCCs?\b',
+        sameAs=['https://en.wikipedia.org/wiki/Neural_correlates_of_consciousness'],
+        text=(
+            '11/30 asks whether the NCC is physically bound to its size. Like the Sun swapped for a black hole of the same '
+            'mass, which would keep the Earth on its orbit with a radius of about 3 km instead of 700000 km, some '
+            'properties may have to be there in full (candidates: the delays and what is connected to what) and others '
+            'may shrink (the lengths, given a slow enough carrier).'
+        ),
+        short='In 11/30, which of its properties are like mass, all of it needed, and which like radius, free to shrink.',
+        sources=['11-morphological-independence'],
+    ),
+    dict(
+        slug='barrow-scale',
+        name='Barrow scale',
+        also=[],
+        pattern=r'barrow.s scale|barrow scale',
+        sameAs=[],
+        text=(
+            'Barrow ranked civilisations by how small they can build, from things of their own size via genes, molecules '
+            'and atoms to nuclei, particles and space-time itself, as the inward counterpart of Kardashev\'s scale of how '
+            'much energy they use. 11/30 asks how far a brain could go down it, and guesses that a smaller and lighter '
+            'carrier might be what allows solving death at larger scales.'
+        ),
+        short='Civilisations ranked by how small they can build; 11/30 asks how far down it a replaced brain could go.',
+        sources=['11-morphological-independence'],
     ),
 ]
 

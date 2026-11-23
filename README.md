@@ -12,6 +12,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel. There is 
 - [8/30 Meditations on Synthetic Consciousness: Who Says Individuality Will Stay Forever?](https://consciousness.ink/8-collective-mind/) · [X](https://x.com/danburonline/status/2123682201342759353)
 - [9/30 Meditations on Synthetic Consciousness: Weak and Strong Multiple Realisability](https://consciousness.ink/9-multiple-realisability/) · [X](https://x.com/danburonline/status/2124042530153222418)
 - [10/30 Meditations on Synthetic Consciousness: I Care Deeply about the Continuity of the Human Brain](https://consciousness.ink/10-continuer-migration/) · [X](https://x.com/danburonline/status/2124388849220775977)
+- [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/) · [X](https://x.com/danburonline/status/2124748091480039921)
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/) · [X](https://x.com/danburonline/status/2122956433914478644)
 - [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/) · [X](https://x.com/danburonline/status/2122573865079709758)
 - [4/30 Meditations on Synthetic Consciousness: Measurements, Models and Theories](https://consciousness.ink/4-measurements-models-theories/) · [X](https://x.com/danburonline/status/2122235784644477415)

@@ -755,5 +755,77 @@
    "id": "sec-just-for-me",
    "starts": "So I'm going to say what I want"
   }
+ ],
+ "11-morphological-independence": [
+  {
+   "label": "The third operational requirement",
+   "id": "sec-the-third-operational-requirement",
+   "starts": "The third operational requirement of my Ontology is called \"morphological independence\" (yesterday"
+  },
+  {
+   "label": "A brain that fills a hall",
+   "id": "sec-a-brain-that-fills-a-hall",
+   "starts": "As you know, I'm working on functional brain isolation"
+  },
+  {
+   "label": "Brains that lose weight",
+   "id": "sec-brains-that-lose-weight",
+   "starts": "My ambition for morphological independence goes the other way"
+  },
+  {
+   "label": "Who has asked before",
+   "id": "sec-who-has-asked-before",
+   "starts": "I went looking for who has asked my question before"
+  },
+  {
+   "label": "Another route through physics",
+   "id": "sec-another-route-through-physics",
+   "starts": "Now, how far could we push this?"
+  },
+  {
+   "label": "The dendritic tree",
+   "id": "sec-the-dendritic-tree",
+   "starts": "The example that I usually bring up is the dendritic tree"
+  },
+  {
+   "label": "Length divided by speed",
+   "id": "sec-length-divided-by-speed",
+   "starts": "The first question has a boring formula"
+  },
+  {
+   "label": "A brain has to wait",
+   "id": "sec-a-brain-has-to-wait",
+   "starts": "The usual intuition here is prob"
+  },
+  {
+   "label": "Noise as the floor",
+   "id": "sec-noise-as-the-floor",
+   "starts": "Ok, but how far down can this go?"
+  },
+  {
+   "label": "Computing the blueprint",
+   "id": "sec-computing-the-blueprint",
+   "starts": "The second question sounds abstract"
+  },
+  {
+   "label": "Mass and radius",
+   "id": "sec-mass-and-radius",
+   "starts": "Obviously, this all hinges on whether"
+  },
+  {
+   "label": "Down the Barrow scale",
+   "id": "sec-down-the-barrow-scale",
+   "starts": "And if it is possible, HOW much smaller"
+  },
+  {
+   "label": "A third scale",
+   "id": "sec-a-third-scale",
+   "starts": "All of this was framed in terms of how small"
+  },
+  {
+   "label": "Bigger isn't inevitable",
+   "id": "sec-bigger-isn-t-inevitable",
+   "starts": "So we started out from one particular worry"
+  }
  ]
 }

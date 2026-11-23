@@ -37,5 +37,9 @@
  },
  "10-continuer-migration": {
   "description": "Day 10 of 30: the second requirement, continuer migration, and the only thing that I care about deeply: the continuity of the human brain."
+ },
+ "11-morphological-independence": {
+  "description": "Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?",
+  "video_duration": "PT16S"
  }
 }

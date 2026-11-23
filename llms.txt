@@ -65,6 +65,10 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Lesion momentum](https://consciousness.ink/glossary/#lesion-momentum): How fast a lesion grows; the speed limit of gradual reorganisation, so far known only as "slower than a stroke".
 - [Grandmother's face problem](https://consciousness.ink/glossary/#grandmothers-face-problem): Rarely recalled engrams may be lost during slow reorganisation, and testing for them changes them.
 - [Continuer migration](https://consciousness.ink/glossary/#continuer-migration): How the move has to go so that it is still you who arrives; in 10/30, the continuity of the human brain.
+- [Morphological independence](https://consciousness.ink/glossary/#morphological-independence): A mind tolerates local change and major refactorisations, size included; delays can be kept over another length.
+- [Computational irreducibility](https://consciousness.ink/glossary/#computational-irreducibility): Wolfram: processes whose outcome cannot be had faster than by running them; in 11/30, which brain physics can be shortcut.
+- [Neural correlate of consciousness](https://consciousness.ink/glossary/#neural-correlate-of-consciousness): In 11/30, which of its properties are like mass, all of it needed, and which like radius, free to shrink.
+- [Barrow scale](https://consciousness.ink/glossary/#barrow-scale): Civilisations ranked by how small they can build; 11/30 asks how far down it a replaced brain could go.
 
 ## Meditations
 
@@ -79,6 +83,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [8/30 Meditations on Synthetic Consciousness: Who Says Individuality Will Stay Forever?](https://consciousness.ink/8-collective-mind/): Day 8 of 30: the third and last outcome of the Ontology, collective mind. Who says that we stay individuals, and don't merge into one collective mind?
 - [9/30 Meditations on Synthetic Consciousness: Weak and Strong Multiple Realisability](https://consciousness.ink/9-multiple-realisability/): Day 9 of 30: the first requirement of the Ontology, multiple realisability, in a weak form (living tissue takes over) and a strong one (de novo tissue).
 - [10/30 Meditations on Synthetic Consciousness: I Care Deeply about the Continuity of the Human Brain](https://consciousness.ink/10-continuer-migration/): Day 10 of 30: the second requirement, continuer migration, and the only thing that I care about deeply: the continuity of the human brain.
+- [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/): Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?
 
 ## Optional
 
