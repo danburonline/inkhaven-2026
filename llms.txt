@@ -69,6 +69,11 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Computational irreducibility](https://consciousness.ink/glossary/#computational-irreducibility): Wolfram: processes whose outcome cannot be had faster than by running them; in 11/30, which brain physics can be shortcut.
 - [Neural correlate of consciousness](https://consciousness.ink/glossary/#neural-correlate-of-consciousness): In 11/30, which of its properties are like mass, all of it needed, and which like radius, free to shrink.
 - [Barrow scale](https://consciousness.ink/glossary/#barrow-scale): Civilisations ranked by how small they can build; 11/30 asks how far down it a replaced brain could go.
+- [Epoché](https://consciousness.ink/glossary/#epoche): Husserl's bracket: only what is given to a conscious observer, no claims about brains or the world yet.
+- [Living present](https://consciousness.ink/glossary/#living-present): The now has a width: the just-past is still held in it and the about-to-come is already expected.
+- [Binding problem](https://consciousness.ink/glossary/#binding-problem): Why billions of separate neurons make one experience and not mind-dust with nobody home.
+- [Microconsciousness](https://consciousness.ink/glossary/#microconsciousness): Zeki: visual consciousness as many microconsciousnesses spread over space and time.
+- [Integrated information theory (IIT)](https://consciousness.ink/glossary/#integrated-information-theory): Tononi and Koch's theory, with an explicit criterion for when two things are one mind.
 
 ## Meditations
 
@@ -84,6 +89,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [9/30 Meditations on Synthetic Consciousness: Weak and Strong Multiple Realisability](https://consciousness.ink/9-multiple-realisability/): Day 9 of 30: the first requirement of the Ontology, multiple realisability, in a weak form (living tissue takes over) and a strong one (de novo tissue).
 - [10/30 Meditations on Synthetic Consciousness: I Care Deeply about the Continuity of the Human Brain](https://consciousness.ink/10-continuer-migration/): Day 10 of 30: the second requirement, continuer migration, and the only thing that I care about deeply: the continuity of the human brain.
 - [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/): Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?
+- [12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified](https://consciousness.ink/12-distributed-unification/): Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?
 
 ## Optional
 

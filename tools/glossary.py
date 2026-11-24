@@ -730,7 +730,7 @@ TERMS = [
             'exception. Whether one would then still be around as oneself is left open.'
         ),
         short='The third outcome: a merge into one giant, phenomenally conscious mind with one process world-line, instead of staying individuals.',
-        sources=['8-collective-mind'],
+        sources=['8-collective-mind', '12-distributed-unification'],
     ),
     dict(
         slug='neurophenomenal-structuralism',
@@ -805,10 +805,12 @@ TERMS = [
             'An operational requirement of the Ontology: many nodes, one mind. A brain that gets replaced piece by piece is '
             'for a long time a mix of old tissue and new parts, and that mix has to be one mind the whole time and not two. '
             'If that can be done between the parts of one brain, 8/30 sees nothing in the method that would care whose '
-            'skull the parts came from, which is why collective mind is an outcome and not a goal.'
+            'skull the parts came from, which is why collective mind is an outcome and not a goal. 12/30 calls it the fourth '
+            'and last operational requirement, with the Ontology\'s two lines "small node count unified" (the weak form) '
+            'and "large-scale, graceful degradation" (the strong one), and notes that every brain is already distributed, yet unified.'
         ),
         short='Many nodes, one mind: during replacement, old tissue and new parts have to be one mind the whole time.',
-        sources=['8-collective-mind'],
+        sources=['8-collective-mind', '12-distributed-unification'],
     ),
     dict(
         slug='show-dont-tell',
@@ -857,7 +859,7 @@ TERMS = [
             'any of those experiments means anything, so each is taken in its least committal form.'
         ),
         short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
-        sources=['9-multiple-realisability'],
+        sources=['9-multiple-realisability', '12-distributed-unification'],
     ),
     dict(
         slug='lesion-momentum',
@@ -966,6 +968,78 @@ TERMS = [
         ),
         short='Civilisations ranked by how small they can build; 11/30 asks how far down it a replaced brain could go.',
         sources=['11-morphological-independence'],
+    ),
+    dict(
+        slug='epoche',
+        name='Epoché',
+        also=["Husserl's bracket"],
+        pattern=r'epoch[eé]\b|husserl.s bracket',
+        sameAs=['https://en.wikipedia.org/wiki/Epoch%C3%A9'],
+        text=(
+            'Husserl\'s bracket: no claims about brains or the world yet, only what\'s given to you as a conscious observer. '
+            'In 12/30 it shows that whatever you experience comes together with the rest, as parts of one stream. It only '
+            'gives how it seems, though, which can\'t tell how the thing is made, and it has to come off the moment somebody '
+            'takes a scalpel to a brain.'
+        ),
+        short='Husserl\'s bracket: only what is given to a conscious observer, no claims about brains or the world yet.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='living-present',
+        name='Living present',
+        also=['synthesis of inner time'],
+        pattern=r'living present|synthesis of inner time',
+        sameAs=[],
+        text=(
+            'Husserl\'s name for the width of the now: the just-past is still held in it and the about-to-come is already '
+            'expected. 12/30 takes this synthesis of inner time as the most basic form of a unity that consciousness does, '
+            'and notes that pulling the parts of a brain apart sooner or later turns "how far apart" into "how wide is the now".'
+        ),
+        short='The now has a width: the just-past is still held in it and the about-to-come is already expected.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='binding-problem',
+        name='Binding problem',
+        also=['phenomenal binding problem'],
+        pattern=r'binding problem',
+        sameAs=['https://en.wikipedia.org/wiki/Binding_problem'],
+        text=(
+            'Why a pack of membrane-bound neurons isn\'t a "micro-experiential zombie", mind-dust with nobody home. David '
+            'Pearce states it as a problem for physics and answers it with quantum coherence. 12/30 takes the problem as '
+            'stated without following him there.'
+        ),
+        short='Why billions of separate neurons make one experience and not mind-dust with nobody home.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='microconsciousness',
+        name='Microconsciousness',
+        also=['microconsciousnesses'],
+        pattern=r'microconsciousness',
+        sameAs=[],
+        text=(
+            'Semir Zeki\'s conclusion from colour being perceived about 80 ms before motion: visual consciousness consists of '
+            'many microconsciousnesses spread over space and time. In 12/30 it is part of the case that the unity Husserl '
+            'describes is manufactured, out of parts that are centimetres and tens of milliseconds apart.'
+        ),
+        short='Zeki: visual consciousness as many microconsciousnesses spread over space and time.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='integrated-information-theory',
+        name='Integrated information theory (IIT)',
+        also=['IIT'],
+        pattern=r'integrated information theory|\bIIT\b',
+        sameAs=['https://en.wikipedia.org/wiki/Integrated_information_theory'],
+        text=(
+            'In 12/30, the one theory with an explicit criterion for when two things are one. Tononi and Koch expect one '
+            'mind to fall apart into two quite abruptly as the corpus callosum is weakened step by step, and the opposite '
+            'for a strong enough link between two brains. A part that\'s only simulated doesn\'t count for them, because a '
+            'simulation has no causal power of its own.'
+        ),
+        short='Tononi and Koch\'s theory, with an explicit criterion for when two things are one mind.',
+        sources=['8-collective-mind', '12-distributed-unification'],
     ),
 ]
 

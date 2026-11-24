@@ -392,8 +392,10 @@ article .essence-text { margin: 0; font-size: 1.05rem; line-height: 1.6; color: 
 .essence .x-callout:focus-visible { outline: 2px solid var(--muted); outline-offset: -2px; }
 .essence .x-callout-text strong { display: block; margin-right: 0; }
 .essence .x-callout-text span { display: block; margin-top: 0.1rem; }
+.essence.essence-solo { padding-bottom: 1rem; }
 @media (max-width: 520px) {
   .essence { padding: 0.9rem 0.95rem 0; }
+  .essence.essence-solo { padding-bottom: 0.9rem; }
   article .essence-text { font-size: 1rem; }
   .essence .x-callout { margin: 0.85rem -0.95rem 0; padding-left: 0.95rem; }
 }
@@ -1402,4 +1404,26 @@ main:has(.post-list) { overflow-x: visible; }
   .post-list li { margin-inline: -1rem; padding-inline: 1rem; }
   .post-list li::before,
   .post-list a.title::after { border-radius: 0; }
+}
+
+/* A meditation published in parts: the text fades out over its last lines and
+   a quiet note says the rest follows (tools/meta.json "continued"). */
+article p:has(+ .part-note) {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 5.2em), rgba(0, 0, 0, 0.14) 100%);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 5.2em), rgba(0, 0, 0, 0.14) 100%);
+}
+/* "Part 1" above the title, in the quiet label style of the TL;DR card */
+.post-header .post-part {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+article .part-note {
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-style: italic;
+  text-align: left;
 }

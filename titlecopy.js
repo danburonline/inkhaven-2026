@@ -15,7 +15,7 @@
   var ICON_CHEV = '<svg aria-hidden="true" viewBox="0 0 12 12" width="10" height="10"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   // ---- plain-text extraction ---------------------------------------------
-  var SKIP = 'header.post-header, .essence, .x-callout, .tweet-embed, .twitter-tweet, iframe, picture, img, video, audio, figure, svg, script, style, noscript, button, nav, footer, .toc, .sec-at, .tcopy, .hl-pop, .pv-card, [aria-hidden="true"], [hidden]';
+  var SKIP = 'header.post-header, .essence, .part-note, .x-callout, .tweet-embed, .twitter-tweet, iframe, picture, img, video, audio, figure, svg, script, style, noscript, button, nav, footer, .toc, .sec-at, .tcopy, .hl-pop, .pv-card, [aria-hidden="true"], [hidden]';
   var BLOCK = /^(P|H[1-6]|LI|BLOCKQUOTE|PRE|DIV|ASIDE|SECTION|UL|OL|TABLE|TR|FIGCAPTION|DL|DT|DD)$/;
   function bare(u) { return u.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, ''); }
   function linkText(a) {
@@ -24,7 +24,10 @@
     // a.ref are bracketed stand-ins like [Nov 2026] for a raw link in the original post
     // a.int are internal links added on the site, not in the original post
     if (a.classList.contains('int')) return t;
-    if (a.classList.contains('ref') || !t || bare(t) === bare(href)) return href;
+    // the link as written in the original post (a.href would add a trailing slash to a bare domain)
+    var raw = a.getAttribute('href') || '';
+    if (a.classList.contains('ref')) return /^https?:\/\//.test(raw) ? raw : href;
+    if (!t || bare(t) === bare(href)) return href;
     return t + ' (' + href + ')';
   }
   function inline(node) {

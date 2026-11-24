@@ -306,7 +306,7 @@ Source: https://consciousness.ink/glossary/#branching-identity
 
 ### Distributed unification
 
-An operational requirement of the Ontology: many nodes, one mind. A brain that gets replaced piece by piece is for a long time a mix of old tissue and new parts, and that mix has to be one mind the whole time and not two. If that can be done between the parts of one brain, 8/30 sees nothing in the method that would care whose skull the parts came from, which is why collective mind is an outcome and not a goal.
+An operational requirement of the Ontology: many nodes, one mind. A brain that gets replaced piece by piece is for a long time a mix of old tissue and new parts, and that mix has to be one mind the whole time and not two. If that can be done between the parts of one brain, 8/30 sees nothing in the method that would care whose skull the parts came from, which is why collective mind is an outcome and not a goal. 12/30 calls it the fourth and last operational requirement, with the Ontology's two lines "small node count unified" (the weak form) and "large-scale, graceful degradation" (the strong one), and notes that every brain is already distributed, yet unified.
 
 Source: https://consciousness.ink/glossary/#distributed-unification
 
@@ -369,6 +369,36 @@ Source: https://consciousness.ink/glossary/#neural-correlate-of-consciousness
 Barrow ranked civilisations by how small they can build, from things of their own size via genes, molecules and atoms to nuclei, particles and space-time itself, as the inward counterpart of Kardashev's scale of how much energy they use. 11/30 asks how far a brain could go down it, and guesses that a smaller and lighter carrier might be what allows solving death at larger scales.
 
 Source: https://consciousness.ink/glossary/#barrow-scale
+
+### Epoché
+
+Husserl's bracket: no claims about brains or the world yet, only what's given to you as a conscious observer. In 12/30 it shows that whatever you experience comes together with the rest, as parts of one stream. It only gives how it seems, though, which can't tell how the thing is made, and it has to come off the moment somebody takes a scalpel to a brain.
+
+Source: https://consciousness.ink/glossary/#epoche
+
+### Living present
+
+Husserl's name for the width of the now: the just-past is still held in it and the about-to-come is already expected. 12/30 takes this synthesis of inner time as the most basic form of a unity that consciousness does, and notes that pulling the parts of a brain apart sooner or later turns "how far apart" into "how wide is the now".
+
+Source: https://consciousness.ink/glossary/#living-present
+
+### Binding problem
+
+Why a pack of membrane-bound neurons isn't a "micro-experiential zombie", mind-dust with nobody home. David Pearce states it as a problem for physics and answers it with quantum coherence. 12/30 takes the problem as stated without following him there.
+
+Source: https://consciousness.ink/glossary/#binding-problem
+
+### Microconsciousness
+
+Semir Zeki's conclusion from colour being perceived about 80 ms before motion: visual consciousness consists of many microconsciousnesses spread over space and time. In 12/30 it is part of the case that the unity Husserl describes is manufactured, out of parts that are centimetres and tens of milliseconds apart.
+
+Source: https://consciousness.ink/glossary/#microconsciousness
+
+### Integrated information theory (IIT)
+
+In 12/30, the one theory with an explicit criterion for when two things are one. Tononi and Koch expect one mind to fall apart into two quite abruptly as the corpus callosum is weakened step by step, and the opposite for a strong enough link between two brains. A part that's only simulated doesn't count for them, because a simulation has no causal power of its own.
+
+Source: https://consciousness.ink/glossary/#integrated-information-theory
 
 ---
 
@@ -629,7 +659,7 @@ PS: One correction to my own picture tho, as she wouldn't come back in the body 
 URL: https://consciousness.ink/8-collective-mind/
 Author: Daniel Burger
 Published: 2026-11-19
-Topics: synthetic consciousness, hybrid mind uploading, mind uploading, process world-line, gradual brain replacement, gradual reorganisation principle, solving death, death, transcend humanity, transhumanism, steerable phenomenology, lossless q-storage, substrate independence, baseline first, collective mind, neurophenomenal structuralism, ecphoric reconstruction, q-time and p-time, branching identity, distributed unification, show, don't tell
+Topics: synthetic consciousness, hybrid mind uploading, mind uploading, process world-line, gradual brain replacement, gradual reorganisation principle, solving death, death, transcend humanity, transhumanism, steerable phenomenology, lossless q-storage, substrate independence, baseline first, collective mind, neurophenomenal structuralism, ecphoric reconstruction, q-time and p-time, branching identity, distributed unification, show, don't tell, integrated information theory
 
 The third and last outcome of my Ontology, when working on the hybrid mind uploading mission towards a future state of synthetic consciousness as the vision, is called "collective mind". This is probably THE(!) weirdest item in the entire Ontology, and that's actually a wild thing to say on its own if you consider that we're talking about super weird stuff already, such as hybrid mind uploading, substrate independence, solving death and transcending humanity, etc. The reason being that, based on my own experience of talking to longevity people over the past few years, even the most extreme transhumanists usually have one view in common about the future post-death and post-augmentation: they stay single individuals, "lasting as long as they want/forever". But who says that we stay individuals? Who says that we don't merge into one collective, and also phenomenally conscious, mind? (I mean that last bit literally btw, as a society or an internet can be smart as a whole without there being anything it is like to be it, and here there would be). Most transhumanists that I've talked to (myself included, initially) usually don't consider this a possibility at all, they're all pro-individualism. Last year I suggested using exactly that as a little stress test for people in brain augmentation, so to ask them if they're pro-hivemind or pro-individualism ( [Sep 2025] ), only to admit three days later that I was losing arguments for individualism ( [Sep 2025] ). Nowadays I'm pretty unsure about it. Nobody is truly seeing a strong convergence towards collective minds, I'm pretty sure that it might happen, and I might be completely wrong.
 
@@ -777,3 +807,34 @@ And if it is possible, HOW much smaller can we go? Where's the limit of basicall
 All of this was framed in terms of how small. One can also frame it in terms of how far, which is an idea that I discussed with a friend online recently => a third scale next to Kardashev's and Barrow's (I'm unsure if "axis" is the right word), for the scale at which death gets solved. On day three I said that you can solve death and death can still occur in the universe, so there's a local and a global version. I used to say "solve death in the universe", but this is really hard, and it probably comes in steps => personal death first, then the death of the Earth, then of the solar system (e.g. distributed brains across it that are somehow still coupled into one process world-line, before any hivemind, which is tomorrow's requirement btw), and at some point the heat death of the universe (open physics, day three). The closest thing that I could find is Zoltan Galántai's scale, which ranks civilisations by the size of the disaster that they can't survive, from a local one up to a supernova next door ( [centauri-dreams.org] ). His is about civilisations that spread out, and mine starts with one conscious process that shouldn't end (the never ending 4D process world line). My guess is that the two classical scales meet here, as going down Barrow's (a smaller and lighter carrier) might be what allows going up this one!
 
 So we started out from one particular worry, a replacement brain that fills a hall. Fortunately, bigger isn't inevitable => what a morphology does in time can be done over another length, tissue does it already, and how much space it takes depends on the carrier, with noise as the floor. What I don't know is which parts of the NCC are mass and which are radius. The real test is to show that in a material, so to replace a piece by a smaller one that keeps the delays and see if the function stays (and then the engram, which is harder). Afaik I'm the first one to think about this in the context of gradual brain replacement, and if I'm not, please write me!
+
+---
+
+## 12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified
+
+URL: https://consciousness.ink/12-distributed-unification/
+Author: Daniel Burger
+Published: 2026-11-23
+Topics: collective mind, distributed unification, epoché, living present, binding problem, microconsciousness, integrated information theory
+
+The fourth and last operational requirement of my Ontology is called "distributed unification", which might sound like an oxymoron at first. It basically goes into two aspects of thought that come up whenever we talk about brains and consciousness, and the Ontology's two lines for it are "small node count unified" (the weak form) and "large-scale, graceful degradation" (the strong one).
+
+First we start with the unified aspect of phenomenality, and it's pretty common to do this by putting on Husserl's bracket (the epoché, so no claims about brains or the world yet, only what's given to you as a conscious observer). The script is pretty simple: Look at what you experience right now and try to find one experience that comes on its own. You won't, I think, bc whatever is there comes together with the rest, as parts of one stream, which Husserl calls synthesis, "the primal form belonging to consciousness" (Cartesian Meditations, §17 and §18). The critical part for later is that he describes this unity as something that consciousness DOES, so an achievement that has to keep going. And the most basic form of it is the synthesis of inner time (or more plainly, the now has a width) => the just-past is still held in it and the about-to-come is already expected (his living present).
+
+David Pearce states the same thing as a problem for physics, and very rigorously ( [physicalism.com] ). It's the binding problem => why isn't a pack of 86 billion membrane-bound neurons a "micro-experiential zombie", mind-dust with nobody home? His own answer is quantum coherence. I'm not following him there (maximally conservative, as usual), but I take the problem as stated. Btw, depending on how you read them, Pearce and Husserl aren't talking about quite the same unity. Pearce asks how everything hangs together at one moment (the self that persists over time he leaves aside), and Husserl's might be better labelled a unity over time. For today I can't keep the two apart tho => pull the parts of a brain away from each other and the signals between them need longer ( yesterday's boring formula ), so "how far apart" sooner or later turns into "how wide is the now".
+
+Now, I want to contest this a bit, and not only from the philosophical or bracketing point of view but from a neuroscientific one => do we indeed have a unified consciousness? The bracket only gives me how it seems, which can't tell me how the thing is made, or whether it's as complete as it looks from inside (with two streams in one skull, how would either know about the other?). And the bracket has to come off the moment somebody takes a scalpel to a brain. What neuroscience finds, so far as I can tell, is no place and no instant where it all comes together. Colour is perceived about 80 ms before motion, from which Semir Zeki concluded that visual consciousness consists of many "microconsciousnesses" spread over space and time ( [pmc.ncbi.nlm.nih.gov] ). An average myelinated fibre of the corpus callosum needs more than 25 ms from one temporal lobe to the other ( [pubmed.ncbi.nlm.nih.gov] ). So the unity that Husserl describes is manufactured, out of parts that are centimetres and tens of milliseconds apart, and within tolerances. Which means that every brain is ALREADY distributed, yet unified! The oxymoron describes you right now, and the requirement asks how far this can be stretched, and what does the stretching.
+
+Then, how does it break? Consider the following cases:
+
+– Split. Cutting the corpus callosum gave Sperry and Gazzaniga patients whose hemispheres each perceived and answered on their own, hence the textbook's two streams in one skull. Two such patients were retested => they couldn't compare stimuli across the midline, but they reported stimuli anywhere in the visual field, with either hand or in words ( [doi.org] ). So perception was divided and the agent apparently wasn't (contested, and it's two patients). – Almost split. In last year's cohort, one centimetre of spared fibres at the back of the callosum kept the hemispheres fully integrated, and only the complete cuts split ( [doi.org] ). – Half gone. Adults who had a hemisphere removed as children are one person each, with the usual functional networks ( [doi.org] ). – The reverse. The twins from day eight have a bridge of thalamic tissue between their brains, and some contents seem to cross it, but they're still two subjects.
+
+As a general rule-of-thumb you might expect that the more wire there is, the more unity we wind up with. These four say otherwise.
+
+For the question of which PARTS can go missing I rely on Hugues Duffau's review of glioma surgery ( [doi.org] ). A low-grade glioma grows over years => more than 90% of these patients have a normal neurological exam, whereas after a stroke in the same place only about a quarter recover fully. To a first approximation, how fast something gets lost matters more than what gets lost. Surgeons have removed Broca's area and other regions that textbooks call "eloquent", and the patients went back to their normal working lives. And at a second operation years later, sites that disturbed a function when they were stimulated the first time do nothing any more, so the function has moved while the person has obv stayed. This can't go on forever tho, and the most obvious limit is the long-range wiring (the white matter), which doesn't get compensated. He speaks of "nodes within a wide network", and in the one distributed mind that we know, nodes can apparently get lost if it happens slowly, but the connections between them can't. It's also only half of what we need => it shows that another piece of BRAIN can take over, and nothing yet about another substrate.
+
+Now pull the parts apart, in theory over large distances. Is that still one thing with one now, or does it break down? Whatever it is that unifies a brain, is it still all there afterwards? The nice thing about asking it like this is that it's robust to my ignorance. A brain is one already (to whatever degree, see above). If every physical influence that went between two of its parts before still goes between them afterwards, with the same timing, then the unifier is untouched, whatever it is. So I can preserve unity without owning a theory of it, which I couldn't say about creating it between two brains (day eight's collective mind is a much stronger claim than today's, although the hardware would be the same).
+
+Afaik the one theory with an explicit criterion for when two things are one is IIT ( [arxiv.org] ). If you'd weaken the corpus callosum step by step, Tononi and Koch expect the one mind to fall apart into two quite abruptly at some point, and in the limit of a strong enough link between two brains they expect the opposite (that's Koch's Übermind from day eight). However, in all cases a part that's only simulated doesn't count for them, because a simulation has no causal power of its own, whereas an artificial "connectivity booster" between real brains is fine. That's about where I land as well, just without Φ.
+
+The rest of this meditation will be posted soon.

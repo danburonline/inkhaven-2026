@@ -42,5 +42,13 @@
   "description": "Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?",
   "video_duration": "PT16S",
   "video_description": "Animation in five stages, Biological, Biohybrid, Biomimetic, Mechanistic and Smaller: one neuron in the whole brain is replaced until it runs at half the route length and half the carrier speed, so every delay (route length / carrier speed) is kept on the process world-line."
+ },
+ "12-distributed-unification": {
+  "description": "Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?",
+  "video_duration": "PT20S",
+  "video_description": "Animation: the two halves of a brain pulled apart, from your brain today (15 cm, callosal axons) across a continent and a planet to a solar system (4.5 billion km, light), with how many exchanges fit in one now and how long one now lasts at each distance.",
+  "part": "Part 1",
+  "continued": "The rest of this meditation will be posted soon.",
+  "x_pending": true
  }
 }

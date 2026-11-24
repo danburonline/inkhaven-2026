@@ -121,7 +121,7 @@ def title_with_slot(short):
     return (html.escape(head) + ' ' + end) if head else end
 
 
-def rewrite_post_chrome(path, num, short, iso, date_text, words):
+def rewrite_post_chrome(path, num, short, iso, date_text, words, part=None):
     """Idempotent: turn a post's top chrome into the slim nav + title + byline."""
     s = open(path, encoding='utf-8').read()
     m = NUM_WRAP_RE.search(s)
@@ -142,13 +142,14 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words):
         # keeps the title from rewrapping when the script runs. The last word
         # and the slot share a nowrap span, so the control never wraps onto a
         # line of its own: if it doesn't fit, the last word moves down with it.
+        '%s'
         '        <h1>%s</h1>\n'
         '        <p class="post-byline"><a class="author-link post-author" href="%s" target="_blank" rel="author me noopener">%s</a>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
         '<time class="post-date" datetime="%s">%s</time>'
         '<span class="post-meta-sep" aria-hidden="true">·</span>'
         '<span class="post-words">%s</span></p>\n'
-        '      </header>\n' % (title_with_slot(short), AUTHOR_X, html.escape(AUTHOR), iso, html.escape(date_text), words_label(words))
+        '      </header>\n' % (('        <p class="post-part">%s</p>\n' % html.escape(part)) if part else '', title_with_slot(short), AUTHOR_X, html.escape(AUTHOR), iso, html.escape(date_text), words_label(words))
     )
     s2, n = re.subn(r'(<div class="wrap">\n)', r'\1' + nav, s, count=1)
     if n != 1:
@@ -224,7 +225,7 @@ def close_excerpt(chosen, text, limit, ellipsis=False):
 
 def first_para(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop', '.part-note']:
         for el in body.select(sel):
             el.decompose()
     for p in body.find_all('p'):
@@ -507,7 +508,7 @@ def plain_name(t):
 
 def body_text(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
-    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop']:
+    for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop', '.part-note']:
         for el in body.select(sel):
             el.decompose()
     return re.sub(r'\s+', ' ', body.get_text(' ')).strip()
@@ -730,26 +731,71 @@ def text_positions(fragment):
 ESSENCE_PATH = os.path.join(ROOT, 'tools', 'essence.json')
 ESSENCE = {k: v for k, v in json.load(open(ESSENCE_PATH, encoding='utf-8')).items() if not k.startswith('_')} if os.path.exists(ESSENCE_PATH) else {}
 ESSENCE_RE = re.compile(r'<aside class="essence"[^>]*>.*?(<a class="x-callout".*?</a>)</aside>', re.S)
+# a card for a post that has no X post (yet): no "Originally posted on X" footer
+SOLO_RE = re.compile(r'\s*<aside class="essence essence-solo"[^>]*>.*?</aside>', re.S)
 XC_RE = re.compile(r'<a class="x-callout".*?</a>', re.S)
+X_ICON = '<svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'
+
+def x_callout(status_id):
+    return ('<a class="x-callout" href="https://x.com/danburonline/status/%s" target="_blank" rel="noopener">'
+            '<span class="x-callout-icon">%s</span><span class="x-callout-text"><strong>Originally posted on X</strong>'
+            '<span>Replies and discussion happen there.</span></span><span class="x-callout-cta">Open on X&nbsp;&rarr;</span></a>'
+            % (status_id, X_ICON))
+
+def top_anchor(s):
+    """Where a TL;DR card / X line goes when the page has none yet: after the
+    top image or video, else after the title header."""
+    a0 = s.index('<article>')
+    m = re.compile(r'<figure class="post-media">.*?</figure>|<p>\s*<(?:video\b[^>]*>\s*</video>|picture data-r>.*?</picture>)\s*</p>', re.S).search(s, a0)
+    if m and m.start() < s.index('</article>', a0):
+        return m.end()
+    return s.index('</header>', a0) + len('</header>')
 
 def apply_essence(path, slug):
     s = open(path, encoding='utf-8').read()
     orig = s
     s = ESSENCE_RE.sub(lambda m: m.group(1), s)
+    solo = SOLO_RE.search(s)
+    if solo:
+        s = s[:solo.start()] + s[solo.end():]
+    # tools/meta.json "x": status id adds the X line to a post published before its X post
+    xid = META.get(slug, {}).get('x')
+    if xid and not XC_RE.search(s):
+        pos = top_anchor(s)
+        s = s[:pos] + '\n      ' + x_callout(xid) + s[pos:]
     text = ESSENCE.get(slug)
     if text:
         words = len(text.split())
         if words >= 50:
             raise SystemExit('essence for %s has %d words; keep it under 50' % (slug, words))
         m = XC_RE.search(s)
-        if not m:
-            print('WARNING: essence for %s: no x-callout to attach to' % slug)
-        else:
-            card = ('<aside class="essence" id="sec-essence" aria-labelledby="essence-label">'
-                    '<p class="essence-label" id="essence-label">TL;DR</p>'
-                    '<p class="essence-text">%s</p>%s</aside>'
-                    % (html.escape(text, quote=False), m.group(0)))
+        body = ('<p class="essence-label" id="essence-label">TL;DR</p>'
+                '<p class="essence-text">%s</p>' % html.escape(text, quote=False))
+        if m:
+            card = '<aside class="essence" id="sec-essence" aria-labelledby="essence-label">%s%s</aside>' % (body, m.group(0))
             s = s[:m.start()] + card + s[m.end():]
+        else:
+            if not META.get(slug, {}).get('x_pending'):
+                print('WARNING: essence for %s: no x-callout to attach to' % slug)
+            card = '<aside class="essence essence-solo" id="sec-essence" aria-labelledby="essence-label">%s</aside>' % body
+            pos = top_anchor(s)
+            s = s[:pos] + '\n      ' + card + s[pos:]
+    if s != orig:
+        open(path, 'w', encoding='utf-8').write(s)
+
+# tools/meta.json "continued": a post published in parts. The end of the text
+# fades out and a quiet note says the rest follows. Removing the key (once the
+# rest of the text is in) drops both.
+PART_NOTE_RE = re.compile(r'\s*<p class="part-note">.*?</p>', re.S)
+
+def apply_part_note(path, slug):
+    s = open(path, encoding='utf-8').read()
+    orig = s
+    s = PART_NOTE_RE.sub('', s)
+    note = META.get(slug, {}).get('continued')
+    if note:
+        a1 = s.index('</article>')
+        s = s[:a1].rstrip() + '\n<p class="part-note">%s</p>\n    ' % html.escape(note, quote=False) + s[a1:]
     if s != orig:
         open(path, 'w', encoding='utf-8').write(s)
 
@@ -822,6 +868,7 @@ for d in sorted(os.listdir(ROOT)):
         continue
     preload = responsive_images(p, d)
     apply_essence(p, d)
+    apply_part_note(p, d)
     apply_outline(p, d)
     soup = BeautifulSoup(open(p, encoding='utf-8').read(), 'html.parser')
     art = soup.find('article')
@@ -902,7 +949,7 @@ for d in sorted(os.listdir(ROOT)):
         for k in GEN_ATTRS:
             im_el.attrs.pop(k, None)
         pic.replace_with(im_el)
-    rewrite_post_chrome(p, num, short, t['datetime'], t.get_text(strip=True), words)
+    rewrite_post_chrome(p, num, short, t['datetime'], t.get_text(strip=True), words, META.get(d, {}).get('part'))
     posts.append(dict(preload=preload,
         n=num, slug=d, title=title, short=short, page_title=page_title,
         date=t.get_text(strip=True), iso=t['datetime'], modified=modified, words=words,

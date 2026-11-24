@@ -26,6 +26,7 @@ class EssenceTests(unittest.TestCase):
 
     def test_every_post_has_a_card(self):
         essences = json.loads((ROOT / 'tools/essence.json').read_text())
+        meta = json.loads((ROOT / 'tools/meta.json').read_text())
         pages = sorted(ROOT.glob('[0-9]*-*/index.html'))
         self.assertGreaterEqual(len(pages), 8)
         for page in pages:
@@ -39,9 +40,31 @@ class EssenceTests(unittest.TestCase):
             self.assertNotIn('\u2014', text)
             self.assertNotIn('thinking trace', text.lower())
             self.assertLessEqual(len([c for c in text if c in '.!?']), 2, slug)
-            self.assertEqual(len(soup.select('a.x-callout')), 1, slug)
-            self.assertIsNotNone(cards[0].select_one('a.x-callout[href^="https://x.com/danburonline/status/"]'), slug)
+            if meta.get(slug, {}).get('x_pending'):
+                # published before its X post: a card without the X line, and no embed
+                self.assertIn('essence-solo', cards[0]['class'], slug)
+                self.assertEqual(len(soup.select('a.x-callout, .tweet-embed')), 0, slug)
+            else:
+                self.assertEqual(len(soup.select('a.x-callout')), 1, slug)
+                self.assertIsNotNone(cards[0].select_one('a.x-callout[href^="https://x.com/danburonline/status/"]'), slug)
             self.assertIsNone(soup.select_one('.toc a[href="#sec-essence"]'), slug)
+
+    def test_post_in_parts(self):
+        meta = json.loads((ROOT / 'tools/meta.json').read_text())
+        for slug, m in meta.items():
+            page = ROOT / slug / 'index.html'
+            if not page.exists():
+                continue
+            soup = BeautifulSoup(page.read_text(), 'html.parser')
+            notes = soup.select('article .part-note')
+            if m.get('continued'):
+                self.assertEqual(len(notes), 1, slug)
+                self.assertEqual(notes[0].text, m['continued'])
+                self.assertIsNone(notes[0].find_next_sibling(), slug)
+                self.assertNotIn('\u2014', notes[0].text)
+                self.assertEqual(soup.select_one('header.post-header .post-part').text, m['part'])
+            else:
+                self.assertEqual(len(notes), 0, slug)
 
 if __name__ == '__main__':
     unittest.main()
