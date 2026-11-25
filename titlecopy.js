@@ -23,7 +23,8 @@
     if (!href || /^javascript:/i.test(href)) return t;
     // a.ref are bracketed stand-ins like [Nov 2026] for a raw link in the original post
     // a.int are internal links added on the site, not in the original post
-    if (a.classList.contains('int')) return t;
+    // a.add are external links added on the site on the post's own words: text only
+    if (a.classList.contains('int') || a.classList.contains('add')) return t;
     // an @handle linked to its X profile reads as written: @handle
     if (/^@\w+$/.test(t) && /^https:\/\/x\.com\/\w+\/?$/.test(href) && bare(href).split('/')[1].toLowerCase() === t.slice(1).toLowerCase()) return t;
     // the link as written in the original post (a.href would add a trailing slash to a bare domain)
