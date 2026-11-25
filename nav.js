@@ -126,7 +126,7 @@
     location.href = '/' + to.slug + '/';
   });
 
-  fetch('/posts.json?v=bcbae83ff9').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (posts) {
+  fetch('/posts.json?v=bb994f322b').then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (posts) {
     order = posts.slice().sort(function (a, b) { return a.n - b.n; });
     build(posts);
   }).catch(function () {});

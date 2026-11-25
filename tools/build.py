@@ -506,6 +506,11 @@ def term_ref(t, full=False):
 def plain_name(t):
     return re.sub(r'\s*\([A-Z]+\)$', '', t['name'])
 
+def topic_name(t):
+    # topic lists are lower case, except where a term keeps a proper noun (proper=...)
+    n = plain_name(t).lower()
+    return n.replace(t['proper'].lower(), t['proper']) if t.get('proper') else n
+
 def body_text(art):
     body = BeautifulSoup(str(art), 'html.parser').find('article')
     for sel in ['h1', 'time', '.post-nav', '.post-header', '.post-byline', '.essence', '.x-callout', '.tweet-embed', 'script', 'figcaption', '.num-menu-pop', '.part-note']:
@@ -524,7 +529,7 @@ def ensure_extras(path, topics):
     s = open(path, encoding='utf-8').read()
     s = TOPICS_RE.sub('', s)
     if topics:
-        links = ', '.join('<a href="/glossary/#%s">%s</a>' % (t['slug'], html.escape(plain_name(t).lower()))
+        links = ', '.join('<a href="/glossary/#%s">%s</a>' % (t['slug'], html.escape(topic_name(t)))
                           for t in topics)
         block = ('\n    <!-- topics:start -->\n    <p class="topics">Topics: %s</p>\n    <!-- topics:end -->' % links)
         s = s.replace('</article>', '</article>' + block, 1)
@@ -965,8 +970,8 @@ json.dump(MODIFIED, open(MOD_PATH, 'w', encoding='utf-8'), indent=1, sort_keys=T
 last_mod = max(q['modified'] for q in posts)
 
 for q in posts:
-    kw = [plain_name(x).lower() for x in q['topics']] + [k for k in SERIES_KEYWORDS
-                                                         if k.lower() not in [plain_name(x).lower() for x in q['topics']]]
+    kw = [topic_name(x) for x in q['topics']] + [k for k in SERIES_KEYWORDS
+                                                         if k.lower() not in [topic_name(x).lower() for x in q['topics']]]
     q['keywords'] = kw
     posting = {
         '@type': 'BlogPosting',
@@ -1105,7 +1110,7 @@ home_ld = {
             'description': home_desc, 'inLanguage': 'en-GB', 'isPartOf': {'@id': WEBSITE_ID},
             'author': {'@id': PERSON_ID}, 'publisher': {'@id': PERSON_ID},
             'image': home_og_url, 'dateModified': last_mod,
-            'keywords': ', '.join(plain_name(x).lower() for x in TERMS),
+            'keywords': ', '.join(topic_name(x) for x in TERMS),
             'about': about_terms,
             'blogPost': [{'@type': 'BlogPosting', '@id': q['url'] + '#post', 'headline': q['title'][:110],
                           'url': q['url'], 'datePublished': q['iso'], 'author': {'@id': PERSON_ID}}
@@ -1118,7 +1123,7 @@ home_ld = {
     ] + [term_ref(x) for x in TERMS],
 }
 set_head(ip, common_head(HOME_TITLE, home_desc, SITE_URL + '/') + [
-    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS)),
+    '  <meta name="keywords" content="%s">' % html.escape(', '.join(topic_name(x) for x in TERMS)),
     '  <meta property="og:type" content="website">',
     '  <meta property="og:title" content="%s">' % html.escape(HOME_TITLE),
     '  <meta property="og:description" content="%s">' % html.escape(home_desc),
@@ -1223,7 +1228,7 @@ gl_og_name = write_og(compose_glossary_og(), gdir)
 gl_og_url = SITE_URL + '/glossary/' + gl_og_name
 gl_og_alt = 'Glossary · ' + SERIES
 gl_head = common_head(gl_title, gl_desc, GLOSSARY_URL) + [
-    '  <meta name="keywords" content="%s">' % html.escape(', '.join(plain_name(x).lower() for x in TERMS)),
+    '  <meta name="keywords" content="%s">' % html.escape(', '.join(topic_name(x) for x in TERMS)),
     '  <meta property="og:type" content="website">',
     '  <meta property="og:title" content="%s">' % html.escape(gl_title),
     '  <meta property="og:description" content="%s">' % html.escape(gl_desc),
@@ -1350,7 +1355,7 @@ for x in TERMS:
 for q in chron:
     full += ['---', '', '## %s' % q['title'], '',
              'URL: %s' % q['url'], 'Author: %s' % AUTHOR, 'Published: %s' % q['iso'],
-             'Topics: %s' % ', '.join(plain_name(x).lower() for x in q['topics']), '']
+             'Topics: %s' % ', '.join(topic_name(x) for x in q['topics']), '']
     soup_t = BeautifulSoup(q['html'], 'html.parser')
     for el in soup_t.select('.tweet-embed, figcaption'):
         el.decompose()

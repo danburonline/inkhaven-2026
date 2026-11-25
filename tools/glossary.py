@@ -98,7 +98,7 @@ TERMS = [
             'series, death is the irreversible end of the process world-line.'
         ),
         short='The 4D trajectory of the physical processes that constitute a brain; its irreversible end is death.',
-        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death', '5-transcending-biology', '8-collective-mind'],
+        sources=['0-the-start', '1-causa-finalis', '2-hybrid-mind-uploading', '3-solving-death', '5-transcending-biology', '8-collective-mind', '12-distributed-unification'],
     ),
     dict(
         slug='gradual-brain-replacement',
@@ -113,7 +113,7 @@ TERMS = [
             'uploading.'
         ),
         short='Swapping the brain\'s substrate out piece by piece without destroying the processes it carries.',
-        sources=['0-the-start'],
+        sources=['0-the-start', '12-distributed-unification'],
     ),
     dict(
         slug='mechanistic-gradual-brain-replacement',
@@ -832,7 +832,7 @@ TERMS = [
         slug='strong-multiple-realisability',
         name='Strong multiple realisability',
         also=['de novo tissue'],
-        pattern=r'strong(?:ly)? (?:form|multipl[ey] reali[sz]ab)|weakly or strongly',
+        pattern=r'strong(?:ly)? multipl[ey] reali[sz]ab|weakly or strongly|strong form of multiple',
         sameAs=[],
         text=(
             'The strong form of the Ontology\'s first requirement (9/30). Weak multiple realisability holds if engrams or '
@@ -906,7 +906,7 @@ TERMS = [
             'robs you of it.'
         ),
         short='How the move has to go so that it is still you who arrives; in 10/30, the continuity of the human brain.',
-        sources=['10-continuer-migration'],
+        sources=['10-continuer-migration', '12-distributed-unification'],
     ),
     dict(
         slug='morphological-independence',
@@ -957,6 +957,7 @@ TERMS = [
     dict(
         slug='barrow-scale',
         name='Barrow scale',
+        proper='Barrow',
         also=[],
         pattern=r'barrow.s scale|barrow scale',
         sameAs=[],
@@ -1040,6 +1041,81 @@ TERMS = [
         ),
         short='Tononi and Koch\'s theory, with an explicit criterion for when two things are one mind.',
         sources=['8-collective-mind', '12-distributed-unification'],
+    ),
+    dict(
+        slug='virtual-long-range-axons',
+        name='Virtual long-range axons',
+        also=['virtual axon'],
+        pattern=r'virtual (?:long-range )?axons?',
+        sameAs=[],
+        text=(
+            'The links that carry signals between the parts of a distributed brain, a term from the synconetics essay '
+            '"Death is an Engineering Challenge". 12/30 points to work that already goes in this direction, such as living '
+            'axon tracts grown in a hydrogel column and a neuromorphic chip that reconnected two cut-apart cultures, and '
+            'notes that a virtual axon is only adequate where all that crosses is spikes and their timing.'
+        ),
+        short='Links that carry the signals between the parts of a distributed brain, adequate where only spikes and timing cross.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='ephaptic-coupling',
+        name='Ephaptic coupling',
+        also=[],
+        pattern=r'ephaptic',
+        sameAs=['https://en.wikipedia.org/wiki/Ephaptic_coupling'],
+        text=(
+            'Neurons influencing each other through the electric field rather than through synapses. In 12/30 it is a '
+            'reason why a cut brain cannot always be bridged by virtual axons: in slices of hippocampus, slow waves keep '
+            'running across a complete cut with nothing but the field carrying them over.'
+        ),
+        short='Neurons influencing each other through the electric field; a reason virtual axons are not always enough.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='china-brain',
+        name='China brain',
+        proper='China',
+        also=['China brain thought experiment'],
+        pattern=r'china brain',
+        sameAs=['https://en.wikipedia.org/wiki/China_brain'],
+        text=(
+            'Ned Block\'s thought experiment in which people with two-way radios each "play" one neuron. 12/30 runs a '
+            'modified version twice: in version one, China carries the mail across one cut tract, so the synapses on the '
+            'other side still get actual spikes at the right times; in version two, China does the sums for a part that '
+            'was taken out.'
+        ),
+        short='Block\'s nation of radio operators playing neurons; 12/30 separates carrying the signals from doing the sums.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='braid',
+        name='Braid',
+        also=['process braid'],
+        pattern=r'\bbraids?\b',
+        sameAs=[],
+        text=(
+            'Proposed in 12/30 as an alternative picture to the process world-line, which seems to imply that the process '
+            'is in one place at each moment. In a braid every node is a strand, held together by the signals on their way '
+            'between them, and it stays one braid although no single strand runs through all of it. Three rules keep it '
+            'from coming apart: join before leave, no spares, no fission.'
+        ),
+        short='Every node a strand, held together by the signals between them; one braid although no strand runs through all of it.',
+        sources=['12-distributed-unification'],
+    ),
+    dict(
+        slug='galantai-scale',
+        name="Galántai's scale",
+        proper='Galántai',
+        also=[],
+        pattern=r'gal[aá]ntai',
+        sameAs=[],
+        text=(
+            'Zoltan Galántai\'s ranking of civilisations by the size of the disaster that they can\'t survive, from a local '
+            'one upwards. 11/30 finds it closest to a scale for solving death; in 12/30 you climb it by spreading out '
+            'further, at the price of being slower to react as one mind.'
+        ),
+        short='Civilisations ranked by the size of the disaster they can survive; climbed by spreading out.',
+        sources=['11-morphological-independence', '12-distributed-unification'],
     ),
 ]
 

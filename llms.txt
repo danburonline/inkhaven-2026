@@ -74,6 +74,11 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Binding problem](https://consciousness.ink/glossary/#binding-problem): Why billions of separate neurons make one experience and not mind-dust with nobody home.
 - [Microconsciousness](https://consciousness.ink/glossary/#microconsciousness): Zeki: visual consciousness as many microconsciousnesses spread over space and time.
 - [Integrated information theory (IIT)](https://consciousness.ink/glossary/#integrated-information-theory): Tononi and Koch's theory, with an explicit criterion for when two things are one mind.
+- [Virtual long-range axons](https://consciousness.ink/glossary/#virtual-long-range-axons): Links that carry the signals between the parts of a distributed brain, adequate where only spikes and timing cross.
+- [Ephaptic coupling](https://consciousness.ink/glossary/#ephaptic-coupling): Neurons influencing each other through the electric field; a reason virtual axons are not always enough.
+- [China brain](https://consciousness.ink/glossary/#china-brain): Block's nation of radio operators playing neurons; 12/30 separates carrying the signals from doing the sums.
+- [Braid](https://consciousness.ink/glossary/#braid): Every node a strand, held together by the signals between them; one braid although no strand runs through all of it.
+- [Galántai's scale](https://consciousness.ink/glossary/#galantai-scale): Civilisations ranked by the size of the disaster they can survive; climbed by spreading out.
 
 ## Meditations
 

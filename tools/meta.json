@@ -45,10 +45,8 @@
  },
  "12-distributed-unification": {
   "description": "Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?",
-  "video_duration": "PT20S",
-  "video_description": "Animation: the two halves of a brain pulled apart, from your brain today (15 cm, callosal axons) across a continent and a planet to a solar system (4.5 billion km, light), with how many exchanges fit in one now and how long one now lasts at each distance.",
-  "part": "Part 1",
-  "continued": "The rest of this meditation will be posted soon.",
-  "x_pending": true
+  "video_duration": "PT24S",
+  "video_description": "Animation of three rules for a distributed brain, each with a case that stays one process and one that does not: 1. Join before leave, 2. No spares, 3. No fission.",
+  "x": "2125438683243573702"
  }
 }
