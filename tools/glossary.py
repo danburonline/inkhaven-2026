@@ -187,7 +187,7 @@ TERMS = [
             'humans. In this series it is step zero on the route to solving death, before gradual replacement.'
         ),
         short='Keeping a living brain alive outside its body for as long as possible; step zero towards solving death.',
-        sources=['3-solving-death', '11-morphological-independence'],
+        sources=['3-solving-death', '11-morphological-independence', '13-brain-centredness'],
     ),
     dict(
         slug='deprivation-view',
@@ -848,7 +848,7 @@ TERMS = [
         slug='operational-and-axiomatic-requirements',
         name='Operational and axiomatic requirements',
         also=['requirement'],
-        pattern=r'operational and axiomatic',
+        pattern=r'operational and axiomatic|axiomatic requirement',
         sameAs=[],
         text=(
             'A requirement is something that has to be true about brains for hybrid mind uploading to have a chance at '
@@ -859,7 +859,7 @@ TERMS = [
             'any of those experiments means anything, so each is taken in its least committal form.'
         ),
         short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
-        sources=['9-multiple-realisability', '12-distributed-unification'],
+        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness'],
     ),
     dict(
         slug='lesion-momentum',
@@ -1116,6 +1116,77 @@ TERMS = [
         ),
         short='Civilisations ranked by the size of the disaster they can survive; climbed by spreading out.',
         sources=['11-morphological-independence', '12-distributed-unification'],
+    ),
+    dict(
+        slug='brain-centredness',
+        name='Brain-centredness',
+        also=['brain-centred'],
+        pattern=r'brain-centred',
+        sameAs=[],
+        text=(
+            'The first of the four axiomatic requirements in the Ontology (13/30). It is pragmatic and least metaphysical: '
+            'if the brain is destroyed, you are gone, even if the rest of the body is kept alive, which is what brain death '
+            'is. It shows that the brain is necessary, not that it is enough; how much else is needed, from intracranial '
+            'pressure to the whole body, is left to be found out empirically, hence brain-centred and not brain-only.'
+        ),
+        short='The first axiomatic requirement: no brain, no you, whatever else is kept; necessary, not shown to be enough.',
+        sources=['13-brain-centredness'],
+    ),
+    dict(
+        slug='extended-mind',
+        name='Extended mind',
+        also=['extended mind hypothesis'],
+        pattern=r'extended mind',
+        sameAs=['https://en.wikipedia.org/wiki/Extended_mind_thesis'],
+        text=(
+            'Andy Clark and David Chalmers\'s hypothesis that a mind can reach beyond the skull: Otto, who has Alzheimer\'s, '
+            'keeps everything in a notebook, and the notebook is a part of his mind as memory is a part of yours. In 13/30, '
+            'if the notebook counts, then so does a phone or a spouse, and the definition of a mind becomes blurry.'
+        ),
+        short='Clark and Chalmers: Otto\'s notebook as part of his mind; in 13/30 a sign that the word "mind" gets blurry.',
+        sources=['13-brain-centredness'],
+    ),
+    dict(
+        slug='islands-of-awareness',
+        name='Islands of awareness',
+        also=[],
+        pattern=r'islands of awareness',
+        sameAs=[],
+        text=(
+            'Tim Bayne, Anil Seth and Marcello Massimini\'s term (2020) for experience in a brain, or a piece of one, that is '
+            'cut off from every input and has no way of expressing anything, e.g. in isolated brains or organoids. 13/30 '
+            'takes it to its limit: a whole human brain that develops in isolation and was never connected to anything.'
+        ),
+        short='Experience in a brain cut off from all input and output; 13/30 imagines a whole brain grown that way.',
+        sources=['13-brain-centredness'],
+    ),
+    dict(
+        slug='floating-man',
+        name='Floating man',
+        also=["Avicenna's floating man"],
+        pattern=r'floating man',
+        sameAs=['https://en.wikipedia.org/wiki/Floating_man'],
+        text=(
+            'Avicenna\'s thought experiment from a thousand years ago: a man created in mid-air with no sensation at all is '
+            'still aware of himself. 13/30 notes that he is created fully formed, as an adult, unlike a brain that never got '
+            'the chance to form anything.'
+        ),
+        short="Avicenna's man created in mid-air without sensation, still aware of himself.",
+        sources=['13-brain-centredness'],
+    ),
+    dict(
+        slug='brain-death',
+        name='Brain death',
+        also=['death by neurologic criteria'],
+        pattern=r'brain death|neurologic criteria',
+        sameAs=['https://en.wikipedia.org/wiki/Brain_death'],
+        text=(
+            'Death by neurologic criteria. In 13/30 it is the reason that brain-centredness is no thought experiment: such a '
+            'body can be kept on a ventilator for days in order for its organs to be donated, and the "core object" of '
+            'your phenomenality is gone.'
+        ),
+        short='Death by neurologic criteria: the body can be kept going, the you is gone.',
+        sources=['13-brain-centredness'],
     ),
 ]
 

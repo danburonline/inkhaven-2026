@@ -79,6 +79,11 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [China brain](https://consciousness.ink/glossary/#china-brain): Block's nation of radio operators playing neurons; 12/30 separates carrying the signals from doing the sums.
 - [Braid](https://consciousness.ink/glossary/#braid): Every node a strand, held together by the signals between them; one braid although no strand runs through all of it.
 - [Galántai's scale](https://consciousness.ink/glossary/#galantai-scale): Civilisations ranked by the size of the disaster they can survive; climbed by spreading out.
+- [Brain-centredness](https://consciousness.ink/glossary/#brain-centredness): The first axiomatic requirement: no brain, no you, whatever else is kept; necessary, not shown to be enough.
+- [Extended mind](https://consciousness.ink/glossary/#extended-mind): Clark and Chalmers: Otto's notebook as part of his mind; in 13/30 a sign that the word "mind" gets blurry.
+- [Islands of awareness](https://consciousness.ink/glossary/#islands-of-awareness): Experience in a brain cut off from all input and output; 13/30 imagines a whole brain grown that way.
+- [Floating man](https://consciousness.ink/glossary/#floating-man): Avicenna's man created in mid-air without sensation, still aware of himself.
+- [Brain death](https://consciousness.ink/glossary/#brain-death): Death by neurologic criteria: the body can be kept going, the you is gone.
 
 ## Meditations
 
@@ -95,6 +100,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [10/30 Meditations on Synthetic Consciousness: I Care Deeply about the Continuity of the Human Brain](https://consciousness.ink/10-continuer-migration/): Day 10 of 30: the second requirement, continuer migration, and the only thing that I care about deeply: the continuity of the human brain.
 - [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/): Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?
 - [12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified](https://consciousness.ink/12-distributed-unification/): Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?
+- [13/30 Meditations on Synthetic Consciousness: Are You Just Your Brain?](https://consciousness.ink/13-brain-centredness/): Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?
 
 ## Optional
 

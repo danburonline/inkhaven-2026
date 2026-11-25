@@ -125,7 +125,9 @@ def rewrite_post_chrome(path, num, short, iso, date_text, words, part=None):
     """Idempotent: turn a post's top chrome into the slim nav + title + byline."""
     s = open(path, encoding='utf-8').read()
     m = NUM_WRAP_RE.search(s)
-    num_wrap = m.group(1) if m else (DEFAULT_NUM_WRAP % num)
+    # keep the existing menu button, but always with this post's number (a new
+    # post usually starts as a copy of the previous one)
+    num_wrap = re.sub(r'>\d+/30<', '>%s/30<' % num, m.group(1), count=1) if m else (DEFAULT_NUM_WRAP % num)
     s = re.sub(r'\s*<p class="masthead">.*?</p>', '', s, count=1, flags=re.S)
     s = re.sub(r'\s*<p class="back">.*?</p>', '', s, count=1, flags=re.S)
     s = re.sub(r'\s*<nav class="post-nav"[^>]*>.*?</nav>', '', s, count=1, flags=re.S)
@@ -669,7 +671,20 @@ def responsive_images(path, slug):
         img = strip_attrs(tag, GEN_ATTRS)
         if not re.search(r'\swidth="', img):
             img = add_attrs(img, [('width', im.width), ('height', im.height)])
-        attrs = [('data-full', sets['webp'][-1].rsplit(' ', 1)[0])]
+        full = sets['webp'][-1].rsplit(' ', 1)[0]
+        # data-fullw="N" on a figure with small print (a table, references) adds
+        # one larger WebP, only for the lightbox, so the text stays legible when zoomed
+        fw = re.search(r'\sdata-fullw="(\d+)"', tag)
+        if fw and int(fw.group(1)) > widths[-1]:
+            w = min(int(fw.group(1)), im.width)
+            name = '%s-%s-%d.webp' % (stem, hh, w)
+            keep.add(name)
+            out = os.path.join(outdir, name)
+            if not os.path.exists(out):
+                big = im if w == im.width else im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+                big.save(out, 'WEBP', quality=82, method=6)
+            full = '/%s/img/%s' % (slug, name)
+        attrs = [('data-full', full)]
         attrs += [('fetchpriority', 'high')] if hero else [('loading', 'lazy'), ('decoding', 'async')]
         img = add_attrs(img, attrs)
         if hero:

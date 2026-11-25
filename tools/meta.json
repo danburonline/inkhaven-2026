@@ -48,5 +48,9 @@
   "video_duration": "PT24S",
   "video_description": "Animation of three rules for a distributed brain, each with a case that stays one process and one that does not: 1. Join before leave, 2. No spares, 3. No fission.",
   "x": "2125438683243573702"
+ },
+ "13-brain-centredness": {
+  "description": "Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?",
+  "x": "2125472977949192375"
  }
 }
