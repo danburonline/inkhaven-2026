@@ -5,8 +5,43 @@
     <link>https://consciousness.ink/</link>
     <description>Daniel Burger's 30 meditations on synthetic consciousness and hybrid mind uploading, in Descartes' sense: one question worked through each day, not settled claims.</description>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 24 Nov 2026 00:00:00 -0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 00:00:00 -0800</lastBuildDate>
     <atom:link href="https://consciousness.ink/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>14/30 My Electrode Is a Functionalist · Meditations on Synthetic Consciousness</title>
+      <link>https://consciousness.ink/14-methodological-physicalism/</link>
+      <guid isPermaLink="true">https://consciousness.ink/14-methodological-physicalism/</guid>
+      <pubDate>Wed, 25 Nov 2026 00:00:00 -0800</pubDate>
+      <dc:creator>Daniel Burger</dc:creator>
+      <category>hybrid mind uploading</category>
+      <category>classical mind uploading</category>
+      <category>gradual brain replacement</category>
+      <category>mechanistic gradual brain replacement</category>
+      <category>multiple realisability</category>
+      <category>medium independence</category>
+      <category>operational and axiomatic requirements</category>
+      <category>methodological physicalism</category>
+      <category>mechanistic functionalism</category>
+      <category>computational functionalism</category>
+      <category>abstraction fallacy</category>
+      <category>pancomputationalism</category>
+      <description>Day 14 of 30: methodological physicalism, the second axiomatic requirement. More a rule than a view, and why my electrode is a functionalist.</description>
+      <content:encoded><![CDATA[<figure class="post-media"><video aria-label="Video: 14/30 My Electrode Is a Functionalist" controls="" height="720" playsinline="" poster="https://consciousness.ink/14-methodological-physicalism/poster.jpg" preload="metadata" src="https://consciousness.ink/14-methodological-physicalism/video.mp4" width="1280"></video></figure>
+
+<p>Today's item in the Ontology is called "methodological physicalism", the second axiomatic requirement. I'll keep the meditation short today, as this is a very weak part (on purpose) and it just basically describes my view. Actually it's more a rule than a view, so a rule for what I let count in the lab (it says nothing about what the world is made of). It goes as such: if somebody tells me that something matters for consciousness, I ask what I could measure, or what I could do to a brain, so that it shows up. If the answer is "nothing, ever", then I can't work with it (it might still be true btw!). I just can't put it on a list of requirements for an engineering programme, bc how would anybody (me included) ever check it off? A report counts btw. If you tell me that red looks different since the surgery, then that's you saying it, so a physical event like any other. And yes, I know that this is not perfectly spelled out yet...</p>
+<p>It tries to be as agnostic as possible to not subscribe to any camp (materialist, physicalist, functionalist, etc.). Perhaps a dualist would argue that there's more than the physical, and maybe they're right, but if they work in a lab then they have the same electrodes and the same reports as me, so what would they do differently? I think that they could sign the rule as well. The operational requirements from days nine to twelve are different, as those are things that can go wrong. E.g. we could try for ten+ years and then find out that consciousness just isn't multiply realisable, and then that's the result. With today's requirement this can't happen. I can't think of an experiment that comes back and says "methodological physicalism is false", because whatever I'd do to find out would again be a physical measurement. What can happen is that the rule turns out to be useless, so that we measure and measure and get nowhere. So this one I have to pick without a test (which is why it sits with the axiomatic requirements), and then I better pick it as weak as possible.</p>
+<p>What "physical" means here I take from Neal Anderson and Gualtiero Piccinini's book The Physical Signature of Computation (<a class="ref" href="https://doi.org/10.1093/9780191872075.001.0001">[doi.org]</a>) =&gt; start from the ordinary things that all of us can observe and interact with, then add whatever they're made of or part of, and whatever changes them. Today's physics is prob wrong in some places and nobody knows tomorrow's, and with this definition I don't have to care. I'm not 100% sure tho if "methodological physicalism" is the perfect term tbh. It exists already =&gt; Jeffrey Poland uses it for physicalist principles that are regulative ideals for research and no claims about the world (<a class="ref" href="https://doi.org/10.1002/9780470690024.ch2">[doi.org]</a>), which is close to what I mean. But the same words also stand for something stronger, physicalism as a criterion to assess theories, and I don't want to throw out anybody's theory with it ("methodological naturalism" would be safer, but that one is mostly about keeping the supernatural out of science). So for now I'll just keep calling it like this. In the end it's physical stuff that I have on the bench, so the word can't be completely off.</p>
+<p>Piccinini has heavily influenced how I think about all of this. His account of the mind is called mechanistic functionalism =&gt; the mind is the functional organisation of the brain, where "functional organisation" is meant mechanistically, so which parts there are, what they do and how they're arranged. This is not the same as today's requirement. Mechanistic functionalism is a claim about what the mind is, so it can be true or false. Today's requirement can't, as it's only a rule, and all that a rule can be is useful or useless. In the book with Anderson he even does both within one chapter. First they "proceed under the working assumption that consciousness is physical", because nobody can say what something non-physical would positively be (it's ascientific basically), or how one would ever observe it (that's today's requirement, more or less). And then they go on and argue that cognition is computation, but that consciousness is more than computation and prob more than function altogether. On consciousness they may well be right, on the brain computing I'm less sure (see below). But whoever is right there, at that point you've joined a camp, and I wanted today's requirement to stop one step before that.</p>
+<p>There are also two terms of his that I use all the time. Some jobs can be done via mechanisms that differ quite a lot. Take, for example, pumping blood: a heart does that with its muscles, but the machine next to e.g. a hospital bed does it with a rotor. He calls such a job "multiply realisable". And then there are jobs that are defined without any reference to the material that does them, like adding two numbers, which works with gears, with relays or with transistors. Those he calls medium-independent. The second is a much stronger thing than the first, and yes, this is the one that classical mind uploading needs. For hybrid mind uploading the first is actually already enough. It's also why our method is called mechanistic gradual brain replacement =&gt; a part gets replaced by another part that does the same job in the mechanism, and never by a description of the job.</p>
+<p>Now to the title, because at first glance there's a bit of a paradox in it =&gt; "computational functionalism" is literally listed in the Ontology under what Synconetics rejects, and generally I'm not a functionalist. But every theory, if you want "to do empiricism" with it, is functionalism in a small-f sense, bc you always do some sort of correspondence. Romain Brette (<a class="int" href="https://consciousness.ink/13-brain-centredness/">the book from yesterday</a>) says that a measurement is "an interaction between two physical systems", so you never get the system itself, you get what it does to your instrument. You put an electrode next to a neuron, and what you get is a line that goes up and down, and the big deflections you call spikes. Where the single ions were at that moment, you'll never see. A huge number of different arrangements of them give me the same spike, and I treat all of them as one thing bc my electrode can't tell them apart. So I've described the neuron by what it does to my instrument, at a grain that I didn't even pick myself (so if anybody here is a functionalist, it's my electrode). With an identity theory I wouldn't even know how to start at the bench in the lab, as the first thing that I'd have to ask is "identical to what, at which level?", meaning that I've coarse-grained the molecules, neurons, and/or circuits – and whatever I answer – again! And nobody can work with a pure black box, as then there's nothing inside that one could replace. So everybody ends up in the middle =&gt; and yes, even the people whose theories are explicitly against functionalism!</p>
+<p>The trouble starts when the correspondence gets taken for the thing, and the usual way to get there is to view the brain as a computer (i.e. AI machine consciousness people/classical-"simulations will magically be conscious"-mind uploaders). I don't. I view it as a physically constrained system. I saw myself falling into some strong flavour of functionalism again and again over the past ten years, esp. when I worked on brain simulations, and it only stopped when I started working on biocomputing at FinalSpark. There you try to force a piece of living neural tissue to do some sort of computation, until at some point you realise that it is not a computer. It's a highly complex physical system that you constrain until it does something useful for you (thanks a lot for the scrutiny of thought also from <a href="https://x.com/jennleungx">@jennleungx</a> over the past few years!). Brette's book makes the general case =&gt; a computer is engineered and an organism never was, and the code that we read into the spikes sits with the experimenter, as the neuron itself only has its spikes (I'm also no pancomputationalist btw. If you conclude that the universe itself computes, then you end up with the weird result that functionalism works everywhere. The Anderson and Piccinini book is one long argument against that).</p>
+<p>As an analogy, think of a tree (attached video): Somebody puts a scaffold around a young tree, and over the years it grows into the shape of the letter T. Then the scaffold comes off, and people say that the tree encodes the letter T. But the tree doesn't know anything about letters, and it doesn't care (it's not even an "it", the aggregate of a tree is already anthropomorphising a noisy physical system's grain). Somebody who can work with symbols has constrained a noisy physical system until it carries one of his symbols, and you can call that computation (it's what biocomputing does). But ultimately, a tree is not a computer. Taking the T for something that the tree does by itself is the abstraction fallacy. The term is Alexander Lerchner's (<a class="ref" href="https://philarchive.org/rec/LERTAF">[philarchive.org]</a>), and his version is that there's no computation without a mapmaker, so somebody who cuts the continuous physics into an alphabet first. Capital-F Functionalism (the computational kind above all) is exactly this step =&gt; from "this is how I have to describe it" to "this is what it is". Both Lerchner and Brette argue explicitly against Piccinini here btw (for him the computation is really in the brain), so my influences don't agree with each other, which is one more reason to keep the requirement itself rather weak.</p>
+<p>I have to watch this in my own work as well, because the same mistake comes back as too much coarse-graining. If you view the brain as a computer, then at some point you say that it's just action potentials, just spikes, and you simulate them on a supercomputer. But say I build a replacement part that works with ions, like neurons do. Then I've already coarse-grained at the level of ions. What if something below that level matters (microtubules, in case Penrose and Hameroff are right)? Then I've done mechanistic functionalism one level too high, and with all the effort in material science I'd end up doing exactly what classical mind uploaders do. Methodological physicalism is my reminder of it =&gt; it's a physical system and no computational one, I describe it by function and constraints because there's no other way, and which grain is enough for experience is an empirical question (I'll come back to it on day sixteen of my daily Meditations challenge with scale separation!).</p>
+<p>So today was more a definition than an argument. If you know a better term for it, please write me!</p>
+<div class="tweet-embed" data-h="276:529,310:548,311:530,324:537,325:519,359:538,360:637,431:677,432:654,451:664,452:641,511:674,512:651,550:672">
+<blockquote class="twitter-tweet" data-dnt="true"><a href="https://twitter.com/danburonline/status/2125826626118422701">Read the post on X →</a></blockquote>
+</div>]]></content:encoded>
+    </item>
     <item>
       <title>13/30 Are You Just Your Brain? · Meditations on Synthetic Consciousness</title>
       <link>https://consciousness.ink/13-brain-centredness/</link>
@@ -25,6 +60,8 @@
       <category>islands of awareness</category>
       <category>floating man</category>
       <category>brain death</category>
+      <category>methodological physicalism</category>
+      <category>abstraction fallacy</category>
       <description>Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?</description>
       <content:encoded><![CDATA[<figure class="post-media"><img alt="Three-panel table. A, natural experiments, the subject follows the brain: death by neurologic criteria has 0 functioning brains while the ventilated body keeps functioning, and 0 subjects; limb amputation and complete cervical cord injury have 1 brain and 1 subject each; dicephalus conjoined twins have 2 brains on one trunk and are 2 persons. B, whatever switches experience on or off acts on the brain: general anaesthesia (absent), direct cortical stimulation (evoked), REM sleep (present) and a brain grown in isolation (open). C, necessary, not shown to be sufficient: what the brain draws from the body, from heart and lungs, kidneys, liver, skull and CSF, endocrine signals and the gut-brain axis to afferent sensory input, with the substitute in clinical use and its status, from replaceable and routine to unknown. Numbered references below." data-fullw="3840" height="2160" src="https://consciousness.ink/13-brain-centredness/brain-centredness.jpg" width="3840"/></figure>
 
@@ -74,6 +111,7 @@
       <category>China brain</category>
       <category>braid</category>
       <category>Galántai's scale</category>
+      <category>computational functionalism</category>
       <description>Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?</description>
       <content:encoded><![CDATA[<figure class="post-media"><video aria-label="Video: 12/30 Distributed, yet Unified" controls="" height="720" playsinline="" poster="https://consciousness.ink/12-distributed-unification/poster.jpg" preload="metadata" src="https://consciousness.ink/12-distributed-unification/video.mp4" width="1280"></video></figure>
 
@@ -131,6 +169,7 @@
       <category>lossless q-storage</category>
       <category>substrate independence</category>
       <category>multiple realisability</category>
+      <category>medium independence</category>
       <category>collective mind</category>
       <category>continuer migration</category>
       <category>morphological independence</category>
@@ -173,6 +212,7 @@
       <category>world-line fidelity</category>
       <category>multiple realisability</category>
       <category>continuer migration</category>
+      <category>pancomputationalism</category>
       <description>Day 10 of 30: the second requirement, continuer migration, and the only thing that I care about deeply: the continuity of the human brain.</description>
       <content:encoded><![CDATA[<figure class="post-media"><img alt="False-colour scanning electron micrograph: red-orange neurons with long processes lie on a dense mesh of blue fibres dotted with small round cell bodies." height="1204" src="https://consciousness.ink/10-continuer-migration/neurons.jpg" width="1600"/></figure>
 
@@ -213,6 +253,8 @@
       <category>continuer migration</category>
       <category>morphological independence</category>
       <category>brain-centredness</category>
+      <category>methodological physicalism</category>
+      <category>computational functionalism</category>
       <description>Day 9 of 30: the first requirement of the Ontology, multiple realisability, in a weak form (living tissue takes over) and a strong one (de novo tissue).</description>
       <content:encoded><![CDATA[<figure class="post-media"><video aria-label="Video: 9/30 Weak and Strong Multiple Realisability" controls="" height="720" playsinline="" poster="https://consciousness.ink/9-multiple-realisability/poster.jpg" preload="metadata" src="https://consciousness.ink/9-multiple-realisability/video.mp4" width="1280"></video></figure>
 
@@ -350,6 +392,8 @@
       <category>medium independence</category>
       <category>augmented cognition</category>
       <category>collective mind</category>
+      <category>computational functionalism</category>
+      <category>abstraction fallacy</category>
       <description>Day 6 of 30: the first outcome of the Ontology, substrate independence, and why I mean physical rather than computational substrate independence: independent of biology, never of physics.</description>
       <content:encoded><![CDATA[<figure class="post-media"><img alt="Diagram titled Independence of biology, not of physics, in three panels. Living tissue: a mind depends on its substrate, here biology. Engineered material: physical substrate independence, where whatever does the same physics will do, biological or not. Program: computational substrate independence, where whatever runs the computation will do." height="2160" src="https://consciousness.ink/6-substrate-independence/substrate-independence.png" width="3840"/></figure>
 
@@ -441,6 +485,7 @@
       <category>adversarial collaboration</category>
       <category>inventing temperature</category>
       <category>transcend humanity</category>
+      <category>computational functionalism</category>
       <description>Day 4 of 30: the second goal of the Ontology, understand consciousness, and why measurement comes before models and models before any theory of what consciousness is.</description>
       <content:encoded><![CDATA[<figure class="post-media"><img alt="Diagram titled What understand means: three levels, measuring, modelling and explaining. Brains before, during and after one replacement step, with report and physical-marker traces below; the model tells you before whether the experience will change, the measure tells you afterwards whether it is still there and still this experience, and theory is the horizon." height="2160" src="https://consciousness.ink/4-measurements-models-theories/understand.png" width="3840"/></figure>
 
@@ -541,6 +586,7 @@
       <category>solving death</category>
       <category>deprivation view of death</category>
       <category>substrate independence</category>
+      <category>computational functionalism</category>
       <description>Day 1 of 30, the vision: why synthetic consciousness, rather than artificial or machine consciousness, names a consciousness that no longer has to end.</description>
       <content:encoded><![CDATA[<figure class="post-media"><video aria-label="Video: 1/30 Causa Finalis" controls="" height="720" playsinline="" poster="https://consciousness.ink/1-causa-finalis/poster.jpg" preload="metadata" src="https://consciousness.ink/1-causa-finalis/video.mp4" width="1280"></video></figure>
 

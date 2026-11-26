@@ -128,7 +128,7 @@ TERMS = [
             'work. 3/30 says whether a world-line truly went on via a replacement has to be shown physically.'
         ),
         short='The core of hybrid mind uploading; whether a different substrate can take over, and whether a world-line went on via replacement, still has to be shown.',
-        sources=['0-the-start', '3-solving-death', '11-morphological-independence'],
+        sources=['0-the-start', '3-solving-death', '11-morphological-independence', '14-methodological-physicalism'],
     ),
     dict(
         slug='serial-lesion-effect',
@@ -607,7 +607,7 @@ TERMS = [
         slug='multiple-realisability',
         name='Multiple realisability',
         also=['multiple realizability', 'weak multiple realisability'],
-        pattern=r'multiple reali[sz]ab',
+        pattern=r'multipl[ey] reali[sz]ab',
         sameAs=['https://en.wikipedia.org/wiki/Multiple_realizability', 'https://www.wikidata.org/wiki/Q1414884'],
         text=(
             'Putnam\'s argument in "Psychological Predicates" (1967): pain cannot be one particular state of the brain, '
@@ -618,13 +618,13 @@ TERMS = [
             'realisability) it is evidenced; whether a different kind of substrate can take over is still open.'
         ),
         short='Many kinds of matter can realise the same mental state; evidenced bio-to-bio, open for a different kind of substrate.',
-        sources=['6-substrate-independence', '9-multiple-realisability'],
+        sources=['6-substrate-independence', '9-multiple-realisability', '14-methodological-physicalism'],
     ),
     dict(
         slug='medium-independence',
         name='Medium independence',
         also=[],
-        pattern=r'medium independen',
+        pattern=r'medium[- ]independen',
         sameAs=[],
         text=(
             'Gualtiero Piccinini\'s term: a computation does not care what its vehicles are made of, as long as they '
@@ -634,7 +634,7 @@ TERMS = [
             'heart-lung machine, whose "lung" is a bundle of plastic fibres.'
         ),
         short='Piccinini: a computation does not care what its vehicles are made of; unlike a mousetrap, which still has to catch mice.',
-        sources=['6-substrate-independence', '11-morphological-independence'],
+        sources=['6-substrate-independence', '11-morphological-independence', '14-methodological-physicalism'],
     ),
     dict(
         slug='augmented-cognition',
@@ -859,7 +859,7 @@ TERMS = [
             'any of those experiments means anything, so each is taken in its least committal form.'
         ),
         short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
-        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness'],
+        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness', '14-methodological-physicalism'],
     ),
     dict(
         slug='lesion-momentum',
@@ -1187,6 +1187,78 @@ TERMS = [
         ),
         short='Death by neurologic criteria: the body can be kept going, the you is gone.',
         sources=['13-brain-centredness'],
+    ),
+    dict(
+        slug='methodological-physicalism',
+        name='Methodological physicalism',
+        also=[],
+        pattern=r'methodological physicalism',
+        sameAs=[],
+        text=(
+            'The second axiomatic requirement in the Ontology (14/30), more a rule for what counts in the lab than a view '
+            'of what the world is made of: if somebody says that something matters for consciousness, ask what could be '
+            'measured, or done to a brain, so that it shows up. A report counts. "Physical" follows Anderson and '
+            'Piccinini: the ordinary things we observe and interact with, what they are made of or part of, and whatever '
+            'changes them.'
+        ),
+        short='A rule, not a view: what matters for consciousness has to show up in something that can be measured or done to a brain.',
+        sources=['14-methodological-physicalism'],
+    ),
+    dict(
+        slug='mechanistic-functionalism',
+        name='Mechanistic functionalism',
+        also=[],
+        pattern=r'mechanistic functionalism',
+        sameAs=[],
+        text=(
+            'Gualtiero Piccinini\'s account of the mind: the mind is the functional organisation of the brain, meant '
+            'mechanistically, so which parts there are, what they do and how they are arranged. Unlike methodological '
+            'physicalism it is a claim about what the mind is, so it can be true or false (14/30).'
+        ),
+        short="Piccinini: the mind is the brain's functional organisation, meant mechanistically.",
+        sources=['14-methodological-physicalism'],
+    ),
+    dict(
+        slug='computational-functionalism',
+        name='Computational functionalism',
+        also=[],
+        pattern=r'computational functionalism|computational kind',
+        sameAs=['https://en.wikipedia.org/wiki/Computational_theory_of_mind'],
+        text=(
+            'The view that experience comes from the computation a system carries out, whatever it is made of. It is '
+            'listed in the Ontology under what Synconetics rejects; 14/30 calls taking a description of the brain for what '
+            'it is, "Capital-F Functionalism", the abstraction fallacy.'
+        ),
+        short='Experience from computation alone; listed in the Ontology under what Synconetics rejects.',
+        sources=['14-methodological-physicalism'],
+    ),
+    dict(
+        slug='abstraction-fallacy',
+        name='Abstraction fallacy',
+        also=[],
+        pattern=r'abstraction fallacy',
+        sameAs=[],
+        text=(
+            'Alexander Lerchner\'s term: there is no computation without a mapmaker, somebody who cuts the continuous '
+            'physics into an alphabet first. In 14/30 it is taking the T for something a tree does by itself, after '
+            'somebody grew it into that shape with a scaffold, the step from "this is how I have to describe it" to '
+            '"this is what it is".'
+        ),
+        short='Lerchner: no computation without a mapmaker; taking the description for the thing.',
+        sources=['6-substrate-independence', '13-brain-centredness', '14-methodological-physicalism'],
+    ),
+    dict(
+        slug='pancomputationalism',
+        name='Pancomputationalism',
+        also=['pancomputationalist'],
+        pattern=r'pancomputational',
+        sameAs=['https://en.wikipedia.org/wiki/Pancomputationalism'],
+        text=(
+            'The view that the universe itself computes. 14/30 rejects it, as functionalism would then work everywhere, '
+            'and points to Anderson and Piccinini\'s book as one long argument against it.'
+        ),
+        short='The universe itself computes; rejected in 14/30.',
+        sources=['14-methodological-physicalism'],
     ),
 ]
 

@@ -84,6 +84,11 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Islands of awareness](https://consciousness.ink/glossary/#islands-of-awareness): Experience in a brain cut off from all input and output; 13/30 imagines a whole brain grown that way.
 - [Floating man](https://consciousness.ink/glossary/#floating-man): Avicenna's man created in mid-air without sensation, still aware of himself.
 - [Brain death](https://consciousness.ink/glossary/#brain-death): Death by neurologic criteria: the body can be kept going, the you is gone.
+- [Methodological physicalism](https://consciousness.ink/glossary/#methodological-physicalism): A rule, not a view: what matters for consciousness has to show up in something that can be measured or done to a brain.
+- [Mechanistic functionalism](https://consciousness.ink/glossary/#mechanistic-functionalism): Piccinini: the mind is the brain's functional organisation, meant mechanistically.
+- [Computational functionalism](https://consciousness.ink/glossary/#computational-functionalism): Experience from computation alone; listed in the Ontology under what Synconetics rejects.
+- [Abstraction fallacy](https://consciousness.ink/glossary/#abstraction-fallacy): Lerchner: no computation without a mapmaker; taking the description for the thing.
+- [Pancomputationalism](https://consciousness.ink/glossary/#pancomputationalism): The universe itself computes; rejected in 14/30.
 
 ## Meditations
 
@@ -101,6 +106,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/): Day 11 of 30: morphological independence. Who says that a mechanistic neuron is literally the same size as the biological neuron that it replaces?
 - [12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified](https://consciousness.ink/12-distributed-unification/): Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?
 - [13/30 Meditations on Synthetic Consciousness: Are You Just Your Brain?](https://consciousness.ink/13-brain-centredness/): Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?
+- [14/30 Meditations on Synthetic Consciousness: My Electrode Is a Functionalist](https://consciousness.ink/14-methodological-physicalism/): Day 14 of 30: methodological physicalism, the second axiomatic requirement. More a rule than a view, and why my electrode is a functionalist.
 
 ## Optional
 

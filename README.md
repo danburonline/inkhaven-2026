@@ -15,6 +15,7 @@ The site is plain static HTML. Every push to `main` deploys to Vercel. There is 
 - [11/30 Meditations on Synthetic Consciousness: Does My NCC Look Big in This Substrate?](https://consciousness.ink/11-morphological-independence/) · [X](https://x.com/danburonline/status/2124748091480039921)
 - [12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified](https://consciousness.ink/12-distributed-unification/) · [X](https://x.com/danburonline/status/2125438683243573702)
 - [13/30 Meditations on Synthetic Consciousness: Are You Just Your Brain?](https://consciousness.ink/13-brain-centredness/) · [X](https://x.com/danburonline/status/2125472977949192375)
+- [14/30 Meditations on Synthetic Consciousness: My Electrode Is a Functionalist](https://consciousness.ink/14-methodological-physicalism/) · [X](https://x.com/danburonline/status/2125826626118422701)
 - [6/30 Meditations on Synthetic Consciousness: Computational Vs. Physical Substrate Independence](https://consciousness.ink/6-substrate-independence/) · [X](https://x.com/danburonline/status/2122956433914478644)
 - [5/30 Meditations on Synthetic Consciousness: Transcending Biology, but not Physics](https://consciousness.ink/5-transcending-biology/) · [X](https://x.com/danburonline/status/2122573865079709758)
 - [4/30 Meditations on Synthetic Consciousness: Measurements, Models and Theories](https://consciousness.ink/4-measurements-models-theories/) · [X](https://x.com/danburonline/status/2122235784644477415)
