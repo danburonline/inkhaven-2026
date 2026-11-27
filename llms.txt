@@ -89,6 +89,8 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Computational functionalism](https://consciousness.ink/glossary/#computational-functionalism): Experience from computation alone; listed in the Ontology under what Synconetics rejects.
 - [Abstraction fallacy](https://consciousness.ink/glossary/#abstraction-fallacy): Lerchner: no computation without a mapmaker; taking the description for the thing.
 - [Pancomputationalism](https://consciousness.ink/glossary/#pancomputationalism): The universe itself computes; rejected in 14/30.
+- [Non-organicism](https://consciousness.ink/glossary/#non-organicism): A non-living carrier is not ruled out in advance; real physics, not a simulation of it.
+- [Full circle](https://consciousness.ink/glossary/#full-circle): Setting out to leave biology and arriving at building it.
 
 ## Meditations
 
@@ -107,6 +109,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [12/30 Meditations on Synthetic Consciousness: Distributed, yet Unified](https://consciousness.ink/12-distributed-unification/): Day 12 of 30: distributed unification. Every brain is already distributed, yet unified. How far can this be stretched, and what does the stretching?
 - [13/30 Meditations on Synthetic Consciousness: Are You Just Your Brain?](https://consciousness.ink/13-brain-centredness/): Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?
 - [14/30 Meditations on Synthetic Consciousness: My Electrode Is a Functionalist](https://consciousness.ink/14-methodological-physicalism/): Day 14 of 30: methodological physicalism, the second axiomatic requirement. More a rule than a view, and why my electrode is a functionalist.
+- [15/30 Meditations on Synthetic Consciousness: No Bird Ever Broke the Sound Barrier](https://consciousness.ink/15-non-organicism/): Day 15 of 30: non-organicism, the third axiomatic requirement. Can the physics that biology runs be instantiated in something other than biology?
 
 ## Optional
 

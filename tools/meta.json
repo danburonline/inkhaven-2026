@@ -58,5 +58,9 @@
   "video_duration": "PT24S",
   "video_description": "Animation of a tree and its reading on a grid of 5 × 7 cells: different trees give the same T, finer cells make every tree read differently, and a scaffold around a young tree, which cuts whatever leaves it, grows the tree into the letter T.",
   "x": "2125826626118422701"
+ },
+ "15-non-organicism": {
+  "description": "Day 15 of 30: non-organicism, the third axiomatic requirement. Can the physics that biology runs be instantiated in something other than biology?",
+  "x": "2126204047166513391"
  }
 }

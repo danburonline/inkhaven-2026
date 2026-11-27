@@ -618,7 +618,7 @@ TERMS = [
             'realisability) it is evidenced; whether a different kind of substrate can take over is still open.'
         ),
         short='Many kinds of matter can realise the same mental state; evidenced bio-to-bio, open for a different kind of substrate.',
-        sources=['6-substrate-independence', '9-multiple-realisability', '14-methodological-physicalism'],
+        sources=['6-substrate-independence', '9-multiple-realisability', '14-methodological-physicalism', '15-non-organicism'],
     ),
     dict(
         slug='medium-independence',
@@ -859,7 +859,7 @@ TERMS = [
             'any of those experiments means anything, so each is taken in its least committal form.'
         ),
         short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
-        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness', '14-methodological-physicalism'],
+        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness', '14-methodological-physicalism', '15-non-organicism'],
     ),
     dict(
         slug='lesion-momentum',
@@ -1222,7 +1222,7 @@ TERMS = [
         slug='computational-functionalism',
         name='Computational functionalism',
         also=[],
-        pattern=r'computational functionalism|computational kind',
+        pattern=r'computational functionalis|computational kind',
         sameAs=['https://en.wikipedia.org/wiki/Computational_theory_of_mind'],
         text=(
             'The view that experience comes from the computation a system carries out, whatever it is made of. It is '
@@ -1230,7 +1230,7 @@ TERMS = [
             'it is, "Capital-F Functionalism", the abstraction fallacy.'
         ),
         short='Experience from computation alone; listed in the Ontology under what Synconetics rejects.',
-        sources=['14-methodological-physicalism'],
+        sources=['14-methodological-physicalism', '15-non-organicism'],
     ),
     dict(
         slug='abstraction-fallacy',
@@ -1259,6 +1259,36 @@ TERMS = [
         ),
         short='The universe itself computes; rejected in 14/30.',
         sources=['14-methodological-physicalism'],
+    ),
+    dict(
+        slug='non-organicism',
+        name='Non-organicism',
+        also=['non-organic'],
+        pattern=r'non-organicism',
+        sameAs=[],
+        text=(
+            'The third axiomatic requirement in the Ontology (15/30): it only says that a non-living carrier is not ruled '
+            'out in advance. Whether a part that was never alive actually works is multiple realisability; that only '
+            'living tissue can carry a mind could not be shown by any number of failures, which is why it is axiomatic. '
+            '"Non-organic" means real physics, like a plane flying with real air around a real wing, not a flight simulator.'
+        ),
+        short='A non-living carrier is not ruled out in advance; real physics, not a simulation of it.',
+        sources=['9-multiple-realisability', '15-non-organicism'],
+    ),
+    dict(
+        slug='full-circle',
+        name='Full circle',
+        also=['full-circling'],
+        pattern=r'full[- ]circl',
+        sameAs=[],
+        text=(
+            'The case where the answer to whether the physics of the biological substrate can be instantiated in anything '
+            'else is no (6/30): we set out to leave biology and arrive at building it, adding whatever is missing to an '
+            'engineered material until we have rebuilt the cell. 15/30 contrasts it with starting from the brain and '
+            'diverting away from it, which would find the same border from the inside.'
+        ),
+        short='Setting out to leave biology and arriving at building it.',
+        sources=['6-substrate-independence', '15-non-organicism'],
     ),
 ]
 

@@ -490,6 +490,18 @@ The view that the universe itself computes. 14/30 rejects it, as functionalism w
 
 Source: https://consciousness.ink/glossary/#pancomputationalism
 
+### Non-organicism
+
+The third axiomatic requirement in the Ontology (15/30): it only says that a non-living carrier is not ruled out in advance. Whether a part that was never alive actually works is multiple realisability; that only living tissue can carry a mind could not be shown by any number of failures, which is why it is axiomatic. "Non-organic" means real physics, like a plane flying with real air around a real wing, not a flight simulator.
+
+Source: https://consciousness.ink/glossary/#non-organicism
+
+### Full circle
+
+The case where the answer to whether the physics of the biological substrate can be instantiated in anything else is no (6/30): we set out to leave biology and arrive at building it, adding whatever is missing to an engineered material until we have rebuilt the cell. 15/30 contrasts it with starting from the brain and diverting away from it, which would find the same border from the inside.
+
+Source: https://consciousness.ink/glossary/#full-circle
+
 ---
 
 ## 0/30 Meditations on Synthetic Consciousness: The Start
@@ -695,7 +707,7 @@ Will it stay the third goal? The goal, yes. The name I've just changed, and I'm 
 URL: https://consciousness.ink/6-substrate-independence/
 Author: Daniel Burger
 Published: 2026-11-17
-Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity, substrate independence, computational substrate independence, physical substrate independence, multiple realisability, medium independence, augmented cognition, collective mind, computational functionalism, abstraction fallacy
+Topics: hybrid mind uploading, classical mind uploading, process world-line, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, functional brain isolation, understand consciousness, theory of consciousness, transcend humanity, substrate independence, computational substrate independence, physical substrate independence, multiple realisability, medium independence, augmented cognition, collective mind, computational functionalism, abstraction fallacy, full circle
 
 Over the past three days, we discussed the goals of my Ontology. Today we start with the first of the three outcomes, which also sit right below the mission called hybrid mind uploading. It's called "substrate independence". What does this term mean in this context? In the Ontology, it's listed as a state, and the one line under it says: mind no longer tied to biological substrate. There's a widespread reading of these two words in which the substrate simply doesn't matter. That's no good frame of mind for somebody who wants to build one, and it's not what I mean. The trouble sits in "independence", as the word asks a question that it doesn't answer (the same way "transcending" did yesterday with its "beyond what?") => independent of what? And dependent on what instead?
 
@@ -780,7 +792,7 @@ This is also one of the things that I meant with the lightbulb and the candles o
 URL: https://consciousness.ink/9-multiple-realisability/
 Author: Daniel Burger
 Published: 2026-11-20
-Topics: synthetic consciousness, hybrid mind uploading, mind uploading, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, multiple realisability, distributed unification, strong multiple realisability, operational and axiomatic requirements, lesion momentum, grandmother's face problem, continuer migration, morphological independence, brain-centredness, methodological physicalism, computational functionalism
+Topics: synthetic consciousness, hybrid mind uploading, mind uploading, gradual brain replacement, serial lesion effect, gradual reorganisation principle, solving death, multiple realisability, distributed unification, strong multiple realisability, operational and axiomatic requirements, lesion momentum, grandmother's face problem, continuer migration, morphological independence, brain-centredness, methodological physicalism, computational functionalism, non-organicism
 
 The first requirement (type "Requirement") of my Ontology is called "multiple realisability" (the three outcomes are done as of yesterday). A requirement is something that has to be true about brains for hybrid mind uploading to have a chance at all for it to work/to make synthetic consciousness possible as a vision. Fair warning: today is more technical than the last few days (less of a meditation tbh).
 
@@ -966,7 +978,7 @@ Certainly all of this sounds like a nice-to-have, something for much later, but 
 URL: https://consciousness.ink/13-brain-centredness/
 Author: Daniel Burger
 Published: 2026-11-24
-Topics: synthetic consciousness, hybrid mind uploading, mind uploading, functional brain isolation, theory of consciousness, collective mind, operational and axiomatic requirements, brain-centredness, extended mind, islands of awareness, floating man, brain death, methodological physicalism, abstraction fallacy
+Topics: synthetic consciousness, hybrid mind uploading, mind uploading, functional brain isolation, theory of consciousness, collective mind, operational and axiomatic requirements, brain-centredness, extended mind, islands of awareness, floating man, brain death, methodological physicalism, abstraction fallacy, non-organicism
 
 Today is the first axiomatic requirement in the Ontology, called "brain-centredness". With yesterday the four operational requirements are done (days nine to twelve), so quickly why there's a second kind and why "axiomatic" is the right term for it. The operational ones are things that a synthetic brain has to be able to DO => be made of something else, migrate, change its shape, be spread out. Each can be tested by trying. The axiomatic ones are what I have to assume before any of the trying starts. An axiom can't be derived from inside the system that's built on top of it. You can only pick it, and then you'd better pick it so weak that hardly anybody disagrees with it in practice (the Ontology notes that all of them are "weak by nature"). There are four => brain-centredness, methodological physicalism, non-organicism and scale separation. Days nine to twelve all did something to "the brain" ( replace it , move it , reshape it , stretch it ), and I never said why the brain is the thing to do all of this to, which is today's question.
 
@@ -1038,3 +1050,28 @@ As an analogy, think of a tree (attached video): Somebody puts a scaffold around
 I have to watch this in my own work as well, because the same mistake comes back as too much coarse-graining. If you view the brain as a computer, then at some point you say that it's just action potentials, just spikes, and you simulate them on a supercomputer. But say I build a replacement part that works with ions, like neurons do. Then I've already coarse-grained at the level of ions. What if something below that level matters (microtubules, in case Penrose and Hameroff are right)? Then I've done mechanistic functionalism one level too high, and with all the effort in material science I'd end up doing exactly what classical mind uploaders do. Methodological physicalism is my reminder of it => it's a physical system and no computational one, I describe it by function and constraints because there's no other way, and which grain is enough for experience is an empirical question (I'll come back to it on day sixteen of my daily Meditations challenge with scale separation!).
 
 So today was more a definition than an argument. If you know a better term for it, please write me!
+
+---
+
+## 15/30 Meditations on Synthetic Consciousness: No Bird Ever Broke the Sound Barrier
+
+URL: https://consciousness.ink/15-non-organicism/
+Author: Daniel Burger
+Published: 2026-11-26
+Topics: multiple realisability, augmented cognition, operational and axiomatic requirements, computational functionalism, non-organicism, full circle
+
+Today's item in the Ontology is called "non-organicism", the third axiomatic requirement. I've basically given it away on day nine already => it only says that I don't rule out a non-living carrier in advance. So today will be very short, and I'd rather use it to ponder about the question behind the item: can the physics that the biological substrate is running (or harnessing) even be instantiated in something other than biology?
+
+On day six I had a name for the case where the answer is no => full circle. We set out to leave biology, and we arrive at building it (you start with some engineered material and keep adding whatever is missing, until one day you notice that you've rebuilt the cell). I still think that this can happen. But instead of full-circling, we can also start with the brain and divert away from it.
+
+Here's the analogy that I have in mind. Say we wouldn't know anything about aerodynamics and still wanted to build a flying machine. All that we'd have to go on are birds, bc they're the only things that we've ever seen flying (simplifying here!). We could watch them and measure them as long as we want, and we still couldn't say what it is about a bird that keeps it in the air, so the feathers, the flapping, the hollow bones or something that we haven't even looked at yet (that's where we are with brains and experience => an epistemology and measurement problem). So we'd start by building a huge bird, big enough to carry one/multiple of us, and by building I mean actually engineering it, feather by feather (genetically engineering a huge bird and giving birth to it would be the extreme biology route from day six). This is in principle possible, but hard and most likely economically infeasible. Then, while we're working on it, the feathers get replaced by a stiff surface in one place, bc feathers of that size are a nightmare to make, and the wing carries just as well. Some time later the same happens with the flapping.
+
+If you'd ask us at this point why the thing flies, we couldn't tell you. If you'd ask why we stopped copying the feathers, we'd say something like "the stiff ones were cheaper". Does that mean that we've understood flying? I don't think so. We've somehow gravitated towards building an aeroplane without still understanding anything about aerodynamics, simply bc we started from the one thing that we knew can fly, and after every change we checked if it still does.
+
+For us the huge bird would probably be a replacement part that copies the living tissue as closely as engineering allows, and from there it's enough rounds of "it was easier to build like this, and it still worked" until the part doesn't look like tissue anymore. If we ever get that far! So far living tissue is the only place where we've found a mind, and how much of what the tissue physically does can be done by something that was never alive, nobody knows. Maybe flying needs feathers. Then we'd stop diverting right there, close to the bird, and the difference to full-circling is that we'd have found this border from the inside.
+
+Non-organicism is all that I need to get started => I don't rule out the aeroplane before anything is built. Whether a part that was never alive actually works is multiple realisability from day nine , and admittedly that's much harder to check for experience than for a flying machine, where everybody can see if it's still in the air. And that only birds can fly, no number of crashed machines could show, as for that we'd have to understand why (so we'd need the aerodynamics first), which is why the item sits with the axiomatic requirements.
+
+I know btw that the bird and the plane usually get used by the computational functionalists => planes don't flap their wings, so who needs neurons? But a plane really flies, so it does the same kind of physics as the bird, with real air around a real wing, and that's the only kind of "non-organic" that I mean (nobody has ever arrived anywhere in a flight simulator!).
+
+And the far end of it really interests me. I mean, evolution hasn't given us the jet engine. If we figure out the aerodynamics on the way, then we can build things that no bird ever had, such as propellers or jet engines, and fly at supersonic speed, which is "supernatural" in the literal sense, so going beyond what evolution came up with (that's augmented cognition from day seven , where I also said that it shouldn't be step one). So I'd rather start with the huge bird, and if you think that flying needs feathers, please write me!
