@@ -1,15 +1,13 @@
-/* "Copy all text" on the home page: copies meditations.txt (every published
+/* Home intro: "clicking here" copies meditations.txt (every published
    meditation as plain text, written by tools/build.py) to the clipboard. */
 (function () {
-  var btn = document.querySelector('.copy-all');
-  if (!btn) return;
-  var label = btn.querySelector('.copy-all-label');
+  var link = document.querySelector('a.copy-all');
+  if (!link) return;
   var status = document.querySelector('.copy-all-status');
-  var src = btn.getAttribute('data-src') || '/meditations.txt';
-  var idle = label.textContent, timer = 0, busy = false;
-  var ICON_COPY = btn.querySelector('svg').outerHTML;
-  var ICON_CHECK = '<svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M3.2 8.4 6.5 11.6 12.8 4.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  btn.hidden = false;
+  var src = link.getAttribute('href') || '/meditations.txt';
+  var idle = link.textContent;
+  var idleLabel = link.getAttribute('aria-label') || idle;
+  var timer = 0, busy = false;
 
   function fetchText() {
     return fetch(src, { cache: 'no-cache' }).then(function (r) {
@@ -42,18 +40,20 @@
   }
   function show(state, text) {
     clearTimeout(timer);
-    label.textContent = text;
-    btn.classList.toggle('done', state === 'done');
-    btn.classList.toggle('fail', state === 'fail');
-    var svg = btn.querySelector('svg');
-    svg.outerHTML = state === 'done' ? ICON_CHECK : ICON_COPY;
-    status.textContent = state === 'idle' ? '' : text;
+    link.textContent = state === 'idle' ? idle : text;
+    link.classList.toggle('done', state === 'done');
+    link.classList.toggle('fail', state === 'fail');
+    if (status) status.textContent = state === 'idle' ? '' : text;
+    if (state === 'idle') link.setAttribute('aria-label', idleLabel);
+    else link.setAttribute('aria-label', text);
     if (state !== 'idle') timer = setTimeout(function () { show('idle', idle); }, 2500);
   }
-  btn.addEventListener('click', function () {
+  link.addEventListener('click', function (e) {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
     if (busy) return;
-    busy = true; btn.setAttribute('aria-busy', 'true');
-    var done = function () { busy = false; btn.removeAttribute('aria-busy'); };
+    busy = true; link.setAttribute('aria-busy', 'true');
+    var done = function () { busy = false; link.removeAttribute('aria-busy'); };
     copy().then(function () { show('done', 'Copied'); done(); },
                 function () { show('fail', 'Could not copy'); done(); });
   });

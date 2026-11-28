@@ -1096,7 +1096,7 @@ for q in posts:
         </li>''')
 total = sum(q['words'] for q in posts)
 block = ('<!-- posts:start -->\n'
-         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><select class="sort" aria-label="Sort meditations"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option><option value="short">Shortest first</option></select><div class="list-meta"><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words</span><button type="button" class="copy-all" hidden data-src="/meditations.txt" aria-label="Copy the full text of all meditations to the clipboard"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8.5" rx="1.5"/><path d="M10.5 3.5V3A1.5 1.5 0 0 0 9 1.5H3.5A1.5 1.5 0 0 0 2 3v6.5A1.5 1.5 0 0 0 3.5 11H4"/></g></svg><span class="copy-all-label">Copy all text</span></button><span class="copy-all-status" role="status" aria-live="polite"></span></div></div>\n'
+         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><select class="sort" aria-label="Sort meditations"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option><option value="short">Shortest first</option></select><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words</span></div>\n'
          '      <ul class="post-list">\n' + '\n'.join(items) + '\n      </ul>\n'
          '      <p class="no-match" hidden>No meditations match that.</p>\n'
          '      <!-- posts:end -->')
@@ -1108,6 +1108,20 @@ if 'href="/glossary/"' not in s:
                   '<a href="https://github.com/danburonline/inkhaven-2026">GitHub</a><a href="/glossary/">Glossary</a>', 1)
 if 'copyall.js' not in s:
     s = re.sub(r'(\s*<script src="/nav\.js)', '\n  <script src="/copyall.js" defer></script>\\1', s, count=1)
+# Keep the intro's copy-all sentence if it is ever missing from index.html.
+if 'class="copy-all"' not in s:
+    _copy = (
+        ' Copy all meditations as plain text by '
+        '<a class="copy-all" href="/meditations.txt" '
+        'aria-label="Copy all meditations as plain text to the clipboard">clicking here</a>.'
+        '<span class="copy-all-status" role="status" aria-live="polite"></span>'
+    )
+    s2, ncopy = re.subn(r'(<p class="intro">.*?)(</p>)', lambda m: m.group(1) + _copy + m.group(2), s, count=1, flags=re.S)
+    if ncopy:
+        s = s2
+    else:
+        print('WARNING: could not insert copy-all sentence into the home intro')
+
 open(ip, 'w', encoding='utf-8').write(s)
 
 home_desc = HOME_DESC
@@ -1369,7 +1383,7 @@ open(os.path.join(ROOT, 'llms.txt'), 'w', encoding='utf-8').write('\n'.join(llms
 
 # ---------------------------------------------------------------------------
 # meditations.txt: every post as plain text (day number, title, body), in order,
-# for the "Copy all text" button on the home page. Same rules as the "Copy text"
+# for the "clicking here" link in the home intro. Same rules as the "Copy text"
 # control on a post title (titlecopy.js): links as written in the original post
 # ([domain] stand-ins become the raw URL), site-added links as text only.
 def plain_text(article_html):
