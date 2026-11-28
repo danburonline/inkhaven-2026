@@ -110,6 +110,7 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [13/30 Meditations on Synthetic Consciousness: Are You Just Your Brain?](https://consciousness.ink/13-brain-centredness/): Day 13 of 30: brain-centredness, the first axiomatic requirement. Are you just your brain? And what about your body, or your environment?
 - [14/30 Meditations on Synthetic Consciousness: My Electrode Is a Functionalist](https://consciousness.ink/14-methodological-physicalism/): Day 14 of 30: methodological physicalism, the second axiomatic requirement. More a rule than a view, and why my electrode is a functionalist.
 - [15/30 Meditations on Synthetic Consciousness: No Bird Ever Broke the Sound Barrier](https://consciousness.ink/15-non-organicism/): Day 15 of 30: non-organicism, the third axiomatic requirement. Can the physics that biology runs be instantiated in something other than biology?
+- [16/30 Meditations on Synthetic Consciousness: Physical Intrinsicality and the Measurement Problem of the Brain](https://consciousness.ink/16-scale-separation/): Day 16 of 30: scale separation, the fourth and last axiomatic requirement. Physical intrinsicality, the measurement problem of the brain, and the butcher number.
 
 ## Optional
 

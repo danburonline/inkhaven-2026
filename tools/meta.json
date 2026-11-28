@@ -62,5 +62,11 @@
  "15-non-organicism": {
   "description": "Day 15 of 30: non-organicism, the third axiomatic requirement. Can the physics that biology runs be instantiated in something other than biology?",
   "x": "2126204047166513391"
+ },
+ "16-scale-separation": {
+  "description": "Day 16 of 30: scale separation, the fourth and last axiomatic requirement. Physical intrinsicality, the measurement problem of the brain, and the butcher number.",
+  "video_duration": "PT27S",
+  "video_description": "Animation of nine scales of the brain, from experience, brain, areas, circuits, neurons, synapses, microtubules and proteins down to atoms and spins, comparing full separation, hybrid separation and no separation, with zooms into areas, circuits, neurons, synapses, proteins and atoms.",
+  "x": "2126567528952717451"
  }
 }

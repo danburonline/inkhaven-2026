@@ -1019,5 +1019,35 @@
    "label": "Beyond evolution",
    "starts": "And the far end of it really interests me."
   }
+ ],
+ "16-scale-separation": [
+  {
+   "label": "Scale separation",
+   "starts": "The item itself is quickly said."
+  },
+  {
+   "label": "Quantum effects",
+   "starts": "One important thing is also"
+  },
+  {
+   "label": "The measurement problem of the brain",
+   "starts": "Which grain it is, I can only find out by poking"
+  },
+  {
+   "label": "Plasticity and physical intrinsicality",
+   "starts": "I think that everything that we plan to do to a brain"
+  },
+  {
+   "label": "Bohr and Einstein",
+   "starts": "This is basically the old discussion between Bohr and Einstein"
+  },
+  {
+   "label": "What it means for engineering",
+   "starts": "What does this mean for the engineering?"
+  },
+  {
+   "label": "The list so far",
+   "starts": "So for now my list looks like this"
+  }
  ]
 }
