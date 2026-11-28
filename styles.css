@@ -946,6 +946,32 @@ body:has(.num-wrap.open) .post-nav::before {
 }
 .sort:focus { border-color: var(--text); }
 .list-count { flex-basis: 100%; }
+.list-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem 1rem; flex-basis: 100%; }
+.list-meta .list-count { flex-basis: auto; }
+.copy-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: -0.25rem -0.4rem;
+  padding: 0.25rem 0.4rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease;
+}
+.copy-all[hidden] { display: none; }
+.copy-all svg { display: block; flex: none; }
+.copy-all:hover, .copy-all.done { color: var(--text); }
+.copy-all[aria-busy] { cursor: progress; }
+.copy-all:focus { outline: none; }
+.copy-all:focus-visible { outline: 2px solid var(--muted); outline-offset: 1px; }
+.copy-all-status { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Topics line under a post, and the glossary page. Plain text, no boxes. */
 .topics {

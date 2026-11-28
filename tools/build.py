@@ -1096,7 +1096,7 @@ for q in posts:
         </li>''')
 total = sum(q['words'] for q in posts)
 block = ('<!-- posts:start -->\n'
-         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><select class="sort" aria-label="Sort meditations"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option><option value="short">Shortest first</option></select><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words so far</span></div>\n'
+         f'      <div class="list-tools"><input class="filter" type="search" placeholder="Filter meditations" aria-label="Filter meditations"><select class="sort" aria-label="Sort meditations"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="long">Longest first</option><option value="short">Shortest first</option></select><div class="list-meta"><span class="list-count" data-total="{len(posts)}">{len(posts)} of 30 published &middot; {total:,} words so far</span><button type="button" class="copy-all" hidden data-src="/meditations.txt" aria-label="Copy the full text of all meditations to the clipboard"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="5.5" width="8" height="8.5" rx="1.5"/><path d="M10.5 3.5V3A1.5 1.5 0 0 0 9 1.5H3.5A1.5 1.5 0 0 0 2 3v6.5A1.5 1.5 0 0 0 3.5 11H4"/></g></svg><span class="copy-all-label">Copy all text</span></button><span class="copy-all-status" role="status" aria-live="polite"></span></div></div>\n'
          '      <ul class="post-list">\n' + '\n'.join(items) + '\n      </ul>\n'
          '      <p class="no-match" hidden>No meditations match that.</p>\n'
          '      <!-- posts:end -->')
@@ -1106,6 +1106,8 @@ s = re.sub(r'<!-- posts:start -->.*?<!-- posts:end -->', lambda _: block, s, fla
 if 'href="/glossary/"' not in s:
     s = s.replace('<a href="https://github.com/danburonline/inkhaven-2026">GitHub</a>',
                   '<a href="https://github.com/danburonline/inkhaven-2026">GitHub</a><a href="/glossary/">Glossary</a>', 1)
+if 'copyall.js' not in s:
+    s = re.sub(r'(\s*<script src="/nav\.js)', '\n  <script src="/copyall.js" defer></script>\\1', s, count=1)
 open(ip, 'w', encoding='utf-8').write(s)
 
 home_desc = HOME_DESC
@@ -1364,6 +1366,78 @@ llms += ['', '## Optional', '',
          '- [Source on GitHub](https://github.com/danburonline/inkhaven-2026)', '']
 open(os.path.join(ROOT, 'llms.txt'), 'w', encoding='utf-8').write('\n'.join(llms))
 
+
+# ---------------------------------------------------------------------------
+# meditations.txt: every post as plain text (day number, title, body), in order,
+# for the "Copy all text" button on the home page. Same rules as the "Copy text"
+# control on a post title (titlecopy.js): links as written in the original post
+# ([domain] stand-ins become the raw URL), site-added links as text only.
+def plain_text(article_html):
+    soup_p = BeautifulSoup(article_html, 'html.parser')
+    for el in soup_p.select('.tweet-embed, figure, picture, img, video, audio, iframe, svg, script, style, noscript, '
+                            'button, nav, .toc, .sec-at, .tcopy, .part-note, .essence, .x-callout, [hidden]'):
+        el.decompose()
+    def bare(u):
+        return re.sub(r'/$', '', re.sub(r'^www\.', '', re.sub(r'^https?://', '', u)))
+    def link_text(a):
+        href = a.get('href') or ''
+        tx = re.sub(r'\s+', ' ', a.get_text()).strip()
+        cls = a.get('class') or []
+        if not href or href.startswith('javascript:'):
+            return tx
+        if 'int' in cls or 'add' in cls:
+            return tx
+        if re.fullmatch(r'@\w+', tx) and re.fullmatch(r'https://x\.com/\w+/?', href) and href.rstrip('/').split('/')[-1].lower() == tx[1:].lower():
+            return tx
+        if 'ref' in cls:
+            return href
+        if not tx or bare(tx) == bare(href):
+            return href
+        return '%s (%s)' % (tx, href)
+    def inline(node):
+        out = ''
+        for c in node.children:
+            if isinstance(c, str):
+                out += str(c)
+            elif c.name == 'br':
+                out += '\n'
+            elif c.name == 'a':
+                out += link_text(c)
+            else:
+                out += inline(c)
+        return out
+    def clean(x):
+        x = '\n'.join(re.sub(r'[ \t\u00a0]+', ' ', l).strip() for l in x.split('\n'))
+        return re.sub(r'\n{2,}', '\n', x).strip()
+    blocks = []
+    def walk(node):
+        for c in node.children:
+            if isinstance(c, str):
+                t = clean(str(c))
+                if t:
+                    blocks.append(t)
+            elif c.name in ('ul', 'ol'):
+                items = []
+                for i, li in enumerate(c.find_all('li', recursive=False), 1):
+                    t = clean(inline(li))
+                    if t:
+                        items.append(('%d. ' % i if c.name == 'ol' else '- ') + t.replace('\n', '\n  '))
+                if items:
+                    blocks.append('\n'.join(items))
+            elif c.name in ('p', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'pre', 'figcaption'):
+                t = clean(inline(c))
+                if t:
+                    blocks.append(t)
+            else:
+                walk(c)
+    walk(soup_p)
+    return '\n\n'.join(blocks)
+
+allp = []
+for q in chron:
+    allp.append('%d/30 %s\n\n%s' % (q['n'], q['short'], plain_text(q['html'])))
+open(os.path.join(ROOT, 'meditations.txt'), 'w', encoding='utf-8').write('\n\n\n'.join(allp) + '\n')
+
 full = ['# %s' % SITE_TITLE, '', 'By %s. %s' % (AUTHOR, SITE_URL + '/'), '', '## Glossary', '']
 for x in TERMS:
     full += ['### %s' % x['name'], '', x['text'], '', 'Source: %s#%s' % (GLOSSARY_URL, x['slug']), '']
@@ -1445,7 +1519,7 @@ for js, jf in (('preview.js', 'previews.json'), ('nav.js', 'posts.json')):
 
 # Scripts are referenced as /name.js?v=<content hash>, so vercel.json can cache
 # them for a year and a changed file always gets a new URL.
-ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js', 'highlight.js', 'outline.js', 'titlecopy.js']
+ASSETS = ['theme.js', 'nav.js', 'preview.js', 'lightbox.js', 'embed-fit.js', 'highlight.js', 'outline.js', 'titlecopy.js', 'copyall.js']
 ASSET_V = {a: hashlib.sha1(open(os.path.join(ROOT, a), 'rb').read()).hexdigest()[:10] for a in ASSETS}
 ASSET_RE = re.compile(r'(src|href)="/(%s)(?:\?v=[0-9a-f]+)?"' % '|'.join(re.escape(a) for a in ASSETS))
 html_files = [ip, os.path.join(gdir, 'index.html'), os.path.join(ROOT, '404.html'),

@@ -29,7 +29,7 @@
       ]
     },
     {
-      "source": "/:file(theme|nav|preview|lightbox|embed-fit|highlight|outline|titlecopy).js",
+      "source": "/:file(theme|nav|preview|lightbox|embed-fit|highlight|outline|titlecopy|copyall).js",
       "has": [
         {
           "type": "query",
