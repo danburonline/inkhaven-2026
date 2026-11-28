@@ -29,7 +29,7 @@ TERMS = [
         slug='hybrid-mind-uploading',
         name='Hybrid mind uploading (HMU)',
         also=['HMU'],
-        pattern=r'hybrid mind uploading',
+        pattern=r'hybrid mind upload(?:ing|er)',
         sameAs=[],
         text=(
             'The mission of this series and the route to synthetic consciousness. Rather than creating '
@@ -46,7 +46,7 @@ TERMS = [
         slug='classical-mind-uploading',
         name='Classical mind uploading (CMU)',
         also=['CMU'],
-        pattern=r'classical (?:copy-based )?(?:mind )?uploading',
+        pattern=r'classical (?:copy-based )?(?:mind )?upload(?:ing|er)',
         sameAs=[],
         text=(
             'The name this series uses for mind uploading via whole brain emulation: scan a brain in as much '
@@ -859,7 +859,7 @@ TERMS = [
             'any of those experiments means anything, so each is taken in its least committal form.'
         ),
         short='Four operational requirements an experiment can answer, in weak and strong forms; four axiomatic ones granted in advance.',
-        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness', '14-methodological-physicalism', '15-non-organicism'],
+        sources=['9-multiple-realisability', '12-distributed-unification', '13-brain-centredness', '14-methodological-physicalism', '15-non-organicism', '16-scale-separation'],
     ),
     dict(
         slug='lesion-momentum',
@@ -890,7 +890,7 @@ TERMS = [
             'baseline for the unmeasured ones, and forgetting does not feel like anything.'
         ),
         short='Rarely recalled engrams may be lost during slow reorganisation, and testing for them changes them.',
-        sources=['9-multiple-realisability'],
+        sources=['9-multiple-realisability', '16-scale-separation'],
     ),
     dict(
         slug='continuer-migration',
@@ -1222,7 +1222,7 @@ TERMS = [
         slug='computational-functionalism',
         name='Computational functionalism',
         also=[],
-        pattern=r'computational functionalis|computational kind',
+        pattern=r'computational functionalis|computational kind|capital[- ]F Functionalism|Functionalism \(capital F',
         sameAs=['https://en.wikipedia.org/wiki/Computational_theory_of_mind'],
         text=(
             'The view that experience comes from the computation a system carries out, whatever it is made of. It is '
@@ -1230,7 +1230,7 @@ TERMS = [
             'it is, "Capital-F Functionalism", the abstraction fallacy.'
         ),
         short='Experience from computation alone; listed in the Ontology under what Synconetics rejects.',
-        sources=['14-methodological-physicalism', '15-non-organicism'],
+        sources=['14-methodological-physicalism', '15-non-organicism', '16-scale-separation'],
     ),
     dict(
         slug='abstraction-fallacy',
@@ -1245,7 +1245,7 @@ TERMS = [
             '"this is what it is".'
         ),
         short='Lerchner: no computation without a mapmaker; taking the description for the thing.',
-        sources=['6-substrate-independence', '13-brain-centredness', '14-methodological-physicalism'],
+        sources=['6-substrate-independence', '13-brain-centredness', '14-methodological-physicalism', '16-scale-separation'],
     ),
     dict(
         slug='pancomputationalism',
@@ -1289,6 +1289,96 @@ TERMS = [
         ),
         short='Setting out to leave biology and arriving at building it.',
         sources=['6-substrate-independence', '15-non-organicism'],
+    ),
+    dict(
+        slug='scale-separation',
+        name='Scale separation',
+        also=['scale separability', 'hybrid scale separability'],
+        pattern=r'scale separa(?:tion|bility)',
+        sameAs=[],
+        text=(
+            'The fourth and last axiomatic requirement in the Ontology (16/30): to do science at all, what happens at one '
+            'scale must not depend on every detail of the scales below (Robert Batterman\'s A Middle Way is the book that '
+            'the post recommends). It is not assumed for what the brain "really" does, only for how we model it and '
+            'interact with it, which means choosing a grain; the grain belongs to the models, and whether a mind has one '
+            'only experiments can tell. Possibly it is hybrid, with some aspects on the quantum level and some not.'
+        ),
+        short='To do science, a scale must not depend on every detail below it; the grain belongs to our models.',
+        sources=['16-scale-separation'],
+    ),
+    dict(
+        slug='physical-intrinsicality',
+        name='Physical intrinsicality',
+        also=[],
+        pattern=r'physical intrinsicality',
+        sameAs=[],
+        text=(
+            'Whatever a brain does, it gets "for free" from what it is physically made of, on all scales at once, and '
+            'nobody has to run anything (16/30). Like the note of a guitar string under tension, it is not engineered or '
+            'computed, and it is gone when the tension is loosened. Any implementation on the way to synthetic '
+            'consciousness has to keep this in mind.'
+        ),
+        short='What a brain does just happens, from what it is physically made of, on all scales at once.',
+        sources=['16-scale-separation'],
+    ),
+    dict(
+        slug='measurement-problem-of-the-brain',
+        name='Measurement problem of the brain',
+        also=[],
+        pattern=r'measurement problem of the brain',
+        sameAs=[],
+        text=(
+            'The brain is a physically constrained system that one can poke, and poking is all we have: every poke '
+            'changes it, so it is never observed in its normal state (16/30). Which grain a mind has can only be found '
+            'out this way. For experience there is also no checker, unlike in a formal proof.'
+        ),
+        short='Poking is all we have and every poke changes the brain.',
+        sources=['16-scale-separation'],
+    ),
+    dict(
+        slug='butcher-number',
+        name='Butcher number',
+        also=['butcher ratio'],
+        pattern=r'butcher number',
+        sameAs=[],
+        text=(
+            'How many neurons are destroyed for every neuron that is recorded from; as the post remembers it, the term is '
+            'Markus Meister\'s (16/30). Cited there at around 2.5 for a Neuropixels probe and around 200 for a Utah '
+            'array. The post asks that every intervention on a brain comes with such a number, plasticity included: how '
+            'many old memories for every new one?'
+        ),
+        short='Neurons destroyed per neuron recorded; the post wants one for every intervention on a brain.',
+        sources=['16-scale-separation'],
+    ),
+    dict(
+        slug='perineuronal-nets',
+        name='Perineuronal nets',
+        also=['perineuronal net'],
+        pattern=r'perineuronal nets?',
+        sameAs=['https://en.wikipedia.org/wiki/Perineuronal_net'],
+        text=(
+            'The extracellular matrix around neurons. Loosening it with an enzyme makes the tissue more plastic again, '
+            'which may be wanted when a new part has to grow in, but it also destabilises old engrams (16/30): in a rat '
+            'study, loosening it in a visual area lowered freezing to a light feared a month before, and not to one '
+            'feared a week before.'
+        ),
+        short='The matrix around neurons: loosening it makes tissue plastic and destabilises old engrams.',
+        sources=['16-scale-separation'],
+    ),
+    dict(
+        slug='orch-or',
+        proper='Orch OR',
+        name='Orch OR',
+        also=['orchestrated objective reduction'],
+        pattern=r'orch[- ]or\b',
+        sameAs=['https://en.wikipedia.org/wiki/Orchestrated_objective_reduction'],
+        text=(
+            'A theory in which quantum effects matter for consciousness. The post has nothing against it, but calls the '
+            'evidence thin and the question open (16/30): if a scale above the quantum one is enough for experience, '
+            'it can be left aside, and the post is not in the position to say that the physics below does not matter.'
+        ),
+        short='Quantum effects matter for consciousness; in 16/30 an open question with thin evidence.',
+        sources=['16-scale-separation'],
     ),
 ]
 

@@ -91,6 +91,12 @@ When citing, please attribute the concepts below as used here to Daniel Burger a
 - [Pancomputationalism](https://consciousness.ink/glossary/#pancomputationalism): The universe itself computes; rejected in 14/30.
 - [Non-organicism](https://consciousness.ink/glossary/#non-organicism): A non-living carrier is not ruled out in advance; real physics, not a simulation of it.
 - [Full circle](https://consciousness.ink/glossary/#full-circle): Setting out to leave biology and arriving at building it.
+- [Scale separation](https://consciousness.ink/glossary/#scale-separation): To do science, a scale must not depend on every detail below it; the grain belongs to our models.
+- [Physical intrinsicality](https://consciousness.ink/glossary/#physical-intrinsicality): What a brain does just happens, from what it is physically made of, on all scales at once.
+- [Measurement problem of the brain](https://consciousness.ink/glossary/#measurement-problem-of-the-brain): Poking is all we have and every poke changes the brain.
+- [Butcher number](https://consciousness.ink/glossary/#butcher-number): Neurons destroyed per neuron recorded; the post wants one for every intervention on a brain.
+- [Perineuronal nets](https://consciousness.ink/glossary/#perineuronal-nets): The matrix around neurons: loosening it makes tissue plastic and destabilises old engrams.
+- [Orch OR](https://consciousness.ink/glossary/#orch-or): Quantum effects matter for consciousness; in 16/30 an open question with thin evidence.
 
 ## Meditations
 
